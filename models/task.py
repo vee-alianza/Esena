@@ -1,0 +1,47 @@
+from datetime import datetime
+from .db import db
+
+
+class Task(db.Model):
+    __tablename__ = "tasks"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text)
+    create_date = db.Column(db.Date, nullable=False, default=datetime.now().date())
+    end_date = db.Column(db.Date, nullable=False)
+    is_completed = db.Column(db.Boolean, nullable=False, default=False)
+
+    status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"), nullable=False)
+    status = db.relationship("Status", back_populates="tasks")
+
+    priority_id = db.Column(db.Integer, db.ForeignKey("priorities.id"), nullable=False)
+    priority = db.relationship("Priority", back_populates="tasks")
+
+    assigner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    assigner = db.relationship("User", foreign_keys=[assigner_id])
+
+    assignee_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    assignee = db.relationship("User", foreign_keys=[assignee_id])
+
+    project_id = db.Column(db.Integer, db.ForeignKey("projects.id"), nullable=False)
+    project = db.relationship("Project", back_populates="tasks")
+
+    comments = db.relationship("Comment", back_populates="task", cascade="all, delete-orphan")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "create_date": self.create_date,
+            "end_date": self.end_date,
+            "status": self.status,
+            "priority": self.priority,
+            "is_completed": self.is_completed,
+            "assigner": self.assigner,
+            "assignee": self.assignee,
+            "project": self.project,
+            "comments": [comment.content for comment in self.comments]
+        }
+    
