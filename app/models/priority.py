@@ -10,10 +10,10 @@ class Priority(db.Model):
     projects = db.relationship("Project", back_populates="priority")
     tasks = db.relationship("Task", back_populates="priority")
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "projects": [project.name for project in self.projects],
-            "tasks": [task.name for task in self.tasks]
-        }
+    # def to_dict(self):
+    #     return {
+    #         "id": self.id,
+    #         "name": self.name,
+    #         "projects": [project.name for project in self.projects],
+    #         "tasks": [task.name for task in self.tasks]
+    #     }

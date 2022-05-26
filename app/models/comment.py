@@ -19,5 +19,5 @@ class Comment(db.Model):
             "content": self.content,
             "create_date": self.create_date,
             "task": self.task.name,
-            "author": self.author.username
+            "author": self.author.first_name
         }

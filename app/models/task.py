@@ -36,12 +36,12 @@ class Task(db.Model):
             "description": self.description,
             "create_date": self.create_date,
             "end_date": self.end_date,
-            "status": self.status,
-            "priority": self.priority,
+            "status": self.status.name,
+            "priority": self.priority.name,
             "is_completed": self.is_completed,
-            "assigner": self.assigner,
-            "assignee": self.assignee,
-            "project": self.project,
-            "comments": [comment.content for comment in self.comments]
+            "assigner": self.assigner.to_dict(),
+            "assignee": self.assignee.to_dict(),
+            "project": self.project.name,
+            "comments": {comment.id: comment.to_dict() for comment in self.comments}
         }
     

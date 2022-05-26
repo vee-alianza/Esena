@@ -10,10 +10,10 @@ class Status(db.Model):
     tasks = db.relationship("Task", back_populates="status")
     projects = db.relationship("Project", back_populates="status")
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "tasks": [task.name for task in self.tasks],
-            "projects": [project.name for project in self.projects]
-        }
+    # def to_dict(self):
+    #     return {
+    #         "id": self.id,
+    #         "name": self.name,
+    #         "tasks": [task.name for task in self.tasks],
+    #         "projects": [project.name for project in self.projects]
+    #     }
