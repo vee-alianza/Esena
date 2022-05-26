@@ -1,4 +1,5 @@
 from .db import db
+from .team import teams
 
 class Project(db.Model):
     __tablename__ = "projects"
@@ -22,7 +23,7 @@ class Project(db.Model):
 
     tasks = db.relationship("Task", back_populates="project", cascade="all, delete-orphan")
 
-    team = db.relationship("Team", back_populates="project", cascade="all, delete-orphan")
+    members = db.relationship("User", back_populates="joined_projects", secondary=teams)
 
     def to_dict(self):
         return {
@@ -36,5 +37,5 @@ class Project(db.Model):
             "owner": self.owner,
             "status": self.status,
             "tasks": [task.name for task in self.tasks],
-            "members": [user.name for user in self.team.members if self.team.project_id == self.id]
+            "members": [member.first_name for member in self.members]
         }
