@@ -4,5 +4,5 @@ from .priority import Priority
 from .project import Project
 from .status import Status
 from .task import Task
-from .team import Team
+# from .team import team
 from .comment import Comment

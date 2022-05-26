@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from .team import teams
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     #as owner of projects
     owned_projects = db.relationship("Project", back_populates="owner")
 
-    #as member of projects
-    teams = db.relationship("Team", back_populates="members")
+    #as member of projects, might include projects with ownership
+    joined_projects = db.relationship("Project", back_populates="members", secondary=teams)
 
     # assigning_tasks = db.relationship("Task", back_populates="assigner")
     # assigned_tasks = db.relationship("Task", back_populates="assignee")
@@ -41,6 +41,6 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'username': self.username,
             'email': self.email,
-            'owned_projects': self.owned_projects,
-            'joined_projects': [project.name for project in self.team.projects if self.team.member_id == self.id]
+            'owned_projects': [project.name for project in self.owned_projects],
+            'joined_projects': [project.name for project in self.joined_projects]
         }
