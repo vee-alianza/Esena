@@ -21,7 +21,8 @@ class User(db.Model, UserMixin):
     joined_projects = db.relationship("Project", back_populates="members", secondary=teams)
 
     # assigning_tasks = db.relationship("Task", back_populates="assigner")
-    # assigned_tasks = db.relationship("Task", back_populates="assignee")
+    assigned_tasks = db.relationship("Task", foreign_keys="Task.assignee_id")
+
 
     @property
     def password(self):
@@ -39,8 +40,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'username': self.username,
             'email': self.email,
-            'owned_projects': [project.name for project in self.owned_projects],
-            'joined_projects': [project.name for project in self.joined_projects]
+            # 'owned_projects': [project.to_dict() for project in self.owned_projects],
+            # 'joined_projects': [project.to_dict() for project in self.joined_projects],
         }

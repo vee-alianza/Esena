@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import User, Project
 
 user_routes = Blueprint('users', __name__)
 
@@ -16,4 +16,20 @@ def users():
 @login_required
 def user(id):
     user = User.query.get(id)
-    return user.to_dict()
+    # print("******************", user.to_dict())
+    # return user.to_dict()
+    user_dict = user.to_dict()
+
+    # print("************", user.owned_projects)
+
+    owned_projects = {project.id: project.to_dict() for project in user.owned_projects}
+    joined_projects = {project.id: project.to_dict() for project in user.joined_projects}
+
+    assigned_tasks = {task.id: task.to_dict() for task in user.assigned_tasks}
+
+    user_dict["owned_projects"] = owned_projects
+    user_dict["joined_projects"] = joined_projects
+    user_dict["assigned_tasks"] = assigned_tasks
+
+    return user_dict
+    
