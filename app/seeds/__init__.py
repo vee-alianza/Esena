@@ -3,6 +3,8 @@ from .users import seed_users, undo_users
 from .statuses import seed_statuses, undo_statuses
 from .priorities import seed_priorities, undo_priorities
 from .projects import seed_projects, undo_projects
+from .tasks import seed_tasks, undo_tasks
+from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -16,6 +18,8 @@ def seed():
     seed_statuses()
     seed_priorities()
     seed_projects()
+    seed_tasks()
+    seed_comments()
     
     # Add other seed functions here
 
@@ -27,4 +31,6 @@ def undo():
     undo_statuses()
     undo_priorities()
     undo_projects()
+    undo_tasks()
+    undo_comments()
     # Add other undo functions here

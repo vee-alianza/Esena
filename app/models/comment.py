@@ -1,12 +1,12 @@
 from .db import db
-
+from datetime import datetime
 
 class Comment(db.Model):
     __tablename__ = "comments"
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
-    create_date = db.Column(db.Date, nullable=False)
+    create_date = db.Column(db.Date, nullable=False, default=datetime.now().date())
 
     task_id = db.Column(db.Integer, db.ForeignKey("tasks.id"), nullable=False)
     task = db.relationship("Task", back_populates="comments")
