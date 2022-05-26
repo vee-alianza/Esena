@@ -39,8 +39,8 @@ class Task(db.Model):
             "status": self.status.name,
             "priority": self.priority.name,
             "is_completed": self.is_completed,
-            "assigner": self.assigner.to_dict(),
-            "assignee": self.assignee.to_dict(),
+            "assigner_id": self.assigner.id,
+            "assignee_id": self.assignee.id,
             "project": self.project.name,
             "comments": {comment.id: comment.to_dict() for comment in self.comments}
         }
