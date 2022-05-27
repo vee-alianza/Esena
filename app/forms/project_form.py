@@ -8,9 +8,9 @@ class ProjectForm(FlaskForm):
     description = TextAreaField("description", validators=[DataRequired()])
     start_date = DateField("start date", validators=[DataRequired()])
     end_date = DateField("end date", validators=[DataRequired()])
-    is_public = BooleanField("public?")
+    is_public = BooleanField("is_public")
     priority_id = SelectField("priority", choices=[1, 2, 3])
     status_id = SelectField("status", choices=[1, 2, 3])
 
-    # #for test only:
-    # submit = SubmitField("Create Project")
+    #for test only:
+    submit = SubmitField("Create Project")
