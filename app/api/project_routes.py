@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, render_template
 from flask_login import login_required, current_user
 from app.models import db, User, Project
 from app.forms.project_form import ProjectForm
+from app.forms.delete_form import DeleteForm
 
 project_routes = Blueprint('projects', __name__)
 
@@ -24,7 +25,7 @@ def update_project(id):
     """
     Updates a project
     """
-    #check if current_user.id == id:
+    #check if current_user.id == owner_id:
     
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -45,3 +46,22 @@ def update_project(id):
             return {'errors': ['Project not found.']}, 404
     # return render_template("project_test.html", form=form)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@project_routes.route('/<int:id>', methods=["DELETE"])
+#commented out for test only
+# @login_required
+def delete_project(id):
+    form = DeleteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+    #check if current_user.id == owner_id:
+        project = Project.query.get(id)
+        if project:
+            db.session.delete(project)
+            db.session.commit()
+            return {'message': f'Project {id} successfully deleted.'}
+        else:
+            return {'errors': ['Project not found.']}, 404
+    return {'errors': ['An error has occurred. Please try again.']}, 401
