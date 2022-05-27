@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 
+
 # # url = "http://127.0.0.1:5000/api/users/4/projects"
 # url = "http://127.0.0.1:5000/api/projects/4"
 # url = "http://127.0.0.1:5000/api/users/4/projects"
@@ -61,6 +62,32 @@ url = "http://127.0.0.1:5000/api/tasks/1/comments"
 
 
 
+
+url = "http://127.0.0.1:5000/api/users/1/projects"
+# url = "http://127.0.0.1:5000/api/projects/5"
+# url = "http://127.0.0.1:5000/api/projects/2/tasks"
+# url = "http://127.0.0.1:5000/api/tasks/3"
+
+#project
+payload={'name': 'esena project',
+    'description': 'Sqlalchemy is a must',
+    'start_date': '2022-3-1',
+    'end_date': '2022-4-1',
+    'is_public': "",
+    'priority_id': 2,
+    'status_id': 3,
+    'members': '2 3 '
+}
+
+
+#task
+# payload={'name': 'design doc',
+#     'description': 'Docs, wireframes',
+#     'end_date': '2022-3-1',
+#     'priority_id': 2,
+#     'status_id': 3,
+#     'assignee_id': 2
+# }
 
 headers = {
   'csrf_token': 'IjViNjE5OTYyOGY3NDBiYTNjMWUxNjdkNzZmM2EzNDhmY2FlMTJmYzki.YpEGvQ.xl_1fLVf33XFtu9NOWVPEFPBRnQ',
