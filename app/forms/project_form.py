@@ -10,6 +10,6 @@ class ProjectForm(FlaskForm):
     is_public = BooleanField("is_public")
     priority_id = SelectField("priority", choices=[1, 2, 3])
     status_id = SelectField("status", choices=[1, 2, 3])
-
+    members = StringField("members", validators=[DataRequired()])
     #for test only:
     submit = SubmitField("Create Project")
