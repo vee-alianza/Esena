@@ -11,7 +11,7 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [priority, setPriority] = useState("1");
   const [status, setStatus] = useState("1");
   const [members, setMembers] = useState("");
-  const [isPublic, setIsPublic] = useState(false);
+  const [isPrivate, setIsPrivate] = useState(false);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -24,7 +24,7 @@ const CreateProjectForm = ({ setShowModal }) => {
         description,
         start_date: startDate,
         end_date: endDate,
-        is_public: isPublic,
+        is_private: isPrivate,
         priority_id: parseInt(priority),
         status_id: parseInt(status),
         members,
@@ -144,10 +144,10 @@ const CreateProjectForm = ({ setShowModal }) => {
         <div>
           <label>Private Project?</label>
           <input
-            name="is_public"
+            name="is_private"
             type="checkbox"
-            checked={isPublic}
-            onChange={(e) => setIsPublic(!isPublic)}
+            checked={isPrivate}
+            onChange={(e) => setIsPrivate(!isPrivate)}
           ></input>
         </div>
         <button className="cancelBtn" type="cancel">

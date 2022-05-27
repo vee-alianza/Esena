@@ -4,8 +4,8 @@ from datetime import datetime
 
 
 def seed_projects():
-    flask_project = Project(name="flask project", description="test", start_date=datetime(2022,10,1), end_date=datetime(2022,11,1), is_archived=False, is_public=True, priority_id=1, status_id=1, owner_id=1)
-    react_project = Project(name="react project", description="test", start_date=datetime(2022,8,1), end_date=datetime(2022,2,1), is_archived=False, is_public=True, priority_id=1, status_id=1, owner_id=2)
+    flask_project = Project(name="flask project", description="test", start_date=datetime(2022,10,1), end_date=datetime(2022,11,1), is_archived=False, is_private=True, priority_id=1, status_id=1, owner_id=1)
+    react_project = Project(name="react project", description="test", start_date=datetime(2022,8,1), end_date=datetime(2022,2,1), is_archived=False, is_private=True, priority_id=1, status_id=1, owner_id=2)
 
 
     user2 = User.query.get(2)

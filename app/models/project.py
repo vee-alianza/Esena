@@ -10,7 +10,7 @@ class Project(db.Model):
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
     is_archived = db.Column(db.Boolean, nullable=False, default=False)
-    is_public = db.Column(db.Boolean, nullable=False)
+    is_private = db.Column(db.Boolean, nullable=False)
 
     priority_id = db.Column(db.Integer, db.ForeignKey("priorities.id"))
     priority = db.relationship("Priority", back_populates="projects")
@@ -32,7 +32,7 @@ class Project(db.Model):
             "start_date": self.start_date,
             "end_date": self.end_date,
             "is_archived": self.is_archived,
-            "is_public": self.is_public,
+            "is_private": self.is_private,
             "priority": self.priority.name,
             "owner_id": self.owner.id,
             "status": self.status.name,

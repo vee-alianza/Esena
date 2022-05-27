@@ -80,7 +80,7 @@ def create_project(id):
             description=form.data['description'],
             start_date=form.data['start_date'],
             end_date=form.data['end_date'],
-            is_public=form.data['is_public'],
+            is_private=form.data['is_private'],
             priority_id=form.data['priority_id'],
             status_id=form.data['status_id'],
             owner_id=id
