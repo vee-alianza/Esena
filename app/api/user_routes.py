@@ -44,8 +44,8 @@ def user(id):
 
     return user_dict
 
-#GET method for test only  
-@user_routes.route('/<int:id>/projects', methods=["GET", "POST"])
+
+@user_routes.route('/<int:id>/projects', methods=["POST"])
 #commented out for test only
 # @login_required
 def create_project(id):
@@ -69,6 +69,4 @@ def create_project(id):
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
-    #for test
-    return render_template("project_test.html", form=form)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
