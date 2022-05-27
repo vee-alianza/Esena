@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request, render_template
 from flask_login import login_required, current_user
-from app.models import db, User, Project
+from app.models import db, User, Project, Task
 from app.forms.project_form import ProjectForm
 from app.forms.delete_form import DeleteForm
+from app.forms.task_form import TaskForm
 
 project_routes = Blueprint('projects', __name__)
 
@@ -65,3 +66,30 @@ def delete_project(id):
         else:
             return {'errors': ['Project not found.']}, 404
     return {'errors': ['An error has occurred. Please try again.']}, 401
+
+
+@project_routes.route('/<int:id>/tasks', methods=["POST"])
+#commented out for test only
+# @login_required
+def create_task(id):
+    """
+    Creates a new task
+    """
+    form = TaskForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        task = Task(
+            name=form.data['name'],
+            description=form.data['description'],
+            end_date=form.data['end_date'],
+            status_id=form.data['status_id'],
+            priority_id=form.data['priority_id'],
+            assignee_id=form.data['assignee_id'],
+            is_completed=form.data["is_completed"],
+            assigner_id=current_user.id,
+            project_id=id
+        )
+        db.session.add(task)
+        db.session.commit()
+        return task.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
