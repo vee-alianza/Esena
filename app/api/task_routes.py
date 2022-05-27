@@ -43,3 +43,22 @@ def update_task(id):
             return {'errors': ['Task not found.']}, 404
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@task_routes.route('/<int:id>', methods=["DELETE"])
+#commented out for test only
+# @login_required
+def delete_task(id):
+    form = DeleteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if form.validate_on_submit():
+    #check if current_user.id == assigner_id:
+        task = Task.query.get(id)
+        if task:
+            db.session.delete(task)
+            db.session.commit()
+            return {'message': f'Task {id} successfully deleted.'}
+        else:
+            return {'errors': ['Task not found.']}, 404
+    return {'errors': ['An error has occurred. Please try again.']}, 401
