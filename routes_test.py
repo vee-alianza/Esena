@@ -26,7 +26,7 @@ from datetime import datetime
 
 # print(response.text)
 
-url = "http://127.0.0.1:5000/api/comments/3"
+url = "http://127.0.0.1:5000/api/tasks/1/comments"
 
 # payload={
 #     'content': 'Test editing comment',
@@ -62,11 +62,21 @@ url = "http://127.0.0.1:5000/api/comments/3"
 
 
 
-# headers = {
-#   'csrf_token': 'IjViNjE5OTYyOGY3NDBiYTNjMWUxNjdkNzZmM2EzNDhmY2FlMTJmYzki.YpEGvQ.xl_1fLVf33XFtu9NOWVPEFPBRnQ',
-#   'session': 'eyJjc3JmX3Rva2VuIjoiNWI2MTk5NjI4Zjc0MGJhM2MxZTE2N2Q3NmYzYTM0OGZjYWUxMmZjOSJ9.YpEGvQ.DUkMzAbxDZmobNtKaU91d4ZUpeY',
-#   'Cookie': 'csrf_token=IjViNjE5OTYyOGY3NDBiYTNjMWUxNjdkNzZmM2EzNDhmY2FlMTJmYzki.YpEMuw.rQYtDoQiXPTFkZUDTI0NtxrbAQs; session=.eJydjktuwzAMRK8iaB0UFvWh5FNkXwQGRZNxUDcuLGcV5O5V0Bt0QRAzQ2Le0066Uluk2fHzac3Rl_2W1ugq9mTPq1ATs25Xc7ubYzPE3ENzLLdmfvrNh728Tv_8u5x6-S5tseOxP6Sr22xHq95hwhlDzAA1aaSMqWAMJXuPvih7jQ6BYqKgQWiO5JXyoFogVEZRUIa5IkBADmHwlRV7TEABPScYSmaeK1PIQylFVROQf88coeNPjyb7H43rktuu07F9yb0bsSZXSoKsGIZKnp24N25STz5kZRLX-4t9_QJB9WkR.YpEJ5A.wfXMYbQvzgfjOHLi72W6fcAatt4'
-# }
+headers = {
+  'csrf_token': 'IjViNjE5OTYyOGY3NDBiYTNjMWUxNjdkNzZmM2EzNDhmY2FlMTJmYzki.YpEGvQ.xl_1fLVf33XFtu9NOWVPEFPBRnQ',
+  'Session': 'eyJjc3JmX3Rva2VuIjoiNWI2MTk5NjI4Zjc0MGJhM2MxZTE2N2Q3NmYzYTM0OGZjYWUxMmZjOSJ9.YpEGvQ.DUkMzAbxDZmobNtKaU91d4ZUpeY',
+  'Cookie': 'csrf_token=IjViNjE5OTYyOGY3NDBiYTNjMWUxNjdkNzZmM2EzNDhmY2FlMTJmYzki.YpEp-w.oWUe_qT7-kc3MgVqt4SHMhGX4YE; session=.eJydjktuwzAMRK8iaB0UFvWh5FNkXwQGRZNxUDcuLGcV5O5V0Bt0QRAzQ2Le0066Uluk2fHzac3Rl_2W1ugq9mTPq1ATs25Xc7ubYzPE3ENzLLdmfvrNh728Tv_8u5x6-S5tseOxP6Sr22xHq95hwhlDzAA1aaSMqWAMJXuPvih7jQ6BYqKgQWiO5JXyoFogVEZRUIa5IkBADmHwlRV7TEABPScYSmaeK1PIQylFVROQf88coeNPjyb7H43rktuu07F9yb0bsSZXSoKsGIZKnp24N25STz5kZRLX-4t9_QJB9WkR.YpEJ5A.wfXMYbQvzgfjOHLi72W6fcAatt4'
+}
 # response = requests.request("DELETE", url, headers=headers)
 
 # print(response.text)
+
+payload = {
+    "content": "this is new comment",
+    "task_id": 1,
+    "author_id": 1
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)

@@ -4,4 +4,3 @@ from wtforms.validators import DataRequired
 
 class CommentForm(FlaskForm):
     content = StringField("content", validators = [DataRequired()])
-    submit = SubmitField("Add Comment")
