@@ -31,13 +31,13 @@ def update_project(id):
     if form.validate_on_submit():
         project = Project.query.get(id)
         if project:
-            project["name"]=form.data['name']
-            project["description"]=form.data['description']
-            project["start_date"]=form.data['start_date']
-            project["end_date"]=form.data['end_date']
-            project["is_public"]=form.data['is_public']
-            project["priority_id"]=form.data['priority_id']
-            project["status_id"]=form.data['status_id']
+            project.name = form.data['name']
+            project.description = form.data['description']
+            project.start_date = form.data['start_date']
+            project.end_date = form.data['end_date']
+            project.is_public = form.data['is_public']
+            project.priority_id = form.data['priority_id']
+            project.status_id = form.data['status_id']
             db.session.add(project)
             db.session.commit()
             return project.to_dict()
