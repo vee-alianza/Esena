@@ -66,6 +66,11 @@ def create_project(id):
             status_id=form.data['status_id'],
             owner_id=id
         )
+        project.members.append(current_user)
+        members = form.data['members'].strip().split(" ")
+        for member_id in members:
+            member = User.query.get(int(member_id))
+            project.members.append(member)
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
