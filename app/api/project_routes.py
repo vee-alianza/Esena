@@ -37,7 +37,7 @@ def update_project(id):
             project.description = form.data['description']
             project.start_date = form.data['start_date']
             project.end_date = form.data['end_date']
-            project.is_public = form.data['is_public']
+            project.is_private = form.data['is_private']
             project.priority_id = form.data['priority_id']
             project.status_id = form.data['status_id']
             db.session.add(project)
