@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.Text)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    
+
     #as owner of projects
     owned_projects = db.relationship("Project", back_populates="owner")
 
