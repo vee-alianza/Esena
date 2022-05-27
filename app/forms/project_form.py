@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired
 class ProjectForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
     description = TextAreaField("description", validators=[DataRequired()])
-    start_date = DateField("start date", validators=[DataRequired()])
-    end_date = DateField("end date", validators=[DataRequired()])
+    start_date = DateField("start_date", validators=[DataRequired()])
+    end_date = DateField("end_date", validators=[DataRequired()])
     is_public = BooleanField("is_public")
     priority_id = SelectField("priority", choices=[1, 2, 3])
     status_id = SelectField("status", choices=[1, 2, 3])

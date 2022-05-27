@@ -53,8 +53,8 @@ def update_profile(id):
         user = User.query.filter(
             User.id == id, User.user_id == current_user.id).first()
         if user:
-            user.first_name = form.data['firstName']
-            user.last_name = form.data['lastName']
+            user.first_name = form.data['first_name']
+            user.last_name = form.data['last_name']
             user.occupation = form.data['occupation']
             user.email = form.data['email']
             db.session.commit()
@@ -73,6 +73,7 @@ def create_project(id):
     #check if current_user.id == id:
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         project = Project(
             name=form.data['name'],
@@ -92,4 +93,6 @@ def create_project(id):
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+

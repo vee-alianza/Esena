@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
-  const userId = "1"; //TODO: GET CURRENT SESSION USER ID FROM STORE
+  const userId = "4"; //TODO: GET CURRENT SESSION USER ID FROM STORE
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -12,6 +11,8 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [priority, setPriority] = useState("1");
   const [status, setStatus] = useState("1");
   const [members, setMembers] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+
   const [validationErrors, setValidationErrors] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -23,15 +24,18 @@ const CreateProjectForm = ({ setShowModal }) => {
         description,
         start_date: startDate,
         end_date: endDate,
-        priority,
-        status,
+        is_public: isPublic,
+        priority_id: parseInt(priority),
+        status_id: parseInt(status),
         members,
       };
+
       // TODO: NEEDS DISPATCH
       const res = await fetch(`/api/users/${userId}/projects`, {
         method: "POST",
-        body: payload,
+        body: JSON.stringify(payload),
         headers: {
+          "Content-Type": "application/json",
           csrf_token:
             "IjRiY2M4MWNlMDkwNGJlZjRlMTJhMzBhMWUxNGI0OTM4NWU4ODNjODQi.YpErDA.6EwPVYrY3XlCfjRRkORGl6nf3KI",
           session:
@@ -81,18 +85,22 @@ const CreateProjectForm = ({ setShowModal }) => {
         <div className="form-grouping">
           <div className="form-control">
             <label>Start Date</label>
-            <DatePicker
+            <input
               placeholderText={"Choose a start date"}
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              type="date"
+              name="start_date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
             />
           </div>
           <div className="form-control">
             <label>End Date</label>
-            <DatePicker
+            <input
               placeholderText={"Choose an end date"}
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
+              type="date"
+              name="end_date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
             />
           </div>
         </div>
@@ -126,11 +134,20 @@ const CreateProjectForm = ({ setShowModal }) => {
         <div className="form-control">
           <label>Add Teammates</label>
           <input
-            name="name"
+            name="members"
             placeholder="Search for teammates..."
             type="text"
             value={members}
             onChange={(e) => setMembers(e.target.value)}
+          ></input>
+        </div>
+        <div>
+          <label>Private Project?</label>
+          <input
+            name="is_public"
+            type="checkbox"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(!isPublic)}
           ></input>
         </div>
         <button className="cancelBtn" type="cancel">
