@@ -55,7 +55,10 @@ def create_project(id):
     #check if current_user.id == id:
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data['description'])
+    print(form.data['start_date'])
     if form.validate_on_submit():
+        print('here')
         project = Project(
             name=form.data['name'],
             description=form.data['description'],
@@ -74,4 +77,5 @@ def create_project(id):
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
+    print('error ***')
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

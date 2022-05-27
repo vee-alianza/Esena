@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
-  const userId = "1"; //TODO: GET CURRENT SESSION USER ID FROM STORE
+  const userId = "4"; //TODO: GET CURRENT SESSION USER ID FROM STORE
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -12,26 +12,32 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [priority, setPriority] = useState("1");
   const [status, setStatus] = useState("1");
   const [members, setMembers] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(startDate);
     if (!validationErrors.length) {
+      console.log("here");
       const payload = {
         name,
         description,
         start_date: startDate,
         end_date: endDate,
-        priority,
-        status,
+        is_public: isPublic,
+        priority_id: parseInt(priority),
+        status_id: parseInt(status),
         members,
       };
+
       // TODO: NEEDS DISPATCH
       const res = await fetch(`/api/users/${userId}/projects`, {
         method: "POST",
-        body: payload,
+        body: JSON.stringify(payload),
         headers: {
+          "Content-Type": "application/json",
           csrf_token:
             "IjRiY2M4MWNlMDkwNGJlZjRlMTJhMzBhMWUxNGI0OTM4NWU4ODNjODQi.YpErDA.6EwPVYrY3XlCfjRRkORGl6nf3KI",
           session:
@@ -126,11 +132,20 @@ const CreateProjectForm = ({ setShowModal }) => {
         <div className="form-control">
           <label>Add Teammates</label>
           <input
-            name="name"
+            name="members"
             placeholder="Search for teammates..."
             type="text"
             value={members}
             onChange={(e) => setMembers(e.target.value)}
+          ></input>
+        </div>
+        <div>
+          <label>Private Project?</label>
+          <input
+            name="is_public"
+            type="checkbox"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(!isPublic)}
           ></input>
         </div>
         <button className="cancelBtn" type="cancel">
