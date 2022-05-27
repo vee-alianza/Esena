@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
@@ -18,9 +16,7 @@ const CreateProjectForm = ({ setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(startDate);
     if (!validationErrors.length) {
-      console.log("here");
       const payload = {
         name,
         description,
@@ -87,18 +83,22 @@ const CreateProjectForm = ({ setShowModal }) => {
         <div className="form-grouping">
           <div className="form-control">
             <label>Start Date</label>
-            <DatePicker
+            <input
               placeholderText={"Choose a start date"}
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
+              type="date"
+              name="start_date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
             />
           </div>
           <div className="form-control">
             <label>End Date</label>
-            <DatePicker
+            <input
               placeholderText={"Choose an end date"}
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
+              type="date"
+              name="end_date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
             />
           </div>
         </div>
