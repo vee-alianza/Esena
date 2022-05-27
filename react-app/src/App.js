@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
@@ -13,6 +13,7 @@ import CreateProjectModal from "./components/CreateProjectForm";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const session = useSelector((state) => state.session.user);
 
   useEffect(() => {
     (async () => {
@@ -20,6 +21,21 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(() => {
+    (async () => {
+      // res = fetch /users/${session.id}
+      // data = await res json()
+      // const user = data[session.id]
+      // dispatch(setProjects(user.projects))
+      // dispatch(setTasks(user.tasks))
+      // dispatch(setTeammates(user.teammates))
+      // dispatch()
+      // dispatch
+      // dispatch
+      setLoaded(true);
+    })();
+  }, [dispatch, session]);
 
   if (!loaded) {
     return null;

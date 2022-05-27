@@ -41,6 +41,8 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
+            'occupation': self.occupation,
+            'bio': self.bio
             # code below causes maximum calls error, add the key-value pairs in routes instead
             # 'owned_projects': [project.to_dict() for project in self.owned_projects],
             # 'joined_projects': [project.to_dict() for project in self.joined_projects],
