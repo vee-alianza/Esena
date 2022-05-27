@@ -7,7 +7,7 @@ class ProjectForm(FlaskForm):
     description = TextAreaField("description", validators=[DataRequired()])
     start_date = DateField("start_date", validators=[DataRequired()])
     end_date = DateField("end_date", validators=[DataRequired()])
-    is_public = BooleanField("is_public")
+    is_private = BooleanField("is_private")
     priority_id = SelectField("priority", choices=[1, 2, 3])
     status_id = SelectField("status", choices=[1, 2, 3])
     members = StringField("members", validators=[DataRequired()])
