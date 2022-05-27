@@ -3,6 +3,7 @@ import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
   const userId = "4"; //TODO: GET CURRENT SESSION USER ID FROM STORE
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -11,6 +12,7 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [status, setStatus] = useState("1");
   const [members, setMembers] = useState("");
   const [isPublic, setIsPublic] = useState(false);
+
   const [validationErrors, setValidationErrors] = useState([]);
 
   const handleSubmit = async (e) => {

@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, render_template
 from flask_login import login_required, current_user
+from app.forms.user_form import UserForm
 from app.models import db, User, Project
 from app.forms.project_form import ProjectForm
 
@@ -44,6 +45,23 @@ def user(id):
 
     return user_dict
 
+@user_routes.route('/<int:id>', methods=['PUT'])
+def update_profile(id):
+    form = UserForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = User.query.filter(
+            User.id == id, User.user_id == current_user.id).first()
+        if user:
+            user.first_name = form.data['first_name']
+            user.last_name = form.data['last_name']
+            user.occupation = form.data['occupation']
+            user.email = form.data['email']
+            db.session.commit()
+            return user.to_dict()
+        else:
+            return {'errors': ['User does not exist']}, 404
+    return{'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @user_routes.route('/<int:id>/projects', methods=["POST"])
 #commented out for test only
@@ -55,10 +73,8 @@ def create_project(id):
     #check if current_user.id == id:
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data['description'])
-    print(form.data['start_date'])
+
     if form.validate_on_submit():
-        print('here')
         project = Project(
             name=form.data['name'],
             description=form.data['description'],
@@ -77,5 +93,6 @@ def create_project(id):
         db.session.add(project)
         db.session.commit()
         return project.to_dict()
-    print('error ***')
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
