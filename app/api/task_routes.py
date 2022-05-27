@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request, render_template
 from flask_login import login_required, current_user
-from app.models import db, User, Project, Task
+from app.models import db, User, Project, Task, Comment
 from app.forms.delete_form import DeleteForm
 from app.forms.task_form import TaskForm
+from app.forms.comment_form import CommentForm
 
 task_routes = Blueprint('tasks', __name__)
 
@@ -24,7 +25,7 @@ def update_task(id):
     Updates a task
     """
     #check if current_user.id == assigner_id:
-    
+
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -51,7 +52,7 @@ def update_task(id):
 def delete_task(id):
     form = DeleteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     if form.validate_on_submit():
     #check if current_user.id == assigner_id:
         task = Task.query.get(id)
@@ -62,3 +63,24 @@ def delete_task(id):
         else:
             return {'errors': ['Task not found.']}, 404
     return {'errors': ['An error has occurred. Please try again.']}, 401
+
+
+@task_routes.route('/<int:id>/comments', methods=["POST"])
+@login_required
+def create_comment(id):
+    """
+    Creating comment
+    """
+
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment(
+            content = form.data["content"],
+            task_id = id,
+            author_id = current_user.id
+        )
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
