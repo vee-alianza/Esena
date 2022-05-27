@@ -77,6 +77,10 @@ def create_task(id):
     """
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    project = Project.query.get(id)
+    choices = project.to_dict()["members"]
+    form.assignee_id.choices = choices
+
     if form.validate_on_submit():
         task = Task(
             name=form.data['name'],
@@ -92,4 +96,5 @@ def create_task(id):
         db.session.add(task)
         db.session.commit()
         return task.to_dict()
+    # return render_template("task_test.html", form=form)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
