@@ -12,5 +12,5 @@ class ProjectForm(FlaskForm):
     priority_id = SelectField("priority", choices=[1, 2, 3])
     status_id = SelectField("status", choices=[1, 2, 3])
 
-    #for test only:
-    submit = SubmitField("Create Project")
+    # #for test only:
+    # submit = SubmitField("Create Project")
