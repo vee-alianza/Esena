@@ -34,8 +34,8 @@ class Project(db.Model):
             "is_archived": self.is_archived,
             "is_public": self.is_public,
             "priority": self.priority.name,
-            "owner": self.owner.to_dict(),
+            "owner_id": self.owner.id,
             "status": self.status.name,
             "tasks": {task.id: task.to_dict() for task in self.tasks},
-            "members": {member.id: member.to_dict() for member in self.members}
+            "members": [member.id for member in self.members]
         }
