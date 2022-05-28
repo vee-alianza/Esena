@@ -16,7 +16,7 @@ export const addTask = (task) => {
 };
 
 export const createTask = (formData, projectId) => async (dispatch) => {
-  console.log(formData)
+  // console.log(formData)
   const response = await fetch(`/api/projects/${projectId}/tasks`, {
     method: "POST",
     headers: {
@@ -38,9 +38,6 @@ export const createTask = (formData, projectId) => async (dispatch) => {
     return ["An error occurred. Please try again."];
   }
 };
-
-
-
 
 
 // const initialState = { assignedTasks: {} };

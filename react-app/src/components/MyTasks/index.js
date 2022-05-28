@@ -7,7 +7,7 @@ const MyTasks = () => {
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
   allTasks = allTasks?.filter(task => task.assignee_id == sessionUser?.id)
-  console.log(allTasks)
+  // console.log("*************", allTasks)
   for (let task of allTasks) {
     let date = new Date(task.end_date);
     // console.log(date);

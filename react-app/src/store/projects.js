@@ -13,8 +13,8 @@ const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECTS:
       const allProjects = new Set(
-        Object.entries(action.payload.owned_projects),
-        Object.entries(action.payload.joined_projects)
+        ... Object.entries(action.payload.owned_projects),
+        ... Object.entries(action.payload.joined_projects)
       );
       return {
         ...state,

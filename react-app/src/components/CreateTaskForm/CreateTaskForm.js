@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { createTask } from "../../store/tasks";
 // import "./CreateProjectForm.css";
 
 const CreateTaskForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const userId = 4; //TODO: GET CURRENT SESSION USER ID FROM STORE
-  const projectId = 3;
+  const { projectId } = useParams();
   //get teammates from store
   //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
   const allUsers = useSelector((state) => state.teammates.allUsers);
@@ -60,7 +60,7 @@ const CreateTaskForm = ({ setShowModal }) => {
       //   });
       //   const data = await res.json();
       //   console.log(data);
-      
+
       setShowModal(false);
     }
   };
