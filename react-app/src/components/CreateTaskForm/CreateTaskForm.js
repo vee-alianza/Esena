@@ -11,7 +11,7 @@ const CreateTaskForm = ({ setShowModal }) => {
   //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const currentTeammatesIds = useSelector(
-    (state) => state.projects.joinedProjects[projectId].members
+    (state) => state.projects[projectId].members
   );
   const teammates = allUsers.filter((user) =>
     currentTeammatesIds.includes(user.id)
