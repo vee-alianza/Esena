@@ -10,6 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import CreateProjectModal from "./components/CreateProjectForm";
 import CreateTaskModal from "./components/CreateTaskForm";
+import MyTasks from "./components/MyTasks";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,6 +68,9 @@ function App() {
         </Route>
         <Route path="/create-task" exact={true}>
           <CreateTaskModal />
+        </Route>
+        <Route path="/mytasks" exact={true}>
+          <MyTasks />
         </Route>
       </Switch>
     </BrowserRouter>
