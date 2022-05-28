@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import CreateProjectModal from "./components/CreateProjectForm";
+import CreateTaskModal from "./components/CreateTaskForm";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +64,9 @@ function App() {
         {/* testing */}
         <Route path="/create-project" exact={true}>
           <CreateProjectModal />
+        </Route>
+        <Route path="/create-task" exact={true}>
+          <CreateTaskModal />
         </Route>
       </Switch>
     </BrowserRouter>
