@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import CreateProjectModal from "./components/CreateProjectForm";
+import SideBar from "./components/SideBar";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
@@ -78,6 +79,10 @@ function App() {
         {/* testing */}
         <Route path="/create-project" exact={true}>
           <CreateProjectModal />
+        </Route>
+        {/* testing */}
+        <Route path="/side-bar">
+          <SideBar />
         </Route>
       </Switch>
     </BrowserRouter>
