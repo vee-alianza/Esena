@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // import "./CreateProjectForm.css";
 
 const CreateTaskForm = ({ setShowModal }) => {
   const userId = 4; //TODO: GET CURRENT SESSION USER ID FROM STORE
   const projectId = 1;
   //get teammates from store
-  const teammates = [{id: "1", name: "John"}, {id: "2", name: "Leah"}]
-
+  //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
+  const allUsers = useSelector((state) => state.teammates.allUsers);
+  const currentTeammatesIds = useSelector(
+    (state) => state.projects.joinedProjects[projectId].members
+  );
+  const teammates = allUsers.filter((user) =>
+    currentTeammatesIds.includes(user.id)
+  );
+  console.log(teammates);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState(new Date());
   const [priority, setPriority] = useState("1");
   const [status, setStatus] = useState("1");
-  const [assignee, setAssignee] = useState("");
+  const [assignee, setAssignee] = useState(-1);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -28,7 +36,7 @@ const CreateTaskForm = ({ setShowModal }) => {
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
       };
-
+      console.log(payload);
       // TODO: NEEDS DISPATCH
       const res = await fetch(`/api/projects/${projectId}/tasks`, {
         method: "POST",
@@ -91,8 +99,9 @@ const CreateTaskForm = ({ setShowModal }) => {
             onChange={(e) => setAssignee(e.target.value)}
             value={assignee}
           >
+            <option value={-1}>select a teammate</option>
             {teammates.map((teammate) => (
-              <option value={teammate.id}>{teammate.name}</option>
+              <option value={teammate.id}>{teammate.first_name}</option>
             ))}
           </select>
         </div>
