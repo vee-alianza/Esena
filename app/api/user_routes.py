@@ -18,7 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @user_routes.route('/')
-@login_required
+# @login_required commented out for testing
 def users():
 
     # gets all users (for search)
