@@ -13,7 +13,6 @@ const CreateTaskForm = ({ setShowModal }) => {
   const [priority, setPriority] = useState("1");
   const [status, setStatus] = useState("1");
   const [assignee, setAssignee] = useState("");
-  const [isCompleted, setIsCompleted] = useState(false);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -25,7 +24,6 @@ const CreateTaskForm = ({ setShowModal }) => {
         name,
         description,
         end_date: endDate,
-        is_private: isCompleted,
         priority_id: parseInt(priority),
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
@@ -74,15 +72,6 @@ const CreateTaskForm = ({ setShowModal }) => {
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
-        <div className="form-control">
-          <label>Task Description</label>
-          <textarea
-            name="description"
-            placeholder="Enter description here"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-        </div>
         <div className="form-grouping">
           <div className="form-control">
             <label>End Date</label>
@@ -94,6 +83,18 @@ const CreateTaskForm = ({ setShowModal }) => {
               onChange={(e) => setEndDate(e.target.value)}
             />
           </div>
+        </div>
+        <div className="form-control">
+          <label>Add Assignee</label>
+          <select
+            name="assignee_id"
+            onChange={(e) => setAssignee(e.target.value)}
+            value={assignee}
+          >
+            {teammates.map((teammate) => (
+              <option value={teammate.id}>{teammate.name}</option>
+            ))}
+          </select>
         </div>
         <div className="form-grouping">
           <div className="form-control">
@@ -122,26 +123,15 @@ const CreateTaskForm = ({ setShowModal }) => {
           </div>
         </div>
         {/* TODO: SEPARATE SEARCH COMPONENT */}
+
         <div className="form-control">
-          <label>Add Assignee</label>
-          <select
-            name="assignee_id"
-            onChange={(e) => setAssignee(e.target.value)}
-            value={assignee}
-          >
-              {teammates.map((teammate) => (
-                  <option value={teammate.id}>{teammate.name}</option>
-              ))}
-          </select>
-        </div>
-        <div>
-          <label>Completed?</label>
-          <input
-            name="is_completed"
-            type="checkbox"
-            checked={isCompleted}
-            onChange={(e) => setIsCompleted(!isCompleted)}
-          ></input>
+          <label>Task Description</label>
+          <textarea
+            name="description"
+            placeholder="Enter description here"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
         </div>
         <button className="cancelBtn" type="cancel">
           Cancel
