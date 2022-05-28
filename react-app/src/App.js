@@ -35,7 +35,7 @@ function App() {
         if (res.ok) {
           const data = await res.json();
           dispatch(setProjects(data));
-          dispatch(setTasks(data.assigned_tasks));
+          dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
         }
       }
