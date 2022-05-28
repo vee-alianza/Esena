@@ -91,6 +91,7 @@ function App() {
         </Route>
         <Route path="/projects/:projectId/tasks" exact={true}>
           <ProjectTasks />
+        </Route>
         {/* testing */}
         <Route path="/side-bar">
           <SideBar />
