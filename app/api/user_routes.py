@@ -24,7 +24,7 @@ def users():
     # gets all users (for search)
 
     users = User.query.all()
-    return {"users" : [user.to_dict() for user in users]}
+    return {"users": [user.to_dict() for user in users]}
     
     # for user in users:
     #     user_dict = user.to_dict()
@@ -51,9 +51,11 @@ def user(id):
     owned_projects = {project.id: project.to_dict() for project in user.owned_projects}
     joined_projects = {project.id: project.to_dict() for project in user.joined_projects}
 
-    assigned_tasks = {task.id: task.to_dict() for task in user.assigned_tasks}
+    # assigned_tasks = {task.id: task.to_dict() for task in user.assigned_tasks}
+    projects_dict = owned_projects
+    projects_dict.update(joined_projects)
 
-    projects = list(owned_projects.values()) + list(joined_projects.values())
+    projects = list(projects_dict.values())
     teammates = []
     for project in projects:
         teammates.extend(project["members"]) 
@@ -61,10 +63,19 @@ def user(id):
     if id in teammates:
         teammates.remove(id)
 
-    user_dict["owned_projects"] = owned_projects
-    user_dict["joined_projects"] = joined_projects
-    user_dict["assigned_tasks"] = assigned_tasks
+    tasks = {}
+    for project in user.owned_projects:
+        tasks.update(project.to_dict()["tasks"])
+    for project in user.joined_projects:
+        tasks.update(project.to_dict()["tasks"])
+
+
+    # user_dict["owned_projects"] = owned_projects
+    # user_dict["joined_projects"] = joined_projects
+    # user_dict["assigned_tasks"] = assigned_tasks
     user_dict['teammates'] = teammates
+    user_dict['tasks'] = tasks
+    user_dict['projects'] = projects_dict
 
     return user_dict
 

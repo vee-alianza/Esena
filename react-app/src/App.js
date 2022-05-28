@@ -8,6 +8,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import CreateProjectModal from "./components/CreateProjectForm";
+import CreateTaskModal from "./components/CreateTaskForm";
+import MyTasks from "./components/MyTasks";
+import ProjectTasks from "./components/ProjectTasks";
 import SideBar from "./components/SideBar";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
@@ -32,8 +35,8 @@ function App() {
         const res = await fetch(`/api/users/${session.id}`);
         if (res.ok) {
           const data = await res.json();
-          dispatch(setProjects(data));
-          dispatch(setTasks(data.assigned_tasks));
+          dispatch(setProjects(data.projects));
+          dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
         }
       }
@@ -80,6 +83,14 @@ function App() {
         <Route path="/create-project" exact={true}>
           <CreateProjectModal />
         </Route>
+        <Route path="/create-task" exact={true}>
+          <CreateTaskModal />
+        </Route>
+        <Route path="/mytasks" exact={true}>
+          <MyTasks />
+        </Route>
+        <Route path="/projects/:projectId/tasks" exact={true}>
+          <ProjectTasks />
         {/* testing */}
         <Route path="/side-bar">
           <SideBar />
