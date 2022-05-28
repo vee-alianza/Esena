@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createTask } from "../../store/tasks";
 // import "./CreateProjectForm.css";
 
 const CreateTaskForm = ({ setShowModal }) => {
+  const dispatch = useDispatch();
   const userId = 4; //TODO: GET CURRENT SESSION USER ID FROM STORE
   const projectId = 1;
   //get teammates from store
@@ -14,7 +16,7 @@ const CreateTaskForm = ({ setShowModal }) => {
   const teammates = allUsers.filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  console.log(teammates);
+  //   console.log(teammates);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState(new Date());
@@ -38,19 +40,22 @@ const CreateTaskForm = ({ setShowModal }) => {
       };
       console.log(payload);
       // TODO: NEEDS DISPATCH
-      const res = await fetch(`/api/projects/${projectId}/tasks`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-          csrf_token:
-            "Ijk4MmI4OGVjMDZlMjNjYTQzZDg3ZDE5NDgxNDFiNGNjOGZjZTc1Y2Qi.YpGKew.R2ToeH5ctzGz4whh7Oydw83gzHA",
-          session:
-            ".eJwljkuKAzEMRO_idRbWx5KcyzS2JDNDYAa6k1XI3ccwyyrqFe9djnXm9VXuz_OVt3J8R7kXcE6qvASEU1THRCASttommo7UyN5UIsl7E8eEbr1SC8o9nVFXRUVmEF2BNk0tk5pDIgQtGyIbAO5YkZ2yrZlzwD6UuRTLFnldef7b8I5-net4_j7yZxfdcJqlV0kkH0xhGtDZgGGyuy1PbR7l8wdCoj6t.YpFE1A.1q3CEYFChWw4jz9ndQ7houTrA5A",
-        },
-      });
-      const data = await res.json();
-      console.log(data);
+
+      let newTask = await dispatch(createTask(payload, projectId));
+
+      //   const res = await fetch(`/api/projects/${projectId}/tasks`, {
+      //     method: "POST",
+      //     body: JSON.stringify(payload),
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       csrf_token:
+      //         "Ijk4MmI4OGVjMDZlMjNjYTQzZDg3ZDE5NDgxNDFiNGNjOGZjZTc1Y2Qi.YpGKew.R2ToeH5ctzGz4whh7Oydw83gzHA",
+      //       session:
+      //         ".eJwljkuKAzEMRO_idRbWx5KcyzS2JDNDYAa6k1XI3ccwyyrqFe9djnXm9VXuz_OVt3J8R7kXcE6qvASEU1THRCASttommo7UyN5UIsl7E8eEbr1SC8o9nVFXRUVmEF2BNk0tk5pDIgQtGyIbAO5YkZ2yrZlzwD6UuRTLFnldef7b8I5-net4_j7yZxfdcJqlV0kkH0xhGtDZgGGyuy1PbR7l8wdCoj6t.YpFE1A.1q3CEYFChWw4jz9ndQ7houTrA5A",
+      //     },
+      //   });
+      //   const data = await res.json();
+      //   console.log(data);
       setShowModal(false);
     }
   };
