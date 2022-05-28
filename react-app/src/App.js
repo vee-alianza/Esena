@@ -10,6 +10,7 @@ import User from "./components/User";
 import CreateProjectModal from "./components/CreateProjectForm";
 import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
+import ProjectTasks from "./components/ProjectTasks";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
@@ -86,6 +87,9 @@ function App() {
         </Route>
         <Route path="/mytasks" exact={true}>
           <MyTasks />
+        </Route>
+        <Route path="/projects/:projectId/tasks" exact={true}>
+          <ProjectTasks />
         </Route>
       </Switch>
     </BrowserRouter>

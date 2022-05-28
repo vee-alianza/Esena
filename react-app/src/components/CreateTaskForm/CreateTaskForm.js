@@ -6,7 +6,7 @@ import { createTask } from "../../store/tasks";
 const CreateTaskForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const userId = 4; //TODO: GET CURRENT SESSION USER ID FROM STORE
-  const projectId = 1;
+  const projectId = 3;
   //get teammates from store
   //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
   const allUsers = useSelector((state) => state.teammates.allUsers);
@@ -41,7 +41,11 @@ const CreateTaskForm = ({ setShowModal }) => {
       console.log(payload);
       // TODO: NEEDS DISPATCH
 
-      let newTask = await dispatch(createTask(payload, projectId));
+      //add task to allTasks
+      //add task to assignedTasks if assignee_id == sessionUser.id
+
+        dispatch(createTask(payload, projectId));
+        // dispatch add task to projects?
 
       //   const res = await fetch(`/api/projects/${projectId}/tasks`, {
       //     method: "POST",
@@ -56,6 +60,7 @@ const CreateTaskForm = ({ setShowModal }) => {
       //   });
       //   const data = await res.json();
       //   console.log(data);
+      
       setShowModal(false);
     }
   };

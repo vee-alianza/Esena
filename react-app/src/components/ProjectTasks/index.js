@@ -1,13 +1,16 @@
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { useHistory, useParams } from "react-router-dom";
-import "./MyTasks.css";
 
-const MyTasks = () => {
+import CreateTaskModal from "../CreateTaskForm";
+// import "./MyTasks.css";
+
+const ProjectTasks = () => {
+  const { projectId } = useParams()
   const sessionUser = useSelector((state) => state.session.user);
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
-  allTasks = allTasks?.filter(task => task.assignee_id == sessionUser?.id)
-  console.log(allTasks)
+  allTasks = allTasks?.filter((task) => task.project_id == projectId);
+  console.log(allTasks);
   for (let task of allTasks) {
     let date = new Date(task.end_date);
     // console.log(date);
@@ -20,7 +23,8 @@ const MyTasks = () => {
   }
   return (
     <div>
-      <h1>My Tasks</h1>
+      <h1>Project {projectId} Tasks</h1>
+      <CreateTaskModal />
       <div>
         {allTasks.map((task) => (
           <div className="task-div" key={task.id}>
@@ -36,4 +40,4 @@ const MyTasks = () => {
   );
 };
 
-export default MyTasks;
+export default ProjectTasks;

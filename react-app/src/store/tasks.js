@@ -43,19 +43,28 @@ export const createTask = (formData, projectId) => async (dispatch) => {
 
 
 
-const initialState = { assignedTasks: {} };
+// const initialState = { assignedTasks: {} };
+const initialState = {};
 
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_TASKS:
+      // return {
+      //   ...state,
+      //   assignedTasks: action.tasks,
+      // };
       return {
         ...state,
-        assignedTasks: action.tasks,
+        ...action.tasks,
       };
     case ADD_TASK:
-      const newState = {...state}
-      newState.assignedTasks[action.task.id] = action.task
-      return newState
+      // const newState = {...state}
+      // newState.assignedTasks[action.task.id] = action.task
+      // return newState
+      return {
+        ...state,
+        [action.task.id]: action.task
+      }
     default:
       return state;
   }

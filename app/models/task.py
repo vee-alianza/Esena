@@ -41,6 +41,6 @@ class Task(db.Model):
             "is_completed": self.is_completed,
             "assigner_id": self.assigner.id,
             "assignee_id": self.assignee.id,
-            "project": self.project.name,
+            "project_id": self.project.id,
             "comments": {comment.id: comment.to_dict() for comment in self.comments}
         }
