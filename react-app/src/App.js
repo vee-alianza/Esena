@@ -34,7 +34,7 @@ function App() {
         const res = await fetch(`/api/users/${session.id}`);
         if (res.ok) {
           const data = await res.json();
-          dispatch(setProjects(data));
+          dispatch(setProjects(data.projects));
           dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
         }

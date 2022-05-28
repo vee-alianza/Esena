@@ -52,8 +52,10 @@ def user(id):
     joined_projects = {project.id: project.to_dict() for project in user.joined_projects}
 
     # assigned_tasks = {task.id: task.to_dict() for task in user.assigned_tasks}
+    projects_dict = owned_projects
+    projects_dict.update(joined_projects)
 
-    projects = list(owned_projects.values()) + list(joined_projects.values())
+    projects = list(projects_dict.values())
     teammates = []
     for project in projects:
         teammates.extend(project["members"]) 
@@ -66,14 +68,14 @@ def user(id):
         tasks.update(project.to_dict()["tasks"])
     for project in user.joined_projects:
         tasks.update(project.to_dict()["tasks"])
-    # tasks.update(project. for project in user.owned_projects]
 
 
-    user_dict["owned_projects"] = owned_projects
-    user_dict["joined_projects"] = joined_projects
+    # user_dict["owned_projects"] = owned_projects
+    # user_dict["joined_projects"] = joined_projects
     # user_dict["assigned_tasks"] = assigned_tasks
     user_dict['teammates'] = teammates
     user_dict['tasks'] = tasks
+    user_dict['projects'] = projects_dict
 
     return user_dict
 
