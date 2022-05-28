@@ -22,7 +22,7 @@ class Task(db.Model):
     assigner = db.relationship("User", foreign_keys=[assigner_id])
 
     assignee_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    assignee = db.relationship("User", foreign_keys=[assignee_id])
+    assignee = db.relationship("User", foreign_keys=[assignee_id], overlaps="User.assignee,assigned_tasks")
 
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"), nullable=False)
     project = db.relationship("Project", back_populates="tasks")
@@ -44,4 +44,3 @@ class Task(db.Model):
             "project": self.project.name,
             "comments": {comment.id: comment.to_dict() for comment in self.comments}
         }
-    

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
+import re
 
 
 def user_exists(form, field):
@@ -20,6 +21,20 @@ def user_exists(form, field):
 #         raise ValidationError('Username is already in use.')
 
 
+def is_strong_password(form, field):
+    password = field.data
+    reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+
+    # compiling regex
+    pattern = re.compile(reg)
+
+    # searching regex
+    match = re.search(pattern, password)
+
+    # validating conditions
+    if not match:
+        raise ValidationError("Password should have at least one number, one special symbol, one uppercase and one lowercase character. Password shold be 6 - 20 characters long")
+
 class SignUpForm(FlaskForm):
     # username = StringField(
     #     'username', validators=[DataRequired(), username_exists])
@@ -27,5 +42,5 @@ class SignUpForm(FlaskForm):
     last_name = StringField('last name', validators=[DataRequired()])
     occupation = StringField('occupation', validators=[DataRequired()])
     bio = TextAreaField('bio')
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), Email(), user_exists])
+    password = StringField('password', validators=[DataRequired(), is_strong_password])
