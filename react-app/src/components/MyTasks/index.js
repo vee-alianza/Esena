@@ -25,7 +25,7 @@ const MyTasks = () => {
             <div>End Date: {task.end_date}</div>
             <div>{task.description}</div>
             <div>Priority {task.priority} </div>
-            <div>Priority {task.status} </div>
+            <div>Status {task.status} </div>
           </div>
         ))}
       </div>
