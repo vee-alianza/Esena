@@ -1,26 +1,31 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../store/session";
+import { addToAllUsers } from "../../store/teammates";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [occupation, setOccupation] = useState("");
   const [bio, setBio] = useState("");
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstName, lastName, occupation, bio, email, password));
-      if (data) {
-        setErrors(data)
+      const data = await dispatch(
+        signUp(firstName, lastName, occupation, bio, email, password)
+      );
+      if (data.errors) {
+        setErrors(data.errors);
+      } else {
+        dispatch(addToAllUsers(data));
       }
     }
   };
@@ -54,7 +59,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to="/" />;
   }
 
   return (
@@ -93,12 +98,7 @@ const SignUpForm = () => {
       </div>
       <div>
         <label>Bio</label>
-        <input
-          type="text"
-          name="bio"
-          onChange={updateBio}
-          value={bio}
-        ></input>
+        <input type="text" name="bio" onChange={updateBio} value={bio}></input>
       </div>
       <div>
         <label>Email</label>
