@@ -60,6 +60,11 @@ def user(id):
     teammates = list(set(teammates))
     teammates.remove(id)
 
+    tasks = {}
+    
+    # tasks.update(project. for project in user.owned_projects]
+
+
     user_dict["owned_projects"] = owned_projects
     user_dict["joined_projects"] = joined_projects
     user_dict["assigned_tasks"] = assigned_tasks
