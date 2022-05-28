@@ -18,13 +18,13 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @user_routes.route('/')
-@login_required
+# @login_required commented out for testing
 def users():
 
     # gets all users (for search)
 
     users = User.query.all()
-    return [user.to_dict() for user in users]
+    return {"users" : [user.to_dict() for user in users]}
     
     # for user in users:
     #     user_dict = user.to_dict()

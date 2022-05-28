@@ -11,7 +11,7 @@ import CreateProjectModal from "./components/CreateProjectForm";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
-import { setTeammates } from "./store/teammates";
+import { setAllUsers, setTeammates } from "./store/teammates";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,13 +31,24 @@ function App() {
         const res = await fetch(`/api/users/${session.id}`);
         if (res.ok) {
           const data = await res.json();
-          console.log(data);
           dispatch(setProjects(data));
           dispatch(setTasks(data.assigned_tasks));
           dispatch(setTeammates(data.teammates));
         }
       }
       setLoaded(true);
+    })();
+  }, [dispatch, session]);
+
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const res = await fetch(`/api/users`);
+        if (res.ok) {
+          const data = await res.json();
+          dispatch(setAllUsers(data.users));
+        }
+      }
     })();
   }, [dispatch, session]);
 
