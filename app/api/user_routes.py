@@ -58,7 +58,8 @@ def user(id):
     for project in projects:
         teammates.extend(project["members"]) 
     teammates = list(set(teammates))
-    teammates.remove(id)
+    if id in teammates:
+        teammates.remove(id)
 
     tasks = {}
     

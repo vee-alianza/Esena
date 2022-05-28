@@ -1,5 +1,6 @@
 const SET_TEAMMATES = "teammates/SET_TEAMMATES";
 const SET_USERS = "teammates/SET_USERS";
+const ADDTO_ALLUSERS = "teammates/ADDTO_ALLUSERS";
 
 export const setTeammates = (teammates) => {
   return {
@@ -12,6 +13,13 @@ export const setAllUsers = (users) => {
   return {
     type: SET_USERS,
     users,
+  };
+};
+
+export const addToAllUsers = (user) => {
+  return {
+    type: ADDTO_ALLUSERS,
+    user,
   };
 };
 
@@ -28,6 +36,11 @@ const teammateReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.users,
+      };
+    case ADDTO_ALLUSERS:
+      return {
+        ...state,
+        allUsers: [...state.allUsers, action.user],
       };
     default:
       return state;
