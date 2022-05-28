@@ -7,8 +7,11 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import { authenticate } from "./store/session";
 import CreateProjectModal from "./components/CreateProjectForm";
+import { authenticate } from "./store/session";
+import { setProjects } from "./store/projects";
+import { setTasks } from "./store/tasks";
+import { setTeammates } from "./store/teammates";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,15 +27,16 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      // res = fetch /users/${session.id}
-      // data = await res json()
-      // const user = data[session.id]
-      // dispatch(setProjects(user.projects))
-      // dispatch(setTasks(user.tasks))
-      // dispatch(setTeammates(user.teammates))
-      // dispatch()
-      // dispatch
-      // dispatch
+      if (session) {
+        const res = await fetch(`/api/users/${session.id}`);
+        if (res.ok) {
+          const data = await res.json();
+          console.log(data);
+          dispatch(setProjects(data));
+          dispatch(setTasks(data.assigned_tasks));
+          dispatch(setTeammates(data.teammates));
+        }
+      }
       setLoaded(true);
     })();
   }, [dispatch, session]);
