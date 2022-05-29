@@ -22,6 +22,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
   const [priority, setPriority] = useState(task.priority_id);
   const [status, setStatus] = useState(task.status_id);
   const [assignee, setAssignee] = useState(task.assignee_id);
+  const [isCompleted, setIsCompleted] = useState(task.is_completed);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -36,6 +37,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
         priority_id: parseInt(priority),
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
+        is_completed: isCompleted
       };
       console.log(payload);
 
@@ -58,7 +60,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
   return (
     <div>
       <div className="form-header">
-        <h1>Create Task</h1>
+        <h1>Edit Task</h1>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-control">
@@ -84,7 +86,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
           </div>
         </div>
         <div className="form-control">
-          <label>Add Assignee</label>
+          <label>Assign Team Member</label>
           <select
             name="assignee_id"
             onChange={(e) => setAssignee(e.target.value)}
@@ -133,11 +135,20 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
+        <div className="form-control">
+          <label>Completed?</label>
+          <input
+            name="description"
+            type="checkbox"
+            checked={isCompleted}
+            onChange={(e) => setIsCompleted(!isCompleted)}
+          ></input>
+        </div>
         <button className="cancelBtn" type="cancel">
           Cancel
         </button>
         <button className="submitBtn" type="submit">
-          Create
+          Update
         </button>
       </form>
     </div>
