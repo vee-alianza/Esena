@@ -1,6 +1,7 @@
 import "./index.css";
 
-const TeamPreview = () => {
+const TeamPreview = ({member}) => {
+  
   return (
     <div className="person">
       <div className="person-icon">
@@ -9,8 +10,8 @@ const TeamPreview = () => {
         </div>
       </div>
       <div className="person-details">
-        <div className="person-name">Ethan Chen</div>
-        <div className="person-occupation">Software Engineer</div>
+        <div className="person-name">{member.first_name} {member.last_name}</div>
+        <div className="person-occupation">{member.occupation}</div>
       </div>
     </div>
   );

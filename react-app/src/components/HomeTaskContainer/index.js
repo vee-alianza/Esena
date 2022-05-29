@@ -1,7 +1,7 @@
 import TaskPreview from "../TaskPreview";
 import "./index.css";
 
-const HomeTaskContainer = () => {
+const HomeTaskContainer = ({tasks}) => {
   return (
     <div className="tasks-container">
       <div className="container-header">
@@ -9,10 +9,9 @@ const HomeTaskContainer = () => {
         <p>Upcoming Deadlines</p>
       </div>
       <div className="tasks-container-body">
-        <TaskPreview />
-        <TaskPreview />
-        <TaskPreview />
-        <TaskPreview />
+      {tasks ? Object.keys(tasks).slice(0,4).map((key, idx) => {
+          return <TaskPreview task={tasks[key]} key={`task-${idx}`}/>
+        }) : ""}
       </div>
     </div>
   );

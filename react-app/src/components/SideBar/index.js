@@ -16,7 +16,7 @@ const SideBar = () => {
       <div className="sidebar-menu main">
         <div className="sidebar-menu-item">
           <span>
-            <i class="fa-solid fa-house fa-lg"></i>
+            <i className="fa-solid fa-house fa-lg"></i>
           </span>
           <NavLink to="/" exact={true} activeClassName="selected">
             Home
@@ -24,7 +24,7 @@ const SideBar = () => {
         </div>
         <div className="sidebar-menu-item">
           <span>
-            <i class="fa-solid fa-bars-progress fa-lg"></i>
+            <i className="fa-solid fa-bars-progress fa-lg"></i>
           </span>
           <NavLink to="/my-projects" exact={true} activeClassName="selected">
             My Projects
@@ -32,7 +32,7 @@ const SideBar = () => {
         </div>
         <div className="sidebar-menu-item">
           <span>
-            <i class="fa-regular fa-circle-check fa-lg"></i>
+            <i className="fa-regular fa-circle-check fa-lg"></i>
           </span>
           <NavLink to="/my-tasks" exact={true} activeClassName="selected">
             My Tasks
@@ -40,7 +40,7 @@ const SideBar = () => {
         </div>
         <div className="sidebar-menu-item">
           <span>
-            <i class="fa-solid fa-user fa-lg"></i>
+            <i className="fa-solid fa-user fa-lg"></i>
           </span>
           <NavLink to="/my-profile" exact={true} activeClassName="selected">
             My Profile
@@ -48,7 +48,7 @@ const SideBar = () => {
         </div>
         <div className="sidebar-menu-item">
           <span>
-            <i class="fa-solid fa-calendar fa-lg"></i>
+            <i className="fa-solid fa-calendar fa-lg"></i>
           </span>
           <NavLink to="/my-calendar" exact={true}>
             My Calendar
@@ -59,7 +59,7 @@ const SideBar = () => {
       <div className="sidebar-menu secondary">
         <div className="sidebar-menu-item" onClick={onLogout}>
           <span>
-            <i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+            <i className="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
           </span>
           <span>Logout</span>
         </div>
@@ -67,7 +67,7 @@ const SideBar = () => {
       <div className="sidebar-footer">
         <div className="sidebar-about">
           <span>
-            <i class="fa-regular fa-circle-question fa-lg"></i>
+            <i className="fa-regular fa-circle-question fa-lg"></i>
           </span>
           <span style={{ fontSize: 12 }}>About</span>
         </div>

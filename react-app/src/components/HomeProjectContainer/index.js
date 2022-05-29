@@ -1,7 +1,8 @@
 import ProjectPreview from "../ProjectPreview";
 import "./index.css";
 
-const HomeProjectContainer = () => {
+const HomeProjectContainer = ({projects}) => {
+
   return (
     <div className="projects-container">
       <div className="container-header">
@@ -13,12 +14,9 @@ const HomeProjectContainer = () => {
         <p>Create Project</p>
       </div>
       <div className="projects-container-body">
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
-        <ProjectPreview />
+        {projects ? Object.keys(projects).slice(0,6).map((key, idx) => {
+          return <ProjectPreview project={projects[key]} key={`project-${idx}`}/>
+        }) : ""}
       </div>
     </div>
   );

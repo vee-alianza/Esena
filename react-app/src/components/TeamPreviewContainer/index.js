@@ -1,7 +1,7 @@
 import TeamPreview from "../TeamPreview";
 import "./index.css";
 
-const TeamPreviewContainer = () => {
+const TeamPreviewContainer = ({allUsers, teammates}) => {
   return (
     <div className="teammate-container">
       <div className="container-header">
@@ -9,12 +9,9 @@ const TeamPreviewContainer = () => {
         <p>Frequent Collaborators</p>
       </div>
       <div className="teammate-container-body">
-        <TeamPreview />
-        <TeamPreview />
-        <TeamPreview />
-        <TeamPreview />
-        <TeamPreview />
-        <TeamPreview />
+        {teammates ? teammates.slice(0, 6).map((userId, idx) => {
+          return <TeamPreview member={allUsers[parseInt(userId) - 1]} key={`member-${idx}`}/>
+        }) : ""}
       </div>
     </div>
   );
