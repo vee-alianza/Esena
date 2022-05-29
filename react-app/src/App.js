@@ -94,9 +94,6 @@ function App() {
           <ProjectTasks />
         </Route>
         {/* testing */}
-        <Route path="/side-bar">
-          <SideBar />
-        </Route>
         <Route path="/home-page">
           <HomePage />
         </Route>
