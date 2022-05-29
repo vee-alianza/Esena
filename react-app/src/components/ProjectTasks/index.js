@@ -6,7 +6,8 @@ import CreateTaskModal from "../CreateTaskForm";
 
 const ProjectTasks = () => {
   const { projectId } = useParams()
-  const project = useSelector((state) => state.projects);
+  const project = useSelector((state) => state.projects[projectId]);
+  console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
   const tasksObj = useSelector((state) => state.tasks);
@@ -21,10 +22,16 @@ const ProjectTasks = () => {
 
     task.end_date = month + "/" + day + "/" + year;
   }
+
+  let createTaskButton;
+  if (project?.members.includes(sessionUser.id)) {
+      createTaskButton = <CreateTaskModal />
+  }
+
   return (
     <div>
       <h1>Project {projectId} Tasks</h1>
-      <CreateTaskModal />
+      {sessionUser && createTaskButton}
       <div>
         {allTasks.map((task) => (
           <div className="task-div" key={task.id}>
