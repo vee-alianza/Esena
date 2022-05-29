@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { createTask } from "../../store/tasks";
 // import "./CreateProjectForm.css";
 
-const CreateTaskForm = ({ setShowModal }) => {
+const CreateTaskForm = ({ setShowModal, projectName }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
   //get teammates from store
@@ -13,7 +13,7 @@ const CreateTaskForm = ({ setShowModal }) => {
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
   );
-  const teammates = allUsers.filter((user) =>
+  const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
   //   console.log(teammates);
@@ -38,29 +38,9 @@ const CreateTaskForm = ({ setShowModal }) => {
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
       };
-      console.log(payload);
-      // TODO: NEEDS DISPATCH
+      // console.log(payload);
 
-      //add task to allTasks
-      //add task to assignedTasks if assignee_id == sessionUser.id
-
-        dispatch(createTask(payload, projectId));
-        // dispatch add task to projects?
-
-      //   const res = await fetch(`/api/projects/${projectId}/tasks`, {
-      //     method: "POST",
-      //     body: JSON.stringify(payload),
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       csrf_token:
-      //         "Ijk4MmI4OGVjMDZlMjNjYTQzZDg3ZDE5NDgxNDFiNGNjOGZjZTc1Y2Qi.YpGKew.R2ToeH5ctzGz4whh7Oydw83gzHA",
-      //       session:
-      //         ".eJwljkuKAzEMRO_idRbWx5KcyzS2JDNDYAa6k1XI3ccwyyrqFe9djnXm9VXuz_OVt3J8R7kXcE6qvASEU1THRCASttommo7UyN5UIsl7E8eEbr1SC8o9nVFXRUVmEF2BNk0tk5pDIgQtGyIbAO5YkZ2yrZlzwD6UuRTLFnldef7b8I5-net4_j7yZxfdcJqlV0kkH0xhGtDZgGGyuy1PbR7l8wdCoj6t.YpFE1A.1q3CEYFChWw4jz9ndQ7houTrA5A",
-      //     },
-      //   });
-      //   const data = await res.json();
-      //   console.log(data);
-
+      dispatch(createTask(payload, projectId));
       setShowModal(false);
     }
   };
@@ -77,7 +57,8 @@ const CreateTaskForm = ({ setShowModal }) => {
   return (
     <div>
       <div className="form-header">
-        <h1>Create Task</h1>
+        <h1>Add Task</h1>
+        <h2>{projectName}</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-control">
@@ -103,7 +84,7 @@ const CreateTaskForm = ({ setShowModal }) => {
           </div>
         </div>
         <div className="form-control">
-          <label>Add Assignee</label>
+          <label>Assign Team Member</label>
           <select
             name="assignee_id"
             onChange={(e) => setAssignee(e.target.value)}
@@ -144,7 +125,7 @@ const CreateTaskForm = ({ setShowModal }) => {
         {/* TODO: SEPARATE SEARCH COMPONENT */}
 
         <div className="form-control">
-          <label>Task Description</label>
+          <label>Description</label>
           <textarea
             name="description"
             placeholder="Enter description here"

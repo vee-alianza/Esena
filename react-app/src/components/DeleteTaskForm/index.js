@@ -1,22 +1,22 @@
 import { useState } from "react";
-import EditTaskForm from "./EditTaskForm";
+import DeleteTaskForm from "./DeleteTaskForm";
 import { Modal } from "../../context/Modal";
 
-const EditTaskModal = ({ taskId, projectName }) => {
+const DeleteTaskModal = ({ taskId }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <button className="create-project-btn" onClick={() => setShowModal(true)}>
-        Edit Task
+        Delete Task
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditTaskForm setShowModal={setShowModal} taskId={taskId} projectName={projectName}/>
+          <DeleteTaskForm setShowModal={setShowModal} taskId={taskId} />
         </Modal>
       )}
     </>
   );
 };
 
-export default EditTaskModal;
+export default DeleteTaskModal;
