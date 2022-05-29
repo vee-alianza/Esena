@@ -16,10 +16,16 @@ const ProjectTasksCompleted = () => {
 
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
-  console.log(allTasks);
+//   console.log(allTasks);
   allTasks = allTasks?.filter(
     (task) => task.project_id == projectId && task.is_completed == true
   );
+
+    allTasks.sort((a, b) => {
+        const keyA = new Date(a?.end_date);
+        const keyB = new Date(b?.end_date);
+        return keyA > keyB ? -1 : 1;
+    });
 
   for (let task of allTasks) {
     let date = new Date(task.end_date);

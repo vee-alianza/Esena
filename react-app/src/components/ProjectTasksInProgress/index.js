@@ -7,9 +7,9 @@ import DeleteTaskModal from "../DeleteTaskForm";
 // import "./MyTasks.css";
 
 const ProjectTasksInProgress = () => {
-  const { projectId } = useParams()
+  const { projectId } = useParams();
   const project = useSelector((state) => state.projects[projectId]);
-//   console.log("********", project)
+  //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
@@ -18,7 +18,14 @@ const ProjectTasksInProgress = () => {
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
   // console.log(allTasks)
-  allTasks = allTasks?.filter((task) => task.project_id == projectId && task.is_completed == false);
+  allTasks = allTasks?.filter(
+    (task) => task.project_id == projectId && task.is_completed == false
+  );
+  allTasks.sort((a, b) => {
+    const keyA = new Date(a?.end_date);
+    const keyB = new Date(b?.end_date);
+    return keyA > keyB ? 1 : -1;
+  });
 
   for (let task of allTasks) {
     let date = new Date(task.end_date);
