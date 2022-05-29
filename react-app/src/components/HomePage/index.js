@@ -2,6 +2,7 @@ import SideBar from "../SideBar";
 import HomeProjectContainer from "../HomeProjectContainer";
 import HomeTaskContainer from "../HomeTaskContainer";
 import "./index.css";
+import TeamPreviewContainer from "../TeamPreviewContainer";
 
 const HomePage = () => {
   return (
@@ -18,6 +19,9 @@ const HomePage = () => {
         <div className="resource-container">
           <HomeProjectContainer />
           <HomeTaskContainer />
+        </div>
+        <div className="team-container">
+          <TeamPreviewContainer />
         </div>
       </div>
     </>

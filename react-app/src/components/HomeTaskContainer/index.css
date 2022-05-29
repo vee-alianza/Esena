@@ -7,33 +7,11 @@
   margin-left: 50px;
 }
 
-.task {
-  display: flex;
-  flex-direction: row;
-}
-
-.task:hover {
-  cursor: pointer;
-}
-
-.circle-icon {
-  width: 50px;
-  height: 50px;
-  background: #d0b8e68f;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.task-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 6px;
-}
-
-.task-date {
-  font-size: 11px;
-  color: rgb(152, 150, 150);
+.tasks-container-body {
+  height: 80%;
+  padding: 10px 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 42px);
+  row-gap: 40px;
 }

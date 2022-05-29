@@ -1,3 +1,4 @@
+import TaskPreview from "../TaskPreview";
 import "./index.css";
 
 const HomeTaskContainer = () => {
@@ -8,17 +9,10 @@ const HomeTaskContainer = () => {
         <p>Upcoming Deadlines</p>
       </div>
       <div className="tasks-container-body">
-        <div className="task">
-          <div className="task-icon">
-            <div className="circle-icon">
-              <i class="fa-solid fa-list-ul"></i>
-            </div>
-          </div>
-          <div className="task-details">
-            <div className="task-name">Task One</div>
-            <div className="task-date">Due 7/30/2022</div>
-          </div>
-        </div>
+        <TaskPreview />
+        <TaskPreview />
+        <TaskPreview />
+        <TaskPreview />
       </div>
     </div>
   );
