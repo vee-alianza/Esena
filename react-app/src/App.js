@@ -12,6 +12,7 @@ import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
 import ProjectTasks from "./components/ProjectTasks";
 import SideBar from "./components/SideBar";
+import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
@@ -62,7 +63,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -95,6 +96,9 @@ function App() {
         {/* testing */}
         <Route path="/side-bar">
           <SideBar />
+        </Route>
+        <Route path="/home-page">
+          <HomePage />
         </Route>
       </Switch>
     </BrowserRouter>
