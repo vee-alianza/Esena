@@ -15,6 +15,15 @@ def seed_tasks():
     leetcode_task2 = Task(name="Finish Leetcode Problem 87", description="Solve Leetcode 87, Scramble String", end_date=datetime(2022,9,18), status_id=2, priority_id=3, assignee_id=1, assigner_id=2, project_id=3, is_completed=False)
     leetcode_task3= Task(name="Backtracking DFS tutorial", description="Watch Abdul Bari's video on Backtracking and recursive DFS on Youtube", end_date=datetime(2022,9,22), status_id=1, priority_id=3,assigner_id=2, assignee_id=3, project_id=3, is_completed=False)
 
+    aws_task1 = Task(name="Set up AWS Storage Bucket", description="Set up aws account and storage buckets with proper permissions", end_date=datetime(2022,11,7), status_id=2, priority_id=2, assignee_id=5, assigner_id=6, project_id=4, is_completed=False)
+    aws_task2 = Task(name="Build upload functions", description="Write code for backend upload POST routes", end_date=datetime(2022,11,8), status_id=1, priority_id=2, assignee_id=1, assigner_id=6, project_id=4, is_completed=False)
+
+    performance_task1= Task(name="Pinpoint inefficiences", description="Figure out where performance starts to dip, performance tests to find ineffiencies", end_date=datetime(2022,7,13), status_id=2, priority_id=2, assigner_id=8, assignee_id=1, project_id=5, is_completed=False)
+    performance_task2= Task(name="Configure load balancers", description="Configure load balancers to maintain server performances", end_date=datetime(2022,7,14), status_id=1, priority_id=1, assigner_id=8, assignee_id=6, project_id=5, is_completed=False)
+
+    ux_task1= Task(name="Get customer feedback", description='Perform customer surveys and collect data on user experience', end_date=datetime(2022,8,14), status_id=2,priority_id=2, assigner_id=4, assignee_id=1, project_id=6, is_completed=False)
+    ux_task2= Task(name="Meet with UX team", description='Discuss UX improvements and what functionalities can be implemented effectively', end_date=datetime(2022,8,16), status_id=1,priority_id=1, assigner_id=4, assignee_id=8, project_id=6, is_completed=False)
+
     db.session.add(db_task1)
     db.session.add(db_task2)
     db.session.add(redux_task1)
@@ -22,6 +31,12 @@ def seed_tasks():
     db.session.add(leetcode_task1)
     db.session.add(leetcode_task2)
     db.session.add(leetcode_task3)
+    db.session.add(aws_task1)
+    db.session.add(aws_task2)
+    db.session.add(performance_task1)
+    db.session.add(performance_task2)
+    db.session.add(ux_task1)
+    db.session.add(ux_task2)
 
     db.session.commit()
 
