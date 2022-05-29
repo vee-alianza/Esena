@@ -1,0 +1,8 @@
+.tasks-container-body {
+  height: 100%;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 37px);
+  row-gap: 40px;
+}

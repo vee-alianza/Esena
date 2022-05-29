@@ -1,4 +1,6 @@
 import SideBar from "../SideBar";
+import HomeProjectContainer from "../HomeProjectContainer";
+import HomeTaskContainer from "../HomeTaskContainer";
 import "./index.css";
 
 const HomePage = () => {
@@ -14,18 +16,8 @@ const HomePage = () => {
           <h3>Good evening, Ethan</h3>
         </div>
         <div className="resource-container">
-          <div className="projects-container">
-            <div className="container-header">
-              <h3>Projects</h3>
-              <p>Recents</p>
-            </div>
-          </div>
-          <div className="tasks-container">
-            <div className="container-header">
-              <h3>Tasks</h3>
-              <p>Upcoming Deadlines</p>
-            </div>
-          </div>
+          <HomeProjectContainer />
+          <HomeTaskContainer />
         </div>
       </div>
     </>
