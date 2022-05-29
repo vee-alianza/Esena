@@ -2,6 +2,7 @@ const SET_TASKS = "tasks/SET_TASKS";
 const ADD_TASK = "tasks/ADD_TASK";
 const UPDATE_TASK = "tasks/UPDATE_TASK";
 const REMOVE_TASK = "tasks/REMOVE_TASK";
+// const COMPLETE_TASK = "tasks/COMPLETE_TASK";
 
 export const setTasks = (tasks) => {
   return {
@@ -30,6 +31,13 @@ export const removeTask = (taskId) => {
     taskId,
   };
 };
+
+// export const completeTask = (taskId) => {
+//   return {
+//     type: COMPLETE_TASK,
+//     taskId,
+//   };
+// };
 
 export const createTask = (formData, projectId) => async (dispatch) => {
   // console.log(formData)
@@ -87,6 +95,25 @@ export const deleteTask = (taskId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(removeTask(taskId));
+    return data;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
+export const markTaskComplete = (taskId) => async (dispatch) => {
+  const response = await fetch(`/api/tasks/${taskId}/complete`, {
+    method: "PATCH",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateTask(data));
     return data;
   } else if (response.status < 500) {
     const data = await response.json();

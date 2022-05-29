@@ -49,7 +49,7 @@ def update_task(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@task_routes.route('/<int:id>/completed', methods=["PATCH"])
+@task_routes.route('/<int:id>/complete', methods=["PATCH"])
 #commented out for test only
 # @login_required
 def complete_task(id):
@@ -64,7 +64,7 @@ def complete_task(id):
         return task.to_dict()
     else:
         return {'errors': ['Task not found.']}, 404
-        
+
 
 @task_routes.route('/<int:id>', methods=["DELETE"])
 #commented out for test only

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { editTask } from "../../store/tasks";
+import CompleteTaskButton from "../CompleteTaskButton";
 
 const EditTaskForm = ({ setShowModal, taskId }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
   const [priority, setPriority] = useState(task.priority_id);
   const [status, setStatus] = useState(task.status_id);
   const [assignee, setAssignee] = useState(task.assignee_id);
-  const [isCompleted, setIsCompleted] = useState(task.is_completed);
+//   const [isCompleted, setIsCompleted] = useState(task.is_completed);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -37,7 +38,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
         priority_id: parseInt(priority),
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
-        is_completed: isCompleted
+        // is_completed: isCompleted
       };
       console.log(payload);
 
@@ -135,7 +136,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
-        <div className="form-control">
+        {/* <div className="form-control">
           <label>Completed?</label>
           <input
             name="description"
@@ -143,7 +144,8 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
             checked={isCompleted}
             onChange={(e) => setIsCompleted(!isCompleted)}
           ></input>
-        </div>
+        </div> */}
+        <CompleteTaskButton taskId={taskId} setShowModal={setShowModal}/>
         <button className="cancelBtn" type="cancel">
           Cancel
         </button>
