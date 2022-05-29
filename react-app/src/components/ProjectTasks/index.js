@@ -23,15 +23,10 @@ const ProjectTasks = () => {
     task.end_date = month + "/" + day + "/" + year;
   }
 
-  let createTaskLink;
-  if (project?.members.includes(sessionUser.id)) {
-      createTaskLink = <CreateTaskModal />
-  }
-
   return (
     <div>
       <h1>Project {projectId} Tasks</h1>
-      {sessionUser && createTaskLink}
+      {project?.members.includes(sessionUser.id)? <CreateTaskModal /> : null}
       <div>
         {allTasks.map((task) => (
           <div className="task-div" key={task.id}>
