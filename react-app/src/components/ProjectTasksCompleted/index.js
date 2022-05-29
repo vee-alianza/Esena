@@ -30,17 +30,21 @@ const ProjectTasksCompleted = () => {
 
   return (
     <div>
-      <h1>Project {projectId} Tasks</h1>
       <h2>Completed</h2>
       {/* {project?.members.includes(sessionUser.id) ? <CreateTaskModal /> : null} */}
-      <div>
+      <table>
+        <tr>
+          <th>TASK NAME</th>
+          <th>ASSIGNEE</th>
+          <th>DUE DATE</th>
+          <th>STATUS</th>
+        </tr>
         {allTasks.map((task) => (
-          <div className="task-div" key={task.id}>
-            <div>{task.name}</div>
-            <div>End Date: {task.end_date}</div>
-            <div>{task.description}</div>
-            <div>Priority {task.priority} </div>
-            <div>Status {task.status} </div>
+          <tr key={task.id}>
+            <td>{task.name}</td>
+            <td>{task.assignee_id}</td>
+            <td>{task.end_date}</td>
+            <td>Completed</td>
             {/* {task.assigner_id == sessionUser.id ? (
               <div>
                 {" "}
@@ -48,9 +52,9 @@ const ProjectTasksCompleted = () => {
                 <DeleteTaskModal taskId={task.id} />{" "}
               </div>
             ) : null} */}
-          </div>
+          </tr>
         ))}
-      </div>
+      </table>
     </div>
   );
 };
