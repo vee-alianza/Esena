@@ -10,7 +10,8 @@ import User from "./components/User";
 import CreateProjectModal from "./components/CreateProjectForm";
 import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
-import ProjectTasks from "./components/ProjectTasks";
+import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
+import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
@@ -91,7 +92,8 @@ function App() {
           <MyTasks />
         </Route>
         <Route path="/projects/:projectId/tasks" exact={true}>
-          <ProjectTasks />
+          <ProjectTasksInProgress />
+          <ProjectTasksCompleted />
         </Route>
         {/* testing */}
         <Route path="/home-page">

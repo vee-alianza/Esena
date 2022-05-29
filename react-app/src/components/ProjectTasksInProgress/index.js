@@ -6,7 +6,7 @@ import EditTaskModal from "../EditTaskForm";
 import DeleteTaskModal from "../DeleteTaskForm";
 // import "./MyTasks.css";
 
-const ProjectTasks = () => {
+const ProjectTasksInProgress = () => {
   const { projectId } = useParams()
   const project = useSelector((state) => state.projects[projectId]);
 //   console.log("********", project)
@@ -14,7 +14,8 @@ const ProjectTasks = () => {
 
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
-  allTasks = allTasks?.filter((task) => task.project_id == projectId);
+  console.log(allTasks)
+  allTasks = allTasks?.filter((task) => task.project_id == projectId && task.is_completed == false);
 
   for (let task of allTasks) {
     let date = new Date(task.end_date);
@@ -28,7 +29,8 @@ const ProjectTasks = () => {
   return (
     <div>
       <h1>Project {projectId} Tasks</h1>
-      {project?.members.includes(sessionUser.id)? <CreateTaskModal /> : null}
+      <h2>In Progress</h2>
+      {project?.members.includes(sessionUser.id) ? <CreateTaskModal /> : null}
       <div>
         {allTasks.map((task) => (
           <div className="task-div" key={task.id}>
@@ -37,7 +39,13 @@ const ProjectTasks = () => {
             <div>{task.description}</div>
             <div>Priority {task.priority} </div>
             <div>Status {task.status} </div>
-            {task.assigner_id == sessionUser.id? <div> <EditTaskModal taskId={task.id}/> <DeleteTaskModal taskId={task.id}/> </div> : null}
+            {task.assigner_id == sessionUser.id ? (
+              <div>
+                {" "}
+                <EditTaskModal taskId={task.id} />{" "}
+                <DeleteTaskModal taskId={task.id} />{" "}
+              </div>
+            ) : null}
           </div>
         ))}
       </div>
@@ -45,4 +53,4 @@ const ProjectTasks = () => {
   );
 };
 
-export default ProjectTasks;
+export default ProjectTasksInProgress;
