@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 // import { useHistory, useParams } from "react-router-dom";
+
+import EditTaskModal from "../EditTaskForm";
 import "./MyTasks.css";
 
 const MyTasks = () => {
@@ -18,6 +20,7 @@ const MyTasks = () => {
 
     task.end_date = month + "/" + day + "/" + year;
   }
+
   return (
     <div>
       <h1>My Tasks</h1>
@@ -29,6 +32,7 @@ const MyTasks = () => {
             <div>{task.description}</div>
             <div>Priority {task.priority} </div>
             <div>Status {task.status} </div>
+            {task.assigner_id == sessionUser.id? <EditTaskModal taskId={task.id}/> : null}
           </div>
         ))}
       </div>
