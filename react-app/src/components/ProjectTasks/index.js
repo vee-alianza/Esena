@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import CreateTaskModal from "../CreateTaskForm";
 import EditTaskModal from "../EditTaskForm";
+import DeleteTaskModal from "../DeleteTaskForm";
 // import "./MyTasks.css";
 
 const ProjectTasks = () => {
@@ -36,7 +37,7 @@ const ProjectTasks = () => {
             <div>{task.description}</div>
             <div>Priority {task.priority} </div>
             <div>Status {task.status} </div>
-            {task.assigner_id == sessionUser.id? <EditTaskModal taskId={task.id}/> : null}
+            {task.assigner_id == sessionUser.id? <div> <EditTaskModal taskId={task.id}/> <DeleteTaskModal taskId={task.id}/> </div> : null}
           </div>
         ))}
       </div>

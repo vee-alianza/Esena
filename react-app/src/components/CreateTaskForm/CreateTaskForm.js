@@ -13,7 +13,7 @@ const CreateTaskForm = ({ setShowModal }) => {
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
   );
-  const teammates = allUsers.filter((user) =>
+  const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
   //   console.log(teammates);

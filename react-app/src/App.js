@@ -87,7 +87,7 @@ function App() {
         {/* <Route path="/create-task" exact={true}>
           <CreateTaskModal />
         </Route> */}
-        <Route path="/mytasks" exact={true}>
+        <Route path="/my-tasks" exact={true}>
           <MyTasks />
         </Route>
         <Route path="/projects/:projectId/tasks" exact={true}>
