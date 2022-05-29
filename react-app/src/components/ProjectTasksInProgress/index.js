@@ -12,6 +12,9 @@ const ProjectTasksInProgress = () => {
 //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
+  const allUsers = useSelector((state) => state.teammates.allUsers);
+  allUsers[sessionUser?.id] = sessionUser;
+
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
   // console.log(allTasks)
@@ -42,7 +45,7 @@ const ProjectTasksInProgress = () => {
         {allTasks.map((task) => (
           <tr key={task.id}>
             <td>{task.name}</td>
-            <td>{task.assignee_id}</td>
+            <td>{allUsers[task.assignee_id].first_name}</td>
             <td>{task.end_date}</td>
             <td>{task.priority} </td>
             <td>{task.status} </td>
