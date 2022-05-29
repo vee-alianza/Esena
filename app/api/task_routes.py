@@ -28,8 +28,11 @@ def update_task(id):
 
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    task = Task.query.get(id)
+    project = Project.query.get(task.project_id)
+    choices = project.to_dict()["members"]
+    form.assignee_id.choices = choices
     if form.validate_on_submit():
-        task = Task.query.get(id)
         if task:
             task.name = form.data['name']
             task.description = form.data['description']

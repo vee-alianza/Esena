@@ -1,5 +1,6 @@
 const SET_TASKS = "tasks/SET_TASKS";
 const ADD_TASK = "tasks/ADD_TASK";
+const UPDATE_TASK = "tasks/UPDATE_TASK";
 
 export const setTasks = (tasks) => {
   return {
@@ -11,6 +12,13 @@ export const setTasks = (tasks) => {
 export const addTask = (task) => {
   return {
     type: ADD_TASK,
+    task,
+  };
+};
+
+export const updateTask = (task) => {
+  return {
+    type: UPDATE_TASK,
     task,
   };
 };
@@ -39,6 +47,29 @@ export const createTask = (formData, projectId) => async (dispatch) => {
   }
 };
 
+export const editTask = (formData, taskId) => async (dispatch) => {
+  // console.log(formData)
+  const response = await fetch(`/api/tasks/${taskId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateTask(data));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
 
 // const initialState = { assignedTasks: {} };
 const initialState = {};
@@ -62,6 +93,12 @@ const taskReducer = (state = initialState, action) => {
         ...state,
         [action.task.id]: action.task
       }
+    case UPDATE_TASK:
+      const newState = {
+        ...state,
+        [action.task.id]: action.task,
+      };
+      return newState;
     default:
       return state;
   }

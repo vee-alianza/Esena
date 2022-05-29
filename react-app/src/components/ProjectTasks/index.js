@@ -2,11 +2,13 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import CreateTaskModal from "../CreateTaskForm";
+import EditTaskModal from "../EditTaskForm";
 // import "./MyTasks.css";
 
 const ProjectTasks = () => {
   const { projectId } = useParams()
-  const project = useSelector((state) => state.projects);
+  const project = useSelector((state) => state.projects[projectId]);
+//   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
   const tasksObj = useSelector((state) => state.tasks);
@@ -21,10 +23,11 @@ const ProjectTasks = () => {
 
     task.end_date = month + "/" + day + "/" + year;
   }
+
   return (
     <div>
       <h1>Project {projectId} Tasks</h1>
-      <CreateTaskModal />
+      {project?.members.includes(sessionUser.id)? <CreateTaskModal /> : null}
       <div>
         {allTasks.map((task) => (
           <div className="task-div" key={task.id}>
@@ -33,6 +36,7 @@ const ProjectTasks = () => {
             <div>{task.description}</div>
             <div>Priority {task.priority} </div>
             <div>Status {task.status} </div>
+            {task.assigner_id == sessionUser.id? <EditTaskModal taskId={task.id}/> : null}
           </div>
         ))}
       </div>
