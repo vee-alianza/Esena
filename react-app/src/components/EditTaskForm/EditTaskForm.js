@@ -1,27 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-// import { editTask } from "../../store/tasks";
+import { editTask } from "../../store/tasks";
 
 const EditTaskForm = ({ setShowModal, taskId }) => {
-    const dispatch = useDispatch();
-    const task = useSelector((state) => state.tasks[taskId]);
-    const projectId = task?.project_id;
-    //get teammates from store
-    //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
-    const allUsers = useSelector((state) => state.teammates.allUsers);
-    const currentTeammatesIds = useSelector(
+  const dispatch = useDispatch();
+  const task = useSelector((state) => state.tasks[taskId]);
+  const projectId = task?.project_id;
+  //get teammates from store
+  //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
+  const allUsers = useSelector((state) => state.teammates.allUsers);
+  const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
-    );
-    const teammates = allUsers.filter((user) =>
+  );
+  const teammates = allUsers.filter((user) =>
     currentTeammatesIds.includes(user.id)
-    );
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [endDate, setEndDate] = useState(new Date());
-  const [priority, setPriority] = useState("1");
-  const [status, setStatus] = useState("1");
-  const [assignee, setAssignee] = useState(-1);
+  );
+  const [name, setName] = useState(task.name);
+  const [description, setDescription] = useState(task.description);
+  const [endDate, setEndDate] = useState(new Date(task.end_date));
+  const [priority, setPriority] = useState(task.priority_id);
+  const [status, setStatus] = useState(task.status_id);
+  const [assignee, setAssignee] = useState(task.assignee_id);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -39,7 +39,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
       };
       console.log(payload);
 
-    //   dispatch(editTask(payload));
+      dispatch(editTask(payload, taskId));
 
       setShowModal(false);
     }
