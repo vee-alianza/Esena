@@ -1,0 +1,34 @@
+.person-circle-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: #932ec68f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.person-circle-icon > p {
+  color: white;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.person-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.person-occupation {
+  font-size: 12px;
+  color: gray;
+  margin-top: 6px;
+}

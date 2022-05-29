@@ -23,7 +23,7 @@ export const addToAllUsers = (user) => {
   };
 };
 
-const initialState = { teammates: [], allUsers: [] };
+const initialState = { teammates: [], allUsers: {} };
 
 const teammateReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -35,12 +35,12 @@ const teammateReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        allUsers: action.users,
+        allUsers: {...action.users},
       };
     case ADDTO_ALLUSERS:
       return {
         ...state,
-        allUsers: [...state.allUsers, action.user],
+        allUsers: {...state.allUsers, [action.user.id]: action.user},
       };
     default:
       return state;

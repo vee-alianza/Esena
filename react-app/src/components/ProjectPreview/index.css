@@ -1,0 +1,30 @@
+.project {
+  display: flex;
+  flex-direction: row;
+}
+
+.project:hover {
+  cursor: pointer;
+}
+
+.rectangle-icon {
+  width: 43px;
+  height: 35px;
+  background: #d0b8e68f;
+  border-radius: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 6px;
+}
+
+.project-date {
+  font-size: 11px;
+  color: rgb(152, 150, 150);
+}

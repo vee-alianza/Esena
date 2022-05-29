@@ -1,5 +1,6 @@
 from .db import db
 from .team import teams
+from datetime import datetime
 
 class Project(db.Model):
     __tablename__ = "projects"
@@ -29,8 +30,8 @@ class Project(db.Model):
         return {
             "name": self.name,
             "description": self.description,
-            "start_date": self.start_date,
-            "end_date": self.end_date,
+            "start_date": self.start_date.strftime("%m/%d/%Y"),
+            "end_date": self.end_date.strftime("%m/%d/%Y"),
             "is_archived": self.is_archived,
             "is_private": self.is_private,
             "priority": self.priority.name,

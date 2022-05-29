@@ -1,0 +1,32 @@
+.task {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.task:hover {
+  cursor: pointer;
+}
+
+.circle-icon {
+  width: 45px;
+  height: 45px;
+  background: #9b71c58f;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+.task-date {
+  font-size: 11px;
+  color: rgb(152, 150, 150);
+  margin-top: 6px;
+}
