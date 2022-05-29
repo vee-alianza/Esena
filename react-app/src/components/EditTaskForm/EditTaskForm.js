@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { editTask } from "../../store/tasks";
 import CompleteTaskButton from "../CompleteTaskButton";
 
-const EditTaskForm = ({ setShowModal, taskId }) => {
+const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
   const dispatch = useDispatch();
   const task = useSelector((state) => state.tasks[taskId]);
   const projectId = task?.project_id;
@@ -62,6 +62,7 @@ const EditTaskForm = ({ setShowModal, taskId }) => {
     <div>
       <div className="form-header">
         <h1>Edit Task</h1>
+        <h2>{projectName}</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="form-control">
