@@ -87,7 +87,7 @@ function App() {
         <Route path="/create-project" exact={true}>
           <CreateProjectModal />
         </Route>
-        <Route path="/banana">
+        <Route path="/projects/:projectId">
           <SingleProjectPreview />
         </Route>
         {/* <Route path="/create-task" exact={true}>

@@ -15,14 +15,28 @@ export const setProjects = (projects) => {
   };
 };
 
+
+
+
+export const fetchProject = (projectId) => async dispatch => {
+  const response = await fetch(`/api/projects/${projectId}`);
+  // console.log(project, "============")
+  if (response.ok) {
+    const project = await response.json();
+    dispatch(getProject(project));
+    return response;
+  }
+}
+
 // const initialState = { ownedProjects: {}, joinedProjects: {}, projects: [] };
-const initialState = {};
+const initialState = { currentProject: null, allProjects: null };
 
 const projectReducer = (state = initialState, action) => {
-  const newState = { project: { ...state.project } }
+  let newState;
   switch (action.type) {
     case GET_PROJECT:
       newState = Object.assign({}, state);
+      newState.currentProject = action.project;
       return newState;
 
     case SET_PROJECTS:
@@ -36,10 +50,13 @@ const projectReducer = (state = initialState, action) => {
       //   joinedProjects: action.payload.joined_projects,
       //   projects: Array.from(allProjects),
       // };
-      return {
-        ...state,
-        ...action.projects
-      }
+      newState = Object.assign({}, state);
+      newState.allProjects = action.projects;
+      return newState;
+    // return {
+    //   ...state,
+    //   ...action.projects
+    // }
     default:
       return state;
   }
