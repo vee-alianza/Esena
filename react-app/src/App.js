@@ -12,6 +12,7 @@ import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
 import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
 import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
+import Profile from "./components/Profile";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
@@ -98,6 +99,9 @@ function App() {
         {/* testing */}
         <Route path="/home-page">
           <HomePage />
+        </Route>
+        <Route path="/profile/:userId" exact={true}>
+          <Profile />
         </Route>
       </Switch>
     </BrowserRouter>
