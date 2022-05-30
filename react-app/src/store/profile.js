@@ -8,11 +8,7 @@ export const setProfile = (user) => {
 };
 
 export const viewProfile = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(`/api/users/${userId}`);
   if (response.ok) {
     const data = await response.json();
     if (data.errors) {
