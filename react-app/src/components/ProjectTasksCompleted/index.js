@@ -13,6 +13,7 @@ const ProjectTasksCompleted = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const users = {...allUsers}
+  console.log("completed", users)
   users[sessionUser?.id] = sessionUser;
 
   const tasksObj = useSelector((state) => state.tasks);
