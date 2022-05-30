@@ -58,7 +58,7 @@ const Profile = () => {
         <h2>Projects</h2>
         {projects.length > 0 ? (
           projects.map((project) => (
-            <Link to={`/profile/projects/${project.id}`}>
+            <Link to={`/profile/${user.id}/projects/${project.id}`}>
               <div>{project.id}</div>
               <div>{project.name}</div>
               <div>{project.description}</div>

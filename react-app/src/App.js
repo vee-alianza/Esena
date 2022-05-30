@@ -104,7 +104,7 @@ function App() {
         <Route path="/profile/:userId" exact={true}>
           <Profile />
         </Route>
-        <Route path="/profile/projects/:projectId" exact={true}>
+        <Route path="/profile/:userId/projects/:projectId" exact={true}>
           <ProfileProjectOverview />
         </Route>
       </Switch>
