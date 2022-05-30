@@ -1,5 +1,5 @@
 import "./index.css";
-const ProjectPreview = ({project}) => {
+const ProjectPreview = ({ project }) => {
   return (
     <div className="project">
       <div className="project-icon">

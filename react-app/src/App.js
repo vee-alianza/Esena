@@ -15,9 +15,10 @@ import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
-import { setProjects } from "./store/projects";
+import { getProject, setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
+import SingleProjectPreview from "./components/SingleProjectPreview";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -62,6 +63,7 @@ function App() {
     return null;
   }
 
+  console.log(getProject)
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
@@ -84,6 +86,9 @@ function App() {
         {/* testing */}
         <Route path="/create-project" exact={true}>
           <CreateProjectModal />
+        </Route>
+        <Route path="/banana">
+          <SingleProjectPreview />
         </Route>
         {/* <Route path="/create-task" exact={true}>
           <CreateTaskModal />

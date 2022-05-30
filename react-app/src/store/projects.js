@@ -1,4 +1,12 @@
+const GET_PROJECT = "project/GET_PROJECT"
 const SET_PROJECTS = "projects/SET_PROJECTS";
+
+export const getProject = (project) => {
+  return {
+    type: GET_PROJECT,
+    project
+  }
+}
 
 export const setProjects = (projects) => {
   return {
@@ -11,7 +19,12 @@ export const setProjects = (projects) => {
 const initialState = {};
 
 const projectReducer = (state = initialState, action) => {
+  const newState = { project: { ...state.project } }
   switch (action.type) {
+    case GET_PROJECT:
+      newState = Object.assign({}, state);
+      return newState;
+
     case SET_PROJECTS:
       // const allProjects = new Set(
       //   ... Object.entries(action.payload.owned_projects),
