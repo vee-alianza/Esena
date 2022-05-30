@@ -7,6 +7,7 @@ import "./index.css";
 import TeamPreviewContainer from "../TeamPreviewContainer";
 
 const HomePage = () => {
+  const session = useSelector((state) => state.session.user)
   const projects = useSelector((state) => state.projects)
   const tasks = useSelector((state) => state.tasks)
   const teammates = useSelector((state) => state.teammates.teammates)
@@ -32,7 +33,7 @@ const HomePage = () => {
         </div>
         <div className="greeting-container">
           <p>{`${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}`}</p>
-          <h3>{`Good ${tod}, Ethan`}</h3>
+          <h3>{`Good ${tod}, Demo`}</h3>
         </div>
         <div className="resource-container">
           <HomeProjectContainer projects={projects}/>
