@@ -12,12 +12,20 @@ import Profile from "./components/Profile";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
-import { setProjects } from "./store/projects";
+import { getProject, setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
+<<<<<<< HEAD
+<<<<<<< HEAD
 import { setComments } from "./store/comments"
 import FrontPage from "./components/FrontPage";
 import SplashPage from "./components/SplashPage";
+=======
+import SingleProjectPreview from "./components/SingleProjectPreview";
+>>>>>>> a7a24f6... add progress bar
+=======
+import { setComments } from "./store/comments"
+>>>>>>> a12bf0d... update changes from staging branch on src/App.js, components: ProgressBar, ProjectPreview, ProjectTasksInProgress, SingleProjectPreview and store:project
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -75,6 +83,7 @@ function App() {
     return null;
   }
 
+  console.log(getProject)
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
@@ -93,10 +102,27 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
+<<<<<<< HEAD
         </ProtectedRoute> */}
         {/* <ProtectedRoute path="/" exact={true}>
           <HomePage />
         </ProtectedRoute> */}
+=======
+        </ProtectedRoute>
+        <ProtectedRoute path="/" exact={true}>
+          <h1>My Home Page</h1>
+        </ProtectedRoute>
+        {/* testing */}
+        <Route path="/create-project" exact={true}>
+          <CreateProjectModal />
+        </Route>
+        <Route path="/projects/:projectId" exact={true}>
+          <SingleProjectPreview />
+        </Route>
+        {/* <Route path="/create-task" exact={true}>
+          <CreateTaskModal />
+        </Route> */}
+>>>>>>> a7a24f6... add progress bar
         <Route path="/my-tasks" exact={true}>
           <MyTasks />
         </Route>
