@@ -1,38 +1,51 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { viewProfile } from "../../store/profile";
 
 const Profile = () => {
-  const { userId } = useParams();
-  console.log(userId);
   const dispatch = useDispatch();
-  //   const session = useSelector((state) => state.session.user);
+  const [loaded, setLoaded] = useState(false);
+  const { userId } = useParams();
+
   let user = useSelector((state) => state.profile);
-  let projects = useSelector((state) => state.profile.projects);
-  projects = Object.values(projects);
 
-  let tasks = useSelector((state) => state.profile.tasks);
-  tasks = Object.values(tasks);
-  tasks = tasks.filter(task => task.assignee_id == user.id)
-  console.log(tasks)
-
-  useEffect(() => {
-    dispatch(viewProfile(userId));
-    console.log("enter dispatch block");
+  useEffect(async () => {
+    await dispatch(viewProfile(userId));
+    setLoaded(true);
   }, [dispatch]);
 
+  let projects;
+  const projectsObj = useSelector((state) => state.profile.projects);
+  if (projectsObj) {
+      projects = Object.values(projectsObj);
+  }
+  
+  let tasks;
+  const tasksObj = useSelector((state) => state.profile.tasks);
+  if (tasksObj) {
+      tasks = Object.values(tasksObj);
+      tasks = tasks.filter((task) => task.assignee_id == user.id);
+  }
+  
+  if (!loaded) {
+    return null;
+  }
   return (
     <div>
+      <h1>{user?.first_name}'s Profile</h1>
       <div>
-        <h1>{user?.first_name}'s Profile</h1>
+        <div>
+          {user?.first_name} {user?.first_name}
+        </div>
         <div>{user?.occupation}</div>
         <div>{user?.email}</div>
         <div>{user?.bio}</div>
       </div>
       <div>
         <h2>Projects</h2>
+        {/* return public projects */}
         {projects.map((project) => (
           <div>
             <div>{project.id}</div>
