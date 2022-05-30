@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {addProject} from '../../store/projects'
 import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
-  const userId = "4"; //TODO: GET CURRENT SESSION USER ID FROM STORE
+  const dispatch = useDispatch()
+
+  const session = useSelector(state => state.session.user)
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -30,24 +35,10 @@ const CreateProjectForm = ({ setShowModal }) => {
         members,
       };
 
-      // TODO: NEEDS DISPATCH
-      const res = await fetch(`/api/users/${userId}/projects`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-          csrf_token:
-            "IjRiY2M4MWNlMDkwNGJlZjRlMTJhMzBhMWUxNGI0OTM4NWU4ODNjODQi.YpErDA.6EwPVYrY3XlCfjRRkORGl6nf3KI",
-          session:
-            ".eJwljkFqBDEMBP_icw6yLdnyfmaQrDa7BBKY2T2F_D1ecqymKeonHevEdU-35_nCRzoekW6pZDZbXpV6gRDr4G7DlhhHD60VHkouGZnZSm-cF2VZStaabgw0FZkrXKuBSACTPprkcJfwCglsH1VgeutzX2yUCRl9lJF2yOvC-V_DG-d1ruP5_Ymv9-Bzap6gQexYjFyskr1rnEdVgWqdyun3D-1LP3k.YpErCw.1x5DFcj9BOkWgfXiimYgGpvOiMo",
-        },
-      });
-      const data = await res.json();
-      console.log(data);
+      dispatch(addProject(payload, session.id))
       setShowModal(false);
     }
   };
-
   useEffect(() => {
     const errors = [];
     if (!name) errors.push("Please enter a project name!");
@@ -58,7 +49,7 @@ const CreateProjectForm = ({ setShowModal }) => {
     setValidationErrors(errors);
   }, [name, description]);
   return (
-    <div>
+    <div className="form-container">
       <div className="form-header">
         <h1>Create Project</h1>
       </div>
@@ -86,6 +77,7 @@ const CreateProjectForm = ({ setShowModal }) => {
           <div className="form-control">
             <label>Start Date</label>
             <input
+            className="date-input"
               placeholder={"Choose a start date"}
               type="date"
               name="start_date"
@@ -96,6 +88,7 @@ const CreateProjectForm = ({ setShowModal }) => {
           <div className="form-control">
             <label>End Date</label>
             <input
+            className="date-input"
               placeholder={"Choose an end date"}
               type="date"
               name="end_date"

@@ -1,15 +1,62 @@
-.form-grouping {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.form-container {
+  width: 450px;
 }
+
+.form-header {
+  padding: 0px 30px;
+  font-size: 18px;
+  
+}
+
+.form-header > h1 {
+  letter-spacing: 0.001px;
+  font-weight: 800;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  padding: 0px 30px;
+}
+
+.form-control > input {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 35px;
+  padding: 3px 10px;
+}
+
+.form-control > textarea {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 100px;
+  padding: 10px 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  resize: none;
+}
+
+.form-grouping {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 30px;
+  width: 94.5%;
+}
+
+.form-grouping > .form-control {
+  padding: 0px 0px;
+  width: 50%;
+}
+
+.date-input {
+  width: 73%;
 }
 
 label {
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 3px;
+  font-weight: 600;
+  color:rgb(54, 54, 54)
 }
