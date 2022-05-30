@@ -13,6 +13,7 @@ const ProjectTasksCompleted = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const users = {...allUsers}
+  console.log("completed", users)
   users[sessionUser?.id] = sessionUser;
 
   const tasksObj = useSelector((state) => state.tasks);
@@ -28,14 +29,14 @@ const ProjectTasksCompleted = () => {
         return keyA > keyB ? -1 : 1;
     });
 
-  for (let task of allTasks) {
-    let date = new Date(task.end_date);
-    let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, "0");
-    let day = date.getDate().toString().padStart(2, "0");
+//   for (let task of allTasks) {
+//     let date = new Date(task.end_date);
+//     let year = date.getFullYear();
+//     let month = (1 + date.getMonth()).toString().padStart(2, "0");
+//     let day = date.getDate().toString().padStart(2, "0");
 
-    task.end_date = month + "/" + day + "/" + year;
-  }
+//     task.end_date = month + "/" + day + "/" + year;
+//   }
 
   return (
     <div>

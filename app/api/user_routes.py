@@ -24,7 +24,7 @@ def users():
     # gets all users (for search)
 
     users = User.query.all()
-    return {"users": [user.to_dict() for user in users]}
+    return {"users": {user.id: user.to_dict() for user in users}}
     
     # for user in users:
     #     user_dict = user.to_dict()

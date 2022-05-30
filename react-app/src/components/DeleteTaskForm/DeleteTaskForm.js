@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteTask } from "../../store/tasks";
 // import "./CreateProjectForm.css";
 
