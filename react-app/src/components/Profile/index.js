@@ -20,6 +20,12 @@ const Profile = () => {
   const projectsObj = useSelector((state) => state.profile.projects);
   if (projectsObj) {
     projects = Object.values(projectsObj);
+    projects = projects.filter((project) => project?.is_private == false);
+    projects.sort((a, b) => {
+      const keyA = new Date(a?.start_date);
+      const keyB = new Date(b?.start_date);
+      return keyA > keyB ? -1 : 1;
+    });
   }
 
   let tasks;
@@ -27,6 +33,11 @@ const Profile = () => {
   if (tasksObj) {
     tasks = Object.values(tasksObj);
     tasks = tasks.filter((task) => task.assignee_id == user.id);
+    tasks.sort((a, b) => {
+      const keyA = new Date(a?.create_date);
+      const keyB = new Date(b?.create_date);
+      return keyA > keyB ? -1 : 1;
+    });
   }
 
   if (!loaded) {
@@ -45,17 +56,16 @@ const Profile = () => {
       </div>
       <div>
         <h2>Projects</h2>
-        {/* return public projects */}
         {projects.length > 0 ? (
           projects.map((project) => (
-            <Link to={`/projects/${project.id}`}>
+            <Link to={`/profile/projects/${project.id}`}>
               <div>{project.id}</div>
               <div>{project.name}</div>
               <div>{project.description}</div>
             </Link>
           ))
         ) : (
-          <div>No projects yet</div>
+          <div>No public projects</div>
         )}
       </div>
       <div>
