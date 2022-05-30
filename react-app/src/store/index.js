@@ -4,12 +4,14 @@ import session from "./session";
 import projects from "./projects";
 import tasks from "./tasks";
 import teammates from "./teammates";
+import profile from "./profile";
 
 const rootReducer = combineReducers({
   session,
   projects,
   tasks,
   teammates,
+  profile
 });
 
 let enhancer;
