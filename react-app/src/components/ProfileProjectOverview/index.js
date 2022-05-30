@@ -11,24 +11,24 @@ const ProfileProjectOverview = () => {
   let project;
   let allTasks;
   if (projects) {
-      project = projects[projectId]
-        allTasks = Object.values(project?.tasks);
-        allTasks = allTasks?.filter(
-          (task) => task.project_id == projectId && task.is_completed == false
-        );
-        allTasks.sort((a, b) => {
-          const keyA = new Date(a?.end_date);
-          const keyB = new Date(b?.end_date);
-          return keyA > keyB ? 1 : -1;
-        });
+    project = projects[projectId];
+    allTasks = Object.values(project?.tasks);
+    allTasks = allTasks?.filter(
+      (task) => task.project_id == projectId && task.is_completed == false
+    );
+    allTasks.sort((a, b) => {
+      const keyA = new Date(a?.end_date);
+      const keyB = new Date(b?.end_date);
+      return keyA > keyB ? 1 : -1;
+    });
   }
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
   let users = { ...allUsers };
   users[sessionUser?.id] = sessionUser;
-  users = Object.values(users);
-  users = users.filter((user) => project?.members.includes(user.id));
+  let usersArr = Object.values(users);
+  usersArr = usersArr.filter((user) => project?.members.includes(user.id));
 
   useEffect(async () => {
     await dispatch(viewProfile(userId));
@@ -45,7 +45,7 @@ const ProfileProjectOverview = () => {
         <div>{project?.description}</div>
         <div>
           team members:
-          {users.map((user) => (
+          {usersArr.map((user) => (
             <Link to={`/profile/${user.id}`}>
               <span>{user.first_name} </span>
             </Link>
@@ -56,7 +56,7 @@ const ProfileProjectOverview = () => {
       <table>
         <tr>
           <th>TASK NAME</th>
-          {/* <th>ASSIGNEE</th> */}
+          <th>ASSIGNEE</th>
           <th>DUE DATE</th>
           <th>PRIORITY</th>
           <th>STATUS</th>
@@ -64,7 +64,7 @@ const ProfileProjectOverview = () => {
         {allTasks?.map((task) => (
           <tr key={task.id}>
             <td>{task.name}</td>
-            {/* <td>{users[task.assignee_id].first_name}</td> */}
+            <td>{users[task.assignee_id].first_name}</td>
             <td>{task.end_date}</td>
             <td>{task.priority} </td>
             <td>{task.status} </td>
