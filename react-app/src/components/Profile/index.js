@@ -46,23 +46,31 @@ const Profile = () => {
       <div>
         <h2>Projects</h2>
         {/* return public projects */}
-        {projects.map((project) => (
+        {projects.length > 0 ?
+        projects.map((project) => (
           <div>
             <div>{project.id}</div>
             <div>{project.name}</div>
             <div>{project.description}</div>
           </div>
-        ))}
+        ))
+        :
+        <div>No projects yet</div>
+        }
       </div>
       <div>
         <h2>Tasks</h2>
-        {tasks.map((task) => (
+        {tasks.length > 0 ?
+        tasks.map((task) => (
           <div>
             <div>{task.id}</div>
             <div>{task.name}</div>
             <div>{task.description}</div>
           </div>
-        ))}
+        ))
+        :
+        <div> No tasks yet </div>
+        }
       </div>
     </div>
   );
