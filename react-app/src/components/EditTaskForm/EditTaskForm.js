@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
 import { editTask } from "../../store/tasks";
 import CompleteTaskButton from "../CompleteTaskButton";
 

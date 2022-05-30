@@ -8,12 +8,12 @@ import { useSelector } from "react-redux";
 
 const ProjectTasksCompleted = () => {
   const { projectId } = useParams();
-  const project = useSelector((state) => state.projects[projectId]);
+//   const project = useSelector((state) => state.projects[projectId]);
   //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const users = {...allUsers}
-  console.log("completed", users)
+//   console.log("completed", users)
   users[sessionUser?.id] = sessionUser;
 
   const tasksObj = useSelector((state) => state.tasks);

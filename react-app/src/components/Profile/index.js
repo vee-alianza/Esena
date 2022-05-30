@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { viewProfile } from "../../store/profile";
@@ -19,16 +19,16 @@ const Profile = () => {
   let projects;
   const projectsObj = useSelector((state) => state.profile.projects);
   if (projectsObj) {
-      projects = Object.values(projectsObj);
+    projects = Object.values(projectsObj);
   }
-  
+
   let tasks;
   const tasksObj = useSelector((state) => state.profile.tasks);
   if (tasksObj) {
-      tasks = Object.values(tasksObj);
-      tasks = tasks.filter((task) => task.assignee_id == user.id);
+    tasks = Object.values(tasksObj);
+    tasks = tasks.filter((task) => task.assignee_id == user.id);
   }
-  
+
   if (!loaded) {
     return null;
   }
@@ -46,31 +46,31 @@ const Profile = () => {
       <div>
         <h2>Projects</h2>
         {/* return public projects */}
-        {projects.length > 0 ?
-        projects.map((project) => (
-          <div>
-            <div>{project.id}</div>
-            <div>{project.name}</div>
-            <div>{project.description}</div>
-          </div>
-        ))
-        :
-        <div>No projects yet</div>
-        }
+        {projects.length > 0 ? (
+          projects.map((project) => (
+            <Link to={`/projects/${project.id}`}>
+              <div>{project.id}</div>
+              <div>{project.name}</div>
+              <div>{project.description}</div>
+            </Link>
+          ))
+        ) : (
+          <div>No projects yet</div>
+        )}
       </div>
       <div>
         <h2>Tasks</h2>
-        {tasks.length > 0 ?
-        tasks.map((task) => (
-          <div>
-            <div>{task.id}</div>
-            <div>{task.name}</div>
-            <div>{task.description}</div>
-          </div>
-        ))
-        :
-        <div> No tasks yet </div>
-        }
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <div>
+              <div>{task.id}</div>
+              <div>{task.name}</div>
+              <div>{task.description}</div>
+            </div>
+          ))
+        ) : (
+          <div> No tasks yet </div>
+        )}
       </div>
     </div>
   );
