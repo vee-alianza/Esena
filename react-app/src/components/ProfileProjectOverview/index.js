@@ -14,7 +14,7 @@ const ProfileProjectOverview = () => {
     project = projects[projectId];
     allTasks = Object.values(project?.tasks);
     allTasks = allTasks?.filter(
-      (task) => task.project_id == projectId && task.is_completed == false
+      (task) => task.project_id == projectId
     );
     allTasks.sort((a, b) => {
       const keyA = new Date(a?.end_date);
