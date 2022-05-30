@@ -8,8 +8,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
   const dispatch = useDispatch();
   const task = useSelector((state) => state.tasks[taskId]);
   const projectId = task?.project_id;
-  //get teammates from store
-  //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
+
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members

@@ -7,8 +7,7 @@ import { createTask } from "../../store/tasks";
 const CreateTaskForm = ({ setShowModal, projectName }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
-  //get teammates from store
-  //   const teammates = [{id: "1", first_name: "John"}, {id: "2", first_name: "Leah"}]
+
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
@@ -122,8 +121,6 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
             </select>
           </div>
         </div>
-        {/* TODO: SEPARATE SEARCH COMPONENT */}
-
         <div className="form-control">
           <label>Description</label>
           <textarea
