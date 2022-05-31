@@ -72,49 +72,57 @@ const Profile = () => {
             </div>
           </div>
 
-          <div>
+          <div className="profile-project-card">
             <h2>Projects</h2>
-            <div>
-              {projects.length > 0 ? (
-                projects.slice(0, 8).map((project) => (
-                  <Link to={`/profile/${user.id}/projects/${project.id}`}>
-                    <div className="project">
-                      <div className="project-icon">
-                        <div className="rectangle-icon">
-                          <i className="fa-solid fa-list-ul"></i>
+            <div className="profile-project-card-inner">
+              <div className="recent-header">Recent public projects</div>
+              <div className="profile-project">
+                {projects.length > 0 ? (
+                  projects.slice(0, 8).map((project) => (
+                    <Link to={`/profile/${user.id}/projects/${project.id}`}>
+                      <div className="project">
+                        <div className="project-icon">
+                          <div className="rectangle-icon">
+                            <i className="fa-solid fa-list-ul"></i>
+                          </div>
+                        </div>
+                        <div className="project-details">
+                          <div className="project-name">{project.name}</div>
+                          <div className="project-date">{project.end_date}</div>
                         </div>
                       </div>
-                      <div className="project-details">
-                        <div className="project-name">{project.name}</div>
-                        <div className="project-date">{project.end_date}</div>
-                      </div>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <div>No public projects</div>
-              )}
+                    </Link>
+                  ))
+                ) : (
+                  <div>No public projects</div>
+                )}
+              </div>
             </div>
           </div>
-          <div>
+          <div className="profile-project-card">
             <h2>Tasks</h2>
-            {tasks.length > 0 ? (
-              tasks.slice(0, 8).map((task) => (
-                <div className="task">
-                  <div className="task-icon">
-                    <div className="circle-icon">
-                      <i className="fa-regular fa-circle-check fa-lg"></i>
+            <div className="profile-project-card-inner">
+              <div className="recent-header">Recent tasks</div>
+              <div className="profile-project">
+                {tasks.length > 0 ? (
+                  tasks.slice(0, 8).map((task) => (
+                    <div className="profile-task">
+                      <div className="task-icon">
+                        <div className="circle-icon">
+                          <i className="fa-regular fa-circle-check fa-lg"></i>
+                        </div>
+                      </div>
+                      <div className="task-details">
+                        <div className="task-name">{task.name}</div>
+                        <div className="task-date">{task.end_date}</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="task-details">
-                    <div className="task-name">{task.name}</div>
-                    <div className="task-date">{task.end_date}</div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div> No tasks yet </div>
-            )}
+                  ))
+                ) : (
+                  <div> No tasks yet </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
