@@ -1,3 +1,7 @@
+.project-name-hover {
+    cursor: pointer;
+}
+
 .task-container {
     width: 525px;
     display: flex;
@@ -120,4 +124,19 @@
     border-radius: 4px;
     margin-top: 5px;
     align-self: flex-end;
+}
+
+.comment-input button:hover {
+    cursor: pointer;
+    color: #FFFFFFFF;
+    background: #B56BE1FF;
+}
+
+.comment-input button:hover:active{
+    color: #FFFFFFFF;
+    background: #A74DDBFF;
+}
+
+.comment-input button:disabled {
+    opacity: 0.4;
 }
