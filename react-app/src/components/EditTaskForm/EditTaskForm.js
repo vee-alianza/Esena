@@ -42,7 +42,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
         assignee_id: parseInt(assignee),
         // is_completed: isCompleted
       };
-      console.log(payload);
+    //   console.log(payload);
 
       dispatch(editTask(payload, taskId));
 
