@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // import CreateTaskModal from "../CreateTaskForm";
@@ -52,7 +52,7 @@ const ProjectTasksCompleted = () => {
         {allTasks.map((task) => (
           <tr key={task.id}>
             <td>{task.name}</td>
-            <td>{users[task.assignee_id]?.first_name}</td>
+            <td><Link to={`/profile/${task.assignee_id}`}>{users[task.assignee_id]?.first_name}</Link></td>
             <td>{task.end_date}</td>
             <td>Completed</td>
             {/* {task.assigner_id == sessionUser.id ? (
