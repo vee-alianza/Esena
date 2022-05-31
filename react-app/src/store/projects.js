@@ -62,10 +62,13 @@ const projectReducer = (state = initialState, action) => {
     case SET_PROJECTS:
       return {
         ...state,
-        ...action.projects
+        allProjects: { ...action.projects }
       }
     case GET_PROJECT:
-      return { ...state, currentProject: action.project };
+      return {
+        ...state,
+        currentProject: action.project
+      };
     default:
       return state;
   }
