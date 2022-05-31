@@ -17,7 +17,7 @@ const SingleProjectPreview = () => {
         numCompleted++;
       }
     });
-    return (numCompleted / Object.values(project.tasks).length) * 100
+    return ((numCompleted / Object.values(project.tasks).length) * 100).toFixed(2);
   };
 
 
