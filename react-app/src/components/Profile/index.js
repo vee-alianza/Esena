@@ -113,7 +113,7 @@ const Profile = () => {
                         </div>
                       </div>
                       <div className="task-details">
-                        <div className="task-name">{task.name}</div>
+                        <div className="home-task-name">{task.name}</div>
                         <div className="task-date">{task.end_date}</div>
                       </div>
                     </div>
