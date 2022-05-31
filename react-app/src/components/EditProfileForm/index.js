@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditProfileForm from "./EditProfileForm";
 import { Modal } from "../../context/Modal";
 
-const EditProfileModal = ({ taskId, projectName }) => {
+const EditProfileModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
