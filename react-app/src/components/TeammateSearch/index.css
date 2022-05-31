@@ -35,16 +35,13 @@
   width: 100%;
 }
 
-.searchInput > label {
-  margin-bottom: 3px;
-}
-
 .searchInput > input {
   border: 1px solid rgb(176, 176, 176);
   border-radius: 5px;
   height: 35px;
   padding: 3px 10px;
   width: 94.5%;
+  margin-top: 3px;
 }
 
 .dataResult {

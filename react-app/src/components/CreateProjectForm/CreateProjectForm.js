@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
 
 import { addProject } from "../../store/projects";
 import TeammateSearch from "../TeammateSearch";
@@ -16,12 +17,23 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [priority, setPriority] = useState("1");
-  const [status, setStatus] = useState("1");
+  const [priority, setPriority] = useState({});
+  const [status, setStatus] = useState({});
   const [teammates, setTeammates] = useState([]);
   const [isPrivate, setIsPrivate] = useState(false);
 
   const [validationErrors, setValidationErrors] = useState([]);
+
+  const priorityOptions = [
+    { label: "Low", value: "1" },
+    { label: "Medium", value: "2" },
+    { label: "High", value: "3" },
+  ];
+  const statusOptions = [
+    { label: "On Track", value: "1" },
+    { label: "At Risk", value: "2" },
+    { label: "Off Track", value: "3" },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +49,6 @@ const CreateProjectForm = ({ setShowModal }) => {
         status_id: parseInt(status),
         members: teammates.join(" "),
       };
-
       dispatch(addProject(payload, session.id));
       setShowModal(false);
     }
@@ -100,31 +111,24 @@ const CreateProjectForm = ({ setShowModal }) => {
           teammates={teammates}
           allUsers={allUsers}
         />
-
-        <div className="form-grouping">
-          <div className="form-control">
-            <label>Priority </label>
-            <select
-              name="priority_id"
-              onChange={(e) => setPriority(e.target.value)}
-              value={priority}
-            >
-              <option value="1">Low</option>
-              <option value="2">Medium</option>
-              <option value="3">High</option>
-            </select>
+        <div className="form-grouping-select">
+          <div className="select-control">
+            <label>Priority</label>
+            <Select
+              options={priorityOptions}
+              value={priority.value}
+              onChange={(option) => setPriority(option.value)}
+              placeholder="Select a priority..."
+            />
           </div>
-          <div className="form-control">
+          <div className="select-control">
             <label>Status</label>
-            <select
-              name="status_id"
-              onChange={(e) => setStatus(e.target.value)}
-              value={status}
-            >
-              <option value="1">Off Track</option>
-              <option value="2">At Risk</option>
-              <option value="3">On Track</option>
-            </select>
+            <Select
+              options={statusOptions}
+              value={status.value}
+              onChange={(option) => setStatus(option.value)}
+              placeholder="Select a status..."
+            />
           </div>
         </div>
         <div className="form-control">
@@ -147,7 +151,11 @@ const CreateProjectForm = ({ setShowModal }) => {
             ></input>
           </div>
           <div className="footer-btns">
-            <button className="cancelBtn" type="cancel">
+            <button
+              className="cancelBtn"
+              type="cancel"
+              onClick={() => setShowModal(false)}
+            >
               Cancel
             </button>
             <button className="submitBtn" type="submit">
