@@ -18,10 +18,8 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [endDate, setEndDate] = useState(new Date());
   const [priority, setPriority] = useState("1");
   const [status, setStatus] = useState("1");
-  const [members, setMembers] = useState("");
-  const [isPrivate, setIsPrivate] = useState(false);
-
   const [teammates, setTeammates] = useState([]);
+  const [isPrivate, setIsPrivate] = useState(false);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -37,7 +35,7 @@ const CreateProjectForm = ({ setShowModal }) => {
         is_private: isPrivate,
         priority_id: parseInt(priority),
         status_id: parseInt(status),
-        members,
+        members: teammates.join(" "),
       };
 
       dispatch(addProject(payload, session.id));
@@ -54,7 +52,6 @@ const CreateProjectForm = ({ setShowModal }) => {
     setValidationErrors(errors);
   }, [name, description]);
 
-  console.log(members);
   return (
     <div className="form-container">
       <div className="form-header">
@@ -95,19 +92,13 @@ const CreateProjectForm = ({ setShowModal }) => {
             />
           </div>
         </div>
-        <div>
-          {teammates.length > 0 &&
-            teammates.map((member) => (
-              <div className="teammate-selected" key={`teammember-${member}`}>
-                {allUsers[member].first_name}
-              </div>
-            ))}
-        </div>
+
         <TeammateSearch
           placeholder={"Search for a teammate"}
           users={allUserObjects}
-          setMembers={setMembers}
           setTeammates={setTeammates}
+          teammates={teammates}
+          allUsers={allUsers}
         />
 
         <div className="form-grouping">
