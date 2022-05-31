@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {addProject} from '../../store/projects'
+import { addProject } from "../../store/projects";
+import TeammateSearch from "../TeammateSearch";
 import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const session = useSelector(state => state.session.user)
+  const session = useSelector((state) => state.session.user);
+  const allUsers = useSelector((state) => state.teammates.allUsers);
+  const allUserObjects = Object.values(allUsers);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -17,6 +20,8 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [status, setStatus] = useState("1");
   const [members, setMembers] = useState("");
   const [isPrivate, setIsPrivate] = useState(false);
+
+  const [teammates, setTeammates] = useState([]);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -35,7 +40,7 @@ const CreateProjectForm = ({ setShowModal }) => {
         members,
       };
 
-      dispatch(addProject(payload, session.id))
+      dispatch(addProject(payload, session.id));
       setShowModal(false);
     }
   };
@@ -48,6 +53,8 @@ const CreateProjectForm = ({ setShowModal }) => {
       );
     setValidationErrors(errors);
   }, [name, description]);
+
+  console.log(members);
   return (
     <div className="form-container">
       <div className="form-header">
@@ -64,20 +71,11 @@ const CreateProjectForm = ({ setShowModal }) => {
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
-        <div className="form-control">
-          <label>Project Description</label>
-          <textarea
-            name="description"
-            placeholder="Enter description here"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-        </div>
         <div className="form-grouping">
           <div className="form-control">
             <label>Start Date</label>
             <input
-            className="date-input"
+              className="date-input"
               placeholder={"Choose a start date"}
               type="date"
               name="start_date"
@@ -88,7 +86,7 @@ const CreateProjectForm = ({ setShowModal }) => {
           <div className="form-control">
             <label>End Date</label>
             <input
-            className="date-input"
+              className="date-input"
               placeholder={"Choose an end date"}
               type="date"
               name="end_date"
@@ -97,6 +95,21 @@ const CreateProjectForm = ({ setShowModal }) => {
             />
           </div>
         </div>
+        <div>
+          {teammates.length > 0 &&
+            teammates.map((member) => (
+              <div className="teammate-selected" key={`teammember-${member}`}>
+                {allUsers[member].first_name}
+              </div>
+            ))}
+        </div>
+        <TeammateSearch
+          placeholder={"Search for a teammate"}
+          users={allUserObjects}
+          setMembers={setMembers}
+          setTeammates={setTeammates}
+        />
+
         <div className="form-grouping">
           <div className="form-control">
             <label>Priority </label>
@@ -123,32 +136,34 @@ const CreateProjectForm = ({ setShowModal }) => {
             </select>
           </div>
         </div>
-        {/* TODO: SEPARATE SEARCH COMPONENT */}
         <div className="form-control">
-          <label>Add Teammates</label>
-          <input
-            name="members"
-            placeholder="Search for teammates..."
-            type="text"
-            value={members}
-            onChange={(e) => setMembers(e.target.value)}
-          ></input>
+          <label>Project Description</label>
+          <textarea
+            name="description"
+            placeholder="Enter description here"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
         </div>
-        <div>
-          <label>Private Project?</label>
-          <input
-            name="is_private"
-            type="checkbox"
-            checked={isPrivate}
-            onChange={(e) => setIsPrivate(!isPrivate)}
-          ></input>
+        <div className="form-footer">
+          <div className="private-container">
+            <label>Private Project?</label>
+            <input
+              name="is_private"
+              type="checkbox"
+              checked={isPrivate}
+              onChange={(e) => setIsPrivate(!isPrivate)}
+            ></input>
+          </div>
+          <div className="footer-btns">
+            <button className="cancelBtn" type="cancel">
+              Cancel
+            </button>
+            <button className="submitBtn" type="submit">
+              Create
+            </button>
+          </div>
         </div>
-        <button className="cancelBtn" type="cancel">
-          Cancel
-        </button>
-        <button className="submitBtn" type="submit">
-          Create
-        </button>
       </form>
     </div>
   );
