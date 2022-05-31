@@ -3,7 +3,7 @@
   top: 0px;
   left: 0px;
   width: 256px;
-  height: 1322px;
+  height: 100vh;
   background: #ffffffff;
   border-radius: 0px;
   box-shadow: 0px 0px 1px #b0b3b7, 0px 0px 2px #ced1d4;
@@ -94,7 +94,7 @@
   align-items: center;
   height: 120px;
   width: 100%;
-  top: 900px;
+  bottom: 0;
 }
 
 .sidebar-about {
