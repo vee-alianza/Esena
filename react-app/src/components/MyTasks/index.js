@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
 import SideBar from "../SideBar";
-import TaskCard from "../TaskCard";
+import Card from "../Card";
 import DeleteTaskModal from "../DeleteTaskForm";
-// import { useHistory, useParams } from "react-router-dom";
 
 import EditTaskModal from "../EditTaskForm";
 import "./MyTasks.css";
@@ -21,7 +20,7 @@ const MyTasks = () => {
         <div className="project-task-container">
           {/* {task.assigner_id == sessionUser.id? <div> <EditTaskModal taskId={task.id}/> <DeleteTaskModal taskId={task.id}/> </div>: null} */}
           {allTasks.map((task) => (
-            <TaskCard task={task} />
+            <Card resource={task} />
           ))}
         </div>
       </div>
