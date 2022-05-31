@@ -5,6 +5,8 @@ import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
 
+import { useHistory, useLocation } from "react-router-dom";
+
 import "./index.css";
 
 const TaskCard = ({ resource }) => {
@@ -31,9 +33,25 @@ const TaskCard = ({ resource }) => {
       return <OnTrack resource={resource} />;
     }
   };
+  
+  const history = useHistory();
+  const location = useLocation()
+  const handleOnClick = (id) => {
+    // console.log("clicked");
+    // console.log(location);
+    if (location.pathname === "/my-projects") {
+      history.push(`/projects/${id}/tasks`);
+    }
+  };
 
   return (
-    <div className="project-task-div" key={resource.id}>
+    <div
+      className="project-task-div"
+      key={resource.id}
+      onClick={() => {
+        handleOnClick(resource.id);
+      }}
+    >
       <div className="purple-box">
         <div className="project-task-letters">
           {resource.name.split(" ").at(0)?.charAt(0).toUpperCase()}
