@@ -3,5 +3,15 @@
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
+}
 
+.home-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.home-header > svg {
+  cursor: pointer;
+  margin-left: 10px;
 }

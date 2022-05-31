@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import SideBar from "../SideBar";
 import Card from "../Card";
+import MyProjectCreateSVG from "../CreateProjectForm/MyProjectCreateSVG";
 
 const MyProjects = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -17,19 +18,27 @@ const MyProjects = () => {
   const history = useHistory();
 
   const handleOnClick = (id) => {
-      console.log("clicked")
-      history.push(`/projects/${id}/tasks`)
-  }
+    console.log("clicked");
+    history.push(`/projects/${id}/tasks`);
+  };
 
   return (
     <div>
       <SideBar />
       <div className="page-container">
-        <h1 className="home-header">My Projects</h1>
+        <div className="home-header">
+          <h1>My Projects</h1>
+          <MyProjectCreateSVG />
+        </div>
         <div className="project-task-container">
           {projects.map((project) => (
             // <Link to={`/projects/${project.id}/tasks`}>
-            <Card resource={project} onClick={() => {handleOnClick(project.id)}} />
+            <Card
+              resource={project}
+              onClick={() => {
+                handleOnClick(project.id);
+              }}
+            />
           ))}
         </div>
       </div>
