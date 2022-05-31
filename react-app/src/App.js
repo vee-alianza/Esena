@@ -16,6 +16,7 @@ import Profile from "./components/Profile";
 import ProfileProjectOverview from "./components/ProfileProjectOverview";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
+import TaskModal from "./components/TaskModal";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
@@ -102,6 +103,9 @@ function App() {
         </Route>
         <Route path="/profile/:userId/projects/:projectId" exact={true}>
           <ProfileProjectOverview />
+        </Route>
+        <Route path="/tasks/:taskId">
+          <TaskModal />
         </Route>
       </Switch>
     </BrowserRouter>
