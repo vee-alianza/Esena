@@ -1,4 +1,5 @@
 const SET_PROJECTS = "projects/SET_PROJECTS";
+const CREATE_PROJECT = "projects/CREATE_PROJECT"
 
 export const setProjects = (projects) => {
   return {
@@ -7,22 +8,41 @@ export const setProjects = (projects) => {
   };
 };
 
-// const initialState = { ownedProjects: {}, joinedProjects: {}, projects: [] };
+export const createProject = (project) => {
+  return {
+    type: CREATE_PROJECT,
+    project
+  }
+}
+
+export const addProject = (payload, userId) => async(dispatch) => {
+  console.log(payload)
+  const response = await fetch(`/api/users/${userId}/projects`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(createProject(data));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+}
+
 const initialState = {};
 
 const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECTS:
-      // const allProjects = new Set(
-      //   ... Object.entries(action.payload.owned_projects),
-      //   ... Object.entries(action.payload.joined_projects)
-      // );
-      // return {
-      //   ...state,
-      //   ownedProjects: action.payload.owned_projects,
-      //   joinedProjects: action.payload.joined_projects,
-      //   projects: Array.from(allProjects),
-      // };
       return {
         ...state,
         ...action.projects

@@ -33,7 +33,7 @@ const HomePage = () => {
         </div>
         <div className="greeting-container">
           <p>{`${days[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}`}</p>
-          <h3>{`Good ${tod}, Demo`}</h3>
+          <h3>{`Good ${tod}, ${session?.first_name}`}</h3>
         </div>
         <div className="resource-container">
           <HomeProjectContainer projects={projects}/>
