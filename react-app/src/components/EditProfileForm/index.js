@@ -7,14 +7,12 @@ const EditProfileModal = () => {
 
   return (
     <>
-      <button className="create-project-btn" onClick={() => setShowModal(true)}>
-        Edit Profile
+      <button className="edit-profile-btn" onClick={() => setShowModal(true)}>
+        <i className="fa-solid fa-pen-to-square"/>
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditProfileForm
-            setShowModal={setShowModal}
-          />
+          <EditProfileForm setShowModal={setShowModal} />
         </Modal>
       )}
     </>

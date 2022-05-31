@@ -10,6 +10,10 @@
   border-radius: 6px;
 }
 
+.project-task-div:hover {
+  cursor: pointer;
+}
+
 .purple-box {
   width: 229px;
   height: 133px;

@@ -43,7 +43,7 @@ const SideBar = () => {
           <span>
             <i className="fa-solid fa-user fa-lg"></i>
           </span>
-          <NavLink to={`/profile/${sessionUser.id}`} exact={true} activeClassName="selected">
+          <NavLink to={`/profile/${sessionUser?.id}`} exact={true} activeClassName="selected">
             My Profile
           </NavLink>
         </div>

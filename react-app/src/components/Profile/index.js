@@ -3,7 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import EditProfileModal from "../EditProfileForm";
+import SideBar from "../SideBar";
 import { viewProfile } from "../../store/profile";
+
+import "./Profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -47,43 +50,73 @@ const Profile = () => {
   }
   return (
     <div>
-      <h1>{user?.first_name}'s Profile</h1>
-      <div>
+      <SideBar />
+      <div className="page-container">
         <div>
-          {user?.first_name} {user?.last_name}
-        </div>
-        <div>{user?.occupation}</div>
-        <div>{user?.email}</div>
-        <div>{user?.bio}</div>
-        {user.id == sessionUser.id ? <EditProfileModal/> : null}
-      </div>
-      <div>
-        <h2>Projects</h2>
-        {projects.length > 0 ? (
-          projects.map((project) => (
-            <Link to={`/profile/${user.id}/projects/${project.id}`}>
-              <div>{project.id}</div>
-              <div>{project.name}</div>
-              <div>{project.description}</div>
-            </Link>
-          ))
-        ) : (
-          <div>No public projects</div>
-        )}
-      </div>
-      <div>
-        <h2>Tasks</h2>
-        {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <div>
-              <div>{task.id}</div>
-              <div>{task.name}</div>
-              <div>{task.description}</div>
+          <h1 className="home-header">{user?.first_name}'s Profile</h1>
+          <div className="profile-card">
+            <div className="purple-box">
+              <div className="project-task-letters">
+                {user.first_name.charAt(0).toUpperCase()}
+                {user.last_name.charAt(0).toUpperCase()}
+              </div>
             </div>
-          ))
-        ) : (
-          <div> No tasks yet </div>
-        )}
+            <div className="info-card">
+              <div className="username">
+                {user?.first_name} {user?.last_name}
+              </div>
+              <div className="occupation">{user?.occupation}</div>
+              <div className="email">{user?.email}</div>
+              <div className="bio">{user?.bio}</div>
+              {user.id == sessionUser.id ? <EditProfileModal /> : null}
+            </div>
+          </div>
+
+          <div>
+            <h2>Projects</h2>
+            <div>
+              {projects.length > 0 ? (
+                projects.map((project) => (
+                  <Link to={`/profile/${user.id}/projects/${project.id}`}>
+                    <div className="project">
+                      <div className="project-icon">
+                        <div className="rectangle-icon">
+                          <i className="fa-solid fa-list-ul"></i>
+                        </div>
+                      </div>
+                      <div className="project-details">
+                        <div className="project-name">{project.name}</div>
+                        <div className="project-date">{project.end_date}</div>
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div>No public projects</div>
+              )}
+            </div>
+          </div>
+          <div>
+            <h2>Tasks</h2>
+            {tasks.length > 0 ? (
+              tasks.map((task) => (
+                <div className="task">
+                  <div className="task-icon">
+                    <div className="circle-icon">
+                      <i className="fa-regular fa-circle-check fa-lg"></i>
+                    </div>
+                  </div>
+                  <div className="task-details">
+                    <div className="task-name">{task.name}</div>
+                    <div className="task-date">{task.end_date}</div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div> No tasks yet </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

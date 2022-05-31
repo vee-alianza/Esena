@@ -1,0 +1,46 @@
+.profile-card {
+   display: flex; 
+   margin-left: 20px;
+}
+.profile-card .purple-box {
+    background: #A967CFFF;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+}
+
+.info-card {
+    background-color: white;
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.info-card .username {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info-card .occupation,.email{
+    font-size: 12px;
+    color: #4d5564ff;
+    margin-bottom: 8px;
+}
+
+.info-card .bio{
+    font-size: 12px;
+}
+
+.edit-profile-btn {
+    background-color: white;
+    border: none;
+    color: #4d5564ff;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    cursor: pointer;
+}

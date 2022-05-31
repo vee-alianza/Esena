@@ -12,6 +12,12 @@ const MyTasks = () => {
   let allTasks = Object.values(tasksObj);
   allTasks = allTasks?.filter((task) => task.assignee_id == sessionUser?.id);
 
+  allTasks.sort((a, b) => {
+    const keyA = new Date(a?.end_date);
+    const keyB = new Date(b?.end_date);
+    return keyA > keyB ? 1 : -1;
+  });
+
   return (
     <div>
       <SideBar />
