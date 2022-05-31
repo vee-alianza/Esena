@@ -1,0 +1,28 @@
+.tag {
+  margin-left: 5px;
+  width: fit-content;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  line-height: 18px;
+  opacity: 1;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 6px;
+}
+.low {
+  color: rgb(0, 82, 246);
+  background: rgba(186, 207, 249, 0.4);
+}
+
+.medium {
+  color: rgb(255, 162, 0);
+  background: rgba(239, 221, 211, 0.4);
+}
+
+.high {
+  color: rgba(255, 0, 0, 0.784);
+  background: rgba(245, 189, 191, 0.4);
+}

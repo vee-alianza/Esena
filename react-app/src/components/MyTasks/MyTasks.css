@@ -1,3 +1,7 @@
-.task-div {
-    border: 1px solid gray;
+.project-task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+
 }

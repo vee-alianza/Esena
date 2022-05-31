@@ -1,0 +1,96 @@
+.project-task-div {
+  background-color: white;
+  width: 87%;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 0px 1px #d7d7d7, 0px 0px 2px #d7d7d7;
+  padding: 22px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.project-task-div:hover {
+  cursor: pointer;
+}
+
+.purple-box {
+  width: 229px;
+  height: 133px;
+  background: rgb(202, 174, 227);
+  border-radius: 0px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-task-letters {
+  font-size: 40px;
+  line-height: 56px;
+  color: #ffffffff;
+  font-weight: 600;
+}
+
+.project-task-details-container {
+  width: 70%;
+  margin-left: 20px;
+  height: 133px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-task-details {
+  height: 110px;
+}
+
+.project-task-name {
+  padding-top: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+.project-task-end-date {
+  margin-top: 5px;
+  font-size: 14px;
+  color: rgb(98, 97, 97);
+}
+
+.project-task-description {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgb(69, 69, 69);
+  padding: 10px 0px 10px 0px;
+  height: 40px;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  justify-content: space-between;
+  height: calc(133px - 110px);
+}
+
+.project-task-priority {
+  display: flex;
+  align-items: center;
+}
+
+.project-task-priority > p {
+  font-size: 12px;
+  color: #9095a0ff;
+}
+
+.project-task-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.project-task-status > p {
+  font-size: 12px;
+  color: #9095a0ff;
+}

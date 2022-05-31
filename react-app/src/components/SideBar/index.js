@@ -1,6 +1,6 @@
 import "./index.css";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 
 const SideBar = () => {
@@ -8,6 +8,7 @@ const SideBar = () => {
   const onLogout = async (e) => {
     await dispatch(logout());
   };
+  const sessionUser = useSelector((state) => state.session.user);
   return (
     <div className="sidebar-container">
       <div className="logo-container">
@@ -42,7 +43,7 @@ const SideBar = () => {
           <span>
             <i className="fa-solid fa-user fa-lg"></i>
           </span>
-          <NavLink to="/my-profile" exact={true} activeClassName="selected">
+          <NavLink to={`/profile/${sessionUser?.id}`} exact={true} activeClassName="selected">
             My Profile
           </NavLink>
         </div>

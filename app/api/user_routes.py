@@ -91,12 +91,13 @@ def update_profile(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User.query.filter(
-            User.id == id, User.user_id == current_user.id).first()
+            User.id == id, User.id == current_user.id).first()
         if user:
             user.first_name = form.data['first_name']
             user.last_name = form.data['last_name']
             user.occupation = form.data['occupation']
             user.email = form.data['email']
+            user.bio = form.data['bio']
             db.session.commit()
             return user.to_dict()
         else:
