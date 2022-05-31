@@ -27,7 +27,6 @@ const TeammateSearch = ({
     const newMembers = new Set(selectedMembers);
     newMembers.add(parseInt(e.target.id));
     setSelectedMembers(newMembers);
-    // setTeammates(Array.from(selectedMembers));
     const nextFilter = filteredMembers.filter(
       (member) => member.id != parseInt(e.target.id)
     );
@@ -36,14 +35,13 @@ const TeammateSearch = ({
   };
 
   const handleMemberDelete = (e) => {
+    console.log(selectedMembers);
     const updated = new Set(selectedMembers);
-    updated.delete(parseInt(e.target.id));
+    updated.delete(parseInt(e.target.parentNode.id));
     setSelectedMembers(updated);
-    // setTeammates(Array.from(selectedMembers));
   };
 
   useEffect(() => {
-    console.log("running usefefct");
     setTeammates(Array.from(selectedMembers));
   }, [selectedMembers]);
 
