@@ -1,3 +1,123 @@
-.task {
+.task-container {
     width: 525px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-shadow: 0px 0px 1px #282e37, 0px 0px 2px #282e37;
+}
+
+.task-overview {
+    margin: 40px 30px 40px 30px;
+}
+
+.task-name {
+    font-size: 32px;
+    line-height: 48px;
+    color: #282E37FF;
+    font-weight: bold;
+    align-self: center;
+    margin-bottom: 40px;
+}
+
+.about-task {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #2E343FFF;
+}
+
+.about-task i {
+    color: #9095A0;
+    margin-right: 5px;
+}
+
+.comments {
+    background: #F8F9FAFF;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: #DEE1E6FF;
+    border-style: solid;
+    padding: 20px 30px;
+    padding: 50px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.comments > p {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.comment {
+    border-top: 1px solid #DEE1E6FF;
+    display: flex;
+    padding: 20px 20px;
+}
+
+.comment-content {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.comment-content .author-name {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.comment-content p {
+    margin: 0;
+}
+
+.comment-input {
+    padding: 20px 20px;
+    border-top: 1px solid #DEE1E6FF;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-input-container {
+    display: flex;
+    gap: 20px;
+}
+
+.comment-input-container textarea {
+    width: 83%;
+    border-radius: 6px;
+    height: 35px;
+    resize: none;
+    overflow-y: auto;
+    padding: 5px;
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+.comment-input button {
+    width: 72px;
+    height: 29px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 20px;
+    color: #FFFFFFFF;
+    background: #C58AE7FF;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+    align-self: flex-end;
 }
