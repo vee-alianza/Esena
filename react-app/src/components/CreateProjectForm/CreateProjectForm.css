@@ -49,6 +49,25 @@
   width: 50%;
 }
 
+.select-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding: 0px 7px;
+}
+
+.form-grouping-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 0px 10px 22px;
+  width: 94.5%;
+}
+
+.form-grouping-select > .select-control {
+  width: 50%;
+}
+
 .date-input {
   width: 73%;
 }
@@ -69,15 +88,19 @@ label {
   color: #aaa;
   margin-right: 0.5em;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  "Helvetica Neue", Helvetica, Arial, sans-serif;
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 input[type="date"]:focus:before,
-input[type="date"]:valid:after {
-  content: "" !important;
-  
+input[type="date"]:valid:before {
+  content: "";
 } */
-
+.css-b62m3t-container {
+  width: 90%;
+  font-size: 12px;
+}
 .private-container {
+  display: flex;
+  align-items: center;
   padding: 0px 30px;
 }
 
