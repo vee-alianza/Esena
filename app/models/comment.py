@@ -19,5 +19,6 @@ class Comment(db.Model):
             "content": self.content,
             "create_date": self.create_date,
             "task": self.task.name,
-            "author_id": self.author.id
+            "author_id": self.author.id,
+            "task_id": self.task_id
         }

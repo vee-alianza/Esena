@@ -25,7 +25,7 @@ def users():
 
     users = User.query.all()
     return {"users": {user.id: user.to_dict() for user in users}}
-    
+
     # for user in users:
     #     user_dict = user.to_dict()
 
@@ -37,7 +37,7 @@ def users():
         # user_dict["owned_projects"] = owned_projects
         # user_dict["joined_projects"] = joined_projects
         # user_dict["assigned_tasks"] = assigned_tasks
-        
+
     #     all_users[user.id] = user_dict
 
     # return all_users
@@ -58,7 +58,7 @@ def user(id):
     projects = list(projects_dict.values())
     teammates = []
     for project in projects:
-        teammates.extend(project["members"]) 
+        teammates.extend(project["members"])
     teammates = list(set(teammates))
     if id in teammates:
         teammates.remove(id)
@@ -70,12 +70,18 @@ def user(id):
         tasks.update(project.to_dict()["tasks"])
 
 
+    comments = {}
+    for id, task in tasks.items():
+        comments.update(task["comments"])
+
+
     # user_dict["owned_projects"] = owned_projects
     # user_dict["joined_projects"] = joined_projects
     # user_dict["assigned_tasks"] = assigned_tasks
     user_dict['teammates'] = teammates
     user_dict['tasks'] = tasks
     user_dict['projects'] = projects_dict
+    user_dict['comments'] = comments
 
     return user_dict
 
@@ -130,4 +136,3 @@ def create_project(id):
         return project.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
