@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { editProfile } from "../../store/profile";
+import { authenticate } from "../../store/session";
 import CompleteTaskButton from "../CompleteTaskButton";
 
 const EditProfileForm = ({ setShowModal }) => {
@@ -30,7 +31,8 @@ const EditProfileForm = ({ setShowModal }) => {
       };
         console.log(payload);
 
-      dispatch(editProfile(payload, user.id));
+      await dispatch(editProfile(payload, user.id));
+      await dispatch(authenticate())
 
       setShowModal(false);
     }
