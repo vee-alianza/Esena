@@ -2,6 +2,13 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import "./index.css"
 
+import Low from "../Priorities/Low";
+import Medium from "../Priorities/Medium";
+import High from "../Priorities/High";
+import OffTrack from "../Statuses/OffTrack";
+import AtRisk from "../Statuses/AtRisk";
+import OnTrack from "../Statuses/OnTrack";
+
 const TaskModal = (taskId) => {
 
     const [comment, setComment] = useState("")
@@ -34,6 +41,30 @@ const TaskModal = (taskId) => {
         return author_initials
     }
 
+    const renderPriority = (resource) => {
+        if (resource.priority === "Low") {
+            return <Low resource={resource} />;
+        }
+        if (resource.priority === "Medium") {
+            return <Medium resource={resource} />;
+        }
+        if (resource.priority === "High") {
+            return <High resource={resource} />;
+        }
+    };
+
+    const renderStatus = (resource) => {
+        if (resource.status === "Off track") {
+            return <OffTrack resource={resource} />;
+        }
+        if (resource.status === "At risk") {
+            return <AtRisk resource={resource} />;
+        }
+        if (resource.status === "On track") {
+            return <OnTrack resource={resource} />;
+        }
+    };
+
     return (
         <div className="task-container">
             <div className="task-overview">
@@ -49,12 +80,12 @@ const TaskModal = (taskId) => {
                         <i className="fa-regular fa-circle-check fa-lg"></i>
                         Priority
                     </div>
-                    <div>{task?.priority}</div>
+                    <div>{renderPriority(task)}</div>
                     <div>
                         <i className="fa-regular fa-circle-check fa-lg"></i>
                         Status:
                     </div>
-                    <div>{task?.status}</div>
+                    <div>{renderStatus(task)}</div>
                     <div>Description:</div>
                     <div>{task?.description}</div>
                 </div>
