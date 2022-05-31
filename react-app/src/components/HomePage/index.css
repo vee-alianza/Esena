@@ -3,7 +3,8 @@
   left: 257px;
   height: 100%;
   width: calc(100% - 257px);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .home-header {
