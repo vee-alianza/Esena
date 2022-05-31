@@ -81,7 +81,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
         {/* testing */}
         <Route path="/create-project" exact={true}>
@@ -96,10 +96,6 @@ function App() {
         <Route path="/projects/:projectId/tasks" exact={true}>
           <ProjectTasksInProgress />
           <ProjectTasksCompleted />
-        </Route>
-        {/* testing */}
-        <Route path="/home-page">
-          <HomePage />
         </Route>
         <Route path="/profile/:userId" exact={true}>
           <Profile />

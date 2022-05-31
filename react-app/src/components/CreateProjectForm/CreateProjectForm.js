@@ -73,7 +73,7 @@ const CreateProjectForm = ({ setShowModal }) => {
             <label>Start Date</label>
             <input
               className="date-input"
-              placeholder={"Choose a start date"}
+              placeholder="Choose a start date"
               type="date"
               name="start_date"
               value={startDate}
@@ -84,7 +84,7 @@ const CreateProjectForm = ({ setShowModal }) => {
             <label>End Date</label>
             <input
               className="date-input"
-              placeholder={"Choose an end date"}
+              placeholder="Choose an end date"
               type="date"
               name="end_date"
               value={endDate}
