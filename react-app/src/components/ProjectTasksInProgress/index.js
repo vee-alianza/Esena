@@ -8,12 +8,12 @@ import DeleteTaskModal from "../DeleteTaskForm";
 
 const ProjectTasksInProgress = () => {
   const { projectId } = useParams();
-  const project = useSelector((state) => state.projects[projectId]);
+  const project = useSelector((state) => state.allProjects?.projects[projectId]);
   //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
-  const users = {...allUsers}
+  const users = { ...allUsers }
   users[sessionUser?.id] = sessionUser;
 
   const tasksObj = useSelector((state) => state.tasks);
@@ -68,7 +68,7 @@ const ProjectTasksInProgress = () => {
                 {" "}
                 <EditTaskModal
                   taskId={task.id}
-                  projectName={project.name}
+                  projectName={project?.name}
                 />{" "}
                 <DeleteTaskModal taskId={task.id} />{" "}
               </div>
