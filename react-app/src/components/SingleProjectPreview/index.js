@@ -27,7 +27,6 @@ const SingleProjectPreview = () => {
 
   return (
     <div className="project-view">
-      <h1>test</h1>
       {project &&
         <>
           <h1>{project.name}</h1>
@@ -43,9 +42,9 @@ const SingleProjectPreview = () => {
                   <ProgressBar percent={calculatePercentage()} />
                   <div className="project-teammates">
                     <p>Teammates</p>
-                    <p>User 1</p>
-                    <p>User 2</p>
-                    <p>User 3</p>
+                    {project.members.map((member) => (
+                      <p key={member.id}>{member.first_name}</p>
+                    ))}
                   </div>
                 </div>
               </div>

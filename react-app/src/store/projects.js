@@ -40,7 +40,7 @@ export const addProject = (payload, userId) => async (dispatch) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
-  })
+  });
   if (response.ok) {
     const data = await response.json();
     dispatch(createProject(data));
