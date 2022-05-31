@@ -13,7 +13,7 @@ const ProjectTasksInProgress = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
-  const users = {...allUsers}
+  const users = { ...allUsers }
   users[sessionUser?.id] = sessionUser;
 
   const tasksObj = useSelector((state) => state.tasks);
@@ -41,7 +41,7 @@ const ProjectTasksInProgress = () => {
     <div>
       <h1>Project {projectId} Tasks</h1>
       <h2>In Progress</h2>
-      {project?.members.includes(sessionUser.id) ? <CreateTaskModal projectName={project.name}/> : null}
+      {project?.members.includes(sessionUser.id) ? <CreateTaskModal projectName={project.name} /> : null}
       <table>
         <tr>
           <th>TASK NAME</th>
@@ -60,7 +60,7 @@ const ProjectTasksInProgress = () => {
             {task.assigner_id == sessionUser.id ? (
               <div>
                 {" "}
-                <EditTaskModal taskId={task.id} projectName={project.name}/>{" "}
+                <EditTaskModal taskId={task.id} projectName={project.name} />{" "}
                 <DeleteTaskModal taskId={task.id} />{" "}
               </div>
             ) : null}
