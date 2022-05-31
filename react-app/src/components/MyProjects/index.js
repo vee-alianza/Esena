@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import SideBar from "../SideBar";
+import Card from "../Card";
 
 const MyProjects = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -13,17 +15,15 @@ const MyProjects = () => {
 
   return (
     <div>
-      <h1>My Projects</h1>
-      <div>
-        {projects.map((project) => (
-          <div className="task-div" key={project.id}>
-            <div>{project.name}</div>
-            <div>End Date: {project.end_date}</div>
-            <div>{project.description}</div>
-            <div>Priority {project.priority} </div>
-            <div>Status {project.status} </div>
-          </div>
-        ))}
+      <SideBar />
+      <div className="page-container">
+        <h1 className="home-header">My Projects</h1>
+        <div className="project-task-container">
+          {/* {task.assigner_id == sessionUser.id? <div> <EditTaskModal taskId={task.id}/> <DeleteTaskModal taskId={task.id}/> </div>: null} */}
+          {projects.map((project) => (
+            <Card resource={project} />
+          ))}
+        </div>
       </div>
     </div>
   );

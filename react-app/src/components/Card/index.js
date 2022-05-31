@@ -27,7 +27,7 @@ const TaskCard = ({ resource }) => {
     if (resource.status === "At risk") {
       return <AtRisk resource={resource} />;
     }
-    if (resource.status === "Off track") {
+    if (resource.status === "On track") {
       return <OnTrack resource={resource} />;
     }
   };
@@ -36,8 +36,8 @@ const TaskCard = ({ resource }) => {
     <div className="project-task-div" key={resource.id}>
       <div className="purple-box">
         <div className="project-task-letters">
-          {resource.name.split(" ").at(0).charAt(0).toUpperCase()}
-          {resource.name.split(" ").at(1).charAt(0).toUpperCase()}
+          {resource.name.split(" ").at(0)?.charAt(0).toUpperCase()}
+          {resource.name.split(" ").at(1)?.charAt(0).toUpperCase()}
         </div>
       </div>
       <div className="project-task-details-container">
