@@ -21,6 +21,7 @@ import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
+import SingleProjectPreview from "./components/SingleProjectPreview";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -100,6 +101,9 @@ function App() {
         <Route path="/projects/:projectId/tasks" exact={true}>
           <ProjectTasksInProgress />
           <ProjectTasksCompleted />
+        </Route>
+        <Route path="/projects/:projectId" exact={true}>
+          <SingleProjectPreview />
         </Route>
         <Route path="/profile/:userId" exact={true}>
           <Profile />
