@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import CreateTaskModal from "../CreateTaskForm";
@@ -41,7 +41,9 @@ const ProjectTasksInProgress = () => {
     <div>
       <h1>Project {projectId} Tasks</h1>
       <h2>In Progress</h2>
-      {project?.members.includes(sessionUser.id) ? <CreateTaskModal projectName={project.name}/> : null}
+      {project?.members.includes(sessionUser.id) ? (
+        <CreateTaskModal projectName={project.name} />
+      ) : null}
       <table>
         <tr>
           <th>TASK NAME</th>
@@ -53,14 +55,21 @@ const ProjectTasksInProgress = () => {
         {allTasks.map((task) => (
           <tr key={task.id}>
             <td>{task.name}</td>
-            <td>{users[task.assignee_id].first_name}</td>
+            <td>
+              <Link to={`/profile/${task.assignee_id}`}>
+                {users[task.assignee_id]?.first_name}
+              </Link>
+            </td>
             <td>{task.end_date}</td>
             <td>{task.priority} </td>
             <td>{task.status} </td>
             {task.assigner_id == sessionUser.id ? (
               <div>
                 {" "}
-                <EditTaskModal taskId={task.id} projectName={project.name}/>{" "}
+                <EditTaskModal
+                  taskId={task.id}
+                  projectName={project.name}
+                />{" "}
                 <DeleteTaskModal taskId={task.id} />{" "}
               </div>
             ) : null}

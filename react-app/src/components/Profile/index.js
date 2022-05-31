@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import EditProfileModal from "../EditProfileForm";
 import { viewProfile } from "../../store/profile";
 
 const Profile = () => {
@@ -9,6 +10,7 @@ const Profile = () => {
   const [loaded, setLoaded] = useState(false);
   const { userId } = useParams();
 
+  const sessionUser = useSelector((state) => state.session.user);
   let user = useSelector((state) => state.profile);
 
   useEffect(async () => {
@@ -48,11 +50,12 @@ const Profile = () => {
       <h1>{user?.first_name}'s Profile</h1>
       <div>
         <div>
-          {user?.first_name} {user?.first_name}
+          {user?.first_name} {user?.last_name}
         </div>
         <div>{user?.occupation}</div>
         <div>{user?.email}</div>
         <div>{user?.bio}</div>
+        {user.id == sessionUser.id ? <EditProfileModal/> : null}
       </div>
       <div>
         <h2>Projects</h2>
