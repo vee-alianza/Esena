@@ -52,8 +52,8 @@ const Profile = () => {
     <div>
       <SideBar />
       <div className="page-container">
-        <div>
-          <h1 className="home-header">{user?.first_name}'s Profile</h1>
+        <h1 className="home-header">{user?.first_name}'s Profile</h1>
+        <div className="profile-container">
           <div className="profile-card">
             <div className="purple-box">
               <div className="project-task-letters">
@@ -73,9 +73,11 @@ const Profile = () => {
           </div>
 
           <div className="profile-project-card">
-            <h2>Projects</h2>
             <div className="profile-project-card-inner">
-              <div className="recent-header">Recent public projects</div>
+              <div className="profile-project-card-header">
+                <h2>Projects</h2>
+                <p>Recent public projects</p>
+              </div>
               <div className="profile-project">
                 {projects.length > 0 ? (
                   projects.slice(0, 8).map((project) => (
@@ -100,9 +102,11 @@ const Profile = () => {
             </div>
           </div>
           <div className="profile-project-card">
-            <h2>Tasks</h2>
             <div className="profile-project-card-inner">
-              <div className="recent-header">Recent tasks</div>
+              <div className="profile-project-card-header">
+                <h2>Tasks</h2>
+                <p>Recent tasks</p>
+              </div>
               <div className="profile-project">
                 {tasks.length > 0 ? (
                   tasks.slice(0, 8).map((task) => (
