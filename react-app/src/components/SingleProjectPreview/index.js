@@ -15,8 +15,6 @@ const SingleProjectPreview = () => {
   const { projectId } = useParams();
   const projects = useSelector(state => state.projects);
   const allUsers = useSelector(state => state.teammates.allUsers);
-  const teammates = useSelector(state => state.teammates.teammates);
-  const profileProjects = useSelector(state => state.profile);
   const [tabClass, setTabClass] = useState({ ...tabFocusClass, overview: 'tab-focused' });
   const [dispOverview, setDispOverview] = useState('');
   const [dispTasks, setDispTasks] = useState('hide');
@@ -89,6 +87,7 @@ const SingleProjectPreview = () => {
                     </div>
                   );
                 }
+                return null;
               })}
               <h3>Incomplete:</h3>
               {Object.values(project.tasks).map((task, idx) => {
@@ -101,6 +100,7 @@ const SingleProjectPreview = () => {
                     </div>
                   );
                 }
+                return null;
               })}
             </div>
           </div>

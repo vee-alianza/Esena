@@ -10,7 +10,7 @@ const MyProjectCreateSVG = () => {
       <svg
         class="w-6 h-6"
         fill="#9095a0"
-        xmlns="http://www.w3.org/2000/svg"
+        xmlns="https://www.w3.org/2000/svg"
         width="24"
         height="24"
         viewBox="0 0 24 24"

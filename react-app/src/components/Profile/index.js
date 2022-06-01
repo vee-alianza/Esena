@@ -16,16 +16,18 @@ const Profile = () => {
   const sessionUser = useSelector((state) => state.session.user);
   let user = useSelector((state) => state.profile);
 
-  useEffect(async () => {
-    await dispatch(viewProfile(userId));
-    setLoaded(true);
-  }, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(viewProfile(userId));
+      setLoaded(true);
+    })();
+  }, [dispatch, userId]);
 
   let projects;
   const projectsObj = useSelector((state) => state.profile.projects);
   if (projectsObj) {
     projects = Object.values(projectsObj);
-    projects = projects.filter((project) => project?.is_private == false);
+    projects = projects.filter((project) => project?.is_private === false);
     projects.sort((a, b) => {
       const keyA = new Date(a?.start_date);
       const keyB = new Date(b?.start_date);
@@ -37,7 +39,7 @@ const Profile = () => {
   const tasksObj = useSelector((state) => state.profile.tasks);
   if (tasksObj) {
     tasks = Object.values(tasksObj);
-    tasks = tasks.filter((task) => task.assignee_id == user.id);
+    tasks = tasks.filter((task) => task.assignee_id === user.id);
     tasks.sort((a, b) => {
       const keyA = new Date(a?.create_date);
       const keyB = new Date(b?.create_date);
@@ -68,7 +70,7 @@ const Profile = () => {
               <div className="occupation">{user?.occupation}</div>
               <div className="email">{user?.email}</div>
               <div className="bio">{user?.bio}</div>
-              {user.id == sessionUser.id ? <EditProfileModal /> : null}
+              {user.id === sessionUser.id ? <EditProfileModal /> : null}
             </div>
           </div>
 

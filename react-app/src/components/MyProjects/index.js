@@ -5,7 +5,6 @@ import Card from "../Card";
 import MyProjectCreateSVG from "../CreateProjectForm/MyProjectCreateSVG";
 
 const MyProjects = () => {
-  const sessionUser = useSelector((state) => state.session.user);
   const projectsObj = useSelector((state) => state.projects);
   let projects = Object.values(projectsObj);
 
