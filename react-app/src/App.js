@@ -16,10 +16,7 @@ import Profile from "./components/Profile";
 import ProfileProjectOverview from "./components/ProfileProjectOverview";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
-import { setProjects } from "./store/projects";
-import { setTasks } from "./store/tasks";
-import { setAllUsers, setTeammates } from "./store/teammates";
-import { setComments } from "./store/comments"
+import { getData } from "../src/store/getData";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,24 +31,10 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    (async () => {
-      if (session) {
-        const res = await fetch(`/api/users/${session.id}`);
-        const userFetchRes = await fetch('/api/users');
-
-        if (res.ok && userFetchRes.ok) {
-          const data = await res.json();
-          const allUserData = await userFetchRes.json();
-
-          dispatch(setAllUsers(allUserData.users));
-          dispatch(setProjects(data.projects));
-          dispatch(setTasks(data.tasks));
-          dispatch(setTeammates(data.teammates));
-          dispatch(setComments(data.comments));
-        }
-      }
+    if (session) {
+      dispatch(getData(session.id));
       setLoaded(true);
-    })();
+    }
   }, [dispatch, session]);
 
   if (!loaded) {
