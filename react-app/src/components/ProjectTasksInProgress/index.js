@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import CreateTaskModal from "../CreateTaskForm";
 import EditTaskModal from "../EditTaskForm";
 import DeleteTaskModal from "../DeleteTaskForm";
-import TaskModal from "../TaskModal"
+import SingleTask from "../TaskModal/SingleTaskFromProject"
 // import "./MyTasks.css";
 
 const ProjectTasksInProgress = ({tasks, members}) => {
@@ -33,7 +33,9 @@ const ProjectTasksInProgress = ({tasks, members}) => {
         </tr>
         {tasks?.map((task) => (
           <tr key={task.id}>
-            <TaskModal taskName={task.name} taskId={task.id} />
+            <td>
+              <SingleTask taskName={task.name} taskId={task.id} />
+            </td>
             {/* <td>{users[task.assignee_id].first_name}</td> */}
             {/* <td>{task.name}</td> */}
             <td>

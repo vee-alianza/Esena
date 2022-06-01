@@ -44,7 +44,6 @@ function App() {
           dispatch(setProjects(data.projects));
           dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
-          dispatch(setComments(data.comments));
         }
       }
       setLoaded(true);
@@ -58,6 +57,18 @@ function App() {
         if (res.ok) {
           const data = await res.json();
           dispatch(setAllUsers(data.users));
+        }
+      }
+    })();
+  }, [dispatch, session]);
+
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const res = await fetch('/api/comments');
+        if (res.ok) {
+          const data = await res.json();
+          dispatch(setComments(data));
         }
       }
     })();
