@@ -15,8 +15,12 @@ import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
+<<<<<<< HEAD
 import { setComments } from "./store/comments"
 import FrontPage from "./components/FrontPage";
+=======
+import { setComments } from "./store/comments";
+>>>>>>> f27ff408de5f9f33dae8184a7f3bcb89c79f4534
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -61,7 +65,7 @@ function App() {
   useEffect(() => {
     (async () => {
       if (session) {
-        const res = await fetch('/api/comments');
+        const res = await fetch("/api/comments");
         if (res.ok) {
           const data = await res.json();
           dispatch(setComments(data));
@@ -89,8 +93,13 @@ function App() {
         </Route>
         {/* <ProtectedRoute path="/" exact={true}>
           <HomePage />
+<<<<<<< HEAD
         </ProtectedRoute> */}
         <ProtectedRoute path="/my-tasks" exact={true}>
+=======
+        </ProtectedRoute>
+        <Route path="/my-tasks" exact={true}>
+>>>>>>> f27ff408de5f9f33dae8184a7f3bcb89c79f4534
           <MyTasks />
         </ProtectedRoute>
         <ProtectedRoute path="/my-projects" exact={true}>

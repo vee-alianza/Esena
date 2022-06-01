@@ -1,13 +1,12 @@
 .outer {
-    height: 10px;
-    width: 350px;
-    background: #F6ECFBFF;
-    border-radius: 25px;
-    border: 1px solid black
+  height: 8px;
+  width: 100%;
+  background: #f6ecfbff;
+  border-radius: 25px;
+  /* border: 1px solid black */
 }
 
 .inner {
-    background-color: #C58AE7FF;
-    height: 100%;
-
+  background-color: #c58ae7ff;
+  height: 100%;
 }
