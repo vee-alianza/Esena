@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchProject } from "../../store/projects";
 import ProgressBar from "../ProgressBar";
 import "./index.css";
 
 const SingleProjectPreview = () => {
   const { projectId } = useParams();
   const dispatch = useDispatch();
-  const project = useSelector(state => state.projects.currentProject);
+  let projects = useSelector(state => state.projects);
+  if !(projects && Object.keys(projects).includes(projectId) {
+    projects = useSelector(state => state.profile.projects);
+  }
+  const project = projects[projectId]
 
   const calculatePercentage = () => {
     let numCompleted = 0;
@@ -19,12 +22,10 @@ const SingleProjectPreview = () => {
     });
     return ((numCompleted / Object.values(project.tasks).length) * 100).toFixed(2);
   };
-
-
-  useEffect(() => {
-    dispatch(fetchProject(projectId));
-  }, [projectId]);
-
+  
+  if (!project) {
+    return null
+  }
   return (
     <div className="project-view">
       {project &&
