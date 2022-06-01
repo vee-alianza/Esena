@@ -79,7 +79,7 @@ const Profile = () => {
               <div className="profile-project">
                 {projects.length > 0 ? (
                   projects.slice(0, 8).map((project) => (
-                    <Link to={`/profile/${user.id}/projects/${project.id}`}>
+                    <Link to={`/projects/${project.id}`} key={project.id}>
                       <div className="project">
                         <div className="project-icon">
                           <div className="rectangle-icon">
@@ -106,7 +106,7 @@ const Profile = () => {
               <div className="profile-project">
                 {tasks.length > 0 ? (
                   tasks.slice(0, 8).map((task) => (
-                    <div className="profile-task">
+                    <div className="profile-task" key={task.id}>
                       <div className="task-icon">
                         <div className="circle-icon">
                           <i className="fa-regular fa-circle-check fa-lg"></i>
