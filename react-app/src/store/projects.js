@@ -1,6 +1,5 @@
 const SET_PROJECTS = "projects/SET_PROJECTS";
 const CREATE_PROJECT = "projects/CREATE_PROJECT";
-const GET_PROJECT = "projects/GET_PROJECT";
 
 export const setProjects = (projects) => {
   return {
@@ -16,21 +15,6 @@ export const createProject = (project) => {
   }
 }
 
-const getProject = (project) => {
-  return {
-    type: GET_PROJECT,
-    project
-  }
-}
-
-export const fetchProject = (projectId) => async (dispatch) => {
-  const response = await fetch(`/api/projects/${projectId}`);
-
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(getProject(data));
-  }
-}
 
 export const addProject = (payload, userId) => async (dispatch) => {
   console.log(payload)
@@ -55,20 +39,15 @@ export const addProject = (payload, userId) => async (dispatch) => {
   }
 }
 
-const initialState = { currentProject: null, allProjects: null };
+const initialState = {};
 
 const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECTS:
       return {
         ...state,
-        allProjects: { ...action.projects }
+        ...action.projects
       }
-    case GET_PROJECT:
-      return {
-        ...state,
-        currentProject: action.project
-      };
     default:
       return state;
   }

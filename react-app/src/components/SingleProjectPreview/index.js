@@ -7,11 +7,15 @@ import "./index.css";
 const SingleProjectPreview = () => {
   const { projectId } = useParams();
   const dispatch = useDispatch();
-  let projects = useSelector(state => state.projects);
-  if !(projects && Object.keys(projects).includes(projectId) {
-    projects = useSelector(state => state.profile.projects);
+  const projects = useSelector(state => state.projects);
+  const profileProjects = useSelector(state => state.profile);
+  let project;
+  if (!Object.keys(projects).includes(parseInt(projectId))) {
+    project = profileProjects[parseInt(projectId)]
   }
-  const project = projects[projectId]
+  project = projects[parseInt(projectId)]
+  // console.log(projects, "=================")
+  // console.log(profileProjects)
 
   const calculatePercentage = () => {
     let numCompleted = 0;
@@ -20,9 +24,9 @@ const SingleProjectPreview = () => {
         numCompleted++;
       }
     });
-    return ((numCompleted / Object.values(project.tasks).length) * 100).toFixed(2);
+    return Math.floor((numCompleted / Object.values(project.tasks).length) * 100);
   };
-  
+
   if (!project) {
     return null
   }
