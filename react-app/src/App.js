@@ -12,10 +12,7 @@ import CreateProjectModal from "./components/CreateProjectForm";
 import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
 import MyProjects from "./components/MyProjects";
-import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
-import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
 import Profile from "./components/Profile";
-import ProfileProjectOverview from "./components/ProfileProjectOverview";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
@@ -79,41 +76,21 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <HomePage />
         </ProtectedRoute>
-        {/* testing */}
-        <Route path="/create-project" exact={true}>
-          <CreateProjectModal />
-        </Route>
-        {/* <Route path="/create-task" exact={true}>
-          <CreateTaskModal />
-        </Route> */}
-        <Route path="/my-tasks" exact={true}>
+        <ProtectedRoute path="/my-tasks" exact={true}>
           <MyTasks />
-        </Route>
-        <Route path="/my-projects" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/my-projects" exact={true}>
           <MyProjects />
-        </Route>
-        <Route path="/projects/:projectId/tasks" exact={true}>
-          <ProjectTasksInProgress />
-          <ProjectTasksCompleted />
-        </Route>
-        <Route path="/projects/:projectId" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/projects/:projectId" exact={true}>
           <SingleProjectPreview />
-        </Route>
-        <Route path="/profile/:userId" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/:userId" exact={true}>
           <Profile />
-        </Route>
-        <Route path="/profile/:userId/projects/:projectId" exact={true}>
-          <ProfileProjectOverview />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

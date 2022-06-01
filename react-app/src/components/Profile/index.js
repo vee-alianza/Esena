@@ -59,8 +59,8 @@ const Profile = () => {
           <div className="profile-card">
             <div className="purple-box">
               <div className="project-task-letters">
-                {user.first_name.charAt(0).toUpperCase()}
-                {user.last_name.charAt(0).toUpperCase()}
+                {user?.first_name.charAt(0).toUpperCase()}
+                {user?.last_name.charAt(0).toUpperCase()}
               </div>
             </div>
             <div className="info-card">
@@ -70,7 +70,7 @@ const Profile = () => {
               <div className="occupation">{user?.occupation}</div>
               <div className="email">{user?.email}</div>
               <div className="bio">{user?.bio}</div>
-              {user.id == sessionUser.id ? <EditProfileModal /> : null}
+              {user?.id == sessionUser.id ? <EditProfileModal /> : null}
             </div>
           </div>
 
