@@ -9,7 +9,7 @@ import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
 
-const TaskModal = (taskId) => {
+const TaskModal = ({taskId}) => {
 
     const [comment, setComment] = useState("")
 
@@ -18,20 +18,18 @@ const TaskModal = (taskId) => {
     const users = useSelector(state => state.teammates.allUsers)
     const comments = useSelector(state => state.comments)
     const cur_user = useSelector(state => state.session.user)
-    // const task = tasks.taskId;
 
 
-    // for testing
     let comments_arr;
     let task;
 
     if (tasks)
     {
-        task = tasks[1]
+        task = tasks[taskId]
         if (task)
-        {
-            comments_arr = Object.values(comments).filter(comment => comment.task_id === task.id)
-        }
+            {
+                comments_arr = Object.values(comments).filter(comment => comment.task_id === task.id)
+            }
     }
 
     const getInitials = id => {
@@ -64,6 +62,29 @@ const TaskModal = (taskId) => {
             return <OnTrack resource={resource} />;
         }
     };
+
+    const getDate = date => {
+        const createdDate = new Date(date);
+        const created_date = createdDate.getDate();
+        const created_month = createdDate.getMonth();
+        const created_year = createdDate.getFullYear();
+
+        const today = new Date();
+        const today_date = today.getDate();
+        const today_month = today.getMonth();
+        const today_year = today.getFullYear();
+
+        if (created_date + 1 === today_date && created_month === today_month && created_year === today_year) {
+            return "Today"
+        } else if (today_date - (created_date + 1) === 1 && created_month === today_month && created_year === today_year) {
+            return "Yesterday"
+        } else {
+            const date = new Date(created_year, created_month, created_date + 1).toDateString();
+            return date;
+        }
+    }
+
+    console.log(getDate("Fri, 27 May 2022 00:00:00 GMT"), "********")
 
     return (
         <div className="task-container">
@@ -98,7 +119,12 @@ const TaskModal = (taskId) => {
                             <p>{getInitials(comment.author_id)}</p>
                         </div>
                         <div className="comment-content">
-                            <p className="author-name">{users[comment?.author_id]?.first_name} {users[comment?.author_id]?.last_name}</p>
+                            <div className="comment-header">
+                                <p className="author-name">
+                                    {users[comment?.author_id]?.first_name} {users[comment?.author_id]?.last_name}
+                                </p>
+                                <p className="date">{getDate(comment.create_date)}</p>
+                            </div>
                             <p>{comment?.content}</p>
                         </div>
                     </div>
