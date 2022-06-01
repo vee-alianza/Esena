@@ -17,28 +17,6 @@ const ProjectTasksInProgress = ({tasks, members}) => {
   const users = { ...allUsers }
   users[sessionUser?.id] = sessionUser;
 
-  // const tasksObj = useSelector((state) => state.tasks);
-  // let allTasks = Object.values(tasksObj);
-  // // console.log(allTasks)
-  // allTasks = allTasks?.filter(
-  //   (task) => task.project_id == projectId && task.is_completed == false
-  // );
-  // allTasks.sort((a, b) => {
-  //   const keyA = new Date(a?.end_date);
-  //   const keyB = new Date(b?.end_date);
-  //   return keyA > keyB ? 1 : -1;
-  // });
-  // let allTasks = tasks
-
-  // for (let task of allTasks) {
-  //   let date = new Date(task.end_date);
-  //   let year = date.getFullYear();
-  //   let month = (1 + date.getMonth()).toString().padStart(2, "0");
-  //   let day = date.getDate().toString().padStart(2, "0");
-
-  //   task.end_date = month + "/" + day + "/" + year;
-  // }
-
   return (
     <div>
       <h2>In Progress</h2>
@@ -56,8 +34,8 @@ const ProjectTasksInProgress = ({tasks, members}) => {
         {tasks?.map((task) => (
           <tr key={task.id}>
             <TaskModal taskName={task.name} taskId={task.id} />
-            <td>{users[task.assignee_id].first_name}</td>
-            <td>{task.name}</td>
+            {/* <td>{users[task.assignee_id].first_name}</td> */}
+            {/* <td>{task.name}</td> */}
             <td>
               <Link to={`/profile/${task.assignee_id}`}>
                 {users[task.assignee_id]?.first_name}
