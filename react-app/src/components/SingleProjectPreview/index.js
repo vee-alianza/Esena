@@ -93,7 +93,7 @@ const SingleProjectPreview = () => {
         {project && (
           <div className="single-project-view">
             <h1>{project.name}</h1>
-            {sessionUser.id == project.owner_id ? <EditProjectModal /> : null}
+            {sessionUser.id == project?.owner_id ? <EditProjectModal /> : null}
             {/* <EditProjectModal /> */}
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
