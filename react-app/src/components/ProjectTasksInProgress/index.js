@@ -48,7 +48,7 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
             {task.assigner_id == sessionUser.id ? (
               <div>
                 {" "}
-                <EditTaskModal taskId={task.id} projectName={project.name} />{" "}
+                <EditTaskModal taskId={task.id} projectName={project?.name} />{" "}
                 <EditTaskModal
                   taskId={task.id}
                   projectName={project?.name}
