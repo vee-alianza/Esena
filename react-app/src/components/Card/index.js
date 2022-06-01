@@ -4,10 +4,8 @@ import High from "../Priorities/High";
 import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
-
 import { Modal } from "../../context/Modal";
 import TaskModal from "../TaskModal/TaskModal";
-
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -15,8 +13,7 @@ import "./index.css";
 
 const TaskCard = ({ resource }) => {
 
-  const [showModal, setShowModal] = useState(false)
-
+  const [showModal, setShowModal] = useState(false);
 
   const renderPriority = (resource) => {
     if (resource.priority === "Low") {
@@ -63,8 +60,7 @@ const TaskCard = ({ resource }) => {
       }}
     >
       {showModal && (
-        <Modal onClose={() => {
-          return setShowModal(false)}}>
+        <Modal onClose={() => setShowModal(false)}>
           <TaskModal taskId={resource.id} />
         </Modal>
       )}
