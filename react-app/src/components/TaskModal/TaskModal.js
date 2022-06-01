@@ -131,7 +131,9 @@ const TaskModal = ({taskId}) => {
             </div>
             <div className="comments">
                 <p>Comments:</p>
-                <div className="comments-container">
+                <div
+                    className={comments_arr.length > 1 ? "comments-container-full" : "comments-container-empty"}
+                    >
                     {comments_arr?.map((comment, idx) => (
                         <div className="comment" key={idx}>
                             <div className="person-circle-icon">
@@ -166,7 +168,12 @@ const TaskModal = ({taskId}) => {
                             onChange={(e) => setComment(e.target.value)}
                         />
                     </div>
-                    <button onClick={addCommentSubmit}>Comment</button>
+                    <button
+                        onClick={addCommentSubmit}
+                        disabled={comment.length ? false : true}
+                        >
+                            Comment
+                    </button>
                 </div>
             </div>
         </div>

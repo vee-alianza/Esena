@@ -26,7 +26,7 @@
 .about-task {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 30px;
+    gap: 15px;
     font-size: 16px;
     line-height: 26px;
     color: #2E343FFF;
@@ -54,7 +54,11 @@
     margin-bottom: 20px;
 }
 
-.comments-container {
+.comments-container-empty {
+    height: fit-content;
+}
+
+.comments-container-full {
     height: 180px;
     overflow-y: scroll;
 }

@@ -4,15 +4,15 @@ import TaskModal from "./TaskModal";
 
 
 
-const SingleTask = ({taskName, taskId}) => {
+const SingleTaskFromProject = ({taskName, taskId}) => {
     const [showModal, setShowModal] = useState(false)
     return (
         <>
-            <td
+            <div
                 className="project-name-hover"
                 onClick={() => setShowModal(true)}>
                 {taskName}
-            </td>
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <TaskModal taskId={taskId}/>
@@ -22,4 +22,4 @@ const SingleTask = ({taskName, taskId}) => {
     )
 }
 
-export default SingleTask;
+export default SingleTaskFromProject;

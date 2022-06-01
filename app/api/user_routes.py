@@ -70,9 +70,9 @@ def user(id):
         tasks.update(project.to_dict()["tasks"])
 
 
-    comments = {}
-    for id, task in tasks.items():
-        comments.update(task["comments"])
+    # comments = {}
+    # for id, task in tasks.items():
+    #     comments.update(task["comments"])
 
 
     # user_dict["owned_projects"] = owned_projects
@@ -81,7 +81,7 @@ def user(id):
     user_dict['teammates'] = teammates
     user_dict['tasks'] = tasks
     user_dict['projects'] = projects_dict
-    user_dict['comments'] = comments
+    # user_dict['comments'] = comments
 
     return user_dict
 
