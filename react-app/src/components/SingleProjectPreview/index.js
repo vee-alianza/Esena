@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import SideBar from "../SideBar";
 import ProjectMembers from "../ProjectMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
+
+import { viewProfile } from "../../store/profile";
+
 import "./index.css";
 
 const tabFocusClass = {
@@ -14,10 +17,14 @@ const tabFocusClass = {
 };
 
 const SingleProjectPreview = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const { projectId } = useParams();
   const projects = useSelector((state) => state.projects);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const profileUser = useSelector((state) => state.profile);
+  const tasksObj = useSelector((state) => state.tasks);
 
   const [tabClass, setTabClass] = useState({
     ...tabFocusClass,
@@ -26,13 +33,31 @@ const SingleProjectPreview = () => {
   const [dispOverview, setDispOverview] = useState("");
   const [dispTasks, setDispTasks] = useState("hide");
 
+  console.log(history);
+
+    // useEffect(async () => {
+    //   await dispatch(viewProfile(userId));
+    // }, [dispatch]);
+
+    // setSingleProject
+
   let project;
+  let allTasks;
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
+    allTasks = Object.values(tasksObj);
   } else if (profileUser && profileUser.projects) {
     // console.log(profileUser)
     project = profileUser.projects[projectId];
+    allTasks = Object.values(profileUser.tasks);
   }
+
+  allTasks?.sort((a, b) => {
+    const keyA = new Date(a?.end_date);
+    const keyB = new Date(b?.end_date);
+    return keyA > keyB ? 1 : -1;
+  });
+
   let members;
   if (project) {
     members = [...project.members, project.owner_id];
@@ -96,8 +121,18 @@ const SingleProjectPreview = () => {
               </div>
             </div>
             <div className={`tasks-description ${dispTasks}`}>
-              <ProjectTasksInProgress />
-              <ProjectTasksCompleted />
+              <ProjectTasksInProgress
+                tasks={allTasks.filter(
+                  (task) =>
+                    task.project_id == projectId && task.is_completed == false
+                )}
+              />
+              <ProjectTasksCompleted
+                tasks={allTasks.filter(
+                  (task) =>
+                    task.project_id == projectId && task.is_completed == true
+                )}
+              />
             </div>
           </div>
         )}

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 // import DeleteTaskModal from "../DeleteTaskForm";
 // import "./MyTasks.css";
 
-const ProjectTasksCompleted = () => {
+const ProjectTasksCompleted = ({tasks}) => {
   const { projectId } = useParams();
   //   const project = useSelector((state) => state.projects[projectId]);
   //   console.log("********", project)
@@ -16,18 +16,18 @@ const ProjectTasksCompleted = () => {
   //   console.log("completed", users)
   users[sessionUser?.id] = sessionUser;
 
-  const tasksObj = useSelector((state) => state.tasks);
-  let allTasks = Object.values(tasksObj);
-  //   console.log(allTasks);
-  allTasks = allTasks?.filter(
-    (task) => task.project_id == projectId && task.is_completed == true
-  );
+//   const tasksObj = useSelector((state) => state.tasks);
+//   let allTasks = Object.values(tasksObj);
+//   //   console.log(allTasks);
+//   allTasks = allTasks?.filter(
+//     (task) => task.project_id == projectId && task.is_completed == true
+//   );
 
-  allTasks.sort((a, b) => {
-    const keyA = new Date(a?.end_date);
-    const keyB = new Date(b?.end_date);
-    return keyA > keyB ? -1 : 1;
-  });
+//   allTasks.sort((a, b) => {
+//     const keyA = new Date(a?.end_date);
+//     const keyB = new Date(b?.end_date);
+//     return keyA > keyB ? -1 : 1;
+//   });
 
   //   for (let task of allTasks) {
   //     let date = new Date(task.end_date);
@@ -49,7 +49,7 @@ const ProjectTasksCompleted = () => {
           <th>DUE DATE</th>
           <th>STATUS</th>
         </tr>
-        {allTasks.map((task) => (
+        {tasks.map((task) => (
           <tr key={task.id}>
             <td>{task.name}</td>
             <td><Link to={`/profile/${task.assignee_id}`}>{users[task.assignee_id]?.first_name}</Link></td>
