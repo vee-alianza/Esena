@@ -78,15 +78,29 @@ const SingleProjectPreview = () => {
               </div>
             </div>
             <div className={`tasks-description ${dispTasks}`}>
-              <h3>Tasks assigned:</h3>
+              <h3>Complete:</h3>
               {Object.values(project.tasks).map((task, idx) => {
-                return (
-                  <div key={idx}>
-                    <p>
-                      {task.description}
-                    </p>
-                  </div>
-                );
+                if (task.is_completed) {
+                  return (
+                    <div key={idx}>
+                      <p>
+                        {task.description}
+                      </p>
+                    </div>
+                  );
+                }
+              })}
+              <h3>Incomplete:</h3>
+              {Object.values(project.tasks).map((task, idx) => {
+                if (!task.is_completed) {
+                  return (
+                    <div key={idx}>
+                      <p>
+                        {task.description}
+                      </p>
+                    </div>
+                  );
+                }
               })}
             </div>
           </div>
