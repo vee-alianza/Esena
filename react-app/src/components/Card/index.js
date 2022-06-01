@@ -40,7 +40,7 @@ const TaskCard = ({ resource }) => {
     // console.log("clicked");
     // console.log(location);
     if (location.pathname === "/my-projects") {
-      history.push(`/projects/${id}/tasks`);
+      history.push(`/projects/${id}`);
     }
   };
 

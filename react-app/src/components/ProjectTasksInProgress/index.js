@@ -40,7 +40,6 @@ const ProjectTasksInProgress = () => {
 
   return (
     <div>
-      <h1>Project {projectId} Tasks</h1>
       <h2>In Progress</h2>
       {project?.members.includes(sessionUser.id) ? (
         <CreateTaskModal projectName={project.name} />

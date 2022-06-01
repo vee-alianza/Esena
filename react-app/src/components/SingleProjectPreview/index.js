@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import SideBar from "../SideBar";
 import ProjectMembers from "../ProjectMembers";
+import ProjectTasksInProgress from "../ProjectTasksInProgress";
+import ProjectTasksCompleted from "../ProjectTasksCompleted";
 import "./index.css";
 
 const tabFocusClass = {
@@ -94,14 +96,8 @@ const SingleProjectPreview = () => {
               </div>
             </div>
             <div className={`tasks-description ${dispTasks}`}>
-              <h3>Tasks assigned:</h3>
-              {Object.values(project.tasks).map((task, idx) => {
-                return (
-                  <div key={idx}>
-                    <p>{task.description}</p>
-                  </div>
-                );
-              })}
+              <ProjectTasksInProgress />
+              <ProjectTasksCompleted />
             </div>
           </div>
         )}
