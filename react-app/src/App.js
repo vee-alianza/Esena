@@ -22,6 +22,7 @@ import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
+import { setComments } from "./store/comments"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,9 +42,11 @@ function App() {
         const res = await fetch(`/api/users/${session.id}`);
         if (res.ok) {
           const data = await res.json();
+
           dispatch(setProjects(data.projects));
           dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
+          dispatch(setComments(data.comments));
         }
       }
       setLoaded(true);
