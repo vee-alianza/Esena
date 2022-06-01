@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import SideBar from "../SideBar";
 import ProjectMembers from "../ProjectMembers";
+import EditProjectModal from "../EditProjectForm";
 import "./index.css";
 
 const tabFocusClass = {
@@ -67,6 +68,7 @@ const SingleProjectPreview = () => {
         {project && (
           <div className="single-project-view">
             <h1>{project.name}</h1>
+            <EditProjectModal />
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
                 Overview

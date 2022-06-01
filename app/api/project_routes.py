@@ -40,6 +40,12 @@ def update_project(id):
             project.is_private = form.data['is_private']
             project.priority_id = form.data['priority_id']
             project.status_id = form.data['status_id']
+
+            members = form.data['members'].strip().split(" ")
+            project.members = []
+            for member_id in members:
+                member = User.query.get(int(member_id))
+                project.members.append(member)
             db.session.add(project)
             db.session.commit()
             return project.to_dict()
