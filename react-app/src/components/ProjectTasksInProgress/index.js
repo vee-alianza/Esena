@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import CreateTaskModal from "../CreateTaskForm";
@@ -21,7 +21,7 @@ const ProjectTasksInProgress = () => {
   let allTasks = Object.values(tasksObj);
   // console.log(allTasks)
   allTasks = allTasks?.filter(
-    (task) => task.project_id === projectId && task.is_completed === false
+    (task) => task.project_id == projectId && task.is_completed == false
   );
   allTasks.sort((a, b) => {
     const keyA = new Date(a?.end_date);
@@ -66,7 +66,7 @@ const ProjectTasksInProgress = () => {
             <td>{task.end_date}</td>
             <td>{task.priority} </td>
             <td>{task.status} </td>
-            {task.assigner_id === sessionUser.id ? (
+            {task.assigner_id == sessionUser.id ? (
               <div>
                 {" "}
                 <EditTaskModal

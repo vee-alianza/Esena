@@ -4,16 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import SingleProjectPreview from "./components/SingleProjectPreview";
+import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import CreateProjectModal from "./components/CreateProjectForm";
+import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
 import MyProjects from "./components/MyProjects";
 import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
 import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
 import Profile from "./components/Profile";
 import ProfileProjectOverview from "./components/ProfileProjectOverview";
+import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
@@ -37,13 +40,9 @@ function App() {
     (async () => {
       if (session) {
         const res = await fetch(`/api/users/${session.id}`);
-        const userFetchRes = await fetch('/api/users');
-
-        if (res.ok && userFetchRes.ok) {
+        if (res.ok) {
           const data = await res.json();
-          const allUserData = await userFetchRes.json();
 
-          dispatch(setAllUsers(allUserData.users));
           dispatch(setProjects(data.projects));
           dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
@@ -54,12 +53,25 @@ function App() {
     })();
   }, [dispatch, session]);
 
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const res = await fetch(`/api/users`);
+        if (res.ok) {
+          const data = await res.json();
+          dispatch(setAllUsers(data.users));
+        }
+      }
+    })();
+  }, [dispatch, session]);
+
   if (!loaded) {
     return null;
   }
 
   return (
     <BrowserRouter>
+      {/* <NavBar /> */}
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
