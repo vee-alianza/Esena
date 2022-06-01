@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { login } from "../../store/session";
 
-import NavBar from "../NavBar";
+import NavBar from "../Navigation";
+import "./auth.css";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,7 +44,7 @@ const LoginForm = () => {
   return (
     <div>
       <NavBar />
-      <form onSubmit={onLogin}>
+      <form onSubmit={onLogin} className="auth-form">
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -68,11 +69,13 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
+        </div>
+        <div>
           <button type="submit">Login</button>
           <button onClick={loginDemo}>Demo User</button>
         </div>
+        <Link to="/sign-up">Do not have an account? Sign Up!</Link>
       </form>
-      <Link to="/sign-up">Do not have an account? Sign Up!</Link>
     </div>
   );
 };

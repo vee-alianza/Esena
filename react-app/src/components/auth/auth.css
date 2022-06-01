@@ -1,0 +1,12 @@
+
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    width: 350px;
+
+    position: absolute;
+    top: 30%;
+    left: 45%
+}

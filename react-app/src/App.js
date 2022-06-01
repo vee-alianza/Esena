@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import SingleProjectPreview from "./components/SingleProjectPreview";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyTasks from "./components/MyTasks";
 import MyProjects from "./components/MyProjects";

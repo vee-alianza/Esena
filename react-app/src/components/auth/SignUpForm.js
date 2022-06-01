@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 
-import NavBar from "../NavBar";
+import NavBar from "../Navigation";
 import { signUp } from "../../store/session";
 import { addToAllUsers } from "../../store/teammates";
 
@@ -67,7 +67,7 @@ const SignUpForm = () => {
   return (
     <div>
       <NavBar />
-      <form onSubmit={onSignUp}>
+      <form onSubmit={onSignUp} className="auth-form">
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -138,8 +138,8 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button type="submit">Sign Up</button>
+        <Link to="/login">Already have an account? Log In!</Link>
       </form>
-      <Link to="/login">Already have an account? Log In!</Link>
     </div>
   );
 };

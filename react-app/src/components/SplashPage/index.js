@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import NavBar from "../NavBar";
+import NavBar from "../Navigation";
+
+import "./index.css";
 
 const SplashPage = () => {
   return (
-    <div>
+    <div className="splash-container">
         <NavBar />
-      <div>Splash Page</div>
       {/* <Link to="/login">Get started</Link> */}
     </div>
   );
