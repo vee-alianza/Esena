@@ -1,13 +1,10 @@
 import { useHistory } from "react-router-dom";
 import "./index.css";
 const ProjectPreview = ({ project }) => {
-<<<<<<< HEAD
-=======
   const history = useHistory();
   const handleOnClick = () => {
     history.push(`/projects/${project?.id}`);
   };
->>>>>>> ba84b39927b5c7db895e08359390680524a04d9a
   return (
     <div className="project" onClick={handleOnClick}>
       <div className="project-icon">

@@ -7,7 +7,7 @@ import DeleteTaskModal from "../DeleteTaskForm";
 import TaskModal from "../TaskModal"
 // import "./MyTasks.css";
 
-const ProjectTasksInProgress = ({tasks, members}) => {
+const ProjectTasksInProgress = ({ tasks, members }) => {
   const { projectId } = useParams();
   const project = useSelector((state) => state.projects[projectId]);
   //   console.log("********", project)
@@ -20,13 +20,10 @@ const ProjectTasksInProgress = ({tasks, members}) => {
   return (
     <div>
       <h2>In Progress</h2>
-<<<<<<< HEAD
       {project?.members.includes(sessionUser.id) ? <CreateTaskModal projectName={project.name} /> : null}
-=======
       {members?.includes(sessionUser.id) ? (
         <CreateTaskModal projectName={project?.name} />
       ) : null}
->>>>>>> ba84b39927b5c7db895e08359390680524a04d9a
       <table>
         <tr>
           <th>TASK NAME</th>
@@ -51,21 +48,18 @@ const ProjectTasksInProgress = ({tasks, members}) => {
             {task.assigner_id == sessionUser.id ? (
               <div>
                 {" "}
-<<<<<<< HEAD
                 <EditTaskModal taskId={task.id} projectName={project.name} />{" "}
-=======
                 <EditTaskModal
                   taskId={task.id}
                   projectName={project?.name}
                 />{" "}
->>>>>>> ba84b39927b5c7db895e08359390680524a04d9a
                 <DeleteTaskModal taskId={task.id} />{" "}
-              </div>
+              </div >
             ) : null}
-          </tr>
+          </tr >
         ))}
-      </table>
-    </div>
+      </table >
+    </div >
   );
 };
 

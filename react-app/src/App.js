@@ -22,11 +22,7 @@ import { authenticate } from "./store/session";
 import { getProject, setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
-<<<<<<< HEAD
-import SingleProjectPreview from "./components/SingleProjectPreview";
-=======
 import { setComments } from "./store/comments"
->>>>>>> ba84b39927b5c7db895e08359390680524a04d9a
 
 function App() {
   const [loaded, setLoaded] = useState(false);
