@@ -16,18 +16,16 @@ const Profile = () => {
   const sessionUser = useSelector((state) => state.session.user);
   let user = useSelector((state) => state.profile);
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(viewProfile(userId));
-      setLoaded(true);
-    })();
-  }, [dispatch, userId]);
+  useEffect(async () => {
+    await dispatch(viewProfile(userId));
+    setLoaded(true);
+  }, [dispatch]);
 
   let projects;
   const projectsObj = useSelector((state) => state.profile.projects);
   if (projectsObj) {
     projects = Object.values(projectsObj);
-    projects = projects.filter((project) => project?.is_private === false);
+    projects = projects.filter((project) => project?.is_private == false);
     projects.sort((a, b) => {
       const keyA = new Date(a?.start_date);
       const keyB = new Date(b?.start_date);
@@ -39,7 +37,7 @@ const Profile = () => {
   const tasksObj = useSelector((state) => state.profile.tasks);
   if (tasksObj) {
     tasks = Object.values(tasksObj);
-    tasks = tasks.filter((task) => task.assignee_id === user.id);
+    tasks = tasks.filter((task) => task.assignee_id == user.id);
     tasks.sort((a, b) => {
       const keyA = new Date(a?.create_date);
       const keyB = new Date(b?.create_date);
@@ -70,7 +68,7 @@ const Profile = () => {
               <div className="occupation">{user?.occupation}</div>
               <div className="email">{user?.email}</div>
               <div className="bio">{user?.bio}</div>
-              {user.id === sessionUser.id ? <EditProfileModal /> : null}
+              {user.id == sessionUser.id ? <EditProfileModal /> : null}
             </div>
           </div>
 
@@ -81,7 +79,7 @@ const Profile = () => {
               <div className="profile-project">
                 {projects.length > 0 ? (
                   projects.slice(0, 8).map((project) => (
-                    <Link to={`/profile/${user.id}/projects/${project.id}`}>
+                    <Link to={`/projects/${project.id}`} key={project.id}>
                       <div className="project">
                         <div className="project-icon">
                           <div className="rectangle-icon">
@@ -108,7 +106,7 @@ const Profile = () => {
               <div className="profile-project">
                 {tasks.length > 0 ? (
                   tasks.slice(0, 8).map((task) => (
-                    <div className="profile-task">
+                    <div className="profile-task" key={task.id}>
                       <div className="task-icon">
                         <div className="circle-icon">
                           <i className="fa-regular fa-circle-check fa-lg"></i>
