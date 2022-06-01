@@ -28,7 +28,7 @@ const TeammateSearch = ({
     newMembers.add(parseInt(e.target.id));
     setSelectedMembers(newMembers);
     const nextFilter = filteredMembers.filter(
-      (member) => member.id != parseInt(e.target.id)
+      (member) => member.id !== parseInt(e.target.id)
     );
     setFilteredMembers(nextFilter);
     setSearchedVal("");
@@ -43,7 +43,7 @@ const TeammateSearch = ({
 
   useEffect(() => {
     setTeammates(Array.from(selectedMembers));
-  }, [selectedMembers]);
+  }, [selectedMembers, setTeammates]);
 
   return (
     <div className="form-teammate-container">
@@ -72,7 +72,7 @@ const TeammateSearch = ({
           />
         </div>
 
-        {searchedVal.length != 0 && (
+        {searchedVal.length !== 0 && (
           <div className="dataResult">
             {filteredMembers.slice(0, 8).map((member) => {
               return (

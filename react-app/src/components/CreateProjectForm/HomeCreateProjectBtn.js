@@ -11,7 +11,7 @@ const HomeCreateProjectBtn = () => {
         className="create-project-container"
         onClick={() => setShowModal(true)}
       >
-        <img src="/images/addicon.png" />
+        <img src="/images/addicon.png" alt="" />
         <p>Create Project</p>
       </div>
       {showModal && (

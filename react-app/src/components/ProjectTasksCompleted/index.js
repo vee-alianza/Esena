@@ -1,4 +1,4 @@
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // import CreateTaskModal from "../CreateTaskForm";
@@ -20,7 +20,7 @@ const ProjectTasksCompleted = () => {
   let allTasks = Object.values(tasksObj);
   //   console.log(allTasks);
   allTasks = allTasks?.filter(
-    (task) => task.project_id == projectId && task.is_completed == true
+    (task) => task.project_id === projectId && task.is_completed === true
   );
 
   allTasks.sort((a, b) => {
