@@ -7,7 +7,7 @@ import DeleteTaskModal from "../DeleteTaskForm";
 import TaskModal from "../TaskModal"
 // import "./MyTasks.css";
 
-const ProjectTasksInProgress = () => {
+const ProjectTasksInProgress = ({tasks, members}) => {
   const { projectId } = useParams();
   const project = useSelector((state) => state.projects[projectId]);
   //   console.log("********", project)
@@ -17,33 +17,11 @@ const ProjectTasksInProgress = () => {
   const users = { ...allUsers }
   users[sessionUser?.id] = sessionUser;
 
-  const tasksObj = useSelector((state) => state.tasks);
-  let allTasks = Object.values(tasksObj);
-  // console.log(allTasks)
-  allTasks = allTasks?.filter(
-    (task) => task.project_id == projectId && task.is_completed == false
-  );
-  allTasks.sort((a, b) => {
-    const keyA = new Date(a?.end_date);
-    const keyB = new Date(b?.end_date);
-    return keyA > keyB ? 1 : -1;
-  });
-
-  // for (let task of allTasks) {
-  //   let date = new Date(task.end_date);
-  //   let year = date.getFullYear();
-  //   let month = (1 + date.getMonth()).toString().padStart(2, "0");
-  //   let day = date.getDate().toString().padStart(2, "0");
-
-  //   task.end_date = month + "/" + day + "/" + year;
-  // }
-
   return (
     <div>
-      <h1>Project {projectId} Tasks</h1>
       <h2>In Progress</h2>
-      {project?.members.includes(sessionUser.id) ? (
-        <CreateTaskModal projectName={project.name} />
+      {members?.includes(sessionUser.id) ? (
+        <CreateTaskModal projectName={project?.name} />
       ) : null}
       <table>
         <tr>
@@ -53,11 +31,11 @@ const ProjectTasksInProgress = () => {
           <th>PRIORITY</th>
           <th>STATUS</th>
         </tr>
-        {allTasks.map((task) => (
+        {tasks?.map((task) => (
           <tr key={task.id}>
             <TaskModal taskName={task.name} taskId={task.id} />
-            <td>{users[task.assignee_id].first_name}</td>
-            <td>{task.name}</td>
+            {/* <td>{users[task.assignee_id].first_name}</td> */}
+            {/* <td>{task.name}</td> */}
             <td>
               <Link to={`/profile/${task.assignee_id}`}>
                 {users[task.assignee_id]?.first_name}

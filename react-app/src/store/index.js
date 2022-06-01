@@ -5,7 +5,8 @@ import projects from "./projects";
 import tasks from "./tasks";
 import teammates from "./teammates";
 import profile from "./profile";
-import comments from "./comments"
+import comments from "./comments";
+import singleProject from "./singleProject";
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   teammates,
   profile,
   comments,
+  singleProject
 });
 
 let enhancer;
