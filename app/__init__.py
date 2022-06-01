@@ -54,10 +54,13 @@ def https_redirect():
     print()
     print()
     print(os.environ.get('FLASK_ENV'))
+    print(request.url)
+    print(request.headers.get('X-Forwarded-Proto'))
     print()
     print()
     if os.environ.get('FLASK_ENV') == 'production':
-        if request.headers.get('X-Forwarded-Proto') == 'http':
+        if (request.headers.get('X-Forwarded-Proto') == 'http' or
+                (request.headers.get('X-Forwarded-Proto') is None and 'http://' in request.url)):
             url = request.url.replace('http://', 'https://', 1)
             code = 301
             return redirect(url, code=code)
