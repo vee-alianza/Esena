@@ -6,9 +6,8 @@ import SideBar from "../SideBar";
 import ProjectMembers from "../ProjectMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
-
+import EditProjectModal from "../EditProjectForm";
 import { viewProject } from "../../store/singleProject";
-
 import "./index.css";
 
 const tabFocusClass = {
@@ -92,6 +91,7 @@ const SingleProjectPreview = () => {
         {project && (
           <div className="single-project-view">
             <h1>{project.name}</h1>
+            <EditProjectModal />
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
                 Overview
