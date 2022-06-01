@@ -15,6 +15,8 @@ const SingleProjectPreview = () => {
   const { projectId } = useParams();
   const projects = useSelector(state => state.projects);
   const allUsers = useSelector(state => state.teammates.allUsers);
+  const teammates = useSelector(state => state.teammates.teammates);
+  const profileProjects = useSelector(state => state.profile);
   const [tabClass, setTabClass] = useState({ ...tabFocusClass, overview: 'tab-focused' });
   const [dispOverview, setDispOverview] = useState('');
   const [dispTasks, setDispTasks] = useState('hide');
@@ -76,31 +78,15 @@ const SingleProjectPreview = () => {
               </div>
             </div>
             <div className={`tasks-description ${dispTasks}`}>
-              <h3>Complete:</h3>
+              <h3>Tasks assigned:</h3>
               {Object.values(project.tasks).map((task, idx) => {
-                if (task.is_completed) {
-                  return (
-                    <div key={idx}>
-                      <p>
-                        {task.description}
-                      </p>
-                    </div>
-                  );
-                }
-                return null;
-              })}
-              <h3>Incomplete:</h3>
-              {Object.values(project.tasks).map((task, idx) => {
-                if (!task.is_completed) {
-                  return (
-                    <div key={idx}>
-                      <p>
-                        {task.description}
-                      </p>
-                    </div>
-                  );
-                }
-                return null;
+                return (
+                  <div key={idx}>
+                    <p>
+                      {task.description}
+                    </p>
+                  </div>
+                );
               })}
             </div>
           </div>

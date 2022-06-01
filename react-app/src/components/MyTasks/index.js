@@ -1,13 +1,16 @@
 import { useSelector } from "react-redux";
 import SideBar from "../SideBar";
 import Card from "../Card";
+import DeleteTaskModal from "../DeleteTaskForm";
+
+import EditTaskModal from "../EditTaskForm";
 import "./MyTasks.css";
 
 const MyTasks = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const tasksObj = useSelector((state) => state.tasks);
   let allTasks = Object.values(tasksObj);
-  allTasks = allTasks?.filter((task) => task.assignee_id === sessionUser?.id);
+  allTasks = allTasks?.filter((task) => task.assignee_id == sessionUser?.id);
 
   allTasks.sort((a, b) => {
     const keyA = new Date(a?.end_date);
