@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+
+import NavBar from "../NavBar";
 import { signUp } from "../../store/session";
 import { addToAllUsers } from "../../store/teammates";
 
@@ -64,6 +66,7 @@ const SignUpForm = () => {
 
   return (
     <div>
+      <NavBar />
       <form onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
