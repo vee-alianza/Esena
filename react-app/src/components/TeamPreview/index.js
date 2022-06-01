@@ -1,16 +1,19 @@
 import { useHistory } from "react-router-dom";
 import "./index.css";
 
-const TeamPreview = ({ member }) => {
-
+const TeamPreview = ({ member, projectPage }) => {
   const history = useHistory();
   const handleOnClick = () => {
-      history.push(`/profile/${member?.id}`);
+    history.push(`/profile/${member?.id}`);
   };
   return (
     <div className="person" onClick={handleOnClick}>
       <div className="person-icon">
-        <div className="person-circle-icon">
+        <div
+          className={`person-circle-icon ${
+            projectPage ? "project-person" : ""
+          }`}
+        >
           <p>EC</p>
         </div>
       </div>
