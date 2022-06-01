@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import SideBar from "../SideBar";
-import TeamPreviewContainer from "../TeamPreviewContainer";
+import ProjectMembers from "../ProjectMembers";
 import "./index.css";
 
 const tabFocusClass = {
@@ -72,14 +72,7 @@ const SingleProjectPreview = () => {
                   <ProgressBar percent={calculatePercentage()} />
                   <div className="project-teammates">
                     <h3>Teammates</h3>
-                    {project.members.map((memberId, idx) => {
-                      const member = allUsers[parseInt(memberId)];
-                      return (
-                        <p key={idx}>
-                          {member?.first_name}
-                        </p>
-                      );
-                    })}
+                    <ProjectMembers members={project.members.map((memberId) => allUsers[parseInt(memberId)])} />
                   </div>
                 </div>
               </div>
@@ -96,7 +89,6 @@ const SingleProjectPreview = () => {
                 );
               })}
             </div>
-            <TeamPreviewContainer allUsers={allUsers} teammates={teammates} />
           </div>
         }
       </div>
