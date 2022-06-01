@@ -22,7 +22,7 @@ import { authenticate } from "./store/session";
 import { getProject, setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
-import { setComments } from "./store/comments"
+import { setComments } from "./store/comments";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,7 +67,7 @@ function App() {
   useEffect(() => {
     (async () => {
       if (session) {
-        const res = await fetch('/api/comments');
+        const res = await fetch("/api/comments");
         if (res.ok) {
           const data = await res.json();
           dispatch(setComments(data));
@@ -101,12 +101,6 @@ function App() {
           <HomePage />
         </ProtectedRoute>
         {/* testing */}
-        <Route path="/create-project" exact={true}>
-          <CreateProjectModal />
-        </Route>
-        <Route path="/projects/:projectId" exact={true}>
-          <SingleProjectPreview />
-        </Route>
         {/* <Route path="/create-task" exact={true}>
           <CreateTaskModal />
         </Route> */}

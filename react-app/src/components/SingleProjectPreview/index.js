@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
 import SideBar from "../SideBar";
-import ProjectMembers from "../ProjectMembers";
+import ProjectTeamMembers from "../ProjectTeamMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
 import EditProjectModal from "../EditProjectForm";
@@ -86,12 +86,22 @@ const SingleProjectPreview = () => {
 
   return (
     <>
-      <div className="project-view">
-        <SideBar />
+      <SideBar />
+      <div className="page-container">
+        {/* PUT THIS IN THREE DOT DROPDOWN */}
+        {/* {sessionUser?.id == project.owner_id ? <EditProjectModal /> : null} */}
+        <i className="fa-solid fa-ellipsis fa-lg"></i>
+        <div className="project-page-header">
+          <h1>{project.name}</h1>
+        </div>
         {project && (
           <div className="single-project-view">
+<<<<<<< HEAD
             <h1>{project.name}</h1>
             <EditProjectModal />
+=======
+            {/* <EditProjectModal /> */}
+>>>>>>> f27ff408de5f9f33dae8184a7f3bcb89c79f4534
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
                 Overview
@@ -102,20 +112,25 @@ const SingleProjectPreview = () => {
             </div>
             <div className={`project-description ${dispOverview}`}>
               <h3>Description</h3>
-              <p>{project.description}</p>
-              <div className="progress-bar">
-                <h3>Progress</h3>
-                <div className="progress-percent">
-                  <ProgressBar percent={calculatePercentage()} />
-                  <div className="project-teammates">
-                    <h3>Teammates</h3>
-                    <ProjectMembers
-                      members={members?.map(
-                        (memberId) => allUsers[parseInt(memberId)]
-                      )}
-                    />
+              <div className="project-description-box">
+                <p>{project.description}</p>
+              </div>
+              <div className="progress-container">
+                <div className="progress-bar">
+                  <h3>Progress</h3>
+                  <div className="progress-percent">
+                    <ProgressBar percent={calculatePercentage()} />
                   </div>
                 </div>
+              </div>
+              <div className="project-teammates">
+                <ProjectTeamMembers
+                  members={members?.map(
+                    (memberId) => allUsers[parseInt(memberId)]
+                  )}
+                  projectPage={true}
+                  permissions={sessionUser?.id == project.owner_id}
+                />
               </div>
             </div>
             <div className={`tasks-description ${dispTasks}`}>
