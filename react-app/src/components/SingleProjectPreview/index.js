@@ -8,6 +8,7 @@ import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
 
 import { viewProfile } from "../../store/profile";
+import { viewProject } from "../../store/singleProject";
 
 import "./index.css";
 
@@ -26,6 +27,11 @@ const SingleProjectPreview = () => {
   const profileUser = useSelector((state) => state.profile);
   const tasksObj = useSelector((state) => state.tasks);
 
+      useEffect(async () => {
+        await dispatch(viewProject(projectId));
+        // console.log(projectId)
+      }, [dispatch]);
+
   const [tabClass, setTabClass] = useState({
     ...tabFocusClass,
     overview: "tab-focused",
@@ -33,24 +39,29 @@ const SingleProjectPreview = () => {
   const [dispOverview, setDispOverview] = useState("");
   const [dispTasks, setDispTasks] = useState("hide");
 
-  console.log(history);
+  // console.log(history);
 
-    // useEffect(async () => {
-    //   await dispatch(viewProfile(userId));
-    // }, [dispatch]);
+
 
     // setSingleProject
 
-  let project;
+  let project = useSelector((state) => state.singleProject);
   let allTasks;
-  if (projectId in projects) {
-    project = projects[parseInt(projectId)];
-    allTasks = Object.values(tasksObj);
-  } else if (profileUser && profileUser.projects) {
-    // console.log(profileUser)
-    project = profileUser.projects[projectId];
-    allTasks = Object.values(profileUser.tasks);
+  let members; 
+  if (project && project.tasks) {
+    allTasks = Object.values(project.tasks);
+    members = [...project.members, project.owner_id];
+    console.log(allTasks, members)
   }
+  
+  // if (projectId in projects) {
+  //   project = projects[parseInt(projectId)];
+  //   allTasks = Object.values(tasksObj);
+  // } else if (profileUser && profileUser.projects) {
+  //   // console.log(profileUser)
+  //   project = profileUser.projects[projectId];
+  //   allTasks = Object.values(profileUser.tasks);
+  // }
 
   allTasks?.sort((a, b) => {
     const keyA = new Date(a?.end_date);
@@ -58,20 +69,18 @@ const SingleProjectPreview = () => {
     return keyA > keyB ? 1 : -1;
   });
 
-  let members;
-  if (project) {
-    members = [...project.members, project.owner_id];
-  }
-
   const calculatePercentage = () => {
     let numCompleted = 0;
-    Object.values(project.tasks).forEach((task) => {
-      if (task.is_completed) {
-        numCompleted++;
-      }
-    });
+    allTasks?.forEach((task) => {
+        if (task.is_completed) {
+          numCompleted++;
+        }
+      });      
+
+    // return 0
+
     return Math.floor(
-      (numCompleted / Object.values(project.tasks).length) * 100
+      (numCompleted / allTasks?.length) * 100
     );
   };
 
@@ -112,7 +121,7 @@ const SingleProjectPreview = () => {
                   <div className="project-teammates">
                     <h3>Teammates</h3>
                     <ProjectMembers
-                      members={members.map(
+                      members={members?.map(
                         (memberId) => allUsers[parseInt(memberId)]
                       )}
                     />
@@ -122,16 +131,18 @@ const SingleProjectPreview = () => {
             </div>
             <div className={`tasks-description ${dispTasks}`}>
               <ProjectTasksInProgress
-                tasks={allTasks.filter(
+                tasks={allTasks?.filter(
                   (task) =>
                     task.project_id == projectId && task.is_completed == false
                 )}
+                members={members}
               />
               <ProjectTasksCompleted
-                tasks={allTasks.filter(
+                tasks={allTasks?.filter(
                   (task) =>
                     task.project_id == projectId && task.is_completed == true
                 )}
+                members={members}
               />
             </div>
           </div>
