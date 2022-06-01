@@ -20,6 +20,7 @@ const SingleProjectPreview = () => {
   const history = useHistory();
 
   const { projectId } = useParams();
+  const sessionUser = useSelector((state) => state.session.user);
   const projects = useSelector((state) => state.projects);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const profileUser = useSelector((state) => state.profile);
@@ -49,6 +50,7 @@ const SingleProjectPreview = () => {
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
     allTasks = Object.values(tasksObj);
+    members = [...project.members, project.owner_id];
   }
   // else if (profileUser && profileUser.projects) {
   //   // console.log(profileUser)
@@ -91,7 +93,8 @@ const SingleProjectPreview = () => {
         {project && (
           <div className="single-project-view">
             <h1>{project.name}</h1>
-            <EditProjectModal />
+            {sessionUser.id == project.owner_id ? <EditProjectModal /> : null}
+            {/* <EditProjectModal /> */}
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
                 Overview
