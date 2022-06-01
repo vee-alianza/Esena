@@ -20,6 +20,7 @@ import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -70,6 +71,9 @@ function App() {
     <BrowserRouter>
       {/* <NavBar /> */}
       <Switch>
+        <Route path="/started" exact={true}>
+          <SplashPage />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
