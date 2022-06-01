@@ -1,0 +1,8 @@
+.single-project-view {
+    position: absolute;
+    left: 257px;
+    height: 100%;
+    width: calc(100% - 257px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}

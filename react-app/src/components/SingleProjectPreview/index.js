@@ -1,21 +1,17 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProgressBar from "../ProgressBar";
+import SideBar from "../SideBar";
+import TeamPreviewContainer from "../TeamPreviewContainer";
 import "./index.css";
 
 const SingleProjectPreview = () => {
   const { projectId } = useParams();
-  const dispatch = useDispatch();
   const projects = useSelector(state => state.projects);
+  const allUsers = useSelector(state => state.teammates.allUsers);
+  const teammates = useSelector(state => state.teammates.teammates);
   const profileProjects = useSelector(state => state.profile);
-  let project;
-  if (!Object.keys(projects).includes(parseInt(projectId))) {
-    project = profileProjects[parseInt(projectId)]
-  }
-  project = projects[parseInt(projectId)]
-  // console.log(projects, "=================")
-  // console.log(profileProjects)
+  const project = projects[parseInt(projectId)];
 
   const calculatePercentage = () => {
     let numCompleted = 0;
@@ -27,37 +23,43 @@ const SingleProjectPreview = () => {
     return Math.floor((numCompleted / Object.values(project.tasks).length) * 100);
   };
 
-  if (!project) {
-    return null
-  }
   return (
-    <div className="project-view">
-      {project &&
-        <>
-          <h1>{project.name}</h1>
-          <div className="tabs">
-            <p>Overview</p>
-            <p>Tasks</p>
-            <div className="project-description">
-              <h3>Description</h3>
-              <p>{project.description}</p>
-              <div className="progress-bar">
-                <h3>Progress</h3>
-                <div className="progress-percent">
-                  <ProgressBar percent={calculatePercentage()} />
-                  <div className="project-teammates">
-                    <p>Teammates</p>
-                    {project.members.map((member) => (
-                      <p key={member.id}>{member.first_name}</p>
-                    ))}
+    <>
+      <div className="project-view">
+        <SideBar />
+        {project &&
+          <div className="single-project-view">
+            <h1>{project.name}</h1>
+            <div className="tabs">
+              <p>Overview</p>
+              <p>Tasks</p>
+              <div className="project-description">
+                <h3>Description</h3>
+                <p>{project.description}</p>
+                <div className="progress-bar">
+                  <h3>Progress</h3>
+                  <div className="progress-percent">
+                    <ProgressBar percent={calculatePercentage()} />
+                    <div className="project-teammates">
+                      <h3>Teammates</h3>
+                      {project.members.map((memberId, idx) => {
+                        const member = allUsers[parseInt(memberId)];
+                        return (
+                          <p key={idx}>
+                            {member?.first_name}
+                          </p>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <TeamPreviewContainer allUsers={allUsers} teammates={teammates} />
           </div>
-        </>
-      }
-    </div>
+        }
+      </div>
+    </>
   );
 };
 
