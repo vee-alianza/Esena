@@ -7,7 +7,6 @@ import ProjectMembers from "../ProjectMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
 
-import { viewProfile } from "../../store/profile";
 import { viewProject } from "../../store/singleProject";
 
 import "./index.css";
@@ -27,10 +26,10 @@ const SingleProjectPreview = () => {
   const profileUser = useSelector((state) => state.profile);
   const tasksObj = useSelector((state) => state.tasks);
 
-      useEffect(async () => {
-        await dispatch(viewProject(projectId));
-        // console.log(projectId)
-      }, [dispatch]);
+  useEffect(async () => {
+    await dispatch(viewProject(projectId));
+    // console.log(projectId)
+  }, [dispatch]);
 
   const [tabClass, setTabClass] = useState({
     ...tabFocusClass,
@@ -39,25 +38,19 @@ const SingleProjectPreview = () => {
   const [dispOverview, setDispOverview] = useState("");
   const [dispTasks, setDispTasks] = useState("hide");
 
-  // console.log(history);
-
-
-
-    // setSingleProject
-
   let project = useSelector((state) => state.singleProject);
   let allTasks;
-  let members; 
+  let members;
   if (project && project.tasks) {
     allTasks = Object.values(project.tasks);
     members = [...project.members, project.owner_id];
     // console.log(allTasks, members)
   }
-  
+
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
     allTasks = Object.values(tasksObj);
-  } 
+  }
   // else if (profileUser && profileUser.projects) {
   //   // console.log(profileUser)
   //   project = profileUser.projects[projectId];
@@ -73,16 +66,11 @@ const SingleProjectPreview = () => {
   const calculatePercentage = () => {
     let numCompleted = 0;
     allTasks?.forEach((task) => {
-        if (task.is_completed) {
-          numCompleted++;
-        }
-      });      
-
-    // return 0
-
-    return Math.floor(
-      (numCompleted / allTasks?.length) * 100
-    );
+      if (task.is_completed) {
+        numCompleted++;
+      }
+    });
+    return Math.floor((numCompleted / allTasks?.length) * 100);
   };
 
   const focusTab = (e) => {
