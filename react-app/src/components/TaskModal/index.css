@@ -54,6 +54,11 @@
     margin-bottom: 20px;
 }
 
+.comments-container {
+    height: 180px;
+    overflow-y: scroll;
+}
+
 .comment {
     border-top: 1px solid #DEE1E6FF;
     display: flex;
@@ -66,6 +71,7 @@
     flex-direction: column;
     gap: 10px;
     justify-content: space-around;
+    width: 80%;
 }
 
 .comment-header {
@@ -90,12 +96,19 @@
     margin: 0;
 }
 
+.comment-error {
+    color: red;
+    font-size: 13px;
+    margin-left: 70px;
+}
+
 .comment-input {
     padding: 20px 20px;
     border-top: 1px solid #DEE1E6FF;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .comment-input-container {

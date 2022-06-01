@@ -16,6 +16,7 @@ class Comment(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "content": self.content,
             "create_date": self.create_date,
             "task": self.task.name,

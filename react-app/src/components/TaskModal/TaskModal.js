@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import "./index.css"
 
@@ -8,10 +8,13 @@ import High from "../Priorities/High";
 import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
+import { addComment } from "../../store/comments";
 
 const TaskModal = ({taskId}) => {
 
-    const [comment, setComment] = useState("")
+    const dispatch = useDispatch();
+    const [comment, setComment] = useState("");
+    const [errors, setErrors] = useState([])
 
     const tasks = useSelector(state => state.tasks)
     const projects = useSelector(state => state.projects)
@@ -84,7 +87,22 @@ const TaskModal = ({taskId}) => {
         }
     }
 
-    console.log(getDate("Fri, 27 May 2022 00:00:00 GMT"), "********")
+    const addCommentSubmit = async (e) => {
+        e.preventDefault();
+        const payload = {
+            content: comment,
+        }
+
+        const res = await dispatch(addComment(payload, taskId));
+
+        if (!Array.isArray(res)) {
+            setComment("");
+            setErrors([]);
+        } else {
+            const errors = res.map(error => error.split(":")[1].slice(1));
+            setErrors(errors);
+        }
+    }
 
     return (
         <div className="task-container">
@@ -113,23 +131,30 @@ const TaskModal = ({taskId}) => {
             </div>
             <div className="comments">
                 <p>Comments:</p>
-                {comments_arr?.map((comment, idx) => (
-                    <div className="comment" key={idx}>
-                        <div className="person-circle-icon">
-                            <p>{getInitials(comment.author_id)}</p>
-                        </div>
-                        <div className="comment-content">
-                            <div className="comment-header">
-                                <p className="author-name">
-                                    {users[comment?.author_id]?.first_name} {users[comment?.author_id]?.last_name}
-                                </p>
-                                <p className="date">{getDate(comment.create_date)}</p>
+                <div className="comments-container">
+                    {comments_arr?.map((comment, idx) => (
+                        <div className="comment" key={idx}>
+                            <div className="person-circle-icon">
+                                <p>{getInitials(comment.author_id)}</p>
                             </div>
-                            <p>{comment?.content}</p>
+                            <div className="comment-content">
+                                <div className="comment-header">
+                                    <p className="author-name">
+                                        {users[comment?.author_id]?.first_name} {users[comment?.author_id]?.last_name}
+                                    </p>
+                                    <p className="date">{getDate(comment.create_date)}</p>
+                                </div>
+                                <p>{comment?.content}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
                 <div className="comment-input">
+                    {errors.length ? errors.map(error =>
+                        (<div className="comment-error"
+                        key="error">
+                            {error}
+                        </div>)) : null}
                     <div className="comment-input-container">
                         <div className="person-circle-icon">
                             <p>{getInitials(cur_user?.id)}</p>
@@ -141,7 +166,7 @@ const TaskModal = ({taskId}) => {
                             onChange={(e) => setComment(e.target.value)}
                         />
                     </div>
-                    <button>Comment</button>
+                    <button onClick={addCommentSubmit}>Comment</button>
                 </div>
             </div>
         </div>
