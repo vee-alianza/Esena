@@ -76,6 +76,11 @@ const projectReducer = (state = initialState, action) => {
         ...state,
         ...action.projects,
       };
+    case CREATE_PROJECT:
+      return {
+        ...state,
+        [action.project.id]: action.project
+      }
     case EDIT_PROJECT:
       return {
         ...state,

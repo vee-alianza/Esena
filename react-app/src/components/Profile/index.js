@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import EditProfileModal from "../EditProfileForm";
 import SideBar from "../SideBar";
@@ -9,6 +10,7 @@ import { viewProfile } from "../../store/profile";
 import "./Profile.css";
 
 const Profile = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const { userId } = useParams();
@@ -19,7 +21,7 @@ const Profile = () => {
   useEffect(async () => {
     await dispatch(viewProfile(userId));
     setLoaded(true);
-  }, [dispatch]);
+  }, [dispatch, history.location]);
 
   let projects;
   const projectsObj = useSelector((state) => state.profile.projects);

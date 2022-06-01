@@ -13,6 +13,11 @@ const HomePage = () => {
   const teammates = useSelector((state) => state.teammates.teammates)
   const allUsers = useSelector((state) => state.teammates.allUsers)
 
+  let collaborators = [...teammates];
+  console.log(collaborators)
+  collaborators = collaborators.filter(user => user.id != session.id)
+  delete collaborators[session.id];
+
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   let tod = ""
@@ -40,7 +45,7 @@ const HomePage = () => {
           <HomeTaskContainer tasks={tasks} />
         </div>
         <div className="team-container">
-          <TeamPreviewContainer allUsers={allUsers} teammates={teammates} />
+          <TeamPreviewContainer allUsers={allUsers} teammates={collaborators} />
         </div>
       </div>
     </>

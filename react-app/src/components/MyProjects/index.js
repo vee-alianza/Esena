@@ -15,8 +15,6 @@ const MyProjects = () => {
     return keyA > keyB ? 1 : -1;
   });
 
-  const history = useHistory();
-
   return (
     <div>
       <SideBar />
