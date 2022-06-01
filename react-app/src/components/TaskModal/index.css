@@ -68,6 +68,18 @@
     justify-content: space-around;
 }
 
+.comment-header {
+    display: flex;
+    align-items: flex-end;
+}
+
+.comment-header > .date {
+    margin-left: 10px;
+    font-size: 11px;
+    line-height: 18px;
+    color: #9095A0FF;
+}
+
 .comment-content .author-name {
     font-weight: bold;
     font-size: 14px;
