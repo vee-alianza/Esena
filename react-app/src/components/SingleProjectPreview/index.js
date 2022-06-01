@@ -51,13 +51,14 @@ const SingleProjectPreview = () => {
   if (project && project.tasks) {
     allTasks = Object.values(project.tasks);
     members = [...project.members, project.owner_id];
-    console.log(allTasks, members)
+    // console.log(allTasks, members)
   }
   
-  // if (projectId in projects) {
-  //   project = projects[parseInt(projectId)];
-  //   allTasks = Object.values(tasksObj);
-  // } else if (profileUser && profileUser.projects) {
+  if (projectId in projects) {
+    project = projects[parseInt(projectId)];
+    allTasks = Object.values(tasksObj);
+  } 
+  // else if (profileUser && profileUser.projects) {
   //   // console.log(profileUser)
   //   project = profileUser.projects[projectId];
   //   allTasks = Object.values(profileUser.tasks);
