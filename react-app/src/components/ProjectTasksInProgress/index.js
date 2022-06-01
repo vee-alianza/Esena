@@ -9,7 +9,7 @@ import TaskModal from "../TaskModal"
 
 const ProjectTasksInProgress = () => {
   const { projectId } = useParams();
-  const project = useSelector((state) => state.allProjects?.projects[projectId]);
+  const project = useSelector((state) => state.projects[projectId]);
   //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -55,7 +55,7 @@ const ProjectTasksInProgress = () => {
         </tr>
         {allTasks.map((task) => (
           <tr key={task.id}>
-            <TaskModal taskName={task.name} taskId={task.id}/>
+            <TaskModal taskName={task.name} taskId={task.id} />
             <td>{users[task.assignee_id].first_name}</td>
             <td>{task.name}</td>
             <td>
