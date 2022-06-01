@@ -1,15 +1,149 @@
-.form-grouping {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.form-container {
+  width: 450px;
 }
+
+.form-header {
+  padding: 0px 30px;
+  font-size: 18px;
+}
+
+.form-header > h1 {
+  letter-spacing: 0.001px;
+  font-weight: 800;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  padding: 0px 30px;
+}
+
+.form-control > input {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 35px;
+  padding: 3px 10px;
+}
+
+.form-control > textarea {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 100px;
+  padding: 10px 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  resize: none;
+}
+
+.form-grouping {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 30px;
+  width: 94.5%;
+}
+
+.form-grouping > .form-control {
+  padding: 0px 0px;
+  width: 50%;
+}
+
+.select-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding: 0px 7px;
+}
+
+.form-grouping-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px 0px 10px 22px;
+  width: 94.5%;
+}
+
+.form-grouping-select > .select-control {
+  width: 50%;
+}
+
+.date-input {
+  width: 73%;
+}
+
+.form-control > select {
+  width: 83.5%;
 }
 
 label {
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 3px;
+  font-weight: 600;
+  color: rgb(54, 54, 54);
+}
+
+/* input[type="date"]:before {
+  content: attr(placeholder) !important;
+  color: #aaa;
+  margin-right: 0.5em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+  content: "";
+} */
+.css-b62m3t-container {
+  width: 90%;
+  font-size: 12px;
+}
+.private-container {
+  display: flex;
+  align-items: center;
+  padding: 0px 30px;
+}
+
+.cancelBtn {
+  background-color: white;
+  border: none;
+  color: gray;
+  margin-right: 20px;
+}
+
+.cancelBtn:hover {
+  cursor: pointer;
+  color: rgb(54, 54, 54);
+}
+
+.submitBtn {
+  width: 71px;
+  height: 36px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #ffffffff;
+  background: #a967cfff;
+  opacity: 1;
+  border: none;
+  border-radius: 6px;
+}
+
+.submitBtn:hover {
+  color: #ffffffff;
+  background: #9d52c8ff;
+  cursor: pointer;
+}
+
+.form-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0px 35px 0px;
+}
+
+.footer-btns {
+  margin-right: 30px;
 }

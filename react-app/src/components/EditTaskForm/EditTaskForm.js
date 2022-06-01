@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
 import { editTask } from "../../store/tasks";
 import CompleteTaskButton from "../CompleteTaskButton";
 
@@ -16,13 +15,17 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
+
+  const [month, date, year] = task.end_date.split("/");
+  const prevEndDate = `${year}-${month}-${date}`;
+
   const [name, setName] = useState(task.name);
   const [description, setDescription] = useState(task.description);
-  const [endDate, setEndDate] = useState(new Date(task.end_date));
+  const [endDate, setEndDate] = useState(prevEndDate);
   const [priority, setPriority] = useState(task.priority_id);
   const [status, setStatus] = useState(task.status_id);
   const [assignee, setAssignee] = useState(task.assignee_id);
-//   const [isCompleted, setIsCompleted] = useState(task.is_completed);
+  //   const [isCompleted, setIsCompleted] = useState(task.is_completed);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -39,7 +42,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
         assignee_id: parseInt(assignee),
         // is_completed: isCompleted
       };
-      console.log(payload);
+    //   console.log(payload);
 
       dispatch(editTask(payload, taskId));
 
@@ -145,7 +148,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
             onChange={(e) => setIsCompleted(!isCompleted)}
           ></input>
         </div> */}
-        <CompleteTaskButton taskId={taskId} setShowModal={setShowModal}/>
+        <CompleteTaskButton taskId={taskId} setShowModal={setShowModal} />
         <button className="cancelBtn" type="cancel">
           Cancel
         </button>

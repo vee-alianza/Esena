@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
+import SingleProjectPreview from "./components/SingleProjectPreview";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -10,15 +11,22 @@ import User from "./components/User";
 import CreateProjectModal from "./components/CreateProjectForm";
 import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
+import MyProjects from "./components/MyProjects";
 import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
 import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
+import Profile from "./components/Profile";
+import ProfileProjectOverview from "./components/ProfileProjectOverview";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
 import { getProject, setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
+<<<<<<< HEAD
 import SingleProjectPreview from "./components/SingleProjectPreview";
+=======
+import { setComments } from "./store/comments"
+>>>>>>> ba84b39927b5c7db895e08359390680524a04d9a
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,9 +46,11 @@ function App() {
         const res = await fetch(`/api/users/${session.id}`);
         if (res.ok) {
           const data = await res.json();
+
           dispatch(setProjects(data.projects));
           dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
+          dispatch(setComments(data.comments));
         }
       }
       setLoaded(true);
@@ -81,7 +91,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
         {/* testing */}
         <Route path="/create-project" exact={true}>
@@ -96,13 +106,21 @@ function App() {
         <Route path="/my-tasks" exact={true}>
           <MyTasks />
         </Route>
+        <Route path="/my-projects" exact={true}>
+          <MyProjects />
+        </Route>
         <Route path="/projects/:projectId/tasks" exact={true}>
           <ProjectTasksInProgress />
           <ProjectTasksCompleted />
         </Route>
-        {/* testing */}
-        <Route path="/home-page">
-          <HomePage />
+        <Route path="/projects/:projectId" exact={true}>
+          <SingleProjectPreview />
+        </Route>
+        <Route path="/profile/:userId" exact={true}>
+          <Profile />
+        </Route>
+        <Route path="/profile/:userId/projects/:projectId" exact={true}>
+          <ProfileProjectOverview />
         </Route>
       </Switch>
     </BrowserRouter>

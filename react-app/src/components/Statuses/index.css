@@ -1,0 +1,12 @@
+.ontrack {
+  color: rgb(100, 161, 15);
+  background: rgba(113, 203, 109, 0.4);
+}
+.atrisk {
+  color: rgb(196, 112, 16);
+  background: rgba(239, 221, 211, 0.4);
+}
+.offtrack {
+  color: rgba(255, 0, 0, 0.784);
+  background: rgba(245, 189, 191, 0.4);
+}

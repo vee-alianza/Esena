@@ -1,0 +1,98 @@
+.profile-card {
+   display: flex; 
+   margin-left: 20px;
+   margin-bottom: 50px;
+   margin-right: 45px;
+}
+.profile-card .purple-box {
+    background: #A967CFFF;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+}
+
+.info-card {
+    background-color: white;
+    width: 90%;
+    margin: 20px;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.info-card .username {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info-card .occupation,.email{
+    font-size: 12px;
+    color: #4d5564ff;
+    margin-bottom: 8px;
+}
+
+.info-card .bio{
+    font-size: 12px;
+}
+
+.edit-profile-btn {
+    background-color: white;
+    border: none;
+    color: #4d5564ff;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.profile-project-card {
+    margin-left: 30px;
+    margin-right: 60px;
+    margin-bottom: 50px;
+}
+
+.profile-project-card-inner {
+    background-color: white;
+    padding-top: 40px;
+}
+
+.profile-project-card-inner .recent-header{
+    /* margin-top: 30px; */
+    margin-left: 30px;
+    color: #4d5564ff;
+}
+
+.profile-project {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px 30px 40px 30px;
+}
+
+.profile-project div {
+    margin-top: 5px;
+}
+
+.profile-project .circle-icon, .project-icon {
+    font-size: 13px;
+    margin-right: 3px
+}
+
+.profile-project .task-name{
+    font-size: 13px;
+}
+.profile-task {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .profile-project {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .profile-project {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

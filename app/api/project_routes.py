@@ -7,6 +7,7 @@ from app.forms.task_form import TaskForm
 
 project_routes = Blueprint('projects', __name__)
 
+
 def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
@@ -17,17 +18,26 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
+@project_routes.route('/<int:id>')
+def get_project(id):
+    """
+    Gets a project
+    """ 
+    project = Project.query.get(id) 
+    if project:
+        return project.to_dict()
+    else:
+        return {'errors': ['Project not found.']}, 404
 
 @project_routes.route('/<int:id>', methods=["PUT"])
-#commented out for test only
+# commented out for test only
 # @login_required
 def update_project(id):
     """
     Updates a project
     """
-    #check if current_user.id == owner_id:
-    
+    # check if current_user.id == owner_id:
+
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -40,6 +50,12 @@ def update_project(id):
             project.is_private = form.data['is_private']
             project.priority_id = form.data['priority_id']
             project.status_id = form.data['status_id']
+
+            members = form.data['members'].strip().split(" ")
+            project.members = []
+            for member_id in members:
+                member = User.query.get(int(member_id))
+                project.members.append(member)
             db.session.add(project)
             db.session.commit()
             return project.to_dict()
@@ -50,14 +66,14 @@ def update_project(id):
 
 
 @project_routes.route('/<int:id>', methods=["DELETE"])
-#commented out for test only
+# commented out for test only
 # @login_required
 def delete_project(id):
     form = DeleteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     if form.validate_on_submit():
-    #check if current_user.id == owner_id:
+        # check if current_user.id == owner_id:
         project = Project.query.get(id)
         if project:
             db.session.delete(project)
@@ -69,7 +85,7 @@ def delete_project(id):
 
 
 @project_routes.route('/<int:id>/tasks', methods=["POST"])
-#commented out for test only
+# commented out for test only
 # @login_required
 def create_task(id):
     """
