@@ -10,7 +10,7 @@ import { viewProfile } from "../../store/profile";
 import "./Profile.css";
 
 const Profile = () => {
-    const history = useHistory(); 
+  const history = useHistory();
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const { userId } = useParams();

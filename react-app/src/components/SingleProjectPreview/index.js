@@ -49,6 +49,7 @@ const SingleProjectPreview = () => {
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
     allTasks = Object.values(tasksObj);
+    members = [...project.members, project.owner_id];
   }
   // else if (profileUser && profileUser.projects) {
   //   // console.log(profileUser)
