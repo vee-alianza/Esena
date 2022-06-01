@@ -19,14 +19,6 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@project_routes.route('/<int:id>', methods=["GET"])
-def get_project(id):
-    project = Project.query.get(id).to_dict()
-    members = [User.query.get(id).to_dict() for id in project["members"]]
-    project["members"] = members
-    return project
-
-
 @project_routes.route('/<int:id>', methods=["PUT"])
 # commented out for test only
 # @login_required
