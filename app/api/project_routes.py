@@ -18,16 +18,18 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+
 @project_routes.route('/<int:id>')
 def get_project(id):
     """
     Gets a project
-    """ 
-    project = Project.query.get(id) 
+    """
+    project = Project.query.get(id)
     if project:
         return project.to_dict()
     else:
         return {'errors': ['Project not found.']}, 404
+
 
 @project_routes.route('/<int:id>', methods=["PUT"])
 # commented out for test only

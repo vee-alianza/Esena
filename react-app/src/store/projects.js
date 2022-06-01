@@ -88,17 +88,18 @@ export const deleteProject = (projectId) => async (dispatch) => {
     method: "DELETE"
   });
 
-  // if (response.ok) {
-  //   const data = await response.json();
-  //   dispatch(removeProject(projectId));
-  //   return data;
-  // } else if (response.status < 500) {
-  //   if (data.errors) {
-  //     return data;
-  //   }
-  // } else {
-  //   return ["An error occurred. Please try again."]
-  // }
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(removeProject(projectId));
+    return data;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
 };
 
 const initialState = {};

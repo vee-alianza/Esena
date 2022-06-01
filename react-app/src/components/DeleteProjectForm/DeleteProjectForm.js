@@ -40,3 +40,5 @@ const DeleteProjectForm = ({ setShowModal }) => {
         </>
     )
 }
+
+export default DeleteProjectForm;
