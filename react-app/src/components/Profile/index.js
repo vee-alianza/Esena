@@ -5,12 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import EditProfileModal from "../EditProfileForm";
 import SideBar from "../SideBar";
 import { viewProfile } from "../../store/profile";
+import { Modal } from "../../context/Modal";
+import TaskModal from "../TaskModal/TaskModal";
 
 import "./Profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [idToShow, setIdToShow] = useState();
   const { userId } = useParams();
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -44,6 +48,18 @@ const Profile = () => {
       return keyA > keyB ? -1 : 1;
     });
   }
+
+
+
+  const handleOnClick = (e) => {
+    e.stopPropagation();
+
+    if (e.target.id !== "modal-background") {
+      setIdToShow(parseInt(e.currentTarget.id));
+      setShowModal(true);
+    }
+  }
+
 
   if (!loaded) {
     return null;
@@ -106,7 +122,18 @@ const Profile = () => {
               <div className="profile-project">
                 {tasks.length > 0 ? (
                   tasks.slice(0, 8).map((task) => (
-                    <div className="profile-task" key={task.id}>
+                    <div
+                      className="profile-task"
+                      key={task.id}
+                      id={task.id}
+                      onClick={user.id == sessionUser.id ? (e) => handleOnClick(e) : undefined}
+                      style={{ cursor: user.id == sessionUser.id ? "pointer" : "not-allowed" }}
+                      >
+                      {showModal && idToShow === task.id && (
+                        <Modal onClose={() => setShowModal(false)}>
+                          <TaskModal taskId={idToShow} />
+                        </Modal>
+                      )}
                       <div className="task-icon">
                         <div className="circle-icon">
                           <i className="fa-regular fa-circle-check fa-lg"></i>
