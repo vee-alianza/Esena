@@ -7,6 +7,21 @@ from app.api.project_routes import validation_errors_to_error_messages
 
 comment_routes = Blueprint('comments', __name__)
 
+
+@comment_routes.route('/')
+# @login_required
+def get_all_comments():
+    """
+    Getting all comments
+    from the database
+    """
+    all_comments = Comment.query.all()
+    comments = {comment.id: comment.to_dict() for comment in all_comments}
+
+    return comments
+
+
+
 @comment_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def update_comment(id):

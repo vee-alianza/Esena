@@ -64,13 +64,15 @@ const Profile = () => {
               </div>
             </div>
             <div className="info-card">
-              <div className="username">
-                {user?.first_name} {user?.last_name}
+              <div className="info-card-header">
+                <div className="username">
+                  {user?.first_name} {user?.last_name}
+                </div>
+                {user.id == sessionUser.id ? <EditProfileModal /> : null}
               </div>
               <div className="occupation">{user?.occupation}</div>
               <div className="email">{user?.email}</div>
               <div className="bio">{user?.bio}</div>
-              {user.id == sessionUser.id ? <EditProfileModal /> : null}
             </div>
           </div>
 
