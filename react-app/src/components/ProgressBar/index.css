@@ -1,0 +1,13 @@
+.outer {
+    height: 10px;
+    width: 350px;
+    background: #F6ECFBFF;
+    border-radius: 25px;
+    border: 1px solid black
+}
+
+.inner {
+    background-color: #C58AE7FF;
+    height: 100%;
+
+}

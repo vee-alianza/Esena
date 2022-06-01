@@ -12,7 +12,7 @@ const HomePage = () => {
   const tasks = useSelector((state) => state.tasks)
   const teammates = useSelector((state) => state.teammates.teammates)
   const allUsers = useSelector((state) => state.teammates.allUsers)
-  
+
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   let tod = ""
@@ -36,11 +36,11 @@ const HomePage = () => {
           <h3>{`Good ${tod}, ${session?.first_name}`}</h3>
         </div>
         <div className="resource-container">
-          <HomeProjectContainer projects={projects}/>
-          <HomeTaskContainer tasks={tasks}/>
+          <HomeProjectContainer projects={projects} />
+          <HomeTaskContainer tasks={tasks} />
         </div>
         <div className="team-container">
-          <TeamPreviewContainer allUsers={allUsers} teammates={teammates}/>
+          <TeamPreviewContainer allUsers={allUsers} teammates={teammates} />
         </div>
       </div>
     </>

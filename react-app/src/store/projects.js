@@ -1,5 +1,5 @@
 const SET_PROJECTS = "projects/SET_PROJECTS";
-const CREATE_PROJECT = "projects/CREATE_PROJECT"
+const CREATE_PROJECT = "projects/CREATE_PROJECT";
 
 export const setProjects = (projects) => {
   return {
@@ -15,7 +15,8 @@ export const createProject = (project) => {
   }
 }
 
-export const addProject = (payload, userId) => async(dispatch) => {
+
+export const addProject = (payload, userId) => async (dispatch) => {
   console.log(payload)
   const response = await fetch(`/api/users/${userId}/projects`, {
     method: "POST",
@@ -23,7 +24,7 @@ export const addProject = (payload, userId) => async(dispatch) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
-  })
+  });
   if (response.ok) {
     const data = await response.json();
     dispatch(createProject(data));

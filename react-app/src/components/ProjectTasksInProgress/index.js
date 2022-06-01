@@ -14,7 +14,7 @@ const ProjectTasksInProgress = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
-  const users = {...allUsers}
+  const users = { ...allUsers }
   users[sessionUser?.id] = sessionUser;
 
   const tasksObj = useSelector((state) => state.tasks);
@@ -55,7 +55,7 @@ const ProjectTasksInProgress = () => {
         </tr>
         {allTasks.map((task) => (
           <tr key={task.id}>
-            <TaskModal taskName={task.name} taskId={task.id}/>
+            <TaskModal taskName={task.name} taskId={task.id} />
             <td>{users[task.assignee_id].first_name}</td>
             <td>{task.name}</td>
             <td>
@@ -71,7 +71,7 @@ const ProjectTasksInProgress = () => {
                 {" "}
                 <EditTaskModal
                   taskId={task.id}
-                  projectName={project.name}
+                  projectName={project?.name}
                 />{" "}
                 <DeleteTaskModal taskId={task.id} />{" "}
               </div>

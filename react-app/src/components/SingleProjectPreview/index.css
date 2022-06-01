@@ -1,0 +1,38 @@
+.single-project-view {
+    position: absolute;
+    left: 257px;
+    height: 100%;
+    width: calc(100% - 257px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tabs>p {
+    padding: 0 5px;
+    margin-right: 10px;
+}
+
+.tabs>p:hover {
+    cursor: pointer;
+    border-bottom: 5px solid purple;
+}
+
+.tabs>p.tab-focused {
+    border-bottom: 2px solid purple;
+}
+
+.tabs>p.tab-focused:hover {
+    border-bottom: 5px solid purple;
+}
+
+.project-description.hide {
+    display: none;
+}
+
+.tasks-description.hide {
+    display: none;
+}

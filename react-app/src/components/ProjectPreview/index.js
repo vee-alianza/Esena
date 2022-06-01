@@ -1,5 +1,5 @@
 import "./index.css";
-const ProjectPreview = ({project}) => {
+const ProjectPreview = ({ project }) => {
   return (
     <div className="project">
       <div className="project-icon">
@@ -8,8 +8,12 @@ const ProjectPreview = ({project}) => {
         </div>
       </div>
       <div className="project-details">
-        <div className="project-name">{project.name}</div>
-        <div className="project-date">{project.end_date}</div>
+        {project &&
+          <>
+            <div className="project-name">{project.name}</div>
+            <div className="project-date">{project.end_date}</div>
+          </>
+        }
       </div>
     </div>
   );
