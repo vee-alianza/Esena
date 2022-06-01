@@ -6,10 +6,13 @@ const TeammateSearch = ({
   setTeammates,
   teammates,
   allUsers,
+  edit,
 }) => {
   const [searchedVal, setSearchedVal] = useState("");
   const [filteredMembers, setFilteredMembers] = useState([]);
-  const [selectedMembers, setSelectedMembers] = useState(new Set());
+  const [selectedMembers, setSelectedMembers] = useState(
+    edit ? new Set(teammates) : new Set()
+  );
 
   const handleFilter = (e) => {
     setSearchedVal(e.target.value.toLowerCase());
@@ -35,7 +38,6 @@ const TeammateSearch = ({
   };
 
   const handleMemberDelete = (e) => {
-    console.log(selectedMembers);
     const updated = new Set(selectedMembers);
     updated.delete(parseInt(e.target.parentNode.id));
     setSelectedMembers(updated);
