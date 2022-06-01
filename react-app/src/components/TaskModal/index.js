@@ -8,11 +8,11 @@ const SingleTask = ({taskName, taskId}) => {
     const [showModal, setShowModal] = useState(false)
     return (
         <>
-            <td
+            <div
                 className="project-name-hover"
                 onClick={() => setShowModal(true)}>
                 {taskName}
-            </td>
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <TaskModal taskId={taskId}/>

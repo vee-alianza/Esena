@@ -55,7 +55,7 @@
 }
 
 .comments-container-empty {
-    height: 75px;
+    height: fit-content;
 }
 
 .comments-container-full {

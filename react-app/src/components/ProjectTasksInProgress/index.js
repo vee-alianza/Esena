@@ -55,7 +55,9 @@ const ProjectTasksInProgress = () => {
         </tr>
         {allTasks.map((task) => (
           <tr key={task.id}>
-            <TaskModal taskName={task.name} taskId={task.id} />
+            <td>
+              <TaskModal taskName={task.name} taskId={task.id} />
+            </td>
             <td>{users[task.assignee_id].first_name}</td>
             <td>{task.name}</td>
             <td>
