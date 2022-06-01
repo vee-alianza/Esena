@@ -14,7 +14,7 @@ const ProfileProjectOverview = () => {
     project = projects[projectId];
     allTasks = Object.values(project?.tasks);
     allTasks = allTasks?.filter(
-      (task) => task.project_id == projectId
+      (task) => task.project_id === projectId
     );
     allTasks.sort((a, b) => {
       const keyA = new Date(a?.end_date);
@@ -30,9 +30,11 @@ const ProfileProjectOverview = () => {
   let usersArr = Object.values(users);
   usersArr = usersArr.filter((user) => project?.members.includes(user.id));
 
-  useEffect(async () => {
-    await dispatch(viewProfile(userId));
-  }, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(viewProfile(userId));
+    })();
+  }, [dispatch, userId]);
 
   return (
     <div>
