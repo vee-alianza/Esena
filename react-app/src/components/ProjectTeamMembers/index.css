@@ -1,0 +1,38 @@
+.project-team-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 300px;
+}
+
+.project-team-container-header > h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgb(93, 93, 93);
+}
+
+.project-team-container-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.project-team-container-body {
+  height: 60%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  column-gap: 5px;
+  padding: 0px 20px;
+}
+
+.fa-pencil {
+  color: gray;
+}
+
+.fa-pencil:hover {
+  cursor: pointer;
+}

@@ -8,8 +8,23 @@
   align-items: center;
 }
 
+.project-person {
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  background-color: #ae7ac78f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .person-circle-icon > p {
   color: white;
+}
+
+.project-person > p {
+  color: black;
+  font-size: 20px;
 }
 
 .person {

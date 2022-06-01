@@ -1,38 +1,113 @@
+.page-container {
+  position: absolute;
+  left: 257px;
+  height: 100%;
+  width: calc(100% - 257px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.project-page-header {
+  width: 100%;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.fa-ellipsis {
+  position: absolute;
+  top: 41px;
+  right: 55px;
+}
+
 .single-project-view {
-    position: absolute;
-    left: 257px;
-    height: 100%;
-    width: calc(100% - 257px);
-    overflow-y: auto;
-    overflow-x: hidden;
+  padding: 0px 40px;
 }
 
 .tabs {
-    display: flex;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  border-bottom: 1px solid rgb(184, 184, 184);
 }
 
-.tabs>p {
-    padding: 0 5px;
-    margin-right: 10px;
+.tabs > p {
+  font-size: 13.5px;
+  margin-left: 13px;
 }
 
-.tabs>p:hover {
-    cursor: pointer;
-    border-bottom: 5px solid purple;
+/* .tabs > p:hover {
+  cursor: pointer;
+  border-bottom: 5px solid purple;
 }
 
-.tabs>p.tab-focused {
-    border-bottom: 2px solid purple;
+.tabs > p.tab-focused {
+  border-bottom: 2px solid purple;
 }
 
-.tabs>p.tab-focused:hover {
-    border-bottom: 5px solid purple;
-}
+.tabs > p.tab-focused:hover {
+  color: purple;
+  border-bottom: 5px solid purple;
+} */
 
 .project-description.hide {
-    display: none;
+  display: none;
 }
 
 .tasks-description.hide {
-    display: none;
+  display: none;
+}
+
+.project-description {
+  margin-top: 30px;
+}
+.project-description > h3 {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(164, 164, 164);
+}
+
+.project-description-box {
+  background-color: white;
+  width: 100%;
+  height: 120px;
+}
+
+.project-description-box > p {
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  padding: 15px;
+}
+
+.progress-container {
+  height: 100px;
+  padding: 20px 0px;
+}
+
+.progress-bar > h3 {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(164, 164, 164);
+}
+
+.progress-percent > h2 {
+  font-weight: 400;
+  font-size: 21px;
+  color: rgb(54, 54, 54);
+}
+
+.project-teammates {
+  height: 50px;
+  padding: 20px 0px;
+}
+
+.project-teammates > h3 {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(164, 164, 164);
+}
+
+.teammate-container {
+  width: 100%;
 }
