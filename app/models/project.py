@@ -13,10 +13,10 @@ class Project(db.Model):
     is_archived = db.Column(db.Boolean, nullable=False, default=False)
     is_private = db.Column(db.Boolean, nullable=False)
 
-    priority_id = db.Column(db.Integer, db.ForeignKey("priorities.id"))
+    priority_id = db.Column(db.Integer, db.ForeignKey("priorities.id"), nullable=False)
     priority = db.relationship("Priority", back_populates="projects")
 
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     owner = db.relationship("User", back_populates="owned_projects")
 
     status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"), nullable=False)
