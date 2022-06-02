@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { deleteProject, removeProject } from "../../store/projects";
 import "./DeleteProjectForm.css"
 
-const DeleteProjectForm = ({ setShowModal }) => {
+const DeleteProjectForm = ({ setShowModal, setIsClicked }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { projectId } = useParams();
@@ -20,7 +20,7 @@ const DeleteProjectForm = ({ setShowModal }) => {
     }
 
     return (
-        <>
+        <div className="delete-container">
             <div className="delete-form-container">
                 <h3>Are you sure you want to delete {project?.name} ?</h3>
             </div>
@@ -33,12 +33,16 @@ const DeleteProjectForm = ({ setShowModal }) => {
                 </button>
                 <button
                     className="cancelBtn"
-                    onClick={() => setShowModal(false)}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        setIsClicked(false);
+                        setShowModal(false)
+                    }}
                 >
                     Cancel
                 </button>
             </div>
-        </>
+        </div>
     )
 }
 
