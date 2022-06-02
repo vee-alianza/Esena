@@ -129,7 +129,7 @@ def create_project(id):
         # project.members.append(current_user)
         members = form.data['members'].strip().split(" ")
         for member_id in members:
-            member = User.query.get(int(member_id))
+            member = User.quliery.get(int(member_id))
             project.members.append(member)
         db.session.add(project)
         db.session.commit()

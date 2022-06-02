@@ -80,10 +80,14 @@ const SignUpForm = () => {
         </Link>
       </div>
       <form onSubmit={onSignUp} className="auth-form signup">
-        <div>
-          {errors.map((error, ind) => (
+        <div className="login-signup-error-container">
+          {errors.map((error, ind) => {
+            error = error.split(":")[1];
+            return <div key={ind}>{error}</div>;
+          })}
+          {/* {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
-          ))}
+          ))} */}
         </div>
         <div>
           {/* <label>First Name</label> */}

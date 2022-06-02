@@ -14,7 +14,7 @@ const HomePage = () => {
   const allUsers = useSelector((state) => state.teammates.allUsers)
 
   let collaborators = [...teammates];
-  console.log(collaborators)
+  // console.log(collaborators)
   collaborators = collaborators.filter(user => user.id != session.id)
   // delete collaborators[session.id];
 

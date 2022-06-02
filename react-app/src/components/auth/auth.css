@@ -109,3 +109,13 @@
     border-color: #9b71c58f;
 }
 
+.login-signup-error-container {
+    font-size: 12px;
+    padding-bottom: 15px;
+    color: red
+}
+
+.login-signup-error-container div {
+    margin-bottom: 5px;
+    margin-left: 3px;
+}

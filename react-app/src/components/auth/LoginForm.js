@@ -57,10 +57,11 @@ const LoginForm = () => {
         </Link>
       </div>
       <form onSubmit={onLogin} className="auth-form login">
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+        <div className="login-signup-error-container">
+          {errors.map((error, ind) => {
+            error = error.split(":")[1];
+            return <div key={ind}>{error}</div>;
+          })}
         </div>
         <div>
           {/* <label htmlFor="email">Email</label> */}
