@@ -8,19 +8,26 @@ const DropdownMenu = ({ comp }) => {
 
     const handleClick = (e) => {
         setIsClicked(!isClicked);
-        console.log(e.target)
     }
 
-    const handleEditClick = () => {}
+    window.onclick = function (event) {
+        if (event.target.id !== "dropdown-menu") {
+            setIsClicked(false)
+        }
+    }
 
     return (
         <>
-            <div className="dropdown-container"
+            <div
+            className="dropdown-container"
             onClick={(e) => handleClick(e)}
             >
-                <i className="fa-solid fa-ellipsis fa-lg"></i>
+                <i
+                id="dropdown-menu"
+                className="fa-solid fa-ellipsis fa-lg"></i>
                 {isClicked && (
                     <div
+                        id="dropdown-menu"
                         className="dropdown-menu"
                     >
                         {comp === "edit" ? <EditProjectModal /> : <p>hi</p>}
