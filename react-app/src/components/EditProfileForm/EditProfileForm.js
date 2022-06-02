@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { editProfile } from "../../store/profile";
 import { authenticate } from "../../store/session";
+import "./index.css";
 
 const EditProfileForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,6 @@ const EditProfileForm = ({ setShowModal }) => {
   const [lastName, setLastName] = useState(user.last_name);
   const [occupation, setOccupation] = useState(user.occupation);
   const [bio, setBio] = useState(user.bio);
-
 
   const [validationErrors, setValidationErrors] = useState([]);
 
@@ -27,10 +27,10 @@ const EditProfileForm = ({ setShowModal }) => {
         bio,
         email: user.email,
       };
-        console.log(payload);
+      console.log(payload);
 
       await dispatch(editProfile(payload, user.id));
-      await dispatch(authenticate())
+      await dispatch(authenticate());
 
       setShowModal(false);
     }
@@ -45,30 +45,32 @@ const EditProfileForm = ({ setShowModal }) => {
   }, [firstName, lastName, occupation]);
 
   return (
-    <div>
+    <div className="edit-profile-form-container">
       <div className="form-header">
         <h1>Edit Your Profile</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-control">
-          <label>First Name</label>
-          <input
-            name="first name"
-            placeholder="Enter a first name"
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          ></input>
-        </div>
-        <div className="form-control">
-          <label>Last Name</label>
-          <input
-            name="last name"
-            placeholder="Enter a last name"
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          ></input>
+        <div className="edit-profile-form-grouping">
+          <div className="edit-profile-form-control">
+            <label>First Name</label>
+            <input
+              name="first name"
+              placeholder="Enter a first name"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            ></input>
+          </div>
+          <div className="edit-profile-form-control">
+            <label>Last Name</label>
+            <input
+              name="last name"
+              placeholder="Enter a last name"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            ></input>
+          </div>
         </div>
         <div className="form-control">
           <label>Occupation</label>
@@ -89,12 +91,14 @@ const EditProfileForm = ({ setShowModal }) => {
             onChange={(e) => setBio(e.target.value)}
           ></textarea>
         </div>
-        <button className="cancelBtn" type="cancel">
-          Cancel
-        </button>
-        <button className="submitBtn" type="submit">
-          Update
-        </button>
+        <div className="edit-profile-form-footer">
+          <button className="cancelBtn edit-prof-btn cncl" type="cancel">
+            Cancel
+          </button>
+          <button className="submitBtn edit-prof-btn" type="submit">
+            Update
+          </button>
+        </div>
       </form>
     </div>
   );
