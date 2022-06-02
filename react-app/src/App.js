@@ -86,10 +86,12 @@ function App() {
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
-          <About />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/about" exact={true}>
+          <About />
         </Route>
         {/* <ProtectedRoute path="/users" exact={true}>
           <UsersList />
@@ -120,7 +122,7 @@ function App() {
           <ProfileProjectOverview />
         </Route> */}
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
