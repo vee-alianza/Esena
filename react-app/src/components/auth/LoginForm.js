@@ -42,13 +42,19 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
+    <div className="login-signup-form-container">
       {/* <NavBar /> */}
-      <Link to="/sign-up" exact={true} className="corner-login-signup-btn">
-        <span>Sign Up</span>
-      </Link>
-      <div className="image-container">
-
+      <div className="corner-login-signup-btn-container">
+        <span className="login-signup-msg">Do not have an account? </span>
+        <Link to="/sign-up" exact={true} className="corner-login-signup-btn">
+          <span>Sign Up</span>
+        </Link>
+      </div>
+      <div className="left-image-container">
+        <img src="/images/login-left.png" />
+        <Link to="/">
+          <img src="/images/esena.png" className="logo-left-image" />
+        </Link>
       </div>
       <form onSubmit={onLogin} className="auth-form login">
         <div>
