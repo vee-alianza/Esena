@@ -39,6 +39,7 @@ const CreateProjectForm = ({ setShowModal }) => {
     e.preventDefault();
 
     if (!validationErrors.length) {
+      console.log("*****8", teammates)
       const payload = {
         name,
         description,
@@ -47,8 +48,9 @@ const CreateProjectForm = ({ setShowModal }) => {
         is_private: isPrivate,
         priority_id: parseInt(priority),
         status_id: parseInt(status),
-        members: teammates.join(" "),
+        members: teammates.filter((user) => user != session.id).join(" "),
       };
+      console.log(payload)
       dispatch(addProject(payload, session.id));
       setShowModal(false);
     }
