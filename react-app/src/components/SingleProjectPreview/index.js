@@ -28,11 +28,10 @@ const SingleProjectPreview = () => {
   const tasksObj = useSelector((state) => state.tasks);
   const sessionUser = useSelector((state) => state.session.user);
 
-    allUsers[sessionUser?.id] = sessionUser
+  allUsers[sessionUser?.id] = sessionUser
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
-    // console.log(projectId)
   }, [dispatch]);
 
   const [tabClass, setTabClass] = useState({
@@ -72,12 +71,14 @@ const SingleProjectPreview = () => {
   const calculatePercentage = () => {
     let numCompleted = 0;
     allTasks?.forEach((task) => {
-      if (task.is_completed) {
-        numCompleted++;
+      if (allTasks && allTasks.length) {
+        return Math.floor((numCompleted / allTasks?.length) * 100);
+      } else {
+        return 0
       }
     });
-    return Math.floor((numCompleted / allTasks?.length) * 100);
-  };
+  }
+
 
   const focusTab = (e) => {
     if (e.target.innerText === "Overview") {
