@@ -18,6 +18,8 @@ import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
 import FrontPage from "./components/FrontPage";
 import SplashPage from "./components/SplashPage";
+import About from "./components/About";
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -84,6 +86,7 @@ function App() {
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
+          <About />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
