@@ -3,10 +3,14 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    /* padding: 40px; */
     width: 350px;
 
     position: absolute;
     top: 30%;
-    left: 45%
+    left: 50%
+}
+
+.auth-form button {
+    cursor: pointer;
 }

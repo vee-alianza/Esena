@@ -15,12 +15,9 @@ import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
-<<<<<<< HEAD
 import { setComments } from "./store/comments"
 import FrontPage from "./components/FrontPage";
-=======
-import { setComments } from "./store/comments";
->>>>>>> f27ff408de5f9f33dae8184a7f3bcb89c79f4534
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -82,8 +79,8 @@ function App() {
     <BrowserRouter>
       {/* <NavBar /> */}
       <Switch>
-        <Route path="/" exact={true}>
-          <FrontPage />
+        <Route path="/start" exact={true}>
+          <SplashPage />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -91,26 +88,34 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        {/* <ProtectedRoute path="/" exact={true}>
-          <HomePage />
-<<<<<<< HEAD
+        {/* <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true}>
+          <User />
         </ProtectedRoute> */}
-        <ProtectedRoute path="/my-tasks" exact={true}>
-=======
+        <ProtectedRoute path="/" exact={true}>
+          <HomePage />
         </ProtectedRoute>
         <Route path="/my-tasks" exact={true}>
->>>>>>> f27ff408de5f9f33dae8184a7f3bcb89c79f4534
           <MyTasks />
-        </ProtectedRoute>
-        <ProtectedRoute path="/my-projects" exact={true}>
+        </Route>
+        <Route path="/my-projects" exact={true}>
           <MyProjects />
-        </ProtectedRoute>
-        <ProtectedRoute path="/projects/:projectId" exact={true}>
+        </Route>
+        {/* <Route path="/projects/:projectId/tasks" exact={true}>
+          <ProjectTasksInProgress />
+          <ProjectTasksCompleted />
+        </Route> */}
+        <Route path="/projects/:projectId" exact={true}>
           <SingleProjectPreview />
-        </ProtectedRoute>
-        <ProtectedRoute path="/profile/:userId" exact={true}>
+        </Route>
+        <Route path="/profile/:userId" exact={true}>
           <Profile />
-        </ProtectedRoute>
+        </Route>
+        {/* <Route path="/profile/:userId/projects/:projectId" exact={true}>
+          <ProfileProjectOverview />
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );

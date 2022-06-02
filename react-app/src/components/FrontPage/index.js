@@ -5,6 +5,8 @@ import HomePage from "../HomePage";
 const FrontPage = () => {
   const session = useSelector((state) => state.session.user);
 
+  console.log(session)
+
   if (!session) {
     return (
       <>
