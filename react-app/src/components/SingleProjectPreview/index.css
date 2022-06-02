@@ -8,10 +8,12 @@
 }
 
 .project-page-header {
-  width: 100%;
+  /* width: 100%; */
   padding-left: 30px;
   display: flex;
   flex-direction: row;
+  position: relative;
+  justify-content: space-between;
 }
 
 .fa-ellipsis {

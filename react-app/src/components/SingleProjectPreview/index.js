@@ -9,6 +9,7 @@ import ProjectTasksCompleted from "../ProjectTasksCompleted";
 import EditProjectModal from "../EditProjectForm";
 import { viewProject } from "../../store/singleProject";
 import "./index.css";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 const tabFocusClass = {
   overview: "",
@@ -90,11 +91,11 @@ const SingleProjectPreview = () => {
     <>
       <SideBar />
       <div className="page-container">
-        {/* PUT THIS IN THREE DOT DROPDOWN */}
         {/* {sessionUser?.id == project.owner_id ? <EditProjectModal /> : null} */}
-        <i className="fa-solid fa-ellipsis fa-lg"></i>
+
         <div className="project-page-header">
           <h1>{project.name}</h1>
+          <DropdownMenu comp="edit" />
         </div>
         {project && (
           <div className="single-project-view">
