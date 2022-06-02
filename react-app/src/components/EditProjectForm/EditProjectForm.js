@@ -39,9 +39,9 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
     { label: "High", value: "3" },
   ];
   const statusOptions = [
-    { label: "On Track", value: "1" },
+    { label: "Off Track", value: "1" },
     { label: "At Risk", value: "2" },
-    { label: "Off Track", value: "3" },
+    { label: "On Track", value: "3" },
   ];
 
   const handleSubmit = async (e) => {
