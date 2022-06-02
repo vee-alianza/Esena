@@ -28,6 +28,7 @@ const MyProjects = () => {
             // <Link to={`/projects/${project.id}/tasks`}>
             <Card
               resource={project}
+              key={project.id}
             />
           ))}
         </div>

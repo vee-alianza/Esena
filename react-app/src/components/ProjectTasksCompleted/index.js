@@ -16,12 +16,15 @@ const ProjectTasksCompleted = ({ tasks }) => {
         <i className="fa-regular fa-circle-check table-check"></i>
       </div>
       <table className="progress-table">
+        <thead>
         <tr className="progress-table-header">
           <th>TASK NAME</th>
           <th>ASSIGNEE</th>
           <th>DUE DATE</th>
           <th>STATUS</th>
         </tr>
+        </thead>
+        <tbody>
         {tasks?.map((task) => (
           <tr key={task.id} className="task-row">
             <td className="task-name-cell">{task.name}</td>
@@ -36,6 +39,7 @@ const ProjectTasksCompleted = ({ tasks }) => {
             </td>
           </tr>
         ))}
+        </tbody>
       </table>
     </div>
   );
