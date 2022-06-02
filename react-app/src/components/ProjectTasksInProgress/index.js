@@ -48,15 +48,6 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
 
   return (
     <div>
-<<<<<<< HEAD
-      <h2>In Progress</h2>
-      {project?.members.includes(sessionUser.id) ? <CreateTaskModal projectName={project.name} /> : null}
-      {members?.includes(sessionUser.id) ? (
-        <CreateTaskModal projectName={project?.name} />
-      ) : null}
-      <table>
-        <tr>
-=======
       <div className="table-header-section progress-header">
         <div className="progress-header-title">
           <h2>In Progress</h2>
@@ -68,7 +59,6 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
       </div>
       <table className="progress-table">
         <tr className="progress-table-header">
->>>>>>> 8843e1694652d538700d224c26f7c71fae805782
           <th>TASK NAME</th>
           <th>ASSIGNEE</th>
           <th>DUE DATE</th>
@@ -92,17 +82,6 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
             <td className="priority-cell">{renderPriority(task)} </td>
             <td className="status-cell">{renderStatus(task)} </td>
             {task.assigner_id == sessionUser.id ? (
-<<<<<<< HEAD
-              <div>
-                {" "}
-                <EditTaskModal taskId={task.id} projectName={project?.name} />{" "}
-                <EditTaskModal
-                  taskId={task.id}
-                  projectName={project?.name}
-                />{" "}
-                <DeleteTaskModal taskId={task.id} />{" "}
-              </div >
-=======
               <td className="options-cell">
                 <EditTaskTableBtn
                   taskId={task.id}
@@ -110,12 +89,11 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
                 />
                 <DeleteTaskTableBtn taskId={task.id} />
               </td>
->>>>>>> 8843e1694652d538700d224c26f7c71fae805782
             ) : null}
-          </tr >
+          </tr>
         ))}
-      </table >
-    </div >
+      </table>
+    </div>
   );
 };
 
