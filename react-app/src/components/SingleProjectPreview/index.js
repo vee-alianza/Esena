@@ -96,64 +96,64 @@ const SingleProjectPreview = () => {
         {/* {sessionUser?.id == project.owner_id ? <EditProjectModal /> : null} */}
 
         <div className="project-page-header">
-          <DropdownMenu comp="edit" />
+          <h1>{project.name}</h1>
+          <DropdownMenu
+            comp="edit"
+            permissions={sessionUser?.id == project.owner_id}
+          />
         </div>
         {project && (
-          <>
-            <div className="single-project-view">
-              <h1>{project.name}</h1>
-              <EditProjectModal />
-              <DeleteProjectModal />
-              {/* <EditProjectModal /> */}
-              <div className="tabs">
-                <p onClick={focusTab} className={tabClass.overview}>
-                  Overview
-                </p>
-                <p onClick={focusTab} className={tabClass.tasks}>
-                  Tasks
-                </p>
+          <div className="single-project-view">
+            {/* <EditProjectModal /> */}
+            <DeleteProjectModal />
+            <div className="tabs">
+              <p onClick={focusTab} className={tabClass.overview}>
+                Overview
+              </p>
+              <p onClick={focusTab} className={tabClass.tasks}>
+                Tasks
+              </p>
+            </div>
+            <div className={`project-description ${dispOverview}`}>
+              <h3>Description</h3>
+              <div className="project-description-box">
+                <p>{project.description}</p>
               </div>
-              <div className={`project-description ${dispOverview}`}>
-                <h3>Description</h3>
-                <div className="project-description-box">
-                  <p>{project.description}</p>
-                </div>
-                <div className="progress-container">
-                  <div className="progress-bar">
-                    <h3>Progress</h3>
-                    <div className="progress-percent">
-                      <ProgressBar percent={calculatePercentage()} />
-                    </div>
+              <div className="progress-container">
+                <div className="progress-bar">
+                  <h3>Progress</h3>
+                  <div className="progress-percent">
+                    <ProgressBar percent={calculatePercentage()} />
                   </div>
                 </div>
-                <div className="project-teammates">
-                  <ProjectTeamMembers
-                    members={members?.map(
-                      (memberId) => allUsers[parseInt(memberId)]
-                    )}
-                    projectPage={true}
-                    permissions={sessionUser?.id == project.owner_id}
-                  />
-                </div>
               </div>
-              <div className={`tasks-description ${dispTasks}`}>
-                <ProjectTasksInProgress
-                  tasks={allTasks?.filter(
-                    (task) =>
-                      task.project_id == projectId && task.is_completed == false
+              <div className="project-teammates">
+                <ProjectTeamMembers
+                  members={members?.map(
+                    (memberId) => allUsers[parseInt(memberId)]
                   )}
-                  members={members}
-                />
-                <ProjectTasksCompleted
-                  tasks={allTasks?.filter(
-                    (task) =>
-                      task.project_id == projectId && task.is_completed == true
-                  )}
-                  members={members}
+                  projectPage={true}
+                  permissions={sessionUser?.id == project.owner_id}
                 />
               </div>
             </div>
-          </>
+            <div className={`tasks-description ${dispTasks}`}>
+              <ProjectTasksInProgress
+                tasks={allTasks?.filter(
+                  (task) =>
+                    task.project_id == projectId && task.is_completed == false
+                )}
+                members={members}
+              />
+              <ProjectTasksCompleted
+                tasks={allTasks?.filter(
+                  (task) =>
+                    task.project_id == projectId && task.is_completed == true
+                )}
+                members={members}
+              />
+            </div>
+          </div>
         )}
       </div>
     </>
