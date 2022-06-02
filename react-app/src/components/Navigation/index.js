@@ -32,7 +32,12 @@ const NavBar = () => {
   return (
     <nav>
       <div>Logo</div>
-      <NavLink to="/" exact={true} activeClassName="active">
+      <NavLink
+        to="/"
+        exact={true}
+        activeClassName="active"
+        className="nav-home-btn"
+      >
         Home
       </NavLink>
       <div className="nav-login-btn">{navlink}</div>

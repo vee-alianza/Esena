@@ -67,78 +67,87 @@ const SignUpForm = () => {
   return (
     <div>
       <NavBar />
-      <form onSubmit={onSignUp} className="auth-form">
+      <form onSubmit={onSignUp} className="auth-form signup">
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
         <div>
-          <label>First Name</label>
+          {/* <label>First Name</label> */}
           <input
             type="text"
             name="firstName"
             onChange={updateFirstName}
             value={firstName}
+            placeholder="First Name*"
           ></input>
         </div>
         <div>
-          <label>Last Name</label>
+          {/* <label>Last Name</label> */}
           <input
             type="text"
             name="firstName"
             onChange={updateLastName}
             value={lastName}
+            placeholder="Last Name*"
           ></input>
         </div>
         <div>
-          <label>Occupation</label>
+          {/* <label>Occupation</label> */}
           <input
             type="text"
             name="occupation"
             onChange={updateOccupation}
             value={occupation}
+            placeholder="Occupation*"
           ></input>
         </div>
         <div>
-          <label>Bio</label>
-          <input
+          {/* <label>Bio</label> */}
+          <textarea
             type="text"
             name="bio"
             onChange={updateBio}
             value={bio}
-          ></input>
+            placeholder="Bio (optional)"
+          ></textarea>
         </div>
         <div>
-          <label>Email</label>
+          {/* <label>Email</label> */}
           <input
             type="text"
             name="email"
             onChange={updateEmail}
             value={email}
+            placeholder="Email*"
           ></input>
         </div>
         <div>
-          <label>Password</label>
+          {/* <label>Password</label> */}
           <input
             type="password"
             name="password"
             onChange={updatePassword}
             value={password}
+            placeholder="Password*"
           ></input>
         </div>
         <div>
-          <label>Repeat Password</label>
+          {/* <label>Repeat Password</label> */}
           <input
             type="password"
             name="repeat_password"
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
+            placeholder="Repeat Password*"
           ></input>
         </div>
         <button type="submit">Sign Up</button>
-        <Link to="/login">Already have an account? Log In!</Link>
+        <Link to="/login" className="auth-form-link">
+          Already have an account? Log In!
+        </Link>
       </form>
     </div>
   );

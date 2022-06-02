@@ -1,24 +1,25 @@
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../store/tasks";
-// import "./CreateProjectForm.css";
+import "./DeleteTaskForm.css";
 
-const DeleteTaskForm = ({ setShowModal, taskId }) => {
-    const dispatch = useDispatch();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await dispatch(deleteTask(taskId));
+const DeleteTaskForm = ({ setShowModal, taskId, taskname }) => {
+  const dispatch = useDispatch();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(deleteTask(taskId));
 
-        // remove associated comments
-        // await dispatch(removeComment());
-
-        setShowModal(false);
-    };
+    setShowModal(false);
+  };
   return (
-    <div className="">
-      Do you really want to delete this task?
+    <div className="delete-task-form-outer-container">
+      <h3>{taskname}</h3>
+      <p>Do you really want to delete this task?</p>
       <form onSubmit={handleSubmit}>
-        <button type="submit">
-          Yes
+        <button type="cancel" className="delete-task-cancel">
+          Cancel
+        </button>
+        <button type="submit" className="delete-task-confirm">
+          Delete
         </button>
       </form>
     </div>

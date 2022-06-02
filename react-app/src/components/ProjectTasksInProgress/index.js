@@ -85,12 +85,12 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
             <td className="priority-cell">{renderPriority(task)} </td>
             <td className="status-cell">{renderStatus(task)} </td>
             {task.assigner_id == sessionUser.id ? (
-              <td className="options-cell">
+              <td align="right" className="options-cell">
                 <EditTaskTableBtn
                   taskId={task.id}
                   projectName={project?.name}
                 />
-                <DeleteTaskTableBtn taskId={task.id} />
+                <DeleteTaskTableBtn taskId={task.id} taskname={task.name} />
               </td>
             ) : null}
           </tr>

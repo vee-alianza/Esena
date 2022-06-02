@@ -44,7 +44,7 @@ const LoginForm = () => {
   return (
     <div>
       <NavBar />
-      <form onSubmit={onLogin} className="auth-form">
+      <form onSubmit={onLogin} className="auth-form login">
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -72,9 +72,11 @@ const LoginForm = () => {
         </div>
         <div>
           <button type="submit">Login</button>
-          <button onClick={loginDemo}>Demo User</button>
         </div>
-        <Link to="/sign-up">Do not have an account? Sign Up!</Link>
+        <div>
+          <button id="demo-btn" onClick={loginDemo}>Demo User</button>
+        </div>
+        <Link to="/sign-up" className="auth-form-link">Do not have an account? Sign Up!</Link>
       </form>
     </div>
   );
