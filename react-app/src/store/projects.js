@@ -1,4 +1,3 @@
-const GET_PROJECT = "project/GET_PROJECT"
 const SET_PROJECTS = "projects/SET_PROJECTS";
 const CREATE_PROJECT = "projects/CREATE_PROJECT";
 const EDIT_PROJECT = "projects/EDIT_PROJECT";

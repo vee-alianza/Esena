@@ -96,7 +96,6 @@ const SingleProjectPreview = () => {
         {/* {sessionUser?.id == project.owner_id ? <EditProjectModal /> : null} */}
 
         <div className="project-page-header">
-          <h1>{project.name}</h1>
           <DropdownMenu comp="edit" />
         </div>
         {project && (
@@ -160,3 +159,5 @@ const SingleProjectPreview = () => {
     </>
   );
 };
+
+export default SingleProjectPreview;
