@@ -80,7 +80,7 @@ function App() {
       {/* <NavBar /> */}
       <Switch>
         <Route path="/" exact={true}>
-          { session? <HomePage /> : <SplashPage /> }
+          {session ? <HomePage /> : <SplashPage />}
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />

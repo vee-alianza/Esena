@@ -7,6 +7,7 @@ import ProjectTeamMembers from "../ProjectTeamMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
 import EditProjectModal from "../EditProjectForm";
+import DeleteProjectModal from "../DeleteProjectForm";
 import { viewProject } from "../../store/singleProject";
 import "./index.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
@@ -21,11 +22,12 @@ const SingleProjectPreview = () => {
   const history = useHistory();
 
   const { projectId } = useParams();
-  const sessionUser = useSelector((state) => state.session.user);
   const projects = useSelector((state) => state.projects);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const profileUser = useSelector((state) => state.profile);
   const tasksObj = useSelector((state) => state.tasks);
+  const sessionUser = useSelector((state) => state.session.user);
+
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
@@ -102,7 +104,6 @@ const SingleProjectPreview = () => {
         </div>
         {project && (
           <div className="single-project-view">
-            {/* <EditProjectModal /> */}
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
                 Overview
