@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./index.css";
-import SingleProjectPreview from "../SingleProjectPreview";
 
 const ProgressBar = ({ percent }) => {
     return (

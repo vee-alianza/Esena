@@ -12,7 +12,7 @@ import Profile from "./components/Profile";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
-import { getProject, setProjects } from "./store/projects";
+import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
@@ -75,13 +75,12 @@ function App() {
     return null;
   }
 
-  console.log(getProject)
   return (
     <BrowserRouter>
       {/* <NavBar /> */}
       <Switch>
         <Route path="/" exact={true}>
-          {session ? <HomePage /> : <SplashPage />}
+          { session? <HomePage /> : <SplashPage /> }
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />

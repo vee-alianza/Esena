@@ -18,18 +18,16 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
 @project_routes.route('/<int:id>')
 def get_project(id):
     """
     Gets a project
-    """
-    project = Project.query.get(id)
+    """ 
+    project = Project.query.get(id) 
     if project:
         return project.to_dict()
     else:
         return {'errors': ['Project not found.']}, 404
-
 
 @project_routes.route('/<int:id>', methods=["PUT"])
 # commented out for test only
@@ -71,21 +69,19 @@ def update_project(id):
 # commented out for test only
 # @login_required
 def delete_project(id):
-    # form = DeleteForm()
-    # form['csrf_token'].data = request.cookies['csrf_token']
+    form = DeleteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    # if form.validate_on_submit():
-    # check if current_user.id == owner_id:
-    project = Project.query.get(id)
-    if project:
-        db.session.delete(project)
-        db.session.commit()
-        return {'message': f'Project {id} successfully deleted.'}
-    else:
-        return {'errors': 'Project not found.'}, 404
-
-
-# return {'errors': ['An error has occurred. Please try again.']}, 401
+    if form.validate_on_submit():
+        # check if current_user.id == owner_id:
+        project = Project.query.get(id)
+        if project:
+            db.session.delete(project)
+            db.session.commit()
+            return {'message': f'Project {id} successfully deleted.'}
+        else:
+            return {'errors': ['Project not found.']}, 404
+    return {'errors': ['An error has occurred. Please try again.']}, 401
 
 
 @project_routes.route('/<int:id>/tasks', methods=["POST"])
