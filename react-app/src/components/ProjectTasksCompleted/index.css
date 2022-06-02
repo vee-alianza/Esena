@@ -9,3 +9,9 @@
 .task-name-cell {
   font-weight: 600;
 }
+
+.table-header-section > h2 {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(102, 102, 102);
+}
