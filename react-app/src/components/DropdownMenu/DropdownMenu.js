@@ -28,7 +28,7 @@ const DropdownMenu = ({ comp, permissions }) => {
             >
                 <i
                 id="dropdown-menu"
-                style={{ cursor: permissions ? "pointer" : "not-allowed" }}
+                style={{ display: permissions ? "block" : "none" }}
                 className="fa-solid fa-ellipsis fa-lg"></i>
                 {isClicked && (
                     <div
