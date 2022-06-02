@@ -60,6 +60,7 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
         ) : null}
       </div>
       <table className="progress-table">
+        <thead>
         <tr className="progress-table-header">
           <th>TASK NAME</th>
           <th>ASSIGNEE</th>
@@ -68,6 +69,8 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
           <th>STATUS</th>
           <th></th>
         </tr>
+        </thead>
+        <tbody>
         {tasks?.map((task) => (
           <tr key={task.id} className="task-row">
             <td>
@@ -82,16 +85,17 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
             <td className="priority-cell">{renderPriority(task)} </td>
             <td className="status-cell">{renderStatus(task)} </td>
             {task.assigner_id == sessionUser.id ? (
-              <td className="options-cell">
+              <td align="right" className="options-cell">
                 <EditTaskTableBtn
                   taskId={task.id}
                   projectName={project?.name}
                 />
-                <DeleteTaskTableBtn taskId={task.id} />
+                <DeleteTaskTableBtn taskId={task.id} taskname={task.name} />
               </td>
             ) : null}
           </tr>
         ))}
+        </tbody>
       </table>
     </div>
   );

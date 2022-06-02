@@ -3,7 +3,7 @@ import DeleteTaskForm from "./DeleteTaskForm";
 import { Modal } from "../../context/Modal";
 import "./DeleteTaskTableBtn.css";
 
-const DeleteTaskTableBtn = ({ taskId }) => {
+const DeleteTaskTableBtn = ({ taskId, taskname }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -13,7 +13,11 @@ const DeleteTaskTableBtn = ({ taskId }) => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <DeleteTaskForm setShowModal={setShowModal} taskId={taskId} />
+          <DeleteTaskForm
+            setShowModal={setShowModal}
+            taskId={taskId}
+            taskname={taskname}
+          />
         </Modal>
       )}
     </>

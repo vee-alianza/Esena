@@ -26,7 +26,7 @@ const MyTasks = () => {
         <div className="project-task-container">
           {/* {task.assigner_id == sessionUser.id? <div> <EditTaskModal taskId={task.id}/> <DeleteTaskModal taskId={task.id}/> </div>: null} */}
           {allTasks.map((task) => (
-            <Card resource={task} />
+            <Card resource={task} key={task.id} />
           ))}
         </div>
       </div>
