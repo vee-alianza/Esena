@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Select from "react-select";
 import { useParams } from "react-router-dom";
 import { createTask } from "../../store/tasks";
-// import "./CreateProjectForm.css";
+import "./CreateTaskForm.css";
 
 const CreateTaskForm = ({ setShowModal, projectName }) => {
   const dispatch = useDispatch();
@@ -15,15 +16,30 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  //   console.log(teammates);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState(new Date());
-  const [priority, setPriority] = useState("1");
-  const [status, setStatus] = useState("1");
-  const [assignee, setAssignee] = useState(-1);
+  const [priority, setPriority] = useState({});
+  const [status, setStatus] = useState({});
+  const [assignee, setAssignee] = useState({});
 
   const [validationErrors, setValidationErrors] = useState([]);
+
+  const assigneeOptions = teammates.map((teammate) => {
+    return { label: `${teammate.first_name}`, value: `${teammate.id}` };
+  });
+
+  const priorityOptions = [
+    { label: "Low", value: "1" },
+    { label: "Medium", value: "2" },
+    { label: "High", value: "3" },
+  ];
+  const statusOptions = [
+    { label: "On Track", value: "1" },
+    { label: "At Risk", value: "2" },
+    { label: "Off Track", value: "3" },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,8 +53,6 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
       };
-      // console.log(payload);
-
       dispatch(createTask(payload, projectId));
       setShowModal(false);
     }
@@ -54,81 +68,74 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
     setValidationErrors(errors);
   }, [name, description]);
   return (
-    <div>
+    <div className="form-outer-container">
       <div className="form-header">
         <h1>Add Task</h1>
-        <h2>{projectName}</h2>
+        <p className="task-project-name">{projectName}</p>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="form-control">
-          <label>Task Name</label>
-          <input
-            name="name"
-            placeholder="Enter a task name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-        </div>
-        <div className="form-grouping">
-          <div className="form-control">
-            <label>End Date</label>
+        <div className="form-inner-container">
+          <div className="add-task-form-control">
+            <label>Task Name</label>
             <input
-              placeholderText={"Choose an end date"}
-              type="date"
-              name="end_date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
+              name="name"
+              placeholder="Enter a task name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></input>
           </div>
-        </div>
-        <div className="form-control">
-          <label>Assign Team Member</label>
-          <select
-            name="assignee_id"
-            onChange={(e) => setAssignee(e.target.value)}
-            value={assignee}
-          >
-            <option value={-1}>select a teammate</option>
-            {teammates.map((teammate) => (
-              <option value={teammate.id}>{teammate.first_name}</option>
-            ))}
-          </select>
-        </div>
-        <div className="form-grouping">
+          <div className="add-task-form-grouping">
+            <div className="add-task-form-control">
+              <label>End Date</label>
+              <input
+                type="date"
+                name="end_date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+
+            <div className="add-task-form-control">
+              <label>Assign Team Member</label>
+              <Select
+                name="assignee_id"
+                options={assigneeOptions}
+                value={assignee.value}
+                onChange={(option) => setAssignee(option.value)}
+                placeholder="Select a team member..."
+              />
+            </div>
+          </div>
+          <div className="form-grouping-select">
+            <div className="select-control">
+              <label>Priority</label>
+              <Select
+                options={priorityOptions}
+                value={priority.value}
+                onChange={(option) => setPriority(option.value)}
+                placeholder="Select a priority..."
+              />
+            </div>
+            <div className="select-control">
+              <label>Status</label>
+              <Select
+                options={statusOptions}
+                value={status.value}
+                onChange={(option) => setStatus(option.value)}
+                placeholder="Select a status..."
+              />
+            </div>
+          </div>
           <div className="form-control">
-            <label>Priority </label>
-            <select
-              name="priority_id"
-              onChange={(e) => setPriority(e.target.value)}
-              value={priority}
-            >
-              <option value="1">Low</option>
-              <option value="2">Medium</option>
-              <option value="3">High</option>
-            </select>
+            <label>Description</label>
+            <textarea
+              name="description"
+              placeholder="Enter description here"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
           </div>
-          <div className="form-control">
-            <label>Status</label>
-            <select
-              name="status_id"
-              onChange={(e) => setStatus(e.target.value)}
-              value={status}
-            >
-              <option value="1">Off Track</option>
-              <option value="2">At Risk</option>
-              <option value="3">On Track</option>
-            </select>
-          </div>
-        </div>
-        <div className="form-control">
-          <label>Description</label>
-          <textarea
-            name="description"
-            placeholder="Enter description here"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
         </div>
         <button className="cancelBtn" type="cancel">
           Cancel

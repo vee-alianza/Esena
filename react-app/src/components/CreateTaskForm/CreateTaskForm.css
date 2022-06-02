@@ -1,0 +1,35 @@
+.form-outer-container {
+  width: 500px;
+}
+
+.form-inner-container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.add-task-form-grouping {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin-left: 20px;
+}
+
+.add-task-form-control > label {
+  align-self: flex-start;
+}
+.add-task-form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  align-items: flex-start;
+  width: 80%;
+}
+
+.add-task-form-control > input {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 35px;
+  padding: 3px 10px;
+  width: 100%;
+}
