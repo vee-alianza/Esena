@@ -35,7 +35,6 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
   };
 
   const renderStatus = (resource) => {
-    console.log(resource);
     if (resource.status === "Off track") {
       return <OffTrack resource={resource} />;
     }
@@ -56,7 +55,7 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
         </div>
         {members?.includes(sessionUser.id) ||
         project?.owner_id == sessionUser?.id ? (
-          <TableCreateTask projectName={project?.name} />
+          <TableCreateTask projectName={project?.name} endDate={project?.end_date} />
         ) : null}
       </div>
       <table className="progress-table">

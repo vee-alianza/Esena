@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, ValidationError, InputRequi
 from datetime import date
 
 class ProjectForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired(),\
+    name = StringField("name", validators=[DataRequired(message="This field is required."),\
                                            Length(max=255, message="The name should be less than 255 characters.")])
     description = TextAreaField("description", validators=[DataRequired(),\
                                                            Length(max=2000, message="The description should be less than 2000 characters.")])
