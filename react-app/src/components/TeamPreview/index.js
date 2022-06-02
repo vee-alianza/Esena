@@ -14,7 +14,9 @@ const TeamPreview = ({ member, projectPage }) => {
             projectPage ? "project-person" : ""
           }`}
         >
-          <p>EC</p>
+          <p>{`${member?.first_name.charAt(0).toUpperCase()}${member?.last_name
+            .charAt(0)
+            .toUpperCase()}`}</p>
         </div>
       </div>
       <div className="person-details">
