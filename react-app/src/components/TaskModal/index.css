@@ -94,6 +94,15 @@
   color: #9095a0ff;
 }
 
+.edit-delete-btns-container {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.edit-delete-btns-container i:first-child {
+  margin-right: 15px;
+}
+
 .comment-content .author-name {
   font-weight: bold;
   font-size: 14px;
