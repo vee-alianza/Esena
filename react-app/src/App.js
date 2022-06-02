@@ -4,22 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import SingleProjectPreview from "./components/SingleProjectPreview";
+import NavBar from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
-import CreateProjectModal from "./components/CreateProjectForm";
 import MyTasks from "./components/MyTasks";
 import MyProjects from "./components/MyProjects";
-import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
-import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
 import Profile from "./components/Profile";
-import ProfileProjectOverview from "./components/ProfileProjectOverview";
+import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
 import { setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
+import FrontPage from "./components/FrontPage";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,24 +31,43 @@ function App() {
     })();
   }, [dispatch]);
 
-  useEffect(() => {
+useEffect(() => {
     (async () => {
       if (session) {
         const res = await fetch(`/api/users/${session.id}`);
-        const userFetchRes = await fetch('/api/users/');
-
-        if (res.ok && userFetchRes.ok) {
+        if (res.ok) {
           const data = await res.json();
-          const allUserData = await userFetchRes.json();
 
-          dispatch(setAllUsers(allUserData.users));
           dispatch(setProjects(data.projects));
           dispatch(setTasks(data.tasks));
           dispatch(setTeammates(data.teammates));
-          dispatch(setComments(data.comments));
         }
       }
       setLoaded(true);
+    })();
+  }, [dispatch, session]);
+
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const res = await fetch(`/api/users`);
+        if (res.ok) {
+          const data = await res.json();
+          dispatch(setAllUsers(data.users));
+        }
+      }
+    })();
+  }, [dispatch, session]);
+
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const res = await fetch("/api/comments");
+        if (res.ok) {
+          const data = await res.json();
+          dispatch(setComments(data));
+        }
+      }
     })();
   }, [dispatch, session]);
 
@@ -60,48 +77,45 @@ function App() {
 
   return (
     <BrowserRouter>
+      {/* <NavBar /> */}
       <Switch>
+        <Route path="/" exact={true}>
+          { session? <HomePage /> : <SplashPage /> }
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
+        {/* <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        </ProtectedRoute> */}
+        {/* <ProtectedRoute path="/" exact={true}>
           <HomePage />
-        </ProtectedRoute>
-        {/* testing */}
-        <Route path="/create-project" exact={true}>
-          <CreateProjectModal />
-        </Route>
-        {/* <Route path="/create-task" exact={true}>
-          <CreateTaskModal />
-        </Route> */}
+        </ProtectedRoute> */}
         <Route path="/my-tasks" exact={true}>
           <MyTasks />
         </Route>
         <Route path="/my-projects" exact={true}>
           <MyProjects />
         </Route>
-        <Route path="/projects/:projectId/tasks" exact={true}>
+        {/* <Route path="/projects/:projectId/tasks" exact={true}>
           <ProjectTasksInProgress />
           <ProjectTasksCompleted />
-        </Route>
+        </Route> */}
         <Route path="/projects/:projectId" exact={true}>
           <SingleProjectPreview />
         </Route>
         <Route path="/profile/:userId" exact={true}>
           <Profile />
         </Route>
-        <Route path="/profile/:userId/projects/:projectId" exact={true}>
+        {/* <Route path="/profile/:userId/projects/:projectId" exact={true}>
           <ProfileProjectOverview />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );

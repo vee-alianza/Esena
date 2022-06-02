@@ -27,7 +27,7 @@ const EditProfileForm = ({ setShowModal }) => {
         bio,
         email: user.email,
       };
-      console.log(payload);
+        console.log(payload);
 
       await dispatch(editProfile(payload, user.id));
       await dispatch(authenticate())

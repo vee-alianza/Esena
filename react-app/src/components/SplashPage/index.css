@@ -1,0 +1,9 @@
+.splash-container {
+    position: absolute;
+    top:0;
+    /* background-color: pink; */
+    width: 100%;
+    height: 100vh;
+    background-image: url("https://assets.asana.biz/m/1eccac9527e95526/original/article-project-management-project-administrator-2x.jpg");
+    background-size: cover;
+}

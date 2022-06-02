@@ -1,11 +1,13 @@
 import "./index.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 
 const SideBar = () => {
+  const history = useHistory(); 
   const dispatch = useDispatch();
   const onLogout = async (e) => {
+    history.push("/");
     await dispatch(logout());
   };
   const sessionUser = useSelector((state) => state.session.user);

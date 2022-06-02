@@ -4,12 +4,17 @@ import High from "../Priorities/High";
 import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
-
+import { Modal } from "../../context/Modal";
+import TaskModal from "../TaskModal/TaskModal";
+import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 import "./index.css";
 
 const TaskCard = ({ resource }) => {
+
+  const [showModal, setShowModal] = useState(false);
+
   const renderPriority = (resource) => {
     if (resource.priority === "Low") {
       return <Low resource={resource} />;
@@ -33,14 +38,16 @@ const TaskCard = ({ resource }) => {
       return <OnTrack resource={resource} />;
     }
   };
-  
+
   const history = useHistory();
   const location = useLocation()
-  const handleOnClick = (id) => {
+  const handleOnClick = (id, e) => {
     // console.log("clicked");
-    // console.log(location);
+    // console.log("**********",location);
     if (location.pathname === "/my-projects") {
-      history.push(`/projects/${id}/tasks`);
+      history.push(`/projects/${id}`);
+    } else if (location.pathname === "/my-tasks" && e.target.id !== "modal-background") {
+      setShowModal(true)
     }
   };
 
@@ -48,10 +55,15 @@ const TaskCard = ({ resource }) => {
     <div
       className="project-task-div"
       key={resource.id}
-      onClick={() => {
-        handleOnClick(resource.id);
+      onClick={(e) => {
+        handleOnClick(resource.id, e);
       }}
     >
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <TaskModal taskId={resource.id} />
+        </Modal>
+      )}
       <div className="purple-box">
         <div className="project-task-letters">
           {resource.name.split(" ").at(0)?.charAt(0).toUpperCase()}
