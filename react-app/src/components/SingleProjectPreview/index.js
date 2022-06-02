@@ -7,6 +7,7 @@ import ProjectTeamMembers from "../ProjectTeamMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
 import EditProjectModal from "../EditProjectForm";
+import DeleteProjectModal from "../DeleteProjectForm";
 import { viewProject } from "../../store/singleProject";
 import "./index.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
@@ -21,11 +22,12 @@ const SingleProjectPreview = () => {
   const history = useHistory();
 
   const { projectId } = useParams();
-  const sessionUser = useSelector((state) => state.session.user);
   const projects = useSelector((state) => state.projects);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const profileUser = useSelector((state) => state.profile);
   const tasksObj = useSelector((state) => state.tasks);
+  const sessionUser = useSelector((state) => state.session.user);
+
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
@@ -98,56 +100,61 @@ const SingleProjectPreview = () => {
           <DropdownMenu comp="edit" />
         </div>
         {project && (
-          <div className="single-project-view">
-            {/* <EditProjectModal /> */}
-            <div className="tabs">
-              <p onClick={focusTab} className={tabClass.overview}>
-                Overview
-              </p>
-              <p onClick={focusTab} className={tabClass.tasks}>
-                Tasks
-              </p>
-            </div>
-            <div className={`project-description ${dispOverview}`}>
-              <h3>Description</h3>
-              <div className="project-description-box">
-                <p>{project.description}</p>
+          <>
+            <div className="single-project-view">
+              <h1>{project.name}</h1>
+              <EditProjectModal />
+              <DeleteProjectModal />
+              {/* <EditProjectModal /> */}
+              <div className="tabs">
+                <p onClick={focusTab} className={tabClass.overview}>
+                  Overview
+                </p>
+                <p onClick={focusTab} className={tabClass.tasks}>
+                  Tasks
+                </p>
               </div>
-              <div className="progress-container">
-                <div className="progress-bar">
-                  <h3>Progress</h3>
-                  <div className="progress-percent">
-                    <ProgressBar percent={calculatePercentage()} />
+              <div className={`project-description ${dispOverview}`}>
+                <h3>Description</h3>
+                <div className="project-description-box">
+                  <p>{project.description}</p>
+                </div>
+                <div className="progress-container">
+                  <div className="progress-bar">
+                    <h3>Progress</h3>
+                    <div className="progress-percent">
+                      <ProgressBar percent={calculatePercentage()} />
+                    </div>
                   </div>
                 </div>
+                <div className="project-teammates">
+                  <ProjectTeamMembers
+                    members={members?.map(
+                      (memberId) => allUsers[parseInt(memberId)]
+                    )}
+                    projectPage={true}
+                    permissions={sessionUser?.id == project.owner_id}
+                  />
+                </div>
               </div>
-              <div className="project-teammates">
-                <ProjectTeamMembers
-                  members={members?.map(
-                    (memberId) => allUsers[parseInt(memberId)]
+              <div className={`tasks-description ${dispTasks}`}>
+                <ProjectTasksInProgress
+                  tasks={allTasks?.filter(
+                    (task) =>
+                      task.project_id == projectId && task.is_completed == false
                   )}
-                  projectPage={true}
-                  permissions={sessionUser?.id == project.owner_id}
+                  members={members}
+                />
+                <ProjectTasksCompleted
+                  tasks={allTasks?.filter(
+                    (task) =>
+                      task.project_id == projectId && task.is_completed == true
+                  )}
+                  members={members}
                 />
               </div>
             </div>
-            <div className={`tasks-description ${dispTasks}`}>
-              <ProjectTasksInProgress
-                tasks={allTasks?.filter(
-                  (task) =>
-                    task.project_id == projectId && task.is_completed == false
-                )}
-                members={members}
-              />
-              <ProjectTasksCompleted
-                tasks={allTasks?.filter(
-                  (task) =>
-                    task.project_id == projectId && task.is_completed == true
-                )}
-                members={members}
-              />
-            </div>
-          </div>
+          </>
         )}
       </div>
     </>
