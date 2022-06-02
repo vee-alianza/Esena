@@ -28,6 +28,7 @@ const SingleProjectPreview = () => {
   const tasksObj = useSelector((state) => state.tasks);
   const sessionUser = useSelector((state) => state.session.user);
 
+    allUsers[sessionUser.id] = sessionUser
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
@@ -53,7 +54,7 @@ const SingleProjectPreview = () => {
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
     allTasks = Object.values(tasksObj);
-    members = [, project.owner_id, ...project.members];
+    members = [project.owner_id, ...project.members];
   }
   // else if (profileUser && profileUser.projects) {
   //   // console.log(profileUser)
