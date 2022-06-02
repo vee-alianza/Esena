@@ -1,12 +1,22 @@
 .not-found-container{
-    /* width: 300px; */
-    margin: auto;
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 220px; 
 }
 
 .not-found-container img {
     width: 300px;
+    margin: auto;
+}
+
+.not-found-msg {
+    margin: auto;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.not-found-msg span {
+    color: purple
 }
