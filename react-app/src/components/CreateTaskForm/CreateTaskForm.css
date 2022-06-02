@@ -2,12 +2,6 @@
   width: 450px;
 }
 
-.form-inner-container {
-  /* display: flex;
-  flex-direction: column; */
-  /* align-items: center; */
-}
-
 .add-task-form-control {
   padding: 0px 30px;
 }

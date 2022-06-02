@@ -1,0 +1,40 @@
+.edit-profile-form-container {
+  width: 450px;
+}
+
+.edit-profile-form-grouping {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 95.5%;
+  margin-left: 12px;
+}
+
+.edit-profile-form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding: 0px 17px;
+}
+
+.edit-profile-form-control > input {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 35px;
+  padding: 3px 10px;
+  width: 100%;
+}
+
+.edit-profile-form-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.edit-prof-btn {
+  margin: 20px 30px 30px 0px;
+}
+.cncl {
+  margin-right: 15px;
+}

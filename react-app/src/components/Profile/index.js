@@ -51,8 +51,6 @@ const Profile = () => {
     });
   }
 
-
-
   const handleOnClick = (e) => {
     e.stopPropagation();
 
@@ -60,8 +58,7 @@ const Profile = () => {
       setIdToShow(parseInt(e.currentTarget.id));
       setShowModal(true);
     }
-  }
-
+  };
 
   if (!loaded) {
     return null;
@@ -80,13 +77,15 @@ const Profile = () => {
               </div>
             </div>
             <div className="info-card">
-              <div className="username">
-                {user?.first_name} {user?.last_name}
+              <div className="info-card-header">
+                <div className="username">
+                  {user?.first_name} {user?.last_name}
+                </div>
+                {user?.id == sessionUser.id ? <EditProfileModal /> : null}
               </div>
               <div className="occupation">{user?.occupation}</div>
               <div className="email">{user?.email}</div>
               <div className="bio">{user?.bio}</div>
-              {user?.id == sessionUser.id ? <EditProfileModal /> : null}
             </div>
           </div>
 
@@ -132,9 +131,16 @@ const Profile = () => {
                       className="profile-task"
                       key={task.id}
                       id={task.id}
-                      onClick={user.id == sessionUser.id ? (e) => handleOnClick(e) : undefined}
-                      style={{ cursor: user.id == sessionUser.id ? "pointer" : "not-allowed" }}
-                      >
+                      onClick={
+                        user.id == sessionUser.id
+                          ? (e) => handleOnClick(e)
+                          : undefined
+                      }
+                      style={{
+                        cursor:
+                          user.id == sessionUser.id ? "pointer" : "not-allowed",
+                      }}
+                    >
                       {showModal && idToShow === task.id && (
                         <Modal onClose={() => setShowModal(false)}>
                           <TaskModal taskId={idToShow} />
