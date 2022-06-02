@@ -54,7 +54,7 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
           <i className="fa-solid fa-arrows-spin"></i>
         </div>
         {members?.includes(sessionUser.id) ||
-        project.owner_id == sessionUser.id ? (
+        project?.owner_id == sessionUser?.id ? (
           <TableCreateTask projectName={project?.name} />
         ) : null}
       </div>
