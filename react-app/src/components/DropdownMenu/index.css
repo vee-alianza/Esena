@@ -1,0 +1,23 @@
+.dropdown-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    box-sizing: border-box;
+    width: 125px;
+    height: 65px;
+    position: relative;
+    background-color: #FFFFFFFF;;
+    right: 40%;
+    top: 55%;
+    font-size: 14px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.dropdown-menu p {
+    margin: 0;
+}

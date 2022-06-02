@@ -1,0 +1,77 @@
+.form-outer-container {
+  width: 450px;
+}
+
+.add-task-form-control {
+  padding: 0px 30px;
+}
+
+.add-task-form-grouping {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 94.5%;
+  margin-top: 10px;
+  padding-left: 30px;
+}
+
+.second-form-control > input {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 35px;
+  padding: 3px 10px;
+  margin-top: 3px;
+  width: 78.5%;
+}
+
+.third-form-control {
+  width: 47%;
+  margin-left: 13px;
+}
+
+.end-date {
+  width: 46%;
+}
+#assign-member {
+  margin-top: 3px;
+}
+
+.team-member-sel {
+  width: 60%;
+  margin-left: 60px;
+}
+
+.add-task-form-control > input {
+  border: 1px solid rgb(176, 176, 176);
+  border-radius: 5px;
+  height: 35px;
+  padding: 3px 10px;
+  margin-top: 3px;
+  width: 94.5%;
+}
+
+.add-task-footer-btns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.add-task-cancelBtn {
+  background-color: white;
+  border: none;
+  color: gray;
+  margin-right: 20px;
+}
+
+.add-task-cancelBtn:hover {
+  cursor: pointer;
+  color: rgb(54, 54, 54);
+}
+
+.add-task-btn {
+  margin-right: 30px;
+}

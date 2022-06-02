@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./index.css";
 const TeammateSearch = ({
   placeholder,
@@ -6,10 +7,22 @@ const TeammateSearch = ({
   setTeammates,
   teammates,
   allUsers,
+  edit,
 }) => {
   const [searchedVal, setSearchedVal] = useState("");
   const [filteredMembers, setFilteredMembers] = useState([]);
-  const [selectedMembers, setSelectedMembers] = useState(new Set());
+  const [selectedMembers, setSelectedMembers] = useState(
+    edit ? new Set(teammates) : new Set()
+  );
+
+  // console.log(teammates)
+
+  const sessionUser = useSelector((state) => state.session.user);
+  delete allUsers[sessionUser.id];
+  // console.log("users", users)
+  users = users.filter(user => user.id != sessionUser.id);
+  teammates = teammates.filter((user) => user != sessionUser.id);
+  // console.log("after", teammates);
 
   const handleFilter = (e) => {
     setSearchedVal(e.target.value.toLowerCase());
@@ -35,7 +48,6 @@ const TeammateSearch = ({
   };
 
   const handleMemberDelete = (e) => {
-    console.log(selectedMembers);
     const updated = new Set(selectedMembers);
     updated.delete(parseInt(e.target.parentNode.id));
     setSelectedMembers(updated);
@@ -48,14 +60,14 @@ const TeammateSearch = ({
   return (
     <div className="form-teammate-container">
       <div className="names-container">
-        {teammates.length > 0 &&
-          teammates.map((member) => (
+        {teammates?.length > 0 &&
+          teammates?.map((member) => (
             <div
               className="teammate-selected"
               key={`teammember-${member}`}
               id={`${member}`}
             >
-              {`${allUsers[member].first_name} ${allUsers[member].last_name}`}
+              {`${allUsers[member]?.first_name} ${allUsers[member]?.last_name}`}
 
               <i className="fa-solid fa-xmark" onClick={handleMemberDelete}></i>
             </div>
@@ -82,7 +94,7 @@ const TeammateSearch = ({
                   id={member.id}
                   onClick={handleMemberSelect}
                 >
-                  {member.first_name} {member.last_name}
+                  {member?.first_name} {member?.last_name}
                 </div>
               );
             })}

@@ -10,3 +10,8 @@
   color: rgba(255, 0, 0, 0.784);
   background: rgba(245, 189, 191, 0.4);
 }
+
+.completed {
+  color: rgb(100, 161, 15);
+  background: rgba(157, 218, 154, 0.4);
+}

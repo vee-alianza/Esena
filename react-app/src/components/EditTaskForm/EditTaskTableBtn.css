@@ -1,0 +1,9 @@
+.table-edit-btn {
+  background: white;
+  border: none;
+  color: rgb(255, 136, 0);
+}
+
+.table-edit-btn:hover {
+  cursor: pointer;
+}

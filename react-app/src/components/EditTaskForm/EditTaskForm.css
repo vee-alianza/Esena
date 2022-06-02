@@ -1,0 +1,12 @@
+.edit-task-footer-btns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.task-footer-grouping {
+  margin-left: 50px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}

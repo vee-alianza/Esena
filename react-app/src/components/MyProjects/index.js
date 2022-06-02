@@ -15,13 +15,6 @@ const MyProjects = () => {
     return keyA > keyB ? 1 : -1;
   });
 
-  const history = useHistory();
-
-  const handleOnClick = (id) => {
-    console.log("clicked");
-    history.push(`/projects/${id}/tasks`);
-  };
-
   return (
     <div>
       <SideBar />
@@ -35,9 +28,6 @@ const MyProjects = () => {
             // <Link to={`/projects/${project.id}/tasks`}>
             <Card
               resource={project}
-              onClick={() => {
-                handleOnClick(project.id);
-              }}
             />
           ))}
         </div>

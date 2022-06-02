@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import EditProfileModal from "../EditProfileForm";
 import SideBar from "../SideBar";
 import { viewProfile } from "../../store/profile";
+import { Modal } from "../../context/Modal";
+import TaskModal from "../TaskModal/TaskModal";
 
 import "./Profile.css";
 
 const Profile = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [idToShow, setIdToShow] = useState();
   const { userId } = useParams();
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -19,7 +25,7 @@ const Profile = () => {
   useEffect(async () => {
     await dispatch(viewProfile(userId));
     setLoaded(true);
-  }, [dispatch]);
+  }, [dispatch, history.location]);
 
   let projects;
   const projectsObj = useSelector((state) => state.profile.projects);
@@ -45,6 +51,15 @@ const Profile = () => {
     });
   }
 
+  const handleOnClick = (e) => {
+    e.stopPropagation();
+
+    if (e.target.id !== "modal-background") {
+      setIdToShow(parseInt(e.currentTarget.id));
+      setShowModal(true);
+    }
+  };
+
   if (!loaded) {
     return null;
   }
@@ -52,30 +67,34 @@ const Profile = () => {
     <div>
       <SideBar />
       <div className="page-container">
-        <div>
-          <h1 className="home-header">{user?.first_name}'s Profile</h1>
+        <h1 className="home-header">{user?.first_name}'s Profile</h1>
+        <div className="profile-container">
           <div className="profile-card">
             <div className="purple-box">
               <div className="project-task-letters">
-                {user.first_name.charAt(0).toUpperCase()}
-                {user.last_name.charAt(0).toUpperCase()}
+                {user?.first_name.charAt(0).toUpperCase()}
+                {user?.last_name.charAt(0).toUpperCase()}
               </div>
             </div>
             <div className="info-card">
-              <div className="username">
-                {user?.first_name} {user?.last_name}
+              <div className="info-card-header">
+                <div className="username">
+                  {user?.first_name} {user?.last_name}
+                </div>
+                {user?.id == sessionUser.id ? <EditProfileModal /> : null}
               </div>
               <div className="occupation">{user?.occupation}</div>
               <div className="email">{user?.email}</div>
               <div className="bio">{user?.bio}</div>
-              {user.id == sessionUser.id ? <EditProfileModal /> : null}
             </div>
           </div>
 
           <div className="profile-project-card">
-            <h2>Projects</h2>
             <div className="profile-project-card-inner">
-              <div className="recent-header">Recent public projects</div>
+              <div className="profile-project-card-header">
+                <h2>Projects</h2>
+                <p>Recent public projects</p>
+              </div>
               <div className="profile-project">
                 {projects.length > 0 ? (
                   projects.slice(0, 8).map((project) => (
@@ -100,13 +119,33 @@ const Profile = () => {
             </div>
           </div>
           <div className="profile-project-card">
-            <h2>Tasks</h2>
             <div className="profile-project-card-inner">
-              <div className="recent-header">Recent tasks</div>
+              <div className="profile-project-card-header">
+                <h2>Tasks</h2>
+                <p>Recent tasks</p>
+              </div>
               <div className="profile-project">
                 {tasks.length > 0 ? (
                   tasks.slice(0, 8).map((task) => (
-                    <div className="profile-task" key={task.id}>
+                    <div
+                      className="profile-task"
+                      key={task.id}
+                      id={task.id}
+                      onClick={
+                        user.id == sessionUser.id
+                          ? (e) => handleOnClick(e)
+                          : undefined
+                      }
+                      style={{
+                        cursor:
+                          user.id == sessionUser.id ? "pointer" : "not-allowed",
+                      }}
+                    >
+                      {showModal && idToShow === task.id && (
+                        <Modal onClose={() => setShowModal(false)}>
+                          <TaskModal taskId={idToShow} />
+                        </Modal>
+                      )}
                       <div className="task-icon">
                         <div className="circle-icon">
                           <i className="fa-regular fa-circle-check fa-lg"></i>
