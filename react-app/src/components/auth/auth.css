@@ -1,5 +1,3 @@
-
-
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -11,6 +9,53 @@
     left: 50%
 }
 
+.auth-form.signup {
+    top: 25%
+}
+
+.auth-form input {
+    height: 30px;
+    margin-bottom: 10px;
+    width: 96%;
+    padding-left: 8px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.auth-form textarea {
+    resize: none;
+    height: 80px;
+    margin-bottom: 10px;
+    width: 96%;
+    padding-left: 8px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+
+.auth-form input, textarea:focus {
+    outline: none;
+}
+
 .auth-form button {
+    height: 30px;
+    width:100%;
     cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: #9b71c58f;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.auth-form-link {
+    margin: auto;
+    font-size: 12px;
+    color: rgb(183, 183, 225)
+}
+
+#demo-btn {
+    color: white;
+    background-color: rgb(218, 186, 9);
+    border-color: #9b71c58f;
 }
