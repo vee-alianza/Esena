@@ -39,6 +39,7 @@ const CreateProjectForm = ({ setShowModal }) => {
     e.preventDefault();
 
     if (!validationErrors.length) {
+      console.log("*****8", teammates)
       const payload = {
         name,
         description,
@@ -49,6 +50,7 @@ const CreateProjectForm = ({ setShowModal }) => {
         status_id: parseInt(status),
         members: teammates.filter((user) => user != session.id).join(" "),
       };
+      console.log(payload)
       dispatch(addProject(payload, session.id));
       setShowModal(false);
     }
