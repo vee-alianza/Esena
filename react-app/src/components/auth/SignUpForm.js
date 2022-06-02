@@ -66,7 +66,10 @@ const SignUpForm = () => {
 
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
+      <Link to="/login" exact={true} className="corner-login-signup-btn">
+        <span>Log In</span>
+      </Link>
       <form onSubmit={onSignUp} className="auth-form signup">
         <div>
           {errors.map((error, ind) => (

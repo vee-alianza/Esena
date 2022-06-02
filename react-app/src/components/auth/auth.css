@@ -1,3 +1,17 @@
+.corner-login-signup-btn {
+    position: absolute;
+    top: 15px;
+    right: 8%;
+    border: 1px solid rgb(223, 157, 24);
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 15px;
+}
+
+.corner-login-signup-btn span {
+    color: rgb(223, 157, 24);
+}
+
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -56,6 +70,6 @@
 
 #demo-btn {
     color: white;
-    background-color: rgb(218, 186, 9);
+    background-color: rgb(223, 193, 24);
     border-color: #9b71c58f;
 }

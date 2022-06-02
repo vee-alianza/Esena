@@ -43,7 +43,13 @@ const LoginForm = () => {
 
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
+      <Link to="/sign-up" exact={true} className="corner-login-signup-btn">
+        <span>Sign Up</span>
+      </Link>
+      <div className="image-container">
+
+      </div>
       <form onSubmit={onLogin} className="auth-form login">
         <div>
           {errors.map((error, ind) => (
@@ -74,9 +80,13 @@ const LoginForm = () => {
           <button type="submit">Login</button>
         </div>
         <div>
-          <button id="demo-btn" onClick={loginDemo}>Demo User</button>
+          <button id="demo-btn" onClick={loginDemo}>
+            Demo User
+          </button>
         </div>
-        <Link to="/sign-up" className="auth-form-link">Do not have an account? Sign Up!</Link>
+        <Link to="/sign-up" className="auth-form-link">
+          Do not have an account? Sign Up!
+        </Link>
       </form>
     </div>
   );
