@@ -104,8 +104,6 @@ const SingleProjectPreview = () => {
         </div>
         {project && (
           <div className="single-project-view">
-            {/* <EditProjectModal /> */}
-            <DeleteProjectModal />
             <div className="tabs">
               <p onClick={focusTab} className={tabClass.overview}>
                 Overview
