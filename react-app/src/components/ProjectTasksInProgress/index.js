@@ -1,7 +1,7 @@
 import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import CreateTaskModal from "../CreateTaskForm";
+import TableCreateTask from "../CreateTaskForm/TableCreateTask.js";
 import EditTaskTableBtn from "../EditTaskForm/EditTaskTableBtn";
 import DeleteTaskTableBtn from "../DeleteTaskForm/DeleteTaskTableBtn";
 import SingleTask from "../TaskModal/SingleTaskFromProject";
@@ -16,7 +16,6 @@ import "./index.css";
 const ProjectTasksInProgress = ({ tasks, members }) => {
   const { projectId } = useParams();
   const project = useSelector((state) => state.projects[projectId]);
-  //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
@@ -49,12 +48,14 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
 
   return (
     <div>
-      <div className="table-header-section">
-        <h2>In Progress</h2>
-        <i className="fa-solid fa-arrows-spin"></i>
-        {/* {members?.includes(sessionUser.id) ? (
-          <CreateTaskModal projectName={project?.name} />
-        ) : null} */}
+      <div className="table-header-section progress-header">
+        <div className="progress-header-title">
+          <h2>In Progress</h2>
+          <i className="fa-solid fa-arrows-spin"></i>
+        </div>
+        {members?.includes(sessionUser.id) ? (
+          <TableCreateTask projectName={project?.name} />
+        ) : null}
       </div>
       <table className="progress-table">
         <tr className="progress-table-header">

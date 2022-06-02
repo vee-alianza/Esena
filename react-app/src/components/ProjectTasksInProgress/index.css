@@ -3,11 +3,22 @@
   flex-direction: row;
   align-items: center;
 }
-
-.table-header-section > h2 {
+.progress-header-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.progress-header-title > h2 {
   font-weight: 500;
   font-size: 18px;
   color: rgb(102, 102, 102);
+}
+
+.progress-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .fa-arrows-spin {

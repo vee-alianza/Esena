@@ -1,7 +1,11 @@
 .completed-section {
   margin-top: 20px;
 }
-.fa-circle-check {
+.table-check {
   color: gray;
   margin-left: 6px;
+}
+
+.task-name-cell {
+  font-weight: 600;
 }
