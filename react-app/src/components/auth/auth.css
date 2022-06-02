@@ -6,7 +6,8 @@
 
 .left-image-container {
     /* background-image: url("/images/login-left.png"); */
-    width: 500px;
+    width: 512px;
+    height: 100%;
 }
 
 .logo-left-image {
@@ -24,14 +25,14 @@
 }
 
 .corner-login-signup-btn {
-    border: 1px solid rgb(223, 157, 24);
+    border: 1px solid #EB7623FF;
     border-radius: 6px;
     padding: 5px 8px;
     font-size: 15px;
 }
 
 .corner-login-signup-btn span {
-    color: rgb(223, 157, 24);
+    color: #EB7623FF;
 }
 
 .login-signup-msg {
@@ -96,6 +97,10 @@
     margin-top: 10px;
     font-size: 14px;
     color: rgb(183, 183, 225)
+}
+
+.auth-form-link span {
+    color: #EB7623FF;
 }
 
 #demo-btn {

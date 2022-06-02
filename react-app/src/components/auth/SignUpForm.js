@@ -158,7 +158,7 @@ const SignUpForm = () => {
         </div>
         <button type="submit">Sign Up</button>
         <Link to="/login" className="auth-form-link">
-          Already have an account? Log In!
+          Already have an account? <span>Log In!</span>
         </Link>
       </form>
     </div>
