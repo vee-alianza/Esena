@@ -40,9 +40,9 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
     { label: "High", value: "3" },
   ];
   const statusOptions = [
-    { label: "On Track", value: "1" },
+    { label: "Off Track", value: "1" },
     { label: "At Risk", value: "2" },
-    { label: "Off Track", value: "3" },
+    { label: "On Track", value: "3" },
   ];
 
   const handleSubmit = async (e) => {
@@ -58,7 +58,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
         assignee_id: parseInt(assignee),
         // is_completed: isCompleted
       };
-      //   console.log(payload);
+      console.log(payload);
 
       dispatch(editTask(payload, taskId));
 
@@ -75,7 +75,8 @@ const EditTaskForm = ({ setShowModal, taskId, projectName }) => {
       );
     setValidationErrors(errors);
   }, [name, description]);
-
+  console.log(assignee);
+  console.log(assigneeOptions);
   return (
     <div className="form-outer-container">
       <div className="form-header">

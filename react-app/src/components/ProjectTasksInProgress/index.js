@@ -35,6 +35,7 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
   };
 
   const renderStatus = (resource) => {
+    console.log(resource);
     if (resource.status === "Off track") {
       return <OffTrack resource={resource} />;
     }
@@ -53,7 +54,8 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
           <h2>In Progress</h2>
           <i className="fa-solid fa-arrows-spin"></i>
         </div>
-        {members?.includes(sessionUser.id) ? (
+        {members?.includes(sessionUser.id) ||
+        project?.owner_id == sessionUser?.id ? (
           <TableCreateTask projectName={project?.name} />
         ) : null}
       </div>
@@ -71,8 +73,6 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
             <td>
               <SingleTask taskName={task.name} taskId={task.id} />
             </td>
-            {/* <td>{users[task.assignee_id].first_name}</td> */}
-            {/* <td>{task.name}</td> */}
             <td>
               <Link to={`/profile/${task.assignee_id}`}>
                 {users[task.assignee_id]?.first_name}

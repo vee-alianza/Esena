@@ -4,7 +4,7 @@ import { Modal } from "../../context/Modal";
 import "./EditProjectForm.css";
 
 
-const EditProjectModal = () => {
+const EditProjectModal = ({ setIsClicked }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -13,8 +13,8 @@ const EditProjectModal = () => {
         Edit Project
       </button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <EditProjectForm setShowModal={setShowModal} />
+        <Modal onClose={() => {setIsClicked(false); setShowModal(false)}}>
+          <EditProjectForm setShowModal={setShowModal} setIsClicked={setIsClicked} />
         </Modal>
       )}
     </>
