@@ -8,7 +8,7 @@ const MyProjectCreateSVG = () => {
   return (
     <>
       <svg
-        class="w-6 h-6"
+        className="w-6 h-6"
         fill="#9095a0"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
