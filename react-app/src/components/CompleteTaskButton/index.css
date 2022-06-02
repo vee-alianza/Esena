@@ -1,0 +1,23 @@
+.completed-btn {
+  height: 36px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 22px;
+  color: #ffffffff;
+  background: #25bb2aff;
+  opacity: 1;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-left: 4px;
+  font-weight: 600;
+}
+
+.completed-btn:hover {
+  color: #ffffffff;
+  background: #1f9e23ff;
+  cursor: pointer;
+}
