@@ -95,7 +95,10 @@ const SingleProjectPreview = () => {
 
         <div className="project-page-header">
           <h1>{project.name}</h1>
-          <DropdownMenu comp="edit" />
+          <DropdownMenu
+            comp="edit"
+            permissions={sessionUser?.id == project.owner_id}
+          />
         </div>
         {project && (
           <div className="single-project-view">

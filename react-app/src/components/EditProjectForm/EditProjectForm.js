@@ -7,7 +7,7 @@ import { addProject, updateProject } from "../../store/projects";
 import TeammateSearch from "../TeammateSearch";
 import "./EditProjectForm.css";
 
-const EditProjectForm = ({ setShowModal }) => {
+const EditProjectForm = ({ setShowModal, setIsClicked }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
@@ -73,7 +73,7 @@ const EditProjectForm = ({ setShowModal }) => {
   }, [name, description]);
 
   return (
-    <div className="form-container">
+    <div className="form-container" id="edit-form">
       <div className="form-header">
         <h1>Edit Project</h1>
       </div>
@@ -170,7 +170,9 @@ const EditProjectForm = ({ setShowModal }) => {
             <button
               className="cancelBtn"
               type="cancel"
-              onClick={(e) => {e.preventDefault(); setShowModal(false)}}
+              onClick={(e) => {e.preventDefault();
+                              setIsClicked(false);
+                              setShowModal(false)}}
             >
               Cancel
             </button>
