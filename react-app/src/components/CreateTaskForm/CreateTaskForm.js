@@ -86,7 +86,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
             ></input>
           </div>
           <div className="add-task-form-grouping">
-            <div className="add-task-form-control">
+            <div className="second-form-control">
               <label>End Date</label>
               <input
                 type="date"
@@ -96,14 +96,15 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
               />
             </div>
 
-            <div className="add-task-form-control">
+            <div className="third-form-control">
               <label>Assign Team Member</label>
               <Select
+                id="assign-member"
                 name="assignee_id"
                 options={assigneeOptions}
                 value={assignee.value}
                 onChange={(option) => setAssignee(option.value)}
-                placeholder="Select a team member..."
+                placeholder="Select a member..."
               />
             </div>
           </div>
@@ -137,12 +138,14 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
             ></textarea>
           </div>
         </div>
-        <button className="cancelBtn" type="cancel">
-          Cancel
-        </button>
-        <button className="submitBtn" type="submit">
-          Create
-        </button>
+        <div className="add-task-footer-btns">
+          <button className="add-task-cancelBtn" type="cancel">
+            Cancel
+          </button>
+          <button className="submitBtn add-task-btn" type="submit">
+            Create
+          </button>
+        </div>
       </form>
     </div>
   );
