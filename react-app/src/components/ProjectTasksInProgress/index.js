@@ -53,7 +53,8 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
           <h2>In Progress</h2>
           <i className="fa-solid fa-arrows-spin"></i>
         </div>
-        {members?.includes(sessionUser.id) ? (
+        {members?.includes(sessionUser.id) ||
+        project.owner_id == sessionUser.id ? (
           <TableCreateTask projectName={project?.name} />
         ) : null}
       </div>
