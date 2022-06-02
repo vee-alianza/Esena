@@ -15,10 +15,14 @@ const TeammateSearch = ({
     edit ? new Set(teammates) : new Set()
   );
 
+  // console.log(teammates)
+
   const sessionUser = useSelector((state) => state.session.user);
   delete allUsers[sessionUser.id];
   // console.log("users", users)
-  users = users?.filter(user => user.id != sessionUser.id);
+  users = users.filter(user => user.id != sessionUser.id);
+  teammates = teammates.filter((user) => user != sessionUser.id);
+  // console.log("after", teammates);
 
   const handleFilter = (e) => {
     setSearchedVal(e.target.value.toLowerCase());
