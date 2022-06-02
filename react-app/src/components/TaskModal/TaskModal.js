@@ -8,7 +8,7 @@ import High from "../Priorities/High";
 import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
-import { addComment, editComment } from "../../store/comments";
+import { addComment, editComment, deleteComment } from "../../store/comments";
 
 const TaskModal = ({taskId}) => {
 
@@ -132,6 +132,20 @@ const TaskModal = ({taskId}) => {
         setEditId(e.target.id);
     }
 
+    const handleDeleteClick = async (commentId) => {
+        console.log(commentId);
+        const res = await dispatch(deleteComment(commentId));
+
+        if (!Array.isArray(res)) {
+            setCommentContent("");
+            setErrors([]);
+            setIsEdit(false);
+            setEditId();
+        } else {
+            const errors = res.map(error => error.split(":")[1].slice(1));
+            setErrors(errors);
+        }
+    }
 
     return (
         <div className="task-container">
@@ -180,7 +194,10 @@ const TaskModal = ({taskId}) => {
                                             className="fa-solid fa-pencil"
                                             onClick={(e) => handleEditCommentClick(e, comment?.content)}
                                         ></i>
-                                        <i className="fa-solid fa-trash"></i>
+                                        <i
+                                            className="fa-solid fa-trash"
+                                            onClick={(e) => handleDeleteClick(comment?.id)}
+                                        ></i>
                                     </div>
                                 </div>
                                 <p>{comment?.content}</p>
