@@ -79,8 +79,8 @@ function App() {
     <BrowserRouter>
       {/* <NavBar /> */}
       <Switch>
-        <Route path="/start" exact={true}>
-          <SplashPage />
+        <Route path="/" exact={true}>
+          { session? <HomePage /> : <SplashPage /> }
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -94,9 +94,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute> */}
-        <ProtectedRoute path="/" exact={true}>
+        {/* <ProtectedRoute path="/" exact={true}>
           <HomePage />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path="/my-tasks" exact={true}>
           <MyTasks />
         </Route>
