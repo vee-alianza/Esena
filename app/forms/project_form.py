@@ -1,15 +1,30 @@
+from xml.dom import ValidationErr
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, DateField, BooleanField, SelectField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length, ValidationError
+from datetime import date
 
 class ProjectForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired()])
-    description = TextAreaField("description", validators=[DataRequired()])
+    name = StringField("name", validators=[DataRequired(),\
+                                           Length(max=255, message="The name should be less than 255 characters")])
+    description = TextAreaField("description", validators=[DataRequired(),\
+                                                           Length(max=2000, message="The description should be less than 2000 characters")])
     start_date = DateField("start_date", validators=[DataRequired()])
     end_date = DateField("end_date", validators=[DataRequired()])
     is_private = BooleanField("is_private")
     priority_id = SelectField("priority", choices=[1, 2, 3])
     status_id = SelectField("status", choices=[1, 2, 3])
     members = StringField("members", validators=[DataRequired()])
-    #for test only:
-    submit = SubmitField("Create Project")
+
+    def validate_start_date(form, field):
+            if (field.data < date.today()):
+                raise ValidationError('Start date cannot be in the past')
+
+
+    def validate_end_date(form, field):
+            if (field.data < date.today()):
+                raise ValidationError('End date cannot be in the past')
+
+    def validate_end_date(form, field):
+            if (field.data < form.start_date.data):
+                raise ValidationError('End date must come after start date')
