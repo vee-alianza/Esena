@@ -60,13 +60,15 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
         ) : null}
       </div>
       <table className="progress-table">
-        <thead className="progress-table-header">
+        <thead>
+        <tr className="progress-table-header">
           <th>TASK NAME</th>
           <th>ASSIGNEE</th>
           <th>DUE DATE</th>
           <th>PRIORITY</th>
           <th>STATUS</th>
           <th></th>
+        </tr>
         </thead>
         <tbody>
         {tasks?.map((task) => (

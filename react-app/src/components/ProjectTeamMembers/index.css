@@ -29,10 +29,12 @@
   padding: 0px 20px;
 }
 
-.fa-pencil {
+.fa-pencil,
+.fa-trash {
   color: gray;
 }
 
-.fa-pencil:hover {
+.fa-pencil:hover,
+.fa-trash:hover {
   cursor: pointer;
 }
