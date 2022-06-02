@@ -1,171 +1,169 @@
 .project-name-hover {
-    cursor: pointer;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  margin-left: 15px;
 }
 
 .task-container {
-    width: 525px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 6px;
-    box-shadow: 0px 0px 1px #282e37, 0px 0px 2px #282e37;
+  width: 525px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0px 0px 1px #282e37, 0px 0px 2px #282e37;
 }
 
 .task-overview {
-    margin: 40px 30px 40px 30px;
+  margin: 40px 30px 40px 30px;
 }
 
 .task-name {
-    font-size: 32px;
-    line-height: 48px;
-    color: #282E37FF;
-    font-weight: bold;
-    align-self: center;
-    margin-bottom: 40px;
+  font-size: 32px;
+  line-height: 48px;
+  color: #282e37ff;
+  font-weight: bold;
+  align-self: center;
+  margin-bottom: 40px;
 }
 
 .about-task {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 15px;
-    font-size: 16px;
-    line-height: 26px;
-    color: #2E343FFF;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #2e343fff;
 }
 
 .about-task i {
-    color: #9095A0;
-    margin-right: 5px;
+  color: #9095a0;
+  margin-right: 5px;
 }
 
 .comments {
-    background: #F8F9FAFF;
-    border-radius: 0px;
-    border-width: 1px;
-    border-color: #DEE1E6FF;
-    border-style: solid;
-    padding: 20px 30px;
-    padding: 50px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+  background: #f8f9faff;
+  border-radius: 0px;
+  border-width: 1px;
+  border-color: #dee1e6ff;
+  border-style: solid;
+  padding: 20px 30px;
+  padding: 50px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .comments > p {
-    margin: 0;
-    margin-bottom: 20px;
+  margin: 0;
+  margin-bottom: 20px;
 }
 
 .comments-container-empty {
-    height: fit-content;
+  height: fit-content;
 }
 
 .comments-container-full {
-    height: 180px;
-    overflow-y: scroll;
+  height: 180px;
+  overflow-y: scroll;
 }
 
 .comment {
-    border-top: 1px solid #DEE1E6FF;
-    display: flex;
-    padding: 20px 20px;
+  border-top: 1px solid #dee1e6ff;
+  display: flex;
+  padding: 20px 20px;
 }
 
 .comment-content {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: space-around;
-    width: 80%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-around;
+  width: 80%;
 }
 
 .comment-header {
-    display: flex;
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 }
 
 .comment-header > .date {
-    margin-left: 10px;
-    font-size: 11px;
-    line-height: 18px;
-    color: #9095A0FF;
+  margin-left: 10px;
+  font-size: 11px;
+  line-height: 18px;
+  color: #9095a0ff;
 }
 
 .comment-content .author-name {
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 22px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 22px;
 }
 
 .comment-content p {
-    margin: 0;
+  margin: 0;
 }
 
 .comment-error {
-    color: red;
-    font-size: 13px;
-    margin-left: 70px;
+  color: red;
+  font-size: 13px;
+  margin-left: 70px;
 }
 
 .comment-input {
-    padding: 20px 20px;
-    border-top: 1px solid #DEE1E6FF;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+  padding: 20px 20px;
+  border-top: 1px solid #dee1e6ff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .comment-input-container {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .comment-input-container textarea {
-    width: 83%;
-    border-radius: 6px;
-    height: 35px;
-    resize: none;
-    overflow-y: auto;
-    padding: 5px;
-    font-family: -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        Helvetica,
-        Arial,
-        sans-serif;
+  width: 83%;
+  border-radius: 6px;
+  height: 35px;
+  resize: none;
+  overflow-y: auto;
+  padding: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .comment-input button {
-    width: 72px;
-    height: 29px;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    line-height: 20px;
-    color: #FFFFFFFF;
-    background: #C58AE7FF;
-    opacity: 1;
-    border: none;
-    border-radius: 4px;
-    margin-top: 5px;
-    align-self: flex-end;
+  width: 72px;
+  height: 29px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: #ffffffff;
+  background: #c58ae7ff;
+  opacity: 1;
+  border: none;
+  border-radius: 4px;
+  margin-top: 5px;
+  align-self: flex-end;
 }
 
 .comment-input button:hover {
-    cursor: pointer;
-    color: #FFFFFFFF;
-    background: #B56BE1FF;
+  cursor: pointer;
+  color: #ffffffff;
+  background: #b56be1ff;
 }
 
-.comment-input button:hover:active{
-    color: #FFFFFFFF;
-    background: #A74DDBFF;
+.comment-input button:hover:active {
+  color: #ffffffff;
+  background: #a74ddbff;
 }
 
 .comment-input button:disabled {
-    opacity: 0.4;
+  opacity: 0.4;
 }
