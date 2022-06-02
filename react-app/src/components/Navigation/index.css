@@ -1,5 +1,5 @@
 nav {
-    height: 40px;
+    height: 35px;
     display: flex;
     /* justify-content: space-around; */
     padding-left: 30px;
@@ -8,11 +8,12 @@ nav {
     left: 0;
     top: 0;
     width: 100%;
-    padding-top: 15px;
+    padding-top: 14px;
     z-index: 1;
     /* opacity: 0.9; */
-    background-color: #9b71c58f;
+    background-color: #9464c58f;
     color: white;
+    font-weight: bold;
 }
 
 .nav-home-btn {
