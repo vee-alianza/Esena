@@ -28,7 +28,7 @@ const SingleProjectPreview = () => {
   const tasksObj = useSelector((state) => state.tasks);
   const sessionUser = useSelector((state) => state.session.user);
 
-    allUsers[sessionUser?.id] = sessionUser
+  allUsers[sessionUser?.id] = sessionUser;
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
@@ -54,7 +54,7 @@ const SingleProjectPreview = () => {
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
     allTasks = Object.values(tasksObj);
-    allTasks = allTasks?.filter(task => task.project_id == project.id);
+    allTasks = allTasks?.filter((task) => task.project_id == project.id);
     members = [project.owner_id, ...project.members];
   }
   // else if (profileUser && profileUser.projects) {
@@ -76,7 +76,12 @@ const SingleProjectPreview = () => {
         numCompleted++;
       }
     });
-    return Math.floor((numCompleted / allTasks?.length) * 100);
+
+    if (allTasks && allTasks.length) {
+      return Math.floor((numCompleted / allTasks?.length) * 100);
+    } else {
+      return 0;
+    }
   };
 
   const focusTab = (e) => {
