@@ -38,7 +38,8 @@ const TaskModal = ({taskId}) => {
     }
 
     const getInitials = id => {
-        const comment_author = users[id]
+
+        const comment_author = cur_user.id === id ? cur_user : users[id];
         const author_initials = comment_author?.first_name.slice(0, 1) + comment_author?.last_name.slice(0, 1)
 
         return author_initials
@@ -165,7 +166,7 @@ const TaskModal = ({taskId}) => {
                     {comments_arr?.map((comment, idx) => (
                         <div className="comment" key={idx}>
                             <div className="person-circle-icon">
-                                <p>{getInitials(comment.author_id)}</p>
+                                <p>{getInitials(comment?.author_id)}</p>
                             </div>
                             <div className="comment-content">
                                 <div className="comment-header">
