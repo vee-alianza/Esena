@@ -39,9 +39,9 @@ const EditProjectForm = ({ setShowModal }) => {
     { label: "High", value: "3" },
   ];
   const statusOptions = [
-    { label: "On Track", value: "1" },
+    { label: "Off Track", value: "1" },
     { label: "At Risk", value: "2" },
-    { label: "Off Track", value: "3" },
+    { label: "On Track", value: "3" },
   ];
 
   const handleSubmit = async (e) => {
@@ -170,7 +170,10 @@ const EditProjectForm = ({ setShowModal }) => {
             <button
               className="cancelBtn"
               type="cancel"
-              onClick={(e) => {e.preventDefault(); setShowModal(false)}}
+              onClick={(e) => {
+                e.preventDefault();
+                setShowModal(false);
+              }}
             >
               Cancel
             </button>
