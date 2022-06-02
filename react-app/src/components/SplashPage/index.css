@@ -1,9 +1,224 @@
 .splash-container {
-    position: absolute;
-    top:0;
-    /* background-color: pink; */
-    width: 100%;
-    height: 100vh;
-    background-image: url("https://assets.asana.biz/m/1eccac9527e95526/original/article-project-management-project-administrator-2x.jpg");
-    background-size: cover;
+  position: absolute;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  /* background-image: url("https://assets.asana.biz/m/1eccac9527e95526/original/article-project-management-project-administrator-2x.jpg"); */
+  /* background-size: cover; */
+  overflow-x: hidden;
+}
+
+.splash-body-container {
+  position: absolute;
+  top: 78px;
+  width: 100%;
+  height: 100vh;
+}
+
+.first-display {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.first-display-left-text {
+  width: 40%;
+  padding: 30px;
+  margin-left: 30px;
+  margin-top: 100px;
+}
+
+.first-display-left-text > h1 {
+  font-size: 40px;
+}
+
+.first-display-left-text > p {
+  line-height: 30px;
+  color: gray;
+}
+
+.splash-divider {
+  margin-top: 30px;
+  height: 0px;
+
+  border: 0.5px solid rgba(182, 182, 182, 0.4);
+
+  width: 40%;
+  transform: rotate(0.01deg);
+}
+
+.splash-image-box {
+  height: 650px;
+  width: 35%;
+  background-color: rgb(238, 235, 234);
+}
+
+.splash-image-box > img:nth-child(1) {
+  position: absolute;
+  top: 100px;
+  right: 70px;
+  width: 25%;
+}
+
+.splash-image-box > img:nth-child(2) {
+  position: absolute;
+  top: 120px;
+  right: 290px;
+  width: 30%;
+}
+
+#splash-task-1 {
+  background-color: white;
+  position: absolute;
+  top: 100px;
+  right: 470px;
+  border: 1px solid rgb(223, 223, 223);
+  z-index: 100;
+  border-radius: 10px;
+  height: 40px;
+  width: 200px;
+  font-size: 15px;
+}
+
+.splash-check {
+  margin-right: 15px;
+}
+
+#splash-task-2 {
+  background-color: white;
+  position: absolute;
+  top: 500px;
+  right: 240px;
+  border: 1px solid rgb(223, 223, 223);
+  z-index: 100;
+  border-radius: 10px;
+  height: 40px;
+  width: 300px;
+  font-size: 15px;
+}
+
+#splash-task-3 {
+  background-color: white;
+  position: absolute;
+  top: 130px;
+  right: 20px;
+  border: 1px solid rgb(223, 223, 223);
+  z-index: 100;
+  border-radius: 10px;
+  height: 40px;
+  width: 300px;
+  font-size: 15px;
+}
+
+.second-display {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 500px;
+}
+
+.second-display-left-text {
+  width: 35%;
+  padding: 30px;
+  margin-left: 30px;
+  margin-top: 100px;
+}
+
+.second-display-left-text > p:nth-child(1) {
+  letter-spacing: 0.1em;
+  color: gray;
+}
+
+.second-display-left-text > h3 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 45px;
+  letter-spacing: 0.001em;
+}
+
+.second-display-left-text > p:nth-child(3) {
+  letter-spacing: 0.001em;
+  line-height: 30px;
+  font-size: 20px;
+  color: gray;
+}
+.splash-image-box-2 {
+  width: 40%;
+  height: 500px;
+}
+.splash-image-box-2 > img {
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  width: 700px;
+}
+
+.third-display {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 500px;
+}
+
+.third-display-left-text {
+  width: 35%;
+  padding: 30px;
+  margin-left: 30px;
+  margin-top: 100px;
+}
+
+.splash-image-box-3 > img {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  width: 700px;
+}
+
+.third-display-left-text > h3 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 45px;
+  letter-spacing: 0.001em;
+}
+
+.third-display-left-text > p:nth-child(2) {
+  letter-spacing: 0.001em;
+  line-height: 30px;
+  font-size: 20px;
+  color: gray;
+}
+
+.third-display-left-text > p:nth-child(3) {
+  letter-spacing: 0.001em;
+  line-height: 30px;
+  font-size: 20px;
+  color: black;
+}
+
+.toggle {
+  position: relative;
+}
+
+.toggle::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 4px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.toggle:hover::after {
+  transform: scaleX(1);
 }
