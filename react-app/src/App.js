@@ -4,25 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import SingleProjectPreview from "./components/SingleProjectPreview";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navigation";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
-import CreateProjectModal from "./components/CreateProjectForm";
-import CreateTaskModal from "./components/CreateTaskForm";
 import MyTasks from "./components/MyTasks";
 import MyProjects from "./components/MyProjects";
-import ProjectTasksInProgress from "./components/ProjectTasksInProgress";
-import ProjectTasksCompleted from "./components/ProjectTasksCompleted";
 import Profile from "./components/Profile";
-import ProfileProjectOverview from "./components/ProfileProjectOverview";
 import SideBar from "./components/SideBar";
 import HomePage from "./components/HomePage";
 import { authenticate } from "./store/session";
 import { getProject, setProjects } from "./store/projects";
 import { setTasks } from "./store/tasks";
 import { setAllUsers, setTeammates } from "./store/teammates";
-import { setComments } from "./store/comments";
+import { setComments } from "./store/comments"
+import FrontPage from "./components/FrontPage";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -85,18 +80,21 @@ function App() {
     <BrowserRouter>
       {/* <NavBar /> */}
       <Switch>
+        <Route path="/start" exact={true}>
+          <SplashPage />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
+        {/* <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path="/" exact={true}>
           <HomePage />
         </ProtectedRoute>
@@ -110,19 +108,19 @@ function App() {
         <Route path="/my-projects" exact={true}>
           <MyProjects />
         </Route>
-        <Route path="/projects/:projectId/tasks" exact={true}>
+        {/* <Route path="/projects/:projectId/tasks" exact={true}>
           <ProjectTasksInProgress />
           <ProjectTasksCompleted />
-        </Route>
+        </Route> */}
         <Route path="/projects/:projectId" exact={true}>
           <SingleProjectPreview />
         </Route>
         <Route path="/profile/:userId" exact={true}>
           <Profile />
         </Route>
-        <Route path="/profile/:userId/projects/:projectId" exact={true}>
+        {/* <Route path="/profile/:userId/projects/:projectId" exact={true}>
           <ProfileProjectOverview />
-        </Route>
+        </Route> */}
       </Switch>
     </BrowserRouter>
   );

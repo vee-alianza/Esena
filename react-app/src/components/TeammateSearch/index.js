@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./index.css";
 const TeammateSearch = ({
   placeholder,
@@ -13,6 +14,11 @@ const TeammateSearch = ({
   const [selectedMembers, setSelectedMembers] = useState(
     edit ? new Set(teammates) : new Set()
   );
+
+  const sessionUser = useSelector((state) => state.session.user);
+  delete allUsers[sessionUser.id];
+  // console.log("users", users)
+  users = users?.filter(user => user.id != sessionUser.id);
 
   const handleFilter = (e) => {
     setSearchedVal(e.target.value.toLowerCase());
