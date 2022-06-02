@@ -47,7 +47,7 @@ const CreateProjectForm = ({ setShowModal }) => {
         is_private: isPrivate,
         priority_id: parseInt(priority),
         status_id: parseInt(status),
-        members: teammates.join(" "),
+        members: teammates.filter((user) => user != session.id).join(" "),
       };
       dispatch(addProject(payload, session.id));
       setShowModal(false);

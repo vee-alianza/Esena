@@ -11,7 +11,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
-  //   const session = useSelector((state) => state.session.user);
+  const session = useSelector((state) => state.session.user);
   const projects = useSelector((state) => state.projects);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const allUserObjects = Object.values(allUsers);
@@ -56,7 +56,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
         is_private: isPrivate,
         priority_id: parseInt(priority),
         status_id: parseInt(status),
-        members: teammates.join(" "),
+        members: teammates.filter(use => use.id != session.id).join(" "),
       };
       dispatch(updateProject(payload, projectId));
       setShowModal(false);
