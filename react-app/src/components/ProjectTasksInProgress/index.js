@@ -2,37 +2,71 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import CreateTaskModal from "../CreateTaskForm";
-import EditTaskModal from "../EditTaskForm";
-import DeleteTaskModal from "../DeleteTaskForm";
-import SingleTask from "../TaskModal/SingleTaskFromProject"
-// import "./MyTasks.css";
+import EditTaskTableBtn from "../EditTaskForm/EditTaskTableBtn";
+import DeleteTaskTableBtn from "../DeleteTaskForm/DeleteTaskTableBtn";
+import SingleTask from "../TaskModal/SingleTaskFromProject";
+import Low from "../Priorities/Low";
+import Medium from "../Priorities/Medium";
+import High from "../Priorities/High";
+import AtRisk from "../Statuses/AtRisk";
+import OffTrack from "../Statuses/OffTrack";
+import OnTrack from "../Statuses/OnTrack";
+import "./index.css";
 
-const ProjectTasksInProgress = ({tasks, members}) => {
+const ProjectTasksInProgress = ({ tasks, members }) => {
   const { projectId } = useParams();
   const project = useSelector((state) => state.projects[projectId]);
   //   console.log("********", project)
   const sessionUser = useSelector((state) => state.session.user);
 
   const allUsers = useSelector((state) => state.teammates.allUsers);
-  const users = { ...allUsers }
+  const users = { ...allUsers };
   users[sessionUser?.id] = sessionUser;
+
+  const renderPriority = (resource) => {
+    if (resource.priority === "Low") {
+      return <Low resource={resource} />;
+    }
+    if (resource.priority === "Medium") {
+      return <Medium resource={resource} />;
+    }
+    if (resource.priority === "High") {
+      return <High resource={resource} />;
+    }
+  };
+
+  const renderStatus = (resource) => {
+    if (resource.status === "Off track") {
+      return <OffTrack resource={resource} />;
+    }
+    if (resource.status === "At risk") {
+      return <AtRisk resource={resource} />;
+    }
+    if (resource.status === "On track") {
+      return <OnTrack resource={resource} />;
+    }
+  };
 
   return (
     <div>
-      <h2>In Progress</h2>
-      {members?.includes(sessionUser.id) ? (
-        <CreateTaskModal projectName={project?.name} />
-      ) : null}
-      <table>
-        <tr>
+      <div className="table-header-section">
+        <h2>In Progress</h2>
+        <i className="fa-solid fa-arrows-spin"></i>
+        {/* {members?.includes(sessionUser.id) ? (
+          <CreateTaskModal projectName={project?.name} />
+        ) : null} */}
+      </div>
+      <table className="progress-table">
+        <tr className="progress-table-header">
           <th>TASK NAME</th>
           <th>ASSIGNEE</th>
           <th>DUE DATE</th>
           <th>PRIORITY</th>
           <th>STATUS</th>
+          <th></th>
         </tr>
         {tasks?.map((task) => (
-          <tr key={task.id}>
+          <tr key={task.id} className="task-row">
             <td>
               <SingleTask taskName={task.name} taskId={task.id} />
             </td>
@@ -44,17 +78,16 @@ const ProjectTasksInProgress = ({tasks, members}) => {
               </Link>
             </td>
             <td>{task.end_date}</td>
-            <td>{task.priority} </td>
-            <td>{task.status} </td>
+            <td className="priority-cell">{renderPriority(task)} </td>
+            <td className="status-cell">{renderStatus(task)} </td>
             {task.assigner_id == sessionUser.id ? (
-              <div>
-                {" "}
-                <EditTaskModal
+              <td className="options-cell">
+                <EditTaskTableBtn
                   taskId={task.id}
                   projectName={project?.name}
-                />{" "}
-                <DeleteTaskModal taskId={task.id} />{" "}
-              </div>
+                />
+                <DeleteTaskTableBtn taskId={task.id} />
+              </td>
             ) : null}
           </tr>
         ))}

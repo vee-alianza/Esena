@@ -1,0 +1,54 @@
+.table-header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.table-header-section > h2 {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(102, 102, 102);
+}
+
+.fa-arrows-spin {
+  margin-left: 6px;
+  color: gray;
+}
+
+.progress-table {
+  width: 100%;
+  background-color: white;
+  border-radius: 6px 6px 0px 0px;
+  border: 1px solid rgb(203, 203, 203);
+}
+
+.progress-table-header {
+  background: rgb(241, 241, 241);
+  border-radius: 6px 6px 0px 0px;
+  height: 45px;
+  width: 100%;
+}
+
+.progress-table-header > th {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(66, 66, 66);
+  border-bottom: 1px solid rgb(185, 184, 184);
+}
+
+.task-row {
+  height: 50px;
+}
+
+.task-row > td {
+  font-size: 14px;
+  text-align: left;
+  padding-left: 20px;
+  height: 100%;
+}
+
+.options-cell {
+  text-align: right;
+}
