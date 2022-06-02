@@ -16,7 +16,7 @@ const HomePage = () => {
   let collaborators = [...teammates];
   console.log(collaborators)
   collaborators = collaborators.filter(user => user.id != session.id)
-  delete collaborators[session.id];
+  // delete collaborators[session.id];
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
