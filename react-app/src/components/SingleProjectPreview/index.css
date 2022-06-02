@@ -112,3 +112,12 @@
 .teammate-container {
   width: 100%;
 }
+
+.tasks-description {
+  margin-top: 10px;
+}
+.tasks-description > h3 {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(164, 164, 164);
+}
