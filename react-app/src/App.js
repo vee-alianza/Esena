@@ -19,6 +19,7 @@ import { setComments } from "./store/comments"
 import FrontPage from "./components/FrontPage";
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
+import MyCalendar from "./components/MyCalendar";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -72,6 +73,12 @@ function App() {
     })();
   }, [dispatch, session]);
 
+  useEffect(() => {
+    window.process = {
+      ...window.process,
+    };
+  }, []);
+
   if (!loaded) {
     return null;
   }
@@ -100,6 +107,9 @@ function App() {
         </Route>
         <Route path="/profile/:userId" exact={true}>
           <Profile />
+        </Route>
+        <Route path="/my-calendar" exact={true}>
+          <MyCalendar />
         </Route>
         <Route>
           <NotFound />
