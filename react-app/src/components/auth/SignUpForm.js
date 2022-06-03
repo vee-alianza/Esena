@@ -26,7 +26,6 @@ const SignUpForm = () => {
         signUp(firstName, lastName, occupation, bio, email, password)
       );
       if (data.errors) {
-        console.log("****", data)
         const errors = {};
         if (Array.isArray(data.errors)) {
           data.errors.forEach(error => {
