@@ -5,9 +5,13 @@
 }
 
 .dev-img {
-    border-radius: 50%;
-    width: 150px;
+    /* border-radius: 50%; */
+    /* width: 150px;
+    height: 150px; */
+    box-shadow: 40px -15px rgb(196, 160, 227);
     height: 150px;
+    width: 150px;
+    margin: 5vh 5vw;
 }
 
 .inner-dev-container {
@@ -21,7 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 h3 {
@@ -34,3 +38,11 @@ h3 {
     margin: 5%;
     padding: 5%;
 } */
+
+a i {
+    transition: all 0.3s linear;
+}
+
+a:hover i {
+    transform: scale(1.5);
+}
