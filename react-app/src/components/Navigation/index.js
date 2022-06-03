@@ -8,13 +8,11 @@ const NavBar = () => {
   const navBar = useRef();
 
   useEffect(() => {
-    const splashContainer = document.querySelector(".splash-container");
-
-    splashContainer.addEventListener("scroll", (e) => {
-      if (splashContainer.scrollTop > 0) {
-        navBar?.current?.classList.add("nav-shadow");
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY > 0) {
+        navBar?.current?.classList.add("nav-bar-shadow");
       } else {
-        navBar?.current?.classList.remove("nav-shadow");
+        navBar?.current?.classList.remove("nav-bar-shadow");
       }
     });
   }, []);

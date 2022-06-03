@@ -40,9 +40,10 @@
   align-items: center;
 }
 
-.info-card .username {
-  font-size: 32px;
+.info-card .username > h1 {
+  font-size: 30px;
   font-weight: 700;
+  line-height: 10px;
 }
 
 .info-card .occupation,

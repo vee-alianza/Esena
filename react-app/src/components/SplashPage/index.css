@@ -1,32 +1,33 @@
 .splash-container {
-  position: absolute;
-  top: 0;
+  position: relative;
   background-color: white;
   width: 100%;
-  height: 100%;
-  /* background-image: url("https://assets.asana.biz/m/1eccac9527e95526/original/article-project-management-project-administrator-2x.jpg"); */
-  /* background-size: cover; */
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .splash-body-container {
-  position: absolute;
+  position: relative;
   top: 78px;
-  width: 100%;
-  height: 100vh;
+  max-width: 1312px;
+  width: calc(100% - 128px);
+  height: 100%;
+  background-color: white;
+  overflow-y: hidden;
 }
 
 .first-display {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  overflow-y: hidden;
 }
 
 .first-display-left-text {
   width: 40%;
   padding: 30px;
-  margin-left: 30px;
   margin-top: 100px;
 }
 
@@ -53,6 +54,7 @@
   height: 650px;
   width: 35%;
   background-color: rgb(238, 235, 234);
+  margin-left: 220px;
 }
 
 .splash-image-box > img:nth-child(1) {

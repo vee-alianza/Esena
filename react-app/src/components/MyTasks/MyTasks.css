@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.home-header > h1 {
+  letter-spacing: -0.05em;
+}
+
 .home-header > svg {
   cursor: pointer;
   margin-left: 10px;

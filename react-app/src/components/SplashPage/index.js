@@ -7,6 +7,7 @@ const SplashPage = () => {
   return (
     <div className="splash-container">
       <NavBar />
+
       <div className="splash-body-container">
         <div className="first-display">
           <div className="first-display-left-text">
@@ -31,12 +32,12 @@ const SplashPage = () => {
               Q3 Budget
             </button>
             <button id="splash-task-2">
-              <i className="fa-regular fa-circle-check splash-check"></i>Launch
-              marketing campaign
+              <i className="fa-regular fa-circle-check splash-check"></i>
+              Launch marketing campaign
             </button>
             <button id="splash-task-3">
-              <i className="fa-regular fa-circle-check splash-check"></i>Discuss
-              performance metrics
+              <i className="fa-regular fa-circle-check splash-check"></i>
+              Discuss performance metrics
             </button>
           </div>
         </div>
