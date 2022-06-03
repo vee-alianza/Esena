@@ -16,8 +16,8 @@ const CreateProjectForm = ({ setShowModal }) => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [priority, setPriority] = useState({});
   const [status, setStatus] = useState({});
   const [teammates, setTeammates] = useState([]);
