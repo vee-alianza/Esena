@@ -1,17 +1,20 @@
 .splash-container {
+  position: relative;
   background-color: white;
   width: 100%;
-  height: 100%;
   overflow-x: hidden;
   display: flex;
   justify-content: center;
 }
 
 .splash-body-container {
-  position: absolute;
+  position: relative;
   top: 78px;
   max-width: 1312px;
   width: calc(100% - 128px);
+  height: 100%;
+  background-color: white;
+  overflow-y: hidden;
 }
 
 .first-display {
@@ -19,6 +22,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  overflow-y: hidden;
 }
 
 .first-display-left-text {

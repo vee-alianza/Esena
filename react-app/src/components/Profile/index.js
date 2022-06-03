@@ -81,7 +81,9 @@ const Profile = () => {
             <div className="info-card">
               <div className="info-card-header">
                 <div className="username">
-                  {user?.first_name} {user?.last_name}
+                  <h1>
+                    {user?.first_name} {user?.last_name}
+                  </h1>
                 </div>
                 {user?.id == sessionUser.id ? <EditProfileModal /> : null}
               </div>
