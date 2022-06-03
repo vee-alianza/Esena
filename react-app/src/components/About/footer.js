@@ -1,50 +1,66 @@
-import { NavLink } from "react-router-dom";
-import logo from "../../assets/logo.png"
+import { Link, NavLink, Redirect } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import "./footer.css";
 
 const Footer = () => {
-    return (
-        <>
-            <div className="footer-container">
-                <div className="dev-info-container">
-                    <NavLink to="/" className="logo-footer">
-                        <img className="logo-footer" src={logo} />
-                    </NavLink>
-                    <div className="dev-info-footer">
-                        <h3>Ethen Chen</h3>
-                        <a href="https://travelr-ec.herokuapp.com/">Travelr</a>
-                        <a href="https://large-medium.herokuapp.com/">Large</a>
-                    </div>
-                    <div className="dev-info-footer">
-                        <h3>Lana Komar</h3>
-                        <a href="https://eventwild.herokuapp.com/events">Event Wild</a>
-                        <a href="https://good-hikes.herokuapp.com/">Good Hikes</a>
-                    </div>
-                    <div className="dev-info-footer">
-                        <h3>Vee Alianza</h3>
-                        <a href="https://mochi-noms.herokuapp.com/">Mochi</a>
-                        <a href="https://duckit-list.herokuapp.com/">Duckit List</a>
-                    </div>
-                    <div className="dev-info-footer">
-                        <h3>Xiaowen Nie</h3>
-                        <a href="https://nature-clikr.herokuapp.com/">NatureClikr</a>
-                        <a href="https://oraql.herokuapp.com/">Oraql</a>
-                    </div>
-                    <div>
-                        <h3>Resources</h3>
-                        <p>Python</p>
-                        <p>Flask</p>
-                        <p>React JS</p>
-                        <p>Redux</p>
-                        <p>Alembic</p>
-                        <p>SQLAlchemy</p>
-                        <p>Socket io</p>
-                        <p></p>
-                    </div>
-                </div>
+  return (
+    <>
+      <div className="footer-container">
+        <div className="dev-info-container">
+          <NavLink to="/" className="logo-footer">
+            <img src={logo} />
+          </NavLink>
+          <div className="dev-info-footer-copyright">
+            <p>© Copyright 2022</p>
+          </div>
+          <div className="dev-info-footer">
+            <p>Ethan Chen</p>
+            <div className="footer-social-links">
+              <a href="https://github.com/ethanchen7">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ethan-chen-3b7070127/">
+                <i class="fa-brands fa-linkedin fa-lg"></i>
+              </a>
             </div>
-        </>
-    )
-}
+          </div>
+          <div className="dev-info-footer">
+            <p>Lana Komar</p>
+            <div className="footer-social-links">
+              <a href="https://github.com/lanakomar">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/lana-komar/">
+                <i class="fa-brands fa-linkedin fa-lg"></i>
+              </a>
+            </div>
+          </div>
+          <div className="dev-info-footer">
+            <p>Vee Alianza</p>
+            <div className="footer-social-links">
+              <a href="https://github.com/vee-alianza">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/vee-alianza/">
+                <i class="fa-brands fa-linkedin fa-lg"></i>
+              </a>
+            </div>
+          </div>
+          <div className="dev-info-footer">
+            <p>Xiaowen Nie</p>
+            <div className="footer-social-links">
+              <a href="https://github.com/xwnnie">
+                <i class="fa-brands fa-github fa-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/xiaowennie/">
+                <i class="fa-brands fa-linkedin fa-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Footer;
