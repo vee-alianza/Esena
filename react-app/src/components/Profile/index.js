@@ -67,7 +67,9 @@ const Profile = () => {
     <div>
       <SideBar />
       <div className="page-container">
-        <h1 className="home-header">{user?.first_name}'s Profile</h1>
+        <div className="home-header">
+          <h1>{user?.first_name}'s Profile</h1>
+        </div>
         <div className="profile-container">
           <div className="profile-card">
             <div className="purple-box">
@@ -79,7 +81,9 @@ const Profile = () => {
             <div className="info-card">
               <div className="info-card-header">
                 <div className="username">
-                  {user?.first_name} {user?.last_name}
+                  <h1>
+                    {user?.first_name} {user?.last_name}
+                  </h1>
                 </div>
                 {user?.id == sessionUser.id ? <EditProfileModal /> : null}
               </div>

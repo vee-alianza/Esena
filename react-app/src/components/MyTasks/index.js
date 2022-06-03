@@ -19,7 +19,9 @@ const MyTasks = () => {
     <div>
       <SideBar />
       <div className="page-container">
-        <h1 className="home-header">My Tasks</h1>
+        <div className="home-header">
+          <h1>My Tasks</h1>
+        </div>
         <div className="project-task-container">
           {/* {task.assigner_id == sessionUser.id? <div> <EditTaskModal taskId={task.id}/> <DeleteTaskModal taskId={task.id}/> </div>: null} */}
           {allTasks.map((task) => (

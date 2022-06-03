@@ -24,6 +24,7 @@ const TaskModal = ({taskId}) => {
     const comments = useSelector(state => state.comments)
     const cur_user = useSelector(state => state.session.user)
 
+    users[cur_user.id] = cur_user;
 
     let comments_arr;
     let task;
