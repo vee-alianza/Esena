@@ -71,11 +71,11 @@ function App() {
     })();
   }, [dispatch, session]);
 
-  useEffect(() => {
-    window.process = {
-      ...window.process,
-    };
-  }, []);
+//   useEffect(() => {
+//     window.process = {
+//       ...window.process,
+//     };
+//   }, []);
 
   if (!loaded) {
     return null;
