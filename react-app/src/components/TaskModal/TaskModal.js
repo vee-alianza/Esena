@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css"
 
 import Low from "../Priorities/Low";
@@ -18,11 +18,11 @@ const TaskModal = ({taskId}) => {
     const [isEdit, setIsEdit] = useState(false);
     const [editId, setEditId] = useState();
 
-    const tasks = useSelector(state => state.tasks)
-    const projects = useSelector(state => state.projects)
-    const users = useSelector(state => state.teammates.allUsers)
-    const comments = useSelector(state => state.comments)
-    const cur_user = useSelector(state => state.session.user)
+    const tasks = useSelector(state => state.tasks);
+    const projects = useSelector(state => state.projects);
+    const users = useSelector(state => state.teammates.allUsers);
+    const comments = useSelector(state => state.comments);
+    const cur_user = useSelector(state => state.session.user);
 
     users[cur_user.id] = cur_user;
 
