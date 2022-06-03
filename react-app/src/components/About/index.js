@@ -1,5 +1,10 @@
-import { NavLink } from "react-router-dom";
+
 import "./index.css";
+
+import ethan from "../../assets/ethan.png"
+import lana from "../../assets/lana.png"
+import vee from "../../assets/vee.png"
+import xiaowen from "../../assets/xiaowen.png"
 
 const About = () => {
     return (
@@ -11,7 +16,7 @@ const About = () => {
                 </p>
                 <div className="inner-dev-container">
                     <div className="dev-profile">
-                        <img className="dev-img" src="/images/ethan.png" />
+                        <img className="dev-img" src={ethan} />
                         <h3 className="dev-name">Ethan Chen</h3>
                         {/* <p className="dev-area">Los Angeles, California</p> */}
                         <div className="logo-container">
@@ -20,7 +25,7 @@ const About = () => {
                         </div>
                     </div>
                     <div className="dev-profile">
-                        <img className="dev-img" src="https://user-images.githubusercontent.com/92604480/171740072-78640cb3-f7e2-4539-bc85-7a813440d9be.png" />
+                        <img className="dev-img" src={lana} />
                         <h3 className="dev-name">Lana Komar</h3>
                         {/* <p className="dev-area">East Bay, California</p> */}
                         <div className="logo-container">
@@ -29,7 +34,7 @@ const About = () => {
                         </div>
                     </div>
                     <div className="dev-profile">
-                        <img className="dev-img" src="/images/vee.png" />
+                        <img className="dev-img" src={vee} />
                         <h3 className="dev-name">Vee Alianza</h3>
                         {/* <p className="dev-area">Eagle Mountain, Utah</p> */}
                         <div className="logo-container">
@@ -38,7 +43,7 @@ const About = () => {
                         </div>
                     </div>
                     <div className="dev-profile">
-                        <img className="dev-img" src="/images/xiaowen.png" />
+                        <img className="dev-img" src={xiaowen} />
                         <h3 className="dev-name">Xiaowen Nie</h3>
                         {/* <p className="dev-area">Sunnyvale, California</p> */}
                         <div className="logo-container">

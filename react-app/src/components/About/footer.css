@@ -2,8 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
+    bottom: 0px;
+    justify-content: space-between;
+    position: absolute;
+    height: 10px;
+    width: 70%;
+    border-top: 1px solid #000;
 }
 
 .logo-footer {
@@ -22,8 +26,7 @@
     border-right: 25px;
     border-top: 0;
     height: 10px;
-    width: 70%;
-    border-top: 1px solid #000;
+    width: 100%;
 }
 
 .logo-container {

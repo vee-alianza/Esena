@@ -16,6 +16,7 @@ import { setComments } from "./store/comments"
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import About from "./components/About";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -85,6 +86,9 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/about" exact={true}>
+          <About />
         </Route>
         <ProtectedRoute path="/my-tasks" exact={true}>
           <MyTasks />
