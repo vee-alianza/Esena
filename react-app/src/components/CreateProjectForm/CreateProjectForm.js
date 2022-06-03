@@ -167,7 +167,9 @@ const CreateProjectForm = ({ setShowModal }) => {
             <button
               className="cancelBtn"
               type="cancel"
-              onClick={() => setShowModal(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setShowModal(false)}}
             >
               Cancel
             </button>

@@ -36,17 +36,15 @@ export const editProfile = (formData, userId) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    if (data.errors) {
-      return;
-    }
     dispatch(updateProfile(data));
+    return null
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
       return data.errors;
     }
   } else {
-    return ["An error occurred. Please try again."];
+    return "An error occurred. Please try again.";
   }
 };
 
