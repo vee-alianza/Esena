@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css"
 
 import Low from "../Priorities/Low";
@@ -8,9 +8,9 @@ import High from "../Priorities/High";
 import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
-import { addComment, editComment, deleteComment } from "../../store/comments";
+import { setComments, addComment, editComment, deleteComment } from "../../store/comments";
 
-const TaskModal = ({taskId}) => {
+const TaskModal = ({ taskId }) => {
 
     const dispatch = useDispatch();
     const [commentContent, setCommentContent] = useState("");
@@ -18,24 +18,32 @@ const TaskModal = ({taskId}) => {
     const [isEdit, setIsEdit] = useState(false);
     const [editId, setEditId] = useState();
 
-    const tasks = useSelector(state => state.tasks)
-    const projects = useSelector(state => state.projects)
-    const users = useSelector(state => state.teammates.allUsers)
-    const comments = useSelector(state => state.comments)
-    const cur_user = useSelector(state => state.session.user)
+    const tasks = useSelector(state => state.tasks);
+    const projects = useSelector(state => state.projects);
+    const users = useSelector(state => state.teammates.allUsers);
+    const comments = useSelector(state => state.comments);
+    const cur_user = useSelector(state => state.session.user);
+
+    useEffect(() => {
+        (async () => {
+            const res = await fetch("/api/comments");
+            if (res.ok) {
+                const data = await res.json();
+                dispatch(setComments(data));
+            }
+        })();
+    }, [dispatch]);
 
     users[cur_user.id] = cur_user;
 
     let comments_arr;
     let task;
 
-    if (tasks)
-    {
+    if (tasks) {
         task = tasks[taskId]
-        if (task)
-            {
-                comments_arr = Object.values(comments).filter(comment => comment.task_id === task.id)
-            }
+        if (task) {
+            comments_arr = Object.values(comments).filter(comment => comment.task_id === task.id)
+        }
     }
 
     const getInitials = id => {
@@ -176,7 +184,7 @@ const TaskModal = ({taskId}) => {
                 <p>Comments:</p>
                 <div
                     className={comments_arr.length > 1 ? "comments-container-full" : "comments-container-empty"}
-                    >
+                >
                     {comments_arr?.map((comment, idx) => (
                         <div className="comment" key={idx}>
                             <div className="person-circle-icon">
@@ -189,8 +197,8 @@ const TaskModal = ({taskId}) => {
                                     </p>
                                     <p className="date">{getDate(comment.create_date)}</p>
                                     <div hidden={cur_user.id !== comment?.author_id}
-                                         className="edit-delete-btns-container">
-                                        <i  id={comment?.id}
+                                        className="edit-delete-btns-container">
+                                        <i id={comment?.id}
                                             className="fa-solid fa-pencil"
                                             onClick={(e) => handleEditCommentClick(e, comment?.content)}
                                         ></i>
@@ -207,10 +215,10 @@ const TaskModal = ({taskId}) => {
                 </div>
                 <div className="comment-input">
                     {errors.length ? errors.map(error =>
-                        (<div className="comment-error"
+                    (<div className="comment-error"
                         key="error">
-                            {error}
-                        </div>)) : null}
+                        {error}
+                    </div>)) : null}
                     <div className="comment-input-container">
                         <div className="person-circle-icon">
                             <p>{getInitials(cur_user?.id)}</p>
@@ -225,7 +233,7 @@ const TaskModal = ({taskId}) => {
                     <button
                         onClick={isEdit ? editCommentSubmit : addCommentSubmit}
                         disabled={commentContent.length ? false : true}
-                        >
+                    >
                         {isEdit ? "Edit" : "Comment"}
                     </button>
                 </div>
