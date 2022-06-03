@@ -6,6 +6,6 @@
     z-index: -1;
 }
 
-.eventTitle {
+.eventTitle, .dailyEventTitle {
     color: red
 }

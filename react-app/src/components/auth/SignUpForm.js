@@ -74,7 +74,7 @@ const SignUpForm = () => {
         </Link>
       </div>
       <div className="left-image-container">
-        <img src="/images/login-left.png" />
+        <img src="/images/login-left3.jpeg" />
         <Link to="/">
           <img src="/images/esena.png" className="logo-left-image" />
         </Link>
@@ -89,6 +89,8 @@ const SignUpForm = () => {
             <div key={ind}>{error}</div>
           ))} */}
         </div>
+        <h1>Create an account</h1>
+
         <div>
           {/* <label>First Name</label> */}
           <input
@@ -109,6 +111,7 @@ const SignUpForm = () => {
             placeholder="Last Name*"
           ></input>
         </div>
+
         <div>
           {/* <label>Occupation</label> */}
           <input
