@@ -78,7 +78,9 @@ const SideBar = () => {
           <span>
             <i className="fa-regular fa-circle-question fa-lg"></i>
           </span>
-          <span style={{ fontSize: 12 }}>About</span>
+          <NavLink to="/about">
+            <span style={{ fontSize: 12 }}>About</span>
+          </NavLink>
         </div>
         <p>© Copyright 2022</p>
       </div>
