@@ -84,17 +84,22 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
     if (endDate !== prevEndDate) {
 
       const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
-      const projectEnd = new Date(projectYear, projectMonth, projectDate).getTime();
+      const projectEnd = new Date(projectYear, projectMonth - 1, projectDate)
 
-      const [taskMonth, taskDate, taskYear] = endDate.split("-");
-      const taskEnd = new Date(taskYear, taskMonth, taskDate).getTime();
+      const taskEnd = new Date(endDate);
 
-      if (taskEnd > projectEnd) {
+      const today = new Date();
+
+      if (taskEnd.getTime() < today.getTime()) {
+        return "End date cannot be in the past"
+      }
+      if (taskEnd.getTime() > projectEnd.getTime()) {
         return `End date should be before project ends (${projectEndDate})`;
       }
     }
     return null;
   }
+
 
   return (
     <div className="form-outer-container">
