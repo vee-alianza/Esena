@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  background-color: white;
+  z-index: 1;
 }
 
 .left-image-container {
@@ -63,6 +65,10 @@
   margin: auto;
 }
 
+.login > h1 {
+  line-height: 10px;
+}
+
 .auth-form.signup {
   top: 25%;
 }
@@ -74,6 +80,34 @@
   padding-left: 8px;
   border: 1px solid gray;
   border-radius: 6px;
+  background-color: transparent;
+  z-index: 3;
+}
+
+.auth-input-group {
+  position: relative;
+  margin-top: 10px;
+}
+
+.input-label {
+  position: absolute;
+  top: 11px;
+  left: 0;
+  transform: translate(10px, 10px);
+  transform-origin: left;
+  transition: transform 0.25s;
+  color: rgb(106, 106, 106);
+  z-index: -1;
+}
+
+.auth-form input:focus + .input-label,
+.auth-form input:valid + .input-label {
+  transform: translate(0, -20px) scale(0.8);
+  color: #4a4a4a;
+}
+
+.auth-form input:is(:focus, :valid) {
+  outline-color: #d1c5fc;
 }
 
 .auth-form textarea {
@@ -138,4 +172,8 @@ textarea:focus {
 .login-signup-error-container div {
   margin-bottom: 5px;
   margin-left: 3px;
+}
+
+.submit-group {
+  margin-top: 20px;
 }

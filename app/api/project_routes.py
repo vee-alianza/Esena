@@ -20,6 +20,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @project_routes.route('/<int:id>')
+@login_required
 def get_project(id):
     """
     Gets a project
@@ -33,7 +34,7 @@ def get_project(id):
 
 @project_routes.route('/<int:id>', methods=["PUT"])
 # commented out for test only
-# @login_required
+@login_required
 def update_project(id):
     """
     Updates a project
@@ -69,7 +70,7 @@ def update_project(id):
 
 @project_routes.route('/<int:id>', methods=["DELETE"])
 # commented out for test only
-# @login_required
+@login_required
 def delete_project(id):
     # form = DeleteForm()
     # form['csrf_token'].data = request.cookies['csrf_token']
@@ -90,7 +91,7 @@ def delete_project(id):
 
 @project_routes.route('/<int:id>/tasks', methods=["POST"])
 # commented out for test only
-# @login_required
+@login_required
 def create_task(id):
     """
     Creates a new task
@@ -99,7 +100,7 @@ def create_task(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     project = Project.query.get(id)
     choices = project.to_dict()["members"]
-    choices.append(current_user.id)
+    choices.append(project.owner_id)
     form.assignee_id.choices = choices
 
     if form.validate_on_submit():

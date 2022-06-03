@@ -6,7 +6,12 @@ import CompleteTaskButton from "../CompleteTaskButton";
 import ErrorMessage from "../ErrorMessage";
 import "./EditTaskForm.css";
 
-const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => {
+const EditTaskForm = ({
+  setShowModal,
+  taskId,
+  projectName,
+  projectEndDate,
+}) => {
   const dispatch = useDispatch();
   const task = useSelector((state) => state.tasks[taskId]);
   const projectId = task?.project_id;
@@ -19,7 +24,10 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  teammates.push(sessionUser);
+  const projects = useSelector((state) => state.projects);
+  const ownerId = projects[projectId].owner_id;
+  const ownerObj = allUsers[ownerId];
+  teammates.push(ownerObj);
 
   const [month, date, year] = task.end_date.split("/");
   const prevEndDate = `${year}-${month}-${date}`;
@@ -60,18 +68,18 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
       assignee_id: parseInt(assignee),
     };
 
-    const res = dispatch(editTask(payload, taskId));
+    const res = await dispatch(editTask(payload, taskId));
 
     if (res === null) {
       setShowModal(false);
     } else {
       const errors = {};
       if (Array.isArray(res)) {
-        res.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        res.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = res;
       }
@@ -80,21 +88,25 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
   };
 
   const checkDates = () => {
-
     if (endDate !== prevEndDate) {
 
       const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
-      const projectEnd = new Date(projectYear, projectMonth, projectDate).getTime();
+      const projectEnd = new Date(projectYear, projectMonth - 1, projectDate)
 
-      const [taskMonth, taskDate, taskYear] = endDate.split("-");
-      const taskEnd = new Date(taskYear, taskMonth, taskDate).getTime();
+      const taskEnd = new Date(endDate);
 
-      if (taskEnd > projectEnd) {
+      const today = new Date();
+
+      if (taskEnd.getTime() < today.getTime()) {
+        return "End date cannot be in the past"
+      }
+      if (taskEnd.getTime() > projectEnd.getTime()) {
         return `End date should be before project ends (${projectEndDate})`;
       }
     }
     return null;
-  }
+  };
+
 
   return (
     <div className="form-outer-container">
@@ -123,6 +135,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
               name="end_date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
+              className="date-input"
             />
             <div className="error-message">{checkDates()}</div>
             <ErrorMessage label={""} message={errorMessages.end_date} />

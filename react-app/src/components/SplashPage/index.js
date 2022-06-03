@@ -3,10 +3,15 @@ import NavBar from "../Navigation";
 
 import "./index.css";
 
+import splashImg1 from "../../assets/splashimg1.jpeg";
+import splashImg2 from "../../assets/splashimg2.jpeg";
+import splashexample1 from "../../assets/splashexample1.png";
+
 const SplashPage = () => {
   return (
     <div className="splash-container">
       <NavBar />
+
       <div className="splash-body-container">
         <div className="first-display">
           <div className="first-display-left-text">
@@ -24,19 +29,19 @@ const SplashPage = () => {
             </button>
           </div>
           <div className="splash-image-box">
-            <img src="/images/splashimg1.jpeg" />
-            <img src="/images/splashimg2.jpeg" />
+            <img src={splashImg1} />
+            <img src={splashImg2} />
             <button id="splash-task-1">
               <i className="fa-regular fa-circle-check splash-check"></i>Draft
               Q3 Budget
             </button>
             <button id="splash-task-2">
-              <i className="fa-regular fa-circle-check splash-check"></i>Launch
-              marketing campaign
+              <i className="fa-regular fa-circle-check splash-check"></i>
+              Launch marketing campaign
             </button>
             <button id="splash-task-3">
-              <i className="fa-regular fa-circle-check splash-check"></i>Discuss
-              performance metrics
+              <i className="fa-regular fa-circle-check splash-check"></i>
+              Discuss performance metrics
             </button>
           </div>
         </div>
@@ -50,12 +55,12 @@ const SplashPage = () => {
             </p>
           </div>
           <div className="splash-image-box-2">
-            <img src="/images/splashexample1.png" />
+            <img src={splashexample1} />
           </div>
         </div>
         <div className="third-display">
           <div className="splash-image-box-3">
-            <img src="/images/splashexample1.png" />
+            <img src={splashexample1} />
           </div>
           <div className="third-display-left-text">
             <h3>Workload Transparency</h3>
@@ -79,7 +84,7 @@ const SplashPage = () => {
             </p>
           </div>
           <div className="splash-image-box-2">
-            <img src="/images/splashexample1.png" />
+            <img src={splashexample1} />
           </div>
         </div>
       </div>

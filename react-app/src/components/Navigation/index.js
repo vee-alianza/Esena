@@ -3,18 +3,18 @@ import { NavLink, useHistory } from "react-router-dom";
 
 import "./index.css";
 
+import logo from "../../assets/esena.png";
+
 const NavBar = () => {
   const history = useHistory();
   const navBar = useRef();
 
   useEffect(() => {
-    const splashContainer = document.querySelector(".splash-container");
-
-    splashContainer.addEventListener("scroll", (e) => {
-      if (splashContainer.scrollTop > 0) {
-        navBar?.current?.classList.add("nav-shadow");
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY > 0) {
+        navBar?.current?.classList.add("nav-bar-shadow");
       } else {
-        navBar?.current?.classList.remove("nav-shadow");
+        navBar?.current?.classList.remove("nav-bar-shadow");
       }
     });
   }, []);
@@ -45,7 +45,7 @@ const NavBar = () => {
       <div className="splash-outer">
         <div className="global-limit">
           <div className="logo-wrap">
-            <img src="/images/esena.png" alt="logo" />
+            <img src={logo} alt="logo" />
           </div>
           <div className="right-nav">
             <button className="nav-about-btn">About</button>

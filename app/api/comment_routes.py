@@ -8,8 +8,8 @@ from app.api.project_routes import validation_errors_to_error_messages
 comment_routes = Blueprint('comments', __name__)
 
 
-@comment_routes.route('/')
-# @login_required
+@comment_routes.route('')
+@login_required
 def get_all_comments():
     """
     Getting all comments

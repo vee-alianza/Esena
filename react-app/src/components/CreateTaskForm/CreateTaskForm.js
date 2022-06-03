@@ -18,7 +18,12 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  teammates.push(sessionUser);
+  // teammates.push(sessionUser);
+  const projects = useSelector((state) => state.projects);
+  const ownerId = projects[projectId].owner_id;
+  const ownerObj = allUsers[ownerId]
+  teammates.push(ownerObj);
+  // console.log("*********", teammates)
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -75,18 +80,20 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
 
   const checkDates = () => {
 
-    if (endDate) {
-
       const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
-      const projectEnd = new Date(projectYear, projectMonth, projectDate).getTime();
+      const projectEnd = new Date(projectYear, projectMonth - 1, projectDate)
 
-      const [taskMonth, taskDate, taskYear] = endDate.split("-");
-      const taskEnd = new Date(taskYear, taskMonth, taskDate).getTime();
+      const taskEnd = new Date(endDate);
 
-      if (taskEnd > projectEnd) {
+      const today = new Date();
+
+      if (taskEnd.getTime() < today.getTime()) {
+        return "End date cannot be in the past"
+      }
+      if (taskEnd.getTime() > projectEnd.getTime()) {
         return `End date should be before project ends (${projectEndDate})`;
       }
-    }
+
     return null;
   }
 
@@ -118,6 +125,7 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
                 name="end_date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
+                className="date-input"
               />
               <div className="error-message">{checkDates()}</div>
               <ErrorMessage label={""} message={errorMessages.end_date} />
@@ -177,13 +185,10 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
             }}
             className="add-task-cancelBtn"
             type="cancel"
-            >
+          >
             Cancel
           </button>
-          <button
-            className="submitBtn add-task-btn"
-            type="submit"
-          >
+          <button className="submitBtn add-task-btn" type="submit">
             Create
           </button>
         </div>

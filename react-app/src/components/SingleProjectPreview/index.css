@@ -16,6 +16,10 @@
   justify-content: space-between;
 }
 
+.project-page-header > h1 {
+  letter-spacing: -0.04em;
+}
+
 .fa-ellipsis {
   position: absolute;
   top: 41px;

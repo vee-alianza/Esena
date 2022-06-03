@@ -5,6 +5,9 @@ import { login } from "../../store/session";
 import ErrorMessage from "../ErrorMessage";
 import "./auth.css";
 
+import logo from "../../assets/esena.png";
+import loginPic from "../../assets/login-left3.jpeg";
+
 const LoginForm = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const [email, setEmail] = useState("");
@@ -18,11 +21,11 @@ const LoginForm = () => {
     if (data) {
       const errors = {};
       if (Array.isArray(data)) {
-        data.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        data.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = data;
       }
@@ -36,11 +39,11 @@ const LoginForm = () => {
     if (data) {
       const errors = {};
       if (Array.isArray(data)) {
-        data.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        data.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = data;
       }
@@ -64,14 +67,15 @@ const LoginForm = () => {
     <div className="login-signup-form-container">
       <div className="corner-login-signup-btn-container">
         <span className="login-signup-msg">Don't have an account? </span>
-        <Link to="/sign-up" exact={true} className="corner-login-signup-btn">
+        <Link to="/sign-up" exact={"true"} className="corner-login-signup-btn">
           <span>Sign Up</span>
         </Link>
       </div>
+
       <div className="left-image-container">
-        <img src="/images/login-left3.jpeg" />
+        <img src={loginPic} alt="loginbanner" />
         <Link to="/">
-          <img src="/images/esena.png" className="logo-left-image" />
+          <img src={logo} className="logo-left-image" alt="logo" />
         </Link>
       </div>
       <form onSubmit={onLogin} className="auth-form login">
@@ -82,30 +86,35 @@ const LoginForm = () => {
           })}
         </div> */}
         <h1>Log into Esena</h1>
-        <div>
+        <div className="auth-input-group">
           <input
             name="email"
             type="text"
-            placeholder="Email"
+            required={true}
             value={email}
             onChange={updateEmail}
           />
+          <label htmlFor="email" className="input-label">
+            Email
+          </label>
           <ErrorMessage label={""} message={errorMessages.email} />
         </div>
-        <div>
+        <div className="auth-input-group">
           <input
             name="password"
             type="password"
-            placeholder="Password"
+            required={true}
             value={password}
             onChange={updatePassword}
           />
+          <label htmlFor="email" className="input-label">
+            Password
+          </label>
           <ErrorMessage label={""} message={errorMessages.password} />
         </div>
-        <div>
+        <div className="submit-group">
           <button type="submit">Login</button>
-        </div>
-        <div>
+
           <button id="demo-btn" onClick={loginDemo}>
             Demo User
           </button>

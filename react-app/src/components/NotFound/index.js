@@ -3,13 +3,15 @@ import { useHistory } from "react-router-dom";
 
 import "./index.css";
 
+import logo from "../../assets/esena.png";
+
 const NotFound = () => {
-    const history = useHistory();
-    const [timeLeft, setTimeLeft] = useState(3);
+  const history = useHistory();
+  const [timeLeft, setTimeLeft] = useState(3);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      history.push("/")
+      history.push("/");
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
@@ -24,16 +26,11 @@ const NotFound = () => {
 
   return (
     <div className="not-found-container">
-      <img
-        src="/images/esena.png"
-        className="logo-404"
-        alt="page-not-found"
-        />
+      <img src={logo} className="logo-404" alt="page-not-found" />
+      <div className="not-found-msg">404: The requested URL was not found.</div>
       <div className="not-found-msg">
-        404: The requested URL was not found.
-      </div>
-      <div className="not-found-msg">
-        You will be redirected to home page in <span>{timeLeft}</span> seconds...
+        You will be redirected to home page in <span>{timeLeft}</span>{" "}
+        seconds...
       </div>
     </div>
   );
