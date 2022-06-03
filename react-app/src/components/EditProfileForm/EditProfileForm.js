@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { editProfile } from "../../store/profile";
 import { authenticate } from "../../store/session";
 import ErrorMessage from "../ErrorMessage";
