@@ -89,9 +89,8 @@ const SplashPage = () => {
             <img src={splashexample1} />
           </div>
         </div>
-
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };

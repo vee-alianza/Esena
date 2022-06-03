@@ -15,7 +15,7 @@ const SideBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   return (
     <div className="sidebar-container">
-      <div className="logo-container">
+      <div className="sidebar-logo-container">
         <img src={logo} alt="logo" />
       </div>
       <div className="sidebar-menu main">
