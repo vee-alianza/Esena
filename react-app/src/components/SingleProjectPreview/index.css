@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: row;
   margin-left: 20px;
+  padding-top: 5px;
 }
 
 .project-page-header-left {
@@ -38,6 +39,7 @@
   font-weight: 600;
   font-style: italic;
   margin-left: 20px;
+  padding-top: 5px;
 }
 
 .fa-ellipsis {

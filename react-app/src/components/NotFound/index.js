@@ -24,9 +24,13 @@ const NotFound = () => {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
+  const handleOnClick = () => {
+    history.push("/")
+  }
+
   return (
     <div className="not-found-container">
-      <img src={logo} className="logo-404" alt="page-not-found" />
+      <img src={logo} className="logo-404" alt="page-not-found" onClick={handleOnClick}/>
       <div className="not-found-msg">404: The requested URL was not found.</div>
       <div className="not-found-msg">
         You will be redirected to home page in <span>{timeLeft}</span>{" "}

@@ -1,7 +1,45 @@
 .developers-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.developers-container>h1 {
+    font-weight: 500;
+}
+
+.paragraph-container {
+    width: 50%;
+    text-align: center;
+    line-height: 30px;
+}
+
+.paragraph-container>p:nth-child(2) {
+    margin-top: 30px;
+    font-weight: 500;
+}
+
+.technologies-container {
+    position: relative;
+    top: 20px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-weight: 300;
+}
+
+.technologies-container>img {
+    width: 5%;
+    height: auto;
+}
+
+.about-logo {
+    width: 200px;
+    height: auto;
 }
 
 .dev-upper-section {
@@ -44,10 +82,11 @@
 }
 
 .inner-dev-container {
+    position: relative;
+    top: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
 }
 
 .dev-profile {
@@ -61,12 +100,12 @@
     height: 1px;
 }
 
-.dev-profile p {
-    display: block;
-    margin-block-start: 2px;
-    margin-block-end: 2px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+.logo-container {
+    margin-top: 10px;
+}
+
+.logo-container>a {
+    padding: 5px;
 }
 
 .logo-container a i {
