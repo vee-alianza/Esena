@@ -1,10 +1,35 @@
 .footer-container {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.logo-footer {
     height: 50px;
-    /* position: fixed; */
+    width: 50px;
+    display: flex;
+    padding: 10px;
+}
+
+.dev-info-container {
     bottom: 0px;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    border-right: 25px;
+    border-top: 0;
+    height: 10px;
+    width: 70%;
+    border-top: 1px solid #000;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
+    width: 50%;
 }
 
 a {
@@ -12,4 +37,5 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
