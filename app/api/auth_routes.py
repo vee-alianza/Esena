@@ -77,14 +77,6 @@ def sign_up():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# @auth_routes.route('/about')
-# def aboutPage():
-#     """
-#     Get about page
-#     """
-#     return
-
-
 @auth_routes.route('/unauthorized')
 def unauthorized():
     """
