@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { useParams } from "react-router-dom";
 import { createTask } from "../../store/tasks";
+import ErrorMessage from "../ErrorMessage";
 import "./CreateTaskForm.css";
 
-const CreateTaskForm = ({ setShowModal, projectName }) => {
+const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
+  const sessionUser = useSelector((state) => state.session.user);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
@@ -16,15 +18,16 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
+  teammates.push(sessionUser);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [endDate, setEndDate] = useState(new Date());
+  const [endDate, setEndDate] = useState("");
   const [priority, setPriority] = useState({});
   const [status, setStatus] = useState({});
   const [assignee, setAssignee] = useState({});
 
-  const [validationErrors, setValidationErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
 
   const assigneeOptions = teammates.map((teammate) => {
     return { label: `${teammate.first_name}`, value: `${teammate.id}` };
@@ -44,31 +47,52 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validationErrors.length) {
-      const payload = {
-        name,
-        description,
-        end_date: endDate,
-        priority_id: parseInt(priority),
-        status_id: parseInt(status),
-        assignee_id: parseInt(assignee),
-      };
-      dispatch(createTask(payload, projectId));
+    const payload = {
+      name,
+      description,
+      end_date: endDate,
+      priority_id: parseInt(priority),
+      status_id: parseInt(status),
+      assignee_id: parseInt(assignee),
+    };
+    const res = await dispatch(createTask(payload, projectId));
+    if (res === null) {
       setShowModal(false);
+    } else {
+      const errors = {};
+      if (Array.isArray(res)) {
+        res.forEach(error => {
+          const label = error.split(":")[0].slice(0, -1)
+          const message = error.split(":")[1].slice(1)
+          errors[label] = message;
+        })
+      } else {
+        errors.overall = res;
+      }
+      setErrorMessages(errors);
     }
   };
 
-  useEffect(() => {
-    const errors = [];
-    if (!name) errors.push("Please enter a task name!");
-    if (!description)
-      errors.push(
-        "Your teammates want to know what the task is about! Please enter a description."
-      );
-    setValidationErrors(errors);
-  }, [name, description]);
+  const checkDates = () => {
+
+    if (endDate) {
+
+      const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
+      const projectEnd = new Date(projectYear, projectMonth, projectDate).getTime();
+
+      const [taskMonth, taskDate, taskYear] = endDate.split("-");
+      const taskEnd = new Date(taskYear, taskMonth, taskDate).getTime();
+
+      if (taskEnd > projectEnd) {
+        return `End date should be before project ends (${projectEndDate})`;
+      }
+    }
+    return null;
+  }
+
   return (
     <div className="form-outer-container">
+      <ErrorMessage label={""} message={errorMessages.overall} />
       <div className="form-header">
         <h1>Add Task</h1>
         <p className="task-project-name">{projectName}</p>
@@ -84,6 +108,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></input>
+            <ErrorMessage label={""} message={errorMessages.name} />
           </div>
           <div className="add-task-form-grouping">
             <div className="second-form-control">
@@ -94,6 +119,8 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
               />
+              <div className="error-message">{checkDates()}</div>
+              <ErrorMessage label={""} message={errorMessages.end_date} />
             </div>
 
             <div className="third-form-control">
@@ -106,6 +133,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
                 onChange={(option) => setAssignee(option.value)}
                 placeholder="Select a member..."
               />
+              <ErrorMessage label={""} message={errorMessages.assignee_id} />
             </div>
           </div>
           <div className="form-grouping-select">
@@ -117,6 +145,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
                 onChange={(option) => setPriority(option.value)}
                 placeholder="Select a priority..."
               />
+              <ErrorMessage label={""} message={errorMessages.priority_id} />
             </div>
             <div className="select-control">
               <label>Status</label>
@@ -126,6 +155,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
                 onChange={(option) => setStatus(option.value)}
                 placeholder="Select a status..."
               />
+              <ErrorMessage label={""} message={errorMessages.status_id} />
             </div>
           </div>
           <div className="form-control">
@@ -136,13 +166,24 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
+            <ErrorMessage label={""} message={errorMessages.description} />
           </div>
         </div>
         <div className="add-task-footer-btns">
-          <button className="add-task-cancelBtn" type="cancel">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setShowModal(false);
+            }}
+            className="add-task-cancelBtn"
+            type="cancel"
+            >
             Cancel
           </button>
-          <button className="submitBtn add-task-btn" type="submit">
+          <button
+            className="submitBtn add-task-btn"
+            type="submit"
+          >
             Create
           </button>
         </div>

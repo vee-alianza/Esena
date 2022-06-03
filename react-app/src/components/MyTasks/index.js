@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
 import SideBar from "../SideBar";
 import Card from "../Card";
-import DeleteTaskModal from "../DeleteTaskForm";
-
-import EditTaskModal from "../EditTaskForm";
 import "./MyTasks.css";
 
 const MyTasks = () => {

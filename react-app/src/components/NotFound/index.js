@@ -24,12 +24,16 @@ const NotFound = () => {
 
   return (
     <div className="not-found-container">
-      <img src="/images/esena.png" className="logo-404" />
+      <img
+        src="/images/esena.png"
+        className="logo-404"
+        alt="page-not-found"
+        />
       <div className="not-found-msg">
         404: The requested URL was not found.
       </div>
       <div className="not-found-msg">
-        You will be redirected to home page in <span>{timeLeft}</span> seconds... 
+        You will be redirected to home page in <span>{timeLeft}</span> seconds...
       </div>
     </div>
   );

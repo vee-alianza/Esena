@@ -32,12 +32,6 @@ export const removeTask = (taskId) => {
   };
 };
 
-// export const completeTask = (taskId) => {
-//   return {
-//     type: COMPLETE_TASK,
-//     taskId,
-//   };
-// };
 
 export const createTask = (formData, projectId) => async (dispatch) => {
   // console.log(formData)
@@ -59,12 +53,11 @@ export const createTask = (formData, projectId) => async (dispatch) => {
       return data.errors;
     }
   } else {
-    return ["An error occurred. Please try again."];
+    return "An error occurred. Please try again.";
   }
 };
 
 export const editTask = (formData, taskId) => async (dispatch) => {
-  // console.log(formData)
   const response = await fetch(`/api/tasks/${taskId}`, {
     method: "PUT",
     headers: {
@@ -125,24 +118,16 @@ export const markTaskComplete = (taskId) => async (dispatch) => {
   }
 };
 
-// const initialState = { assignedTasks: {} };
 const initialState = {};
 
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_TASKS:
-      // return {
-      //   ...state,
-      //   assignedTasks: action.tasks,
-      // };
       return {
         ...state,
         ...action.tasks,
       };
     case ADD_TASK:
-      // const newState = {...state}
-      // newState.assignedTasks[action.task.id] = action.task
-      // return newState
       return {
         ...state,
         [action.task.id]: action.task,

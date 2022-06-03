@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 
 import { addProject } from "../../store/projects";
 import TeammateSearch from "../TeammateSearch";
+import ErrorMessage from "../ErrorMessage";
 import "./CreateProjectForm.css";
 
 const CreateProjectForm = ({ setShowModal }) => {
@@ -22,7 +23,7 @@ const CreateProjectForm = ({ setShowModal }) => {
   const [teammates, setTeammates] = useState([]);
   const [isPrivate, setIsPrivate] = useState(false);
 
-  const [validationErrors, setValidationErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
 
   const priorityOptions = [
     { label: "Low", value: "1" },
@@ -38,35 +39,38 @@ const CreateProjectForm = ({ setShowModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validationErrors.length) {
-      console.log("*****8", teammates)
-      const payload = {
-        name,
-        description,
-        start_date: startDate,
-        end_date: endDate,
-        is_private: isPrivate,
-        priority_id: parseInt(priority),
-        status_id: parseInt(status),
-        members: teammates.filter((user) => user != session.id).join(" "),
-      };
-      console.log(payload)
-      dispatch(addProject(payload, session.id));
+    const payload = {
+      name,
+      description,
+      start_date: startDate,
+      end_date: endDate,
+      is_private: isPrivate,
+      priority_id: parseInt(priority),
+      status_id: parseInt(status),
+      members: teammates.filter((user) => user != session.id).join(" "),
+    };
+
+    const res = await dispatch(addProject(payload, session.id));
+    if (res === null) {
       setShowModal(false);
+    } else {
+      const errors = {};
+      if (Array.isArray(res)) {
+        res.forEach(error => {
+          const label = error.split(":")[0].slice(0, -1)
+          const message = error.split(":")[1].slice(1)
+          errors[label] = message;
+        })
+      } else {
+        errors.overall = res;
+      }
+      setErrorMessages(errors);
     }
   };
-  useEffect(() => {
-    const errors = [];
-    if (!name) errors.push("Please enter a project name!");
-    if (!description)
-      errors.push(
-        "Your teammates want to know what the project is about! Please enter a description."
-      );
-    setValidationErrors(errors);
-  }, [name, description]);
 
   return (
     <div className="form-container">
+      <ErrorMessage label={""} message={errorMessages.overall} />
       <div className="form-header">
         <h1>Create Project</h1>
       </div>
@@ -80,6 +84,7 @@ const CreateProjectForm = ({ setShowModal }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></input>
+          <ErrorMessage label={""} message={errorMessages.name} />
         </div>
         <div className="form-grouping">
           <div className="form-control">
@@ -92,6 +97,7 @@ const CreateProjectForm = ({ setShowModal }) => {
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
+            <ErrorMessage label={""} message={errorMessages.start_date} />
           </div>
           <div className="form-control">
             <label>End Date</label>
@@ -103,6 +109,7 @@ const CreateProjectForm = ({ setShowModal }) => {
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
+            <ErrorMessage label={""} message={errorMessages.end_date} />
           </div>
         </div>
 
@@ -112,6 +119,7 @@ const CreateProjectForm = ({ setShowModal }) => {
           setTeammates={setTeammates}
           teammates={teammates}
           allUsers={allUsers}
+          errors={errorMessages.members}
         />
         <div className="form-grouping-select">
           <div className="select-control">
@@ -122,6 +130,7 @@ const CreateProjectForm = ({ setShowModal }) => {
               onChange={(option) => setPriority(option.value)}
               placeholder="Select a priority..."
             />
+            <ErrorMessage label={""} message={errorMessages.priority_id} />
           </div>
           <div className="select-control">
             <label>Status</label>
@@ -131,6 +140,7 @@ const CreateProjectForm = ({ setShowModal }) => {
               onChange={(option) => setStatus(option.value)}
               placeholder="Select a status..."
             />
+            <ErrorMessage label={""} message={errorMessages.status_id} />
           </div>
         </div>
         <div className="form-control">
@@ -141,6 +151,7 @@ const CreateProjectForm = ({ setShowModal }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+          <ErrorMessage label={""} message={errorMessages.description} />
         </div>
         <div className="form-footer">
           <div className="private-container">

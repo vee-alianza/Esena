@@ -99,8 +99,6 @@ const SingleProjectPreview = () => {
     <>
       <SideBar />
       <div className="page-container">
-        {/* {sessionUser?.id == project.owner_id ? <EditProjectModal /> : null} */}
-
         <div className="project-page-header">
           <h1>{project.name}</h1>
           <DropdownMenu
