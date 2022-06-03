@@ -1,10 +1,11 @@
 import { useState } from "react";
 import DeleteTaskForm from "./DeleteTaskForm";
 import { Modal } from "../../context/Modal";
+import { useStateIfMounted } from "use-state-if-mounted";
 import "./DeleteTaskTableBtn.css";
 
 const DeleteTaskTableBtn = ({ taskId, taskname }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useStateIfMounted(false);
 
   return (
     <>

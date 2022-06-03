@@ -68,7 +68,7 @@ const EditTaskForm = ({
       assignee_id: parseInt(assignee),
     };
 
-    const res = dispatch(editTask(payload, taskId));
+    const res = await dispatch(editTask(payload, taskId));
 
     if (res === null) {
       setShowModal(false);
@@ -89,23 +89,24 @@ const EditTaskForm = ({
 
   const checkDates = () => {
     if (endDate !== prevEndDate) {
-      const [projectMonth, projectDate, projectYear] =
-        projectEndDate.split("/");
-      const projectEnd = new Date(
-        projectYear,
-        projectMonth,
-        projectDate
-      ).getTime();
 
-      const [taskMonth, taskDate, taskYear] = endDate.split("-");
-      const taskEnd = new Date(taskYear, taskMonth, taskDate).getTime();
+      const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
+      const projectEnd = new Date(projectYear, projectMonth - 1, projectDate)
 
-      if (taskEnd > projectEnd) {
+      const taskEnd = new Date(endDate);
+
+      const today = new Date();
+
+      if (taskEnd.getTime() < today.getTime()) {
+        return "End date cannot be in the past"
+      }
+      if (taskEnd.getTime() > projectEnd.getTime()) {
         return `End date should be before project ends (${projectEndDate})`;
       }
     }
     return null;
   };
+
 
   return (
     <div className="form-outer-container">
