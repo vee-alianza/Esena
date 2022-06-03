@@ -28,6 +28,7 @@ const SingleProjectPreview = () => {
   const tasksObj = useSelector((state) => state.tasks);
   const sessionUser = useSelector((state) => state.session.user);
 
+  allUsers[sessionUser?.id] = sessionUser;
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
@@ -46,14 +47,15 @@ const SingleProjectPreview = () => {
   let members;
   if (project && project.tasks) {
     allTasks = Object.values(project.tasks);
-    members = [...project.members, project.owner_id];
+    members = [project.owner_id, ...project.members];
     // console.log(allTasks, members)
   }
 
   if (projectId in projects) {
     project = projects[parseInt(projectId)];
     allTasks = Object.values(tasksObj);
-    members = [...project.members];
+    allTasks = allTasks?.filter((task) => task.project_id == project.id);
+    members = [project.owner_id, ...project.members];
   }
   // else if (profileUser && profileUser.projects) {
   //   // console.log(profileUser)
@@ -74,7 +76,12 @@ const SingleProjectPreview = () => {
         numCompleted++;
       }
     });
-    return Math.floor((numCompleted / allTasks?.length) * 100);
+
+    if (allTasks && allTasks.length) {
+      return Math.floor((numCompleted / allTasks?.length) * 100);
+    } else {
+      return 0;
+    }
   };
 
   const focusTab = (e) => {
@@ -93,8 +100,6 @@ const SingleProjectPreview = () => {
     <>
       <SideBar />
       <div className="page-container">
-        {/* {sessionUser?.id == project.owner_id ? <EditProjectModal /> : null} */}
-
         <div className="project-page-header">
           <h1>{project.name}</h1>
           <DropdownMenu

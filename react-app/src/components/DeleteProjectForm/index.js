@@ -2,18 +2,18 @@ import { useState } from "react";
 import DeleteProjectForm from "./DeleteProjectForm";
 import { Modal } from "../../context/Modal";
 
-const DeleteProjectModal = () => {
+const DeleteProjectModal = ({ setIsClicked }) => {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            <button className="delete-project-btn" onClick={() => setShowModal(true)}
+            <button className="delete-project-btn edit-delete-project-btn" onClick={() => setShowModal(true)}
             >
                 Delete Project
             </button>
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <DeleteProjectForm setShowModal={setShowModal} />
+                <Modal onClose={() => {setIsClicked(false); setShowModal(false)}}>
+                    <DeleteProjectForm setShowModal={setShowModal} setIsClicked={setIsClicked} />
                 </Modal>
             )}
         </>

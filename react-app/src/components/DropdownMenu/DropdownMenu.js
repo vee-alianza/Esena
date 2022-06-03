@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EditProjectModal from "../EditProjectForm"
+import DeleteProjectModal from "../DeleteProjectForm"
 
 import "./index.css";
 
@@ -28,16 +29,15 @@ const DropdownMenu = ({ comp, permissions }) => {
             >
                 <i
                 id="dropdown-menu"
-                style={{ cursor: permissions ? "pointer" : "not-allowed" }}
+                style={{ display: permissions ? "block" : "none" }}
                 className="fa-solid fa-ellipsis fa-lg"></i>
                 {isClicked && (
                     <div
                         id="dropdown-menu"
                         className="dropdown-menu"
                     >
-                        {comp === "edit" ? <EditProjectModal setIsClicked={setIsClicked
-                        }/> : <p>hi</p>}
-                        <p>Delete Project</p>
+                        {comp === "edit" ? <EditProjectModal setIsClicked={setIsClicked} /> : <p>hi</p>}
+                        <DeleteProjectModal setIsClicked={setIsClicked} />
                     </div>
                 )}
             </div>

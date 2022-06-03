@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+
 import SideBar from "../SideBar";
 import Card from "../Card";
 import MyProjectCreateSVG from "../CreateProjectForm/MyProjectCreateSVG";
 
 const MyProjects = () => {
-  const sessionUser = useSelector((state) => state.session.user);
   const projectsObj = useSelector((state) => state.projects);
   let projects = Object.values(projectsObj);
 
@@ -25,9 +24,9 @@ const MyProjects = () => {
         </div>
         <div className="project-task-container">
           {projects.map((project) => (
-            // <Link to={`/projects/${project.id}/tasks`}>
             <Card
               resource={project}
+              key={project.id}
             />
           ))}
         </div>

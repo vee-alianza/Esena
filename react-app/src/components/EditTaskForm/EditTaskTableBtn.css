@@ -2,6 +2,7 @@
   background: white;
   border: none;
   color: rgb(255, 136, 0);
+  font-size: 12px;
 }
 
 .table-edit-btn:hover {

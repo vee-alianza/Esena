@@ -1,16 +1,141 @@
+.login-signup-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
 
+.left-image-container {
+  /* background-image: url("/images/login-left.png"); */
+  width: 512px;
+  height: 100vh;
+}
+
+.logo-left-image {
+  z-index: 1;
+  width: 200px;
+  position: absolute;
+  top: 120px;
+  left: 135px;
+}
+
+.left-image-container > img {
+  min-height: 100%;
+  max-width: 100%;
+}
+
+.corner-login-signup-btn-container {
+  position: absolute;
+  top: 28px;
+  right: 8%;
+}
+
+.corner-login-signup-btn {
+  border: 1px solid #eb7623ff;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 15px;
+}
+
+.corner-login-signup-btn span {
+  color: #eb7623ff;
+}
+
+.corner-login-signup-btn > span:hover {
+  color: black;
+}
+
+.login-signup-msg {
+  font-size: 14px;
+  color: #282e37ff;
+  margin-right: 5px;
+}
 
 .auth-form {
-    display: flex;
-    flex-direction: column;
-    /* padding: 40px; */
-    width: 350px;
+  display: flex;
+  flex-direction: column;
+  /* padding: 40px; */
+  width: 350px;
 
-    position: absolute;
+  /* position: absolute;
     top: 30%;
-    left: 50%
+    right: 30%; */
+  margin: auto;
+}
+
+.auth-form.signup {
+  top: 25%;
+}
+
+.auth-form input {
+  height: 35px;
+  margin-top: 10px;
+  width: 96%;
+  padding-left: 8px;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.auth-form textarea {
+  resize: none;
+  height: 80px;
+  margin-top: 10px;
+  width: 96%;
+  padding-top: 8px;
+  padding-left: 8px;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.auth-form input,
+textarea:focus {
+  outline: none;
 }
 
 .auth-form button {
-    cursor: pointer;
+  height: 35px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #9b71c58f;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.auth-form button:hover {
+  background-color: #7f35c98f;
+}
+.auth-form-link {
+  margin: auto;
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgb(183, 183, 225);
+}
+
+.auth-form-link span {
+  color: #eb7623ff;
+}
+
+#demo-btn {
+  color: white;
+  background-color: rgb(223, 193, 24);
+  border-color: #9b71c58f;
+  font-weight: 600;
+}
+
+#demo-btn:hover {
+  background-color: rgb(245, 209, 5);
+}
+
+.login-signup-error-container {
+  font-size: 12px;
+  padding-bottom: 15px;
+  color: red;
+}
+
+.login-signup-error-container div {
+  margin-bottom: 5px;
+  margin-left: 3px;
 }

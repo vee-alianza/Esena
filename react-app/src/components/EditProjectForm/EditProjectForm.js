@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 
-import { addProject, updateProject } from "../../store/projects";
+import { updateProject } from "../../store/projects";
 import TeammateSearch from "../TeammateSearch";
+import ErrorMessage from "../ErrorMessage";
 import "./EditProjectForm.css";
 
 const EditProjectForm = ({ setShowModal, setIsClicked }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
 
-  //   const session = useSelector((state) => state.session.user);
+  const session = useSelector((state) => state.session.user);
   const projects = useSelector((state) => state.projects);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const allUserObjects = Object.values(allUsers);
@@ -31,7 +32,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
   const [teammates, setTeammates] = useState([...project.members]);
   const [isPrivate, setIsPrivate] = useState(false);
 
-  const [validationErrors, setValidationErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
 
   const priorityOptions = [
     { label: "Low", value: "1" },
@@ -47,33 +48,40 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validationErrors.length) {
-      const payload = {
-        name,
-        description,
-        start_date: startDate,
-        end_date: endDate,
-        is_private: isPrivate,
-        priority_id: parseInt(priority),
-        status_id: parseInt(status),
-        members: teammates.join(" "),
-      };
-      dispatch(updateProject(payload, projectId));
+    const payload = {
+      name,
+      description,
+      start_date: startDate,
+      end_date: endDate,
+      is_private: isPrivate,
+      priority_id: parseInt(priority),
+      status_id: parseInt(status),
+      members: teammates.filter(use => use.id != session.id).join(" "),
+    };
+    const res = await dispatch(updateProject(payload, projectId));
+    if (res === null) {
       setShowModal(false);
+      setIsClicked(false);
+    } else {
+      const errors = {};
+      if (Array.isArray(res)) {
+        res.forEach(error => {
+          const label = error.split(":")[0].slice(0, -1)
+          const message = error.split(":")[1].slice(1)
+          errors[label] = message;
+        })
+      } else {
+        errors.overall = res;
+      }
+      setErrorMessages(errors);
     }
+
   };
-  useEffect(() => {
-    const errors = [];
-    if (!name) errors.push("Please enter a project name!");
-    if (!description)
-      errors.push(
-        "Your teammates want to know what the project is about! Please enter a description."
-      );
-    setValidationErrors(errors);
-  }, [name, description]);
+
 
   return (
     <div className="form-container" id="edit-form">
+      <ErrorMessage label={""} message={errorMessages.overall} />
       <div className="form-header">
         <h1>Edit Project</h1>
       </div>
@@ -87,6 +95,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></input>
+          <ErrorMessage label={""} message={errorMessages.name} />
         </div>
         <div className="form-grouping">
           <div className="form-control">
@@ -99,6 +108,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
+            <ErrorMessage label={""} message={errorMessages.start_date} />
           </div>
           <div className="form-control">
             <label>End Date</label>
@@ -110,6 +120,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
+            <ErrorMessage label={""} message={errorMessages.end_date} />
           </div>
         </div>
 
@@ -120,6 +131,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
           teammates={teammates}
           allUsers={allUsers}
           edit={true}
+          errors={errorMessages.members}
         />
         <div className="form-grouping-select">
           <div className="select-control">
@@ -133,6 +145,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
               onChange={(option) => setPriority(option.value)}
               placeholder="Select a priority..."
             />
+            <ErrorMessage label={""} message={errorMessages.priority_id} />
           </div>
           <div className="select-control">
             <label>Status</label>
@@ -145,6 +158,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
               onChange={(option) => setStatus(option.value)}
               placeholder="Select a status..."
             />
+            <ErrorMessage label={""} message={errorMessages.status_id} />
           </div>
         </div>
         <div className="form-control">
@@ -155,6 +169,7 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
+          <ErrorMessage label={""} message={errorMessages.description} />
         </div>
         <div className="form-footer">
           <div className="private-container">
@@ -170,9 +185,11 @@ const EditProjectForm = ({ setShowModal, setIsClicked }) => {
             <button
               className="cancelBtn"
               type="cancel"
-              onClick={(e) => {e.preventDefault();
-                              setIsClicked(false);
-                              setShowModal(false)}}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsClicked(false);
+                setShowModal(false)
+              }}
             >
               Cancel
             </button>

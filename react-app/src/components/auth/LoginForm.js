@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { login } from "../../store/session";
-
-import NavBar from "../Navigation";
+import ErrorMessage from "../ErrorMessage";
 import "./auth.css";
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
@@ -17,7 +16,17 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      const errors = {};
+      if (Array.isArray(data)) {
+        data.forEach(error => {
+          const label = error.split(":")[0].slice(0, -1)
+          const message = error.split(":")[1].slice(1)
+          errors[label] = message;
+        })
+      } else {
+        errors.overall = data;
+      }
+      setErrorMessages(errors);
     }
   };
 
@@ -25,7 +34,17 @@ const LoginForm = () => {
     e.preventDefault();
     const data = await dispatch(login("demo@aa.io", "password"));
     if (data) {
-      setErrors(data);
+      const errors = {};
+      if (Array.isArray(data)) {
+        data.forEach(error => {
+          const label = error.split(":")[0].slice(0, -1)
+          const message = error.split(":")[1].slice(1)
+          errors[label] = message;
+        })
+      } else {
+        errors.overall = data;
+      }
+      setErrorMessages(errors);
     }
   };
 
@@ -42,16 +61,28 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
-      <NavBar />
-      <form onSubmit={onLogin} className="auth-form">
+    <div className="login-signup-form-container">
+      <div className="corner-login-signup-btn-container">
+        <span className="login-signup-msg">Don't have an account? </span>
+        <Link to="/sign-up" exact={true} className="corner-login-signup-btn">
+          <span>Sign Up</span>
+        </Link>
+      </div>
+      <div className="left-image-container">
+        <img src="/images/login-left3.jpeg" />
+        <Link to="/">
+          <img src="/images/esena.png" className="logo-left-image" />
+        </Link>
+      </div>
+      <form onSubmit={onLogin} className="auth-form login">
+        {/* <div className="login-signup-error-container">
+          {errors.map((error, ind) => {
+            error = error.split(":")[1];
+            return <div key={ind}>{error}</div>;
+          })}
+        </div> */}
+        <h1>Log into Esena</h1>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          {/* <label htmlFor="email">Email</label> */}
           <input
             name="email"
             type="text"
@@ -59,9 +90,9 @@ const LoginForm = () => {
             value={email}
             onChange={updateEmail}
           />
+          <ErrorMessage label={""} message={errorMessages.email} />
         </div>
         <div>
-          {/* <label htmlFor="password">Password</label> */}
           <input
             name="password"
             type="password"
@@ -69,12 +100,19 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
+          <ErrorMessage label={""} message={errorMessages.password} />
         </div>
         <div>
           <button type="submit">Login</button>
-          <button onClick={loginDemo}>Demo User</button>
         </div>
-        <Link to="/sign-up">Do not have an account? Sign Up!</Link>
+        <div>
+          <button id="demo-btn" onClick={loginDemo}>
+            Demo User
+          </button>
+        </div>
+        <Link to="/sign-up" className="auth-form-link">
+          Don't have an account? <span>Sign Up!</span>
+        </Link>
       </form>
     </div>
   );

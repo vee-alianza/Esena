@@ -99,6 +99,7 @@ def create_task(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     project = Project.query.get(id)
     choices = project.to_dict()["members"]
+    choices.append(current_user.id)
     form.assignee_id.choices = choices
 
     if form.validate_on_submit():

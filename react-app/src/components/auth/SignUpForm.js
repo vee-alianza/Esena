@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 
-import NavBar from "../Navigation";
 import { signUp } from "../../store/session";
 import { addToAllUsers } from "../../store/teammates";
+import ErrorMessage from "../ErrorMessage";
+
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [occupation, setOccupation] = useState("");
@@ -25,10 +26,24 @@ const SignUpForm = () => {
         signUp(firstName, lastName, occupation, bio, email, password)
       );
       if (data.errors) {
-        setErrors(data.errors);
+        const errors = {};
+        if (Array.isArray(data.errors)) {
+          data.errors.forEach(error => {
+            const label = error.split(":")[0].slice(0, -1)
+            const message = error.split(":")[1].slice(1)
+            errors[label] = message;
+          })
+        } else {
+          errors.overall = data;
+        }
+        setErrorMessages(errors);
       } else {
         dispatch(addToAllUsers(data));
       }
+    } else {
+      const errors = {};
+      errors.repeatPassword = "Repeat password doesn't match Password"
+      setErrorMessages(errors);
     }
   };
 
@@ -65,80 +80,98 @@ const SignUpForm = () => {
   }
 
   return (
-    <div>
-      <NavBar />
-      <form onSubmit={onSignUp} className="auth-form">
+    <div className="login-signup-form-container">
+      <div className="corner-login-signup-btn-container">
+        <span className="login-signup-msg">Already have an account? </span>
+        <Link to="/login" exact={true} className="corner-login-signup-btn">
+          <span>Log In</span>
+        </Link>
+      </div>
+      <div className="left-image-container">
+        <img src="/images/login-left3.jpeg" />
+        <Link to="/">
+          <img src="/images/esena.png" className="logo-left-image" />
+        </Link>
+      </div>
+      <form onSubmit={onSignUp} className="auth-form signup">
+        <ErrorMessage label={""} message={errorMessages.overall} />
+        <h1>Create an account</h1>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label>First Name</label>
           <input
             type="text"
             name="firstName"
             onChange={updateFirstName}
             value={firstName}
+            placeholder="First Name*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.first_name} />
         </div>
         <div>
-          <label>Last Name</label>
           <input
             type="text"
             name="firstName"
             onChange={updateLastName}
             value={lastName}
+            placeholder="Last Name*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.last_name} />
         </div>
+
         <div>
-          <label>Occupation</label>
           <input
             type="text"
             name="occupation"
             onChange={updateOccupation}
             value={occupation}
+            placeholder="Occupation*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.occupation} />
         </div>
         <div>
-          <label>Bio</label>
-          <input
+          <textarea
             type="text"
             name="bio"
             onChange={updateBio}
             value={bio}
-          ></input>
+            placeholder="Bio (optional)"
+          ></textarea>
+          <ErrorMessage label={""} message={errorMessages.bio} />
         </div>
         <div>
-          <label>Email</label>
           <input
             type="text"
             name="email"
             onChange={updateEmail}
             value={email}
+            placeholder="Email*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.email} />
         </div>
         <div>
-          <label>Password</label>
           <input
             type="password"
             name="password"
             onChange={updatePassword}
             value={password}
+            placeholder="Password*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.password} />
         </div>
         <div>
-          <label>Repeat Password</label>
           <input
             type="password"
             name="repeat_password"
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
+            placeholder="Repeat Password*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.repeatPassword} />
         </div>
         <button type="submit">Sign Up</button>
-        <Link to="/login">Already have an account? Log In!</Link>
+        <Link to="/login" className="auth-form-link">
+          Already have an account? <span>Log In!</span>
+        </Link>
       </form>
     </div>
   );

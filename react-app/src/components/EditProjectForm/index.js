@@ -9,7 +9,7 @@ const EditProjectModal = ({ setIsClicked }) => {
 
   return (
     <>
-      <button className="create-project-btn edit-project-btn" onClick={(e) => {e.stopPropagation(); setShowModal(true)}}>
+      <button className="create-project-btn edit-delete-project-btn" onClick={(e) => {e.stopPropagation(); setShowModal(true)}}>
         Edit Project
       </button>
       {showModal && (

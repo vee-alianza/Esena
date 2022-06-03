@@ -8,13 +8,15 @@ import High from "../Priorities/High";
 import OffTrack from "../Statuses/OffTrack";
 import AtRisk from "../Statuses/AtRisk";
 import OnTrack from "../Statuses/OnTrack";
-import { addComment } from "../../store/comments";
+import { addComment, editComment, deleteComment } from "../../store/comments";
 
 const TaskModal = ({taskId}) => {
 
     const dispatch = useDispatch();
-    const [comment, setComment] = useState("");
-    const [errors, setErrors] = useState([])
+    const [commentContent, setCommentContent] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [isEdit, setIsEdit] = useState(false);
+    const [editId, setEditId] = useState();
 
     const tasks = useSelector(state => state.tasks)
     const projects = useSelector(state => state.projects)
@@ -22,6 +24,7 @@ const TaskModal = ({taskId}) => {
     const comments = useSelector(state => state.comments)
     const cur_user = useSelector(state => state.session.user)
 
+    users[cur_user.id] = cur_user;
 
     let comments_arr;
     let task;
@@ -36,8 +39,9 @@ const TaskModal = ({taskId}) => {
     }
 
     const getInitials = id => {
-        const comment_author = users[id]
-        const author_initials = comment_author.first_name.slice(0, 1) + comment_author.last_name.slice(0, 1)
+
+        const comment_author = cur_user.id === id ? cur_user : users[id];
+        const author_initials = comment_author?.first_name.slice(0, 1) + comment_author?.last_name.slice(0, 1)
 
         return author_initials
     }
@@ -90,14 +94,54 @@ const TaskModal = ({taskId}) => {
     const addCommentSubmit = async (e) => {
         e.preventDefault();
         const payload = {
-            content: comment,
+            content: commentContent,
         }
 
         const res = await dispatch(addComment(payload, taskId));
 
         if (!Array.isArray(res)) {
-            setComment("");
+            setCommentContent("");
             setErrors([]);
+        } else {
+            const errors = res.map(error => error.split(":")[1].slice(1));
+            setErrors(errors);
+        }
+    }
+
+    const editCommentSubmit = async (e) => {
+        e.preventDefault();
+        const payload = {
+            content: commentContent,
+        }
+
+        const res = await dispatch(editComment(payload, editId));
+
+        if (!Array.isArray(res)) {
+            setCommentContent("");
+            setErrors([]);
+            setIsEdit(false);
+            setEditId();
+        } else {
+            const errors = res.map(error => error.split(":")[1].slice(1));
+            setErrors(errors);
+        }
+    }
+
+    const handleEditCommentClick = (e, content) => {
+        setCommentContent(content);
+        setIsEdit(true);
+        setEditId(e.target.id);
+    }
+
+    const handleDeleteClick = async (commentId) => {
+        console.log(commentId);
+        const res = await dispatch(deleteComment(commentId));
+
+        if (!Array.isArray(res)) {
+            setCommentContent("");
+            setErrors([]);
+            setIsEdit(false);
+            setEditId();
         } else {
             const errors = res.map(error => error.split(":")[1].slice(1));
             setErrors(errors);
@@ -137,7 +181,7 @@ const TaskModal = ({taskId}) => {
                     {comments_arr?.map((comment, idx) => (
                         <div className="comment" key={idx}>
                             <div className="person-circle-icon">
-                                <p>{getInitials(comment.author_id)}</p>
+                                <p>{getInitials(comment?.author_id)}</p>
                             </div>
                             <div className="comment-content">
                                 <div className="comment-header">
@@ -145,6 +189,17 @@ const TaskModal = ({taskId}) => {
                                         {users[comment?.author_id]?.first_name} {users[comment?.author_id]?.last_name}
                                     </p>
                                     <p className="date">{getDate(comment.create_date)}</p>
+                                    <div hidden={cur_user.id !== comment?.author_id}
+                                         className="edit-delete-btns-container">
+                                        <i  id={comment?.id}
+                                            className="fa-solid fa-pencil"
+                                            onClick={(e) => handleEditCommentClick(e, comment?.content)}
+                                        ></i>
+                                        <i
+                                            className="fa-solid fa-trash"
+                                            onClick={(e) => handleDeleteClick(comment?.id)}
+                                        ></i>
+                                    </div>
                                 </div>
                                 <p>{comment?.content}</p>
                             </div>
@@ -163,16 +218,16 @@ const TaskModal = ({taskId}) => {
                         </div>
                         <textarea
                             name="comment"
-                            value={comment}
+                            value={commentContent}
                             placeholder="Ask a question or post a comment"
-                            onChange={(e) => setComment(e.target.value)}
+                            onChange={(e) => setCommentContent(e.target.value)}
                         />
                     </div>
                     <button
-                        onClick={addCommentSubmit}
-                        disabled={comment.length ? false : true}
+                        onClick={isEdit ? editCommentSubmit : addCommentSubmit}
+                        disabled={commentContent.length ? false : true}
                         >
-                            Comment
+                        {isEdit ? "Edit" : "Comment"}
                     </button>
                 </div>
             </div>

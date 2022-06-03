@@ -1,5 +1,7 @@
 const SET_COMMENTS = "comments/SET_COMMENTS"
 const ADD_COMMENT = "comments/ADD_COMMENT"
+const UPDATE_COMMENT = "comments/UPDATE_COMMENT"
+const DELETE_COMMENT = "comments/DELETE_COMMENT"
 
 export const setComments = comments => {
     return {
@@ -12,6 +14,20 @@ const addNewComment = comment => {
     return {
         type: ADD_COMMENT,
         comment
+    }
+}
+
+const updateComment = comment => {
+    return {
+        type: UPDATE_COMMENT,
+        comment
+    }
+}
+
+const removeComment = commentId => {
+    return {
+        type: DELETE_COMMENT,
+        commentId
     }
 }
 
@@ -38,6 +54,48 @@ export const addComment = (payload, taskId) => async dispatch => {
     }
 }
 
+export const editComment = (payload, commentId) => async dispatch => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(updateComment(comment))
+        return comment;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+};
+
+export const deleteComment = (commentId) => async dispatch => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeComment(commentId));
+        return data;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data;
+        }
+    } else {
+        return ["An error occurred. Please try again."];
+    }
+}
+
 const initialState = {}
 
 const commentReducer = (state = initialState, action) => {
@@ -52,6 +110,15 @@ const commentReducer = (state = initialState, action) => {
                 ...state,
                 [action.comment.id]: action.comment,
             }
+        case UPDATE_COMMENT:
+            return {
+                ...state,
+                [action.comment.id]: action.comment,
+            }
+        case DELETE_COMMENT:
+            let newState = { ...state };
+            delete newState[action.commentId];
+            return newState;
         default:
             return state
     }

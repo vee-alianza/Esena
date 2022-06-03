@@ -61,5 +61,5 @@
 }
 
 .options-cell {
-  text-align: right;
+  text-align: center !important;
 }

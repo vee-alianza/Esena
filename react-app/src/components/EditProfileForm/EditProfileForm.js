@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { editProfile } from "../../store/profile";
 import { authenticate } from "../../store/session";
+import ErrorMessage from "../ErrorMessage";
 import "./index.css";
 
 const EditProfileForm = ({ setShowModal }) => {
@@ -14,12 +15,11 @@ const EditProfileForm = ({ setShowModal }) => {
   const [occupation, setOccupation] = useState(user.occupation);
   const [bio, setBio] = useState(user.bio);
 
-  const [validationErrors, setValidationErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validationErrors.length) {
       const payload = {
         first_name: firstName,
         last_name: lastName,
@@ -27,25 +27,30 @@ const EditProfileForm = ({ setShowModal }) => {
         bio,
         email: user.email,
       };
-      console.log(payload);
 
-      await dispatch(editProfile(payload, user.id));
+      const res = await dispatch(editProfile(payload, user.id));
       await dispatch(authenticate());
 
+    if (res === null) {
       setShowModal(false);
+    } else {
+      const errors = {};
+      if (Array.isArray(res)) {
+        res.forEach(error => {
+          const label = error.split(":")[0].slice(0, -1)
+          const message = error.split(":")[1].slice(1)
+          errors[label] = message;
+        })
+      } else {
+        errors.overall = res;
+      }
+      setErrorMessages(errors);
     }
   };
 
-  useEffect(() => {
-    const errors = [];
-    if (!firstName) errors.push("Please enter a first name!");
-    if (!lastName) errors.push("Please enter a last name!");
-    if (!occupation) errors.push("Please enter an occupation!");
-    setValidationErrors(errors);
-  }, [firstName, lastName, occupation]);
-
   return (
     <div className="edit-profile-form-container">
+      <ErrorMessage label={""} message={errorMessages.overall} />
       <div className="form-header">
         <h1>Edit Your Profile</h1>
       </div>
@@ -60,6 +65,7 @@ const EditProfileForm = ({ setShowModal }) => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
+            <ErrorMessage label={""} message={errorMessages.first_name} />
           </div>
           <div className="edit-profile-form-control">
             <label>Last Name</label>
@@ -70,6 +76,7 @@ const EditProfileForm = ({ setShowModal }) => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
+            <ErrorMessage label={""} message={errorMessages.last_name} />
           </div>
         </div>
         <div className="form-control">
@@ -81,6 +88,7 @@ const EditProfileForm = ({ setShowModal }) => {
             value={occupation}
             onChange={(e) => setOccupation(e.target.value)}
           ></input>
+          <ErrorMessage label={""} message={errorMessages.occupation} />
         </div>
         <div className="form-control">
           <label>Bio</label>
@@ -90,9 +98,17 @@ const EditProfileForm = ({ setShowModal }) => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           ></textarea>
+          <ErrorMessage label={""} message={errorMessages.bio} />
         </div>
         <div className="edit-profile-form-footer">
-          <button className="cancelBtn edit-prof-btn cncl" type="cancel">
+          <button
+            className="cancelBtn edit-prof-btn cncl"
+            type="cancel"
+            onClick={(e) => {
+              e.preventDefault()
+              setShowModal(false)
+            }}
+          >
             Cancel
           </button>
           <button className="submitBtn edit-prof-btn" type="submit">
