@@ -1,7 +1,7 @@
 .calendar-container {
     width: 75%;
     position: absolute;
-    top: 5%;
+    top: 8%;
     right: 5%;
 }
 
@@ -11,8 +11,8 @@
 
 .calendar-legend {
     position: absolute;
-    right: 10%;
-    top: 75%;
+    right: 8%;
+    top: 6%;
 }
 .color-box-low {
     width: 30px;
