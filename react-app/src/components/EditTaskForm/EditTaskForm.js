@@ -42,7 +42,7 @@ const EditTaskForm = ({
   const [errorMessages, setErrorMessages] = useState({});
 
   const assigneeOptions = teammates.map((teammate) => {
-    return { label: `${teammate.first_name}`, value: `${teammate.id}` };
+    return { label: `${teammate?.first_name}`, value: `${teammate?.id}` };
   });
 
   const priorityOptions = [
