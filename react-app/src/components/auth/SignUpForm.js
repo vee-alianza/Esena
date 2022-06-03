@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 
-import NavBar from "../Navigation";
 import { signUp } from "../../store/session";
 import { addToAllUsers } from "../../store/teammates";
+import ErrorMessage from "../ErrorMessage";
+
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [occupation, setOccupation] = useState("");
@@ -25,10 +26,25 @@ const SignUpForm = () => {
         signUp(firstName, lastName, occupation, bio, email, password)
       );
       if (data.errors) {
-        setErrors(data.errors);
+        console.log("****", data)
+        const errors = {};
+        if (Array.isArray(data.errors)) {
+          data.errors.forEach(error => {
+            const label = error.split(":")[0].slice(0, -1)
+            const message = error.split(":")[1].slice(1)
+            errors[label] = message;
+          })
+        } else {
+          errors.overall = data;
+        }
+        setErrorMessages(errors);
       } else {
         dispatch(addToAllUsers(data));
       }
+    } else {
+      const errors = {};
+      errors.repeatPassword = "Repeat password doesn't match Password"
+      setErrorMessages(errors);
     }
   };
 
@@ -66,7 +82,6 @@ const SignUpForm = () => {
 
   return (
     <div className="login-signup-form-container">
-      {/* <NavBar /> */}
       <div className="corner-login-signup-btn-container">
         <span className="login-signup-msg">Already have an account? </span>
         <Link to="/login" exact={true} className="corner-login-signup-btn">
@@ -80,19 +95,9 @@ const SignUpForm = () => {
         </Link>
       </div>
       <form onSubmit={onSignUp} className="auth-form signup">
-        <div className="login-signup-error-container">
-          {errors.map((error, ind) => {
-            error = error.split(":")[1];
-            return <div key={ind}>{error}</div>;
-          })}
-          {/* {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))} */}
-        </div>
+        <ErrorMessage label={""} message={errorMessages.overall} />
         <h1>Create an account</h1>
-
         <div>
-          {/* <label>First Name</label> */}
           <input
             type="text"
             name="firstName"
@@ -100,9 +105,9 @@ const SignUpForm = () => {
             value={firstName}
             placeholder="First Name*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.first_name} />
         </div>
         <div>
-          {/* <label>Last Name</label> */}
           <input
             type="text"
             name="firstName"
@@ -110,10 +115,10 @@ const SignUpForm = () => {
             value={lastName}
             placeholder="Last Name*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.last_name} />
         </div>
 
         <div>
-          {/* <label>Occupation</label> */}
           <input
             type="text"
             name="occupation"
@@ -121,9 +126,9 @@ const SignUpForm = () => {
             value={occupation}
             placeholder="Occupation*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.occupation} />
         </div>
         <div>
-          {/* <label>Bio</label> */}
           <textarea
             type="text"
             name="bio"
@@ -131,9 +136,9 @@ const SignUpForm = () => {
             value={bio}
             placeholder="Bio (optional)"
           ></textarea>
+          <ErrorMessage label={""} message={errorMessages.bio} />
         </div>
         <div>
-          {/* <label>Email</label> */}
           <input
             type="text"
             name="email"
@@ -141,9 +146,9 @@ const SignUpForm = () => {
             value={email}
             placeholder="Email*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.email} />
         </div>
         <div>
-          {/* <label>Password</label> */}
           <input
             type="password"
             name="password"
@@ -151,9 +156,9 @@ const SignUpForm = () => {
             value={password}
             placeholder="Password*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.password} />
         </div>
         <div>
-          {/* <label>Repeat Password</label> */}
           <input
             type="password"
             name="repeat_password"
@@ -162,6 +167,7 @@ const SignUpForm = () => {
             required={true}
             placeholder="Repeat Password*"
           ></input>
+          <ErrorMessage label={""} message={errorMessages.repeatPassword} />
         </div>
         <button type="submit">Sign Up</button>
         <Link to="/login" className="auth-form-link">
