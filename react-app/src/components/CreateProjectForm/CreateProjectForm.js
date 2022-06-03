@@ -53,9 +53,9 @@ const CreateProjectForm = ({ setShowModal }) => {
     };
 
     const res = await dispatch(addProject(payload, session.id));
-    if (res === null) {
+    if (typeof res === 'object') {
       setShowModal(false);
-      history.push(`/my-projects`);
+      history.push(`/projects/${res.id}`);
     } else {
       const errors = {};
       if (Array.isArray(res)) {

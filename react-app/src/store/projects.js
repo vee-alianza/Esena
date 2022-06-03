@@ -42,7 +42,7 @@ export const addProject = (payload, userId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(createProject(data));
-    return null;
+    return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
