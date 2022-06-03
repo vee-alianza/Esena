@@ -39,10 +39,10 @@ h3 {
     padding: 5%;
 } */
 
-a i {
+.logo-container a i {
     transition: all 0.3s linear;
 }
 
-a:hover i {
+.logo-container a:hover i {
     transform: scale(1.5);
 }

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png"
 import "./footer.css";
 
 const Footer = () => {
@@ -6,7 +7,7 @@ const Footer = () => {
         <>
             <div className="footer-container">
                 <div className="dev-info-container">
-                    <img className="logo-footer" src="/images/logo.png" />
+                    <img className="logo-footer" src={logo} />
                     <div className="dev-info-footer">
                         <h3>Ethen Chen</h3>
                         <a href="https://travelr-ec.herokuapp.com/">Travelr</a>
