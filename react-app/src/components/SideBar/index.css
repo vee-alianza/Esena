@@ -9,12 +9,12 @@
   box-shadow: 0px 0px 1px #b0b3b7, 0px 0px 2px #ced1d4;
 }
 
-.logo-container {
+.sidebar-logo-container {
   height: 110px;
   width: 100%;
 }
 
-.logo-container > img {
+.sidebar-logo-container > img {
   width: auto;
   max-height: 90px;
   margin-left: 5px;

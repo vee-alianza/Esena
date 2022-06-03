@@ -1,0 +1,39 @@
+.footer-container {
+  border-top: 1px solid rgb(182, 182, 182);
+  width: 100%;
+  position: relative;
+  top: 100px;
+  height: 250px;
+}
+
+.logo-footer > img {
+  width: 60px;
+  height: 60px;
+  /* margin-top: 10px; */
+}
+
+.dev-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.footer-social-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-social-links > a {
+  padding: 0px 5px;
+}
+
+.dev-info-footer > p {
+  font-weight: 500;
+}
+
+.dev-info-footer-copyright > p {
+  padding-top: 5px;
+  font-size: 13px;
+}

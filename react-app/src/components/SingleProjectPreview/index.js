@@ -6,8 +6,13 @@ import SideBar from "../SideBar";
 import ProjectTeamMembers from "../ProjectTeamMembers";
 import ProjectTasksInProgress from "../ProjectTasksInProgress";
 import ProjectTasksCompleted from "../ProjectTasksCompleted";
-import EditProjectModal from "../EditProjectForm";
-import DeleteProjectModal from "../DeleteProjectForm";
+import Low from "../Priorities/Low";
+import Medium from "../Priorities/Medium";
+import High from "../Priorities/High";
+import AtRisk from "../Statuses/AtRisk";
+import OnTrack from "../Statuses/OnTrack";
+import OffTrack from "../Statuses/OffTrack";
+import Completed from "../Statuses/Completed";
 import { viewProject } from "../../store/singleProject";
 import "./index.css";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
@@ -48,7 +53,6 @@ const SingleProjectPreview = () => {
   if (project && project.tasks) {
     allTasks = Object.values(project.tasks);
     members = [project.owner_id, ...project.members];
-    // console.log(allTasks, members)
   }
 
   if (projectId in projects) {
@@ -57,11 +61,6 @@ const SingleProjectPreview = () => {
     allTasks = allTasks?.filter((task) => task.project_id == project.id);
     members = [project.owner_id, ...project.members];
   }
-  // else if (profileUser && profileUser.projects) {
-  //   // console.log(profileUser)
-  //   project = profileUser.projects[projectId];
-  //   allTasks = Object.values(profileUser.tasks);
-  // }
 
   allTasks?.sort((a, b) => {
     const keyA = new Date(a?.end_date);
@@ -96,16 +95,56 @@ const SingleProjectPreview = () => {
     }
   };
 
+  const renderPriority = (resource) => {
+    if (resource.priority === "Low") {
+      return <Low resource={resource} />;
+    }
+    if (resource.priority === "Medium") {
+      return <Medium resource={resource} />;
+    }
+    if (resource.priority === "High") {
+      return <High resource={resource} />;
+    }
+  };
+
+  const renderStatus = (resource) => {
+    if (resource.status === "Off track") {
+      return <OffTrack resource={resource} />;
+    }
+    if (resource.status === "At risk") {
+      return <AtRisk resource={resource} />;
+    }
+    if (resource.status === "On track") {
+      return <OnTrack resource={resource} />;
+    }
+  };
+
+  const overDue = () => {
+    const jsDate = new Date().toISOString().split("T")[0];
+    const pyDate = jsDate.split("-");
+    const newPyDate = `${pyDate[1]}/${pyDate[2]}/${pyDate[0]}`;
+    return newPyDate > project.end_date;
+  };
+
   return (
     <>
       <SideBar />
       <div className="page-container">
         <div className="project-page-header">
-          <h1>{project.name}</h1>
-          <DropdownMenu
-            comp="edit"
-            permissions={sessionUser?.id == project.owner_id}
-          />
+          <div className="project-page-header-left">
+            <h1>{project.name}</h1>
+            <div className="project-page-header-statuses">
+              <div>{renderPriority(project)}</div>
+              <div>{renderStatus(project)}</div>
+            </div>
+            <p>{`Due: ${project.end_date} ${overDue() ? "(Overdue)" : ""}`}</p>
+          </div>
+          <div className="project-page-header-right">
+            <DropdownMenu
+              comp="edit"
+              permissions={sessionUser?.id == project.owner_id}
+            />
+          </div>
         </div>
         {project && (
           <div className="single-project-view">

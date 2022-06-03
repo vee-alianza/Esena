@@ -48,7 +48,11 @@ const NavBar = () => {
             <img src={logo} alt="logo" />
           </div>
           <div className="right-nav">
-            <button className="nav-about-btn">About</button>
+            <button className="nav-about-btn">
+              <NavLink to="/about" exact={true} activeClassName="active">
+                About
+              </NavLink>
+            </button>
             <button className="nav-login-btn">{navlink}</button>
           </div>
         </div>

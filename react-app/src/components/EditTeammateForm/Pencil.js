@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EditProjectForm from "./EditProjectForm";
+import EditTeammateForm from "./EditTeammateForm";
 import { Modal } from "../../context/Modal";
 
 const Pencil = () => {
@@ -10,7 +10,7 @@ const Pencil = () => {
       <i className="fa-solid fa-pencil" onClick={() => setShowModal(true)}></i>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditProjectForm setShowModal={setShowModal} />
+          <EditTeammateForm setShowModal={setShowModal} />
         </Modal>
       )}
     </>

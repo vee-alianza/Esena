@@ -17,6 +17,7 @@ import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyCalendar from "./components/MyCalendar";
+import About from "./components/About";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -93,22 +94,29 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/my-tasks" exact={true}>
+        <Route path="/about" exact={true}>
+          <About />
+        </Route>
+        <ProtectedRoute path="/my-tasks" exact={true} loaded={loaded}>
           <MyTasks />
         </ProtectedRoute>
-        <ProtectedRoute path="/my-projects" exact={true}>
+        <ProtectedRoute path="/my-projects" exact={true} loaded={loaded}>
           <MyProjects />
         </ProtectedRoute>
-        <ProtectedRoute path="/projects/:projectId" exact={true}>
+        <ProtectedRoute
+          path="/projects/:projectId"
+          exact={true}
+          loaded={loaded}
+        >
           <SingleProjectPreview />
         </ProtectedRoute>
-        <ProtectedRoute path="/profile/:userId" exact={true}>
+        <ProtectedRoute path="/profile/:userId" exact={true} loaded={loaded}>
           <Profile />
         </ProtectedRoute>
-        <ProtectedRoute path="/my-calendar" exact={true}>
+        <ProtectedRoute path="/my-calendar" exact={true} loaded={loaded}>
           <MyCalendar />
         </ProtectedRoute>
-        <ProtectedRoute>
+        <ProtectedRoute loaded={loaded}>
           <NotFound />
         </ProtectedRoute>
       </Switch>
