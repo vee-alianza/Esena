@@ -68,7 +68,7 @@ const EditTaskForm = ({
       assignee_id: parseInt(assignee),
     };
 
-    const res = dispatch(editTask(payload, taskId));
+    const res = await dispatch(editTask(payload, taskId));
 
     if (res === null) {
       setShowModal(false);

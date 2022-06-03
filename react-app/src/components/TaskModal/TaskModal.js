@@ -134,7 +134,6 @@ const TaskModal = ({taskId}) => {
     }
 
     const handleDeleteClick = async (commentId) => {
-        console.log(commentId);
         const res = await dispatch(deleteComment(commentId));
 
         if (!Array.isArray(res)) {
