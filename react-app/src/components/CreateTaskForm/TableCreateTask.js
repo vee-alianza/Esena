@@ -3,7 +3,7 @@ import CreateTaskForm from "./CreateTaskForm";
 import { Modal } from "../../context/Modal";
 import "./TableCreateTask.css";
 
-const TableCreateTask = ({ projectName }) => {
+const TableCreateTask = ({ projectName, endDate }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -20,6 +20,7 @@ const TableCreateTask = ({ projectName }) => {
           <CreateTaskForm
             setShowModal={setShowModal}
             projectName={projectName}
+            projectEndDate={endDate}
           />
         </Modal>
       )}

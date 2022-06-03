@@ -3,7 +3,7 @@ import EditTaskForm from "./EditTaskForm";
 import { Modal } from "../../context/Modal";
 import "./EditTaskTableBtn.css";
 
-const EditTaskTableBtn = ({ taskId, projectName }) => {
+const EditTaskTableBtn = ({ taskId, projectName, projectEndDate }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -17,6 +17,7 @@ const EditTaskTableBtn = ({ taskId, projectName }) => {
             setShowModal={setShowModal}
             taskId={taskId}
             projectName={projectName}
+            projectEndDate={projectEndDate}
           />
         </Modal>
       )}
