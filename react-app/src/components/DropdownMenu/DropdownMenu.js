@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useStateIfMounted } from "use-state-if-mounted";
 import EditProjectModal from "../EditProjectForm"
 import DeleteProjectModal from "../DeleteProjectForm"
 
 import "./index.css";
 
 const DropdownMenu = ({ comp, permissions }) => {
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useStateIfMounted(false);
 
     const handleClick = (e) => {
         e.stopPropagation();
@@ -20,6 +20,7 @@ const DropdownMenu = ({ comp, permissions }) => {
             setIsClicked(false)
         }
     }
+
 
     return (
         <>
