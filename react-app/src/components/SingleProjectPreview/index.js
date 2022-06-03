@@ -120,7 +120,10 @@ const SingleProjectPreview = () => {
   };
 
   const overDue = () => {
-    return new Date().toISOString().split("T")[0] > project.end_date;
+    const jsDate = new Date().toISOString().split("T")[0];
+    const pyDate = jsDate.split("-");
+    const newPyDate = `${pyDate[1]}/${pyDate[2]}/${pyDate[0]}`;
+    return newPyDate > project.end_date;
   };
 
   return (
@@ -134,7 +137,7 @@ const SingleProjectPreview = () => {
               <div>{renderPriority(project)}</div>
               <div>{renderStatus(project)}</div>
             </div>
-            <p>{`Due: ${project.end_date} ${overDue ? "(Overdue)" : ""}`}</p>
+            <p>{`Due: ${project.end_date} ${overDue() ? "(Overdue)" : ""}`}</p>
           </div>
           <div className="project-page-header-right">
             <DropdownMenu
