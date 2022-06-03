@@ -19,7 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 @task_routes.route('/<int:id>', methods=["PUT"])
 #commented out for test only
-# @login_required
+@login_required
 def update_task(id):
     """
     Updates a task
@@ -52,7 +52,7 @@ def update_task(id):
 
 @task_routes.route('/<int:id>/complete', methods=["PATCH"])
 #commented out for test only
-# @login_required
+@login_required
 def complete_task(id):
     """
     Set a task to be completed
@@ -69,7 +69,7 @@ def complete_task(id):
 
 @task_routes.route('/<int:id>', methods=["DELETE"])
 #commented out for test only
-# @login_required
+@login_required
 def delete_task(id):
     form = DeleteForm()
     form['csrf_token'].data = request.cookies['csrf_token']
