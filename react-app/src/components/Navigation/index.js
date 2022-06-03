@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import LogoutButton from "../auth/LogoutButton";
 
 import "./index.css";
 
@@ -46,7 +45,7 @@ const NavBar = () => {
       <div className="splash-outer">
         <div className="global-limit">
           <div className="logo-wrap">
-            <img src="/images/esena.png" />
+            <img src="/images/esena.png" alt="logo" />
           </div>
           <div className="right-nav">
             <button className="nav-about-btn">About</button>
