@@ -8,6 +8,8 @@ import ModalProvider from "./context/Modal";
 
 const store = configureStore();
 
+if (process.env.NODE_ENV !== "development") console.log = () => {};
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
