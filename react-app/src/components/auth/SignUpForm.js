@@ -6,6 +6,8 @@ import { signUp } from "../../store/session";
 import { addToAllUsers } from "../../store/teammates";
 import ErrorMessage from "../ErrorMessage";
 
+import logo from "../../assets/esena.png";
+import loginPic from "../../assets/login-left3.jpeg";
 
 const SignUpForm = () => {
   const [errorMessages, setErrorMessages] = useState({});
@@ -28,11 +30,11 @@ const SignUpForm = () => {
       if (data.errors) {
         const errors = {};
         if (Array.isArray(data.errors)) {
-          data.errors.forEach(error => {
-            const label = error.split(":")[0].slice(0, -1)
-            const message = error.split(":")[1].slice(1)
+          data.errors.forEach((error) => {
+            const label = error.split(":")[0].slice(0, -1);
+            const message = error.split(":")[1].slice(1);
             errors[label] = message;
-          })
+          });
         } else {
           errors.overall = data;
         }
@@ -42,7 +44,7 @@ const SignUpForm = () => {
       }
     } else {
       const errors = {};
-      errors.repeatPassword = "Repeat password doesn't match Password"
+      errors.repeatPassword = "Repeat password doesn't match Password";
       setErrorMessages(errors);
     }
   };
@@ -83,14 +85,14 @@ const SignUpForm = () => {
     <div className="login-signup-form-container">
       <div className="corner-login-signup-btn-container">
         <span className="login-signup-msg">Already have an account? </span>
-        <Link to="/login" exact={true} className="corner-login-signup-btn">
+        <Link to="/login" exact={"true"} className="corner-login-signup-btn">
           <span>Log In</span>
         </Link>
       </div>
       <div className="left-image-container">
-        <img src="/images/login-left3.jpeg" />
+        <img src={loginPic} />
         <Link to="/">
-          <img src="/images/esena.png" className="logo-left-image" />
+          <img src={logo} className="logo-left-image" />
         </Link>
       </div>
       <form onSubmit={onSignUp} className="auth-form signup">

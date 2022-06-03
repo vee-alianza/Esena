@@ -3,6 +3,8 @@ import { NavLink, useHistory } from "react-router-dom";
 
 import "./index.css";
 
+import logo from "../../assets/esena.png";
+
 const NavBar = () => {
   const history = useHistory();
   const navBar = useRef();
@@ -43,7 +45,7 @@ const NavBar = () => {
       <div className="splash-outer">
         <div className="global-limit">
           <div className="logo-wrap">
-            <img src="/images/esena.png" alt="logo" />
+            <img src={logo} alt="logo" />
           </div>
           <div className="right-nav">
             <button className="nav-about-btn">About</button>
