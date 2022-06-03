@@ -15,6 +15,7 @@ import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -85,21 +86,21 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path="/my-tasks" exact={true}>
+        <ProtectedRoute path="/my-tasks" exact={true}>
           <MyTasks />
-        </Route>
-        <Route path="/my-projects" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/my-projects" exact={true}>
           <MyProjects />
-        </Route>
-        <Route path="/projects/:projectId" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/projects/:projectId" exact={true}>
           <SingleProjectPreview />
-        </Route>
-        <Route path="/profile/:userId" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/:userId" exact={true}>
           <Profile />
-        </Route>
-        <Route>
+        </ProtectedRoute>
+        <ProtectedRoute>
           <NotFound />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
