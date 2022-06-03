@@ -2,6 +2,8 @@ import { useState } from "react";
 import CreateProjectForm from "./CreateProjectForm";
 import { Modal } from "../../context/Modal";
 
+import addIcon from "../../assets/addicon.png";
+
 const HomeCreateProjectBtn = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -11,10 +13,7 @@ const HomeCreateProjectBtn = () => {
         className="create-project-container"
         onClick={() => setShowModal(true)}
       >
-        <img
-          alt="add-icon"
-          src="/images/addicon.png"
-        />
+        <img alt="add-icon" src={addIcon} />
         <p>Create Project</p>
       </div>
       {showModal && (

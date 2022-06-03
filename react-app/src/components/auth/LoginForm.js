@@ -5,6 +5,9 @@ import { login } from "../../store/session";
 import ErrorMessage from "../ErrorMessage";
 import "./auth.css";
 
+import logo from "../../assets/esena.png";
+import loginPic from "../../assets/login-left3.jpeg";
+
 const LoginForm = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const [email, setEmail] = useState("");
@@ -68,10 +71,11 @@ const LoginForm = () => {
           <span>Sign Up</span>
         </Link>
       </div>
+
       <div className="left-image-container">
-        <img src="/images/login-left3.jpeg" />
+        <img src={loginPic} alt="loginbanner" />
         <Link to="/">
-          <img src="/images/esena.png" className="logo-left-image" />
+          <img src={logo} className="logo-left-image" alt="logo" />
         </Link>
       </div>
       <form onSubmit={onLogin} className="auth-form login">
