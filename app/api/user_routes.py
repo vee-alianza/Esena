@@ -17,8 +17,8 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@user_routes.route('/')
-# @login_required commented out for testing
+@user_routes.route('')
+@login_required
 def users():
     """
     Gets all users (for search)
@@ -63,6 +63,7 @@ def user(id):
 
 
 @user_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def update_profile(id):
     form = UserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -83,7 +84,7 @@ def update_profile(id):
 
 @user_routes.route('/<int:id>/projects', methods=["POST"])
 #commented out for test only
-# @login_required
+@login_required
 def create_project(id):
     """
     Creates a new project
