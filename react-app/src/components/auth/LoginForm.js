@@ -18,11 +18,11 @@ const LoginForm = () => {
     if (data) {
       const errors = {};
       if (Array.isArray(data)) {
-        data.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        data.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = data;
       }
@@ -36,11 +36,11 @@ const LoginForm = () => {
     if (data) {
       const errors = {};
       if (Array.isArray(data)) {
-        data.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        data.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = data;
       }
@@ -82,30 +82,35 @@ const LoginForm = () => {
           })}
         </div> */}
         <h1>Log into Esena</h1>
-        <div>
+        <div className="auth-input-group">
           <input
             name="email"
             type="text"
-            placeholder="Email"
+            required={true}
             value={email}
             onChange={updateEmail}
           />
+          <label htmlFor="email" className="input-label">
+            Email
+          </label>
           <ErrorMessage label={""} message={errorMessages.email} />
         </div>
-        <div>
+        <div className="auth-input-group">
           <input
             name="password"
             type="password"
-            placeholder="Password"
+            required={true}
             value={password}
             onChange={updatePassword}
           />
+          <label htmlFor="email" className="input-label">
+            Password
+          </label>
           <ErrorMessage label={""} message={errorMessages.password} />
         </div>
-        <div>
+        <div className="submit-group">
           <button type="submit">Login</button>
-        </div>
-        <div>
+
           <button id="demo-btn" onClick={loginDemo}>
             Demo User
           </button>
