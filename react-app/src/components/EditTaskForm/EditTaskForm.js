@@ -6,7 +6,12 @@ import CompleteTaskButton from "../CompleteTaskButton";
 import ErrorMessage from "../ErrorMessage";
 import "./EditTaskForm.css";
 
-const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => {
+const EditTaskForm = ({
+  setShowModal,
+  taskId,
+  projectName,
+  projectEndDate,
+}) => {
   const dispatch = useDispatch();
   const task = useSelector((state) => state.tasks[taskId]);
   const projectId = task?.project_id;
@@ -19,7 +24,10 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  teammates.push(sessionUser);
+  const projects = useSelector((state) => state.projects);
+  const ownerId = projects[projectId].owner_id;
+  const ownerObj = allUsers[ownerId];
+  teammates.push(ownerObj);
 
   const [month, date, year] = task.end_date.split("/");
   const prevEndDate = `${year}-${month}-${date}`;
@@ -67,11 +75,11 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
     } else {
       const errors = {};
       if (Array.isArray(res)) {
-        res.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        res.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = res;
       }
@@ -80,7 +88,6 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
   };
 
   const checkDates = () => {
-
     if (endDate !== prevEndDate) {
 
       const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
@@ -98,7 +105,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
       }
     }
     return null;
-  }
+  };
 
 
   return (
