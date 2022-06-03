@@ -1,6 +1,6 @@
 .teammate-container {
-  width: 926px;
-  height: 200px;
+  width: 1081px;
+  height: 250px;
   background: #ffffffff;
   border-radius: 6px;
   box-shadow: 0px 0px 1px #d7d7d7, 0px 0px 2px #d7d7d7;
@@ -12,5 +12,5 @@
   grid-template-columns: repeat(6, 1fr);
   row-gap: 10px;
   column-gap: 5px;
-  padding: 0px 20px;
+  padding: 10px 20px;
 }

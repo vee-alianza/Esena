@@ -9,7 +9,6 @@
 
 .splash-body-container {
   position: relative;
-  top: 78px;
   max-width: 1312px;
   width: calc(100% - 128px);
   height: 100%;
@@ -23,6 +22,8 @@
   flex-direction: row;
   justify-content: center;
   overflow-y: hidden;
+  position: relative;
+  top: 78px;
 }
 
 .first-display-left-text {
@@ -116,11 +117,12 @@
 
 .second-display {
   position: relative;
+  top: 78px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 500px;
+  height: 450px;
 }
 
 .second-display-left-text {
@@ -161,11 +163,12 @@
 
 .third-display {
   position: relative;
+  top: 50px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 500px;
+  height: 475px;
 }
 
 .third-display-left-text {
