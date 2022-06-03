@@ -120,6 +120,7 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
                 name="end_date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
+                className="date-input"
               />
               <div className="error-message">{checkDates()}</div>
               <ErrorMessage label={""} message={errorMessages.end_date} />
@@ -179,13 +180,10 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
             }}
             className="add-task-cancelBtn"
             type="cancel"
-            >
+          >
             Cancel
           </button>
-          <button
-            className="submitBtn add-task-btn"
-            type="submit"
-          >
+          <button className="submitBtn add-task-btn" type="submit">
             Create
           </button>
         </div>

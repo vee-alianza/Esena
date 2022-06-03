@@ -128,6 +128,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
               name="end_date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
+              className="date-input"
             />
             <div className="error-message">{checkDates()}</div>
             <ErrorMessage label={""} message={errorMessages.end_date} />
