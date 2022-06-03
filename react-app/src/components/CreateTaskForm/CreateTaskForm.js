@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { useParams } from "react-router-dom";
@@ -74,22 +74,17 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   const checkDates = () => {
 
     if (endDate) {
-      const projectEndDateMonth = projectEndDate.split("/")[0];
-      const projectEndDateDay = projectEndDate.split("/")[1];
-      const projectEndDateYear = projectEndDate.split("/")[2];
-      const projectEnd = new Date(projectEndDateYear, projectEndDateMonth, projectEndDateDay).getTime();
 
-      const taskEndDate = endDate.split("-")[2];
-      const taskEndMonth = endDate.split("-")[1];
-      const taskEndYear = endDate.split("-")[0];
+      const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
+      const projectEnd = new Date(projectYear, projectMonth, projectDate).getTime();
 
-      const taskEnd = new Date(taskEndYear, taskEndMonth, taskEndDate).getTime();
+      const [taskMonth, taskDate, taskYear] = endDate.split("-");
+      const taskEnd = new Date(taskYear, taskMonth, taskDate).getTime();
 
       if (taskEnd > projectEnd) {
         return `End date should be before project ends (${projectEndDate})`;
       }
     }
-
     return null;
   }
 

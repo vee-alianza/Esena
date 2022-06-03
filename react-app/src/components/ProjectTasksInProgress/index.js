@@ -88,6 +88,7 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
                 <EditTaskTableBtn
                   taskId={task.id}
                   projectName={project?.name}
+                  projectEndDate={project?.end_date}
                 />
                 <DeleteTaskTableBtn taskId={task.id} taskname={task.name} />
               </td>

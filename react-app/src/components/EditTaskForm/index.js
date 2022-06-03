@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditTaskForm from "./EditTaskForm";
 import { Modal } from "../../context/Modal";
 
-const EditTaskModal = ({ taskId, projectName }) => {
+const EditTaskModal = ({ taskId, projectName, projectEndDate }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -12,7 +12,12 @@ const EditTaskModal = ({ taskId, projectName }) => {
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditTaskForm setShowModal={setShowModal} taskId={taskId} projectName={projectName}/>
+          <EditTaskForm
+            setShowModal={setShowModal}
+            taskId={taskId}
+            projectName={projectName}
+            projectEndDate={projectEndDate}
+            />
         </Modal>
       )}
     </>
