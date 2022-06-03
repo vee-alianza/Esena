@@ -4,6 +4,35 @@
     align-items: center;
 }
 
+.dev-upper-section {
+    height: 55vh;
+    width: 100%;
+    background-color: blueviolet;
+    /* margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline; */
+}
+
+.dev-upper-section h1 {
+    color: white;
+    display: flex;
+    margin-left: 220px;
+    font-size: 50px;
+    margin-top: 180px;
+}
+
+.dev-upper-intro {
+    margin-left: 230px;
+    margin-top: 30px;
+    line-height: 22px;
+    width: 600px;
+}
+
+.dev-intro {
+    text-align: center;
+}
+
 .dev-img {
     /* border-radius: 50%; */
     /* width: 150px;
@@ -32,12 +61,13 @@
     height: 1px;
 }
 
-/* p {
-    width: 50%;
-    height: 25%;
-    margin: 5%;
-    padding: 5%;
-} */
+.dev-profile p {
+    display: block;
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 
 .logo-container a i {
     transition: all 0.3s linear;
