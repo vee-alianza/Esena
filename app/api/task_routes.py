@@ -31,6 +31,7 @@ def update_task(id):
     task = Task.query.get(id)
     project = Project.query.get(task.project_id)
     choices = project.to_dict()["members"]
+    choices.append(current_user.id)
     form.assignee_id.choices = choices
     if form.validate_on_submit():
         if task:
