@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { deleteProject, removeProject } from "../../store/projects";
+import { deleteProject } from "../../store/projects";
 import "./DeleteProjectForm.css";
 
 const DeleteProjectForm = ({ setShowModal, setIsClicked }) => {
@@ -9,8 +9,6 @@ const DeleteProjectForm = ({ setShowModal, setIsClicked }) => {
   const { projectId } = useParams();
 
   const projects = useSelector((state) => state.projects);
-  const allUsers = useSelector((state) => state.teammates.allUsers);
-  // const allUserObjects = Object.values(allUsers);
 
   const project = projects[projectId];
 
