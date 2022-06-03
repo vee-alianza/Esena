@@ -1,5 +1,5 @@
 import TeamPreview from "../TeamPreview";
-import Pencil from "../EditProjectForm/Pencil";
+import Pencil from "../EditTeammateForm/Pencil";
 import "./index.css";
 
 const ProjectTeamMembers = ({ members, projectPage, permissions }) => {
