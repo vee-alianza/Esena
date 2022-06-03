@@ -18,7 +18,12 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  teammates.push(sessionUser);
+  // teammates.push(sessionUser);
+  const projects = useSelector((state) => state.projects);
+  const ownerId = projects[projectId].owner_id;
+  const ownerObj = allUsers[ownerId]
+  teammates.push(ownerObj);
+  // console.log("*********", teammates)
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
