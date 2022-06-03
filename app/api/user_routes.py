@@ -20,27 +20,13 @@ def validation_errors_to_error_messages(validation_errors):
 @user_routes.route('/')
 # @login_required commented out for testing
 def users():
-
-    # gets all users (for search)
+    """
+    Gets all users (for search)
+    """
 
     users = User.query.all()
     return {"users": {user.id: user.to_dict() for user in users}}
 
-    # for user in users:
-    #     user_dict = user.to_dict()
-
-        # owned_projects = {project.id: project.to_dict() for project in user.owned_projects}
-        # joined_projects = {project.id: project.to_dict() for project in user.joined_projects}
-
-        # assigned_tasks = {task.id: task.to_dict() for task in user.assigned_tasks}
-
-        # user_dict["owned_projects"] = owned_projects
-        # user_dict["joined_projects"] = joined_projects
-        # user_dict["assigned_tasks"] = assigned_tasks
-
-    #     all_users[user.id] = user_dict
-
-    # return all_users
 
 @user_routes.route('/<int:id>')
 @login_required
@@ -70,20 +56,11 @@ def user(id):
         tasks.update(project.to_dict()["tasks"])
 
 
-    # comments = {}
-    # for id, task in tasks.items():
-    #     comments.update(task["comments"])
-
-
-    # user_dict["owned_projects"] = owned_projects
-    # user_dict["joined_projects"] = joined_projects
-    # user_dict["assigned_tasks"] = assigned_tasks
     user_dict['teammates'] = teammates
     user_dict['tasks'] = tasks
     user_dict['projects'] = projects_dict
-    # user_dict['comments'] = comments
-
     return user_dict
+
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 def update_profile(id):
@@ -111,7 +88,6 @@ def create_project(id):
     """
     Creates a new project
     """
-    #check if current_user.id == id:
     form = ProjectForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -126,7 +102,6 @@ def create_project(id):
             status_id=form.data['status_id'],
             owner_id=id
         )
-        # project.members.append(current_user)
         members = form.data['members'].strip().split(" ")
         for member_id in members:
             member = User.query.get(int(member_id))
