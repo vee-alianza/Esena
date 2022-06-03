@@ -90,19 +90,23 @@ function App() {
         <Route path="/about" exact={true}>
           <About />
         </Route>
-        <ProtectedRoute path="/my-tasks" exact={true}>
+        <ProtectedRoute path="/my-tasks" exact={true} loaded={loaded}>
           <MyTasks />
         </ProtectedRoute>
-        <ProtectedRoute path="/my-projects" exact={true}>
+        <ProtectedRoute path="/my-projects" exact={true} loaded={loaded}>
           <MyProjects />
         </ProtectedRoute>
-        <ProtectedRoute path="/projects/:projectId" exact={true}>
+        <ProtectedRoute
+          path="/projects/:projectId"
+          exact={true}
+          loaded={loaded}
+        >
           <SingleProjectPreview />
         </ProtectedRoute>
-        <ProtectedRoute path="/profile/:userId" exact={true}>
+        <ProtectedRoute path="/profile/:userId" exact={true} loaded={loaded}>
           <Profile />
         </ProtectedRoute>
-        <ProtectedRoute>
+        <ProtectedRoute loaded={loaded}>
           <NotFound />
         </ProtectedRoute>
       </Switch>
