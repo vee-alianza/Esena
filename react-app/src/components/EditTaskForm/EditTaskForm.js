@@ -11,6 +11,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
   const task = useSelector((state) => state.tasks[taskId]);
   const projectId = task?.project_id;
 
+  const sessionUser = useSelector((state) => state.session.user);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
@@ -18,6 +19,7 @@ const EditTaskForm = ({ setShowModal, taskId, projectName, projectEndDate }) => 
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
+  teammates.push(sessionUser);
 
   const [month, date, year] = task.end_date.split("/");
   const prevEndDate = `${year}-${month}-${date}`;
