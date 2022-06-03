@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 
 const SideBar = () => {
-  const history = useHistory(); 
+  const history = useHistory();
   const dispatch = useDispatch();
   const onLogout = async (e) => {
     history.push("/");

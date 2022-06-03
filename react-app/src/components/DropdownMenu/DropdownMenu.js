@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useStateIfMounted } from "use-state-if-mounted";
 import EditProjectModal from "../EditProjectForm"
 import DeleteProjectModal from "../DeleteProjectForm"
