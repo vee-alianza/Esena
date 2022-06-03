@@ -32,6 +32,7 @@ const SingleProjectPreview = () => {
 
   useEffect(async () => {
     await dispatch(viewProject(projectId));
+    // console.log(projectId)
   }, [dispatch]);
 
   const [tabClass, setTabClass] = useState({
