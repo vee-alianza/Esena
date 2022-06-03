@@ -67,7 +67,7 @@ const LoginForm = () => {
     <div className="login-signup-form-container">
       <div className="corner-login-signup-btn-container">
         <span className="login-signup-msg">Don't have an account? </span>
-        <Link to="/sign-up" exact={true} className="corner-login-signup-btn">
+        <Link to="/sign-up" exact={"true"} className="corner-login-signup-btn">
           <span>Sign Up</span>
         </Link>
       </div>
