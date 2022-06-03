@@ -1,15 +1,44 @@
-.corner-login-signup-btn {
+.login-signup-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: rwo;
+}
+
+.left-image-container {
+    /* background-image: url("/images/login-left.png"); */
+    width: 512px;
+    height: 100%;
+}
+
+.logo-left-image {
+    z-index: 1;
+    width: 200px;
     position: absolute;
-    top: 15px;
+    top: 120px;
+    left: 135px
+}
+
+.corner-login-signup-btn-container {
+    position: absolute;
+    top: 28px;
     right: 8%;
-    border: 1px solid rgb(223, 157, 24);
-    border-radius: 5px;
+}
+
+.corner-login-signup-btn {
+    border: 1px solid #EB7623FF;
+    border-radius: 6px;
     padding: 5px 8px;
     font-size: 15px;
 }
 
 .corner-login-signup-btn span {
-    color: rgb(223, 157, 24);
+    color: #EB7623FF;
+}
+
+.login-signup-msg {
+    font-size: 14px;
+    color: #282E37FF;
+    margin-right: 5px;
 }
 
 .auth-form {
@@ -18,9 +47,10 @@
     /* padding: 40px; */
     width: 350px;
 
-    position: absolute;
+    /* position: absolute;
     top: 30%;
-    left: 50%
+    right: 30%; */
+    margin: auto;
 }
 
 .auth-form.signup {
@@ -33,7 +63,7 @@
     width: 96%;
     padding-left: 8px;
     border: 1px solid gray;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 .auth-form textarea {
@@ -43,7 +73,7 @@
     width: 96%;
     padding-left: 8px;
     border: 1px solid gray;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 
@@ -55,7 +85,7 @@
     height: 30px;
     width:100%;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
     border: none;
     background-color: #9b71c58f;
     color: white;
@@ -64,12 +94,28 @@
 
 .auth-form-link {
     margin: auto;
-    font-size: 12px;
+    margin-top: 10px;
+    font-size: 14px;
     color: rgb(183, 183, 225)
+}
+
+.auth-form-link span {
+    color: #EB7623FF;
 }
 
 #demo-btn {
     color: white;
     background-color: rgb(223, 193, 24);
     border-color: #9b71c58f;
+}
+
+.login-signup-error-container {
+    font-size: 12px;
+    padding-bottom: 15px;
+    color: red
+}
+
+.login-signup-error-container div {
+    margin-bottom: 5px;
+    margin-left: 3px;
 }
