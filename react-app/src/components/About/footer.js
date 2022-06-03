@@ -7,7 +7,9 @@ const Footer = () => {
         <>
             <div className="footer-container">
                 <div className="dev-info-container">
-                    <img className="logo-footer" src={logo} />
+                    <NavLink to="/" className="logo-footer">
+                        <img className="logo-footer" src={logo} />
+                    </NavLink>
                     <div className="dev-info-footer">
                         <h3>Ethen Chen</h3>
                         <a href="https://travelr-ec.herokuapp.com/">Travelr</a>

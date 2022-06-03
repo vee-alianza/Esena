@@ -48,7 +48,8 @@ const NavBar = () => {
             <img src={logo} alt="logo" />
           </div>
           <div className="right-nav">
-            <button className="nav-about-btn">About</button>
+            {/* <button className="nav-about-btn">About</button> */}
+            <NavLink className="nav-about">About</NavLink>
             <button className="nav-login-btn">{navlink}</button>
           </div>
         </div>
