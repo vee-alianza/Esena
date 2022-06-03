@@ -1,11 +1,45 @@
 .calendar-container {
-    width: 70%;
+    width: 75%;
     position: absolute;
     top: 5%;
     right: 5%;
-    z-index: 1;
 }
 
 .eventTitle, .dailyEventTitle {
     color: red
+}
+
+.calendar-legend {
+    position: absolute;
+    right: 10%;
+    top: 75%;
+}
+.color-box-low {
+    width: 30px;
+    height: 10px;
+    background-color: rgba(186, 207, 249, 0.4);
+}
+
+.color-box-medium {
+    width: 30px;
+    height: 10px;
+    background-color: rgba(239, 221, 211, 0.4);
+}
+
+.color-box-high {
+    width: 30px;
+    height: 12px;
+    background-color: rgba(245, 189, 191, 0.4);
+}
+
+.color-box-label {
+    font-size: 11px;
+    margin-left: 5px;
+    padding-bottom: 1px;
+    color: rgb(40, 39, 39);
+}
+
+.color-box-container {
+    display: flex;
+    margin-bottom: 2px;
 }

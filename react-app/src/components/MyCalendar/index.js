@@ -57,6 +57,20 @@ const MyCalendar = () => {
       <div className="calendar-container">
         <Calendar events={events} />
       </div>
+      <div className="calendar-legend">
+        <div className="color-box-container">
+          <div className="color-box-low"></div>
+          <div className="color-box-label">Low Priority</div>
+        </div>
+        <div className="color-box-container">
+          <div className="color-box-medium"></div>
+          <div className="color-box-label">Medium Priority</div>
+        </div>
+        <div className="color-box-container">
+          <div className="color-box-high"></div>
+          <div className="color-box-label">High Priority</div>
+        </div>
+      </div>
     </div>
   );
 };
