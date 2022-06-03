@@ -15,8 +15,6 @@ import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
-import About from "./components/About";
-import Footer from "./components/About/footer";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -87,10 +85,6 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path="/about" exact={true}>
-          <About />
-          <Footer />
-        </Route>
         <Route path="/my-tasks" exact={true}>
           <MyTasks />
         </Route>
@@ -107,7 +101,7 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
-    </BrowserRouter >
+    </BrowserRouter>
   );
 }
 
