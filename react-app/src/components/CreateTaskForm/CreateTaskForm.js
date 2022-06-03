@@ -8,7 +8,8 @@ import "./CreateTaskForm.css";
 const CreateTaskForm = ({ setShowModal, projectName }) => {
   const dispatch = useDispatch();
   const { projectId } = useParams();
-
+  
+  const sessionUser = useSelector((state) => state.session.user);
   const allUsers = useSelector((state) => state.teammates.allUsers);
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
@@ -16,6 +17,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
+  teammates.push(sessionUser);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -53,6 +55,7 @@ const CreateTaskForm = ({ setShowModal, projectName }) => {
         status_id: parseInt(status),
         assignee_id: parseInt(assignee),
       };
+      // console.log("********", payload)
       dispatch(createTask(payload, projectId));
       setShowModal(false);
     }
