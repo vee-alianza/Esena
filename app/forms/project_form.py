@@ -16,10 +16,6 @@ class ProjectForm(FlaskForm):
     status_id = SelectField("status", choices=[1, 2, 3], validators=[InputRequired(message="Please select a field.")])
     members = StringField("members", validators=[DataRequired(message="This field is required.")])
 
-    def validate_start_date(form, field):
-            if (field.data < date.today()):
-                raise ValidationError('Start date cannot be in the past.')
-
 
     def validate_end_date(form, field):
             if (field.data < date.today()):
