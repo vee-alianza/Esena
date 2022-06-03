@@ -7,6 +7,8 @@ import splashImg1 from "../../assets/splashimg1.jpeg";
 import splashImg2 from "../../assets/splashimg2.jpeg";
 import splashexample1 from "../../assets/splashexample1.png";
 
+import Footer from "../About/footer";
+
 const SplashPage = () => {
   return (
     <div className="splash-container">
@@ -87,7 +89,9 @@ const SplashPage = () => {
             <img src={splashexample1} />
           </div>
         </div>
+
       </div>
+      <Footer />
     </div>
   );
 };
