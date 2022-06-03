@@ -3,8 +3,10 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 
+import logo from "../../assets/esena.png";
+
 const SideBar = () => {
-  const history = useHistory(); 
+  const history = useHistory();
   const dispatch = useDispatch();
   const onLogout = async (e) => {
     history.push("/");
@@ -14,7 +16,7 @@ const SideBar = () => {
   return (
     <div className="sidebar-container">
       <div className="logo-container">
-        <img src="/images/esena.png" alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
       <div className="sidebar-menu main">
         <div className="sidebar-menu-item">
@@ -45,7 +47,11 @@ const SideBar = () => {
           <span>
             <i className="fa-solid fa-user fa-lg"></i>
           </span>
-          <NavLink to={`/profile/${sessionUser?.id}`} exact={true} activeClassName="selected">
+          <NavLink
+            to={`/profile/${sessionUser?.id}`}
+            exact={true}
+            activeClassName="selected"
+          >
             My Profile
           </NavLink>
         </div>
