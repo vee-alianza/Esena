@@ -6,7 +6,7 @@ from datetime import datetime
 def seed_projects():
     esena_email_project = Project(name="Email alerts on Esena", description="When users are away from Esena app, they will receive notifications by email.", start_date=datetime(2022,6,1), end_date=datetime(2023,1,1), is_archived=False, is_private=True, priority_id=1, status_id=1, owner_id=1)
     
-    nescord_project = Project(name="iOS messager for Nescord", description="An instant messaging app for Nescord.", start_date=datetime(2022,5,1), end_date=datetime(2023,10,11), is_archived=False, is_private=False, priority_id=1, status_id=1, owner_id=5)
+    nescord_project = Project(name="iOS messenger for Nescord", description="An instant messaging app for Nescord.", start_date=datetime(2022,5,1), end_date=datetime(2023,10,11), is_archived=False, is_private=False, priority_id=1, status_id=1, owner_id=5)
     
     walk_project = Project(name="Map my walk", description="An app that allows users to track where and how far they have walked each day.", start_date=datetime(2022,7,1), end_date=datetime(2022,12,1), is_archived=False, is_private=False, priority_id=2, status_id=3, owner_id=8)
 
@@ -57,7 +57,7 @@ def seed_projects():
     persona_project.members.append(user7)
 
     db.session.add(esena_email_project)
-    db.session.add(nescord_project.members)
+    db.session.add(nescord_project)
     db.session.add(walk_project)
     db.session.add(cupid_project)
     db.session.add(ml_project)
