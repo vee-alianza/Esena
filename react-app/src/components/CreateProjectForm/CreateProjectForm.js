@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
+import { useHistory } from "react-router-dom";
 
 import { addProject } from "../../store/projects";
 import TeammateSearch from "../TeammateSearch";
@@ -16,8 +17,8 @@ const CreateProjectForm = ({ setShowModal }) => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [priority, setPriority] = useState({});
   const [status, setStatus] = useState({});
   const [teammates, setTeammates] = useState([]);
@@ -36,6 +37,7 @@ const CreateProjectForm = ({ setShowModal }) => {
     { label: "On Track", value: "3" },
   ];
 
+  const history = useHistory();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,8 +53,9 @@ const CreateProjectForm = ({ setShowModal }) => {
     };
 
     const res = await dispatch(addProject(payload, session.id));
-    if (res === null) {
+    if (typeof res === 'object') {
       setShowModal(false);
+      history.push(`/projects/${res.id}`);
     } else {
       const errors = {};
       if (Array.isArray(res)) {

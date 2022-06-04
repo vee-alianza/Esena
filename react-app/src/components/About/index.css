@@ -1,0 +1,88 @@
+.developers-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+
+.developers-container > h1 {
+  font-weight: 500;
+}
+
+.paragraph-container {
+  width: 50%;
+  text-align: center;
+  line-height: 30px;
+}
+
+.paragraph-container > p:nth-child(2) {
+  margin-top: 30px;
+  font-weight: 500;
+}
+
+.technologies-container {
+  position: relative;
+  top: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-weight: 300;
+}
+
+.technologies-container > img {
+  width: 5%;
+  height: auto;
+}
+
+.about-logo {
+  width: 200px;
+  height: auto;
+}
+
+.dev-img {
+  /* border-radius: 50%; */
+  /* width: 150px;
+    height: 150px; */
+  box-shadow: 40px -15px rgb(196, 160, 227);
+  height: 150px;
+  width: 150px;
+  margin: 5vh 5vw;
+}
+
+.inner-dev-container {
+  position: relative;
+  top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.dev-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 20px; */
+}
+
+.dev-profile h3 {
+  height: 1px;
+}
+
+.logo-container {
+  margin-top: 10px;
+}
+
+.logo-container > a {
+  padding: 5px;
+}
+
+.logo-container a i {
+  transition: all 0.3s linear;
+}
+
+.logo-container a:hover i {
+  transform: scale(1.5);
+}

@@ -15,6 +15,8 @@ import { setAllUsers, setTeammates } from "./store/teammates";
 import { setComments } from "./store/comments"
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import About from "./components/About";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -85,21 +87,28 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <Route path="/my-tasks" exact={true}>
+        <Route path="/about" exact={true}>
+          <About />
+        </Route>
+        <ProtectedRoute path="/my-tasks" exact={true} loaded={loaded}>
           <MyTasks />
-        </Route>
-        <Route path="/my-projects" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/my-projects" exact={true} loaded={loaded}>
           <MyProjects />
-        </Route>
-        <Route path="/projects/:projectId" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/projects/:projectId"
+          exact={true}
+          loaded={loaded}
+        >
           <SingleProjectPreview />
-        </Route>
-        <Route path="/profile/:userId" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile/:userId" exact={true} loaded={loaded}>
           <Profile />
-        </Route>
-        <Route>
+        </ProtectedRoute>
+        <ProtectedRoute loaded={loaded}>
           <NotFound />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

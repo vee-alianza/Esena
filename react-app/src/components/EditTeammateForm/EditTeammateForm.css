@@ -1,0 +1,16 @@
+#edit-team-form {
+  width: 550px;
+}
+
+.edit-teammate-form-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100px;
+}
+
+#save-changes-btn {
+  width: 120px;
+}

@@ -16,8 +16,30 @@
   justify-content: space-between;
 }
 
-.project-page-header > h1 {
+.project-page-header-statuses {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  padding-top: 5px;
+}
+
+.project-page-header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+}
+
+.project-page-header-left > h1 {
   letter-spacing: -0.04em;
+}
+
+.project-page-header-left > p {
+  font-size: 15px;
+  font-weight: 600;
+  font-style: italic;
+  margin-left: 20px;
+  padding-top: 5px;
 }
 
 .fa-ellipsis {
