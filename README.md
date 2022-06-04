@@ -158,59 +158,67 @@ each of the following variables:
 | `heroku login -i`              | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser                                             |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token                                                                                      |
 | `heroku run -a <app name>`     | Run a command from within the deployed container on Heroku                                                                                   |
-
+<!--
 # Features
 ## Splash Page
 Users can log into an existing account, sign up or test the site by clicking on the Demo User feature.
 
 ![Splash Page](https://user-images.githubusercontent.com/92604480/172023812-8651c70e-43f5-4770-a9bb-9b5d306050e5.png) </br>
-![Login](https://user-images.githubusercontent.com/92604480/172023800-b8decfb0-459e-4201-ab5c-45d43751a183.png)
+![Login](https://user-images.githubusercontent.com/92604480/172023800-b8decfb0-459e-4201-ab5c-45d43751a183.png)</br>
+![Sign-Up](https://user-images.githubusercontent.com/92604480/172025198-2f5ff7b5-5948-4252-b624-57d349528610.png)
 ## Home Page
 ### Navigation
 * The navigation bar is displayed on the side of the page and persists on each page
 
 Once the user is logged in, they can create a project and view all projects they have created, projects and tasks they are assigned to and a table of frequent collaborators.
    * Clicking on "Create Project" will display a modal with input fields that need to be filled up
-   * Clicking on an existing project will redirect the user to the project page
    * Clicking on a task will display a modal with the task details, that only assigned users can leave a comment on
+   * Clicking on an existing project will redirect the user to the project page
    * Clicking on a user's name renders the profile of the user
 
   ![Homepage](https://user-images.githubusercontent.com/92604480/172023853-5ef2a65c-68f0-44db-8886-4941bd89e68c.png)</br>
   ![Create-Project](https://user-images.githubusercontent.com/92604480/172024005-667b09e5-eaf6-49f5-9d14-fd6d72aa98e5.png)</br>
+  ![Task-Comment](https://user-images.githubusercontent.com/92604480/172023888-ef08abe7-f9e9-4149-a05e-1048fb0e5885.png) </br>
   ![Project Page](https://user-images.githubusercontent.com/92604480/172023962-a0cf9d52-9bdf-4def-b32f-b94200c486aa.png)
 
 ## Projects
-A user can edit and delete a project by clicking on the dropdown menu on the project, view the details of the project
+A user view the details of the project, edit and delete a project
 
    * Clicking on the Overview tab will display the project information
-   * An edit button is also displayed
+   * Clicking on the dropdown menu on the project will display an Edit and Delete option
 
 These features are available only to the owner of the project
 
-![Single-Project](https://user-images.githubusercontent.com/92604480/172023947-b80c6763-62bd-4bd0-8510-0cd72d733880.png)
+![Single-Project](https://user-images.githubusercontent.com/92604480/172023947-b80c6763-62bd-4bd0-8510-0cd72d733880.png)</br>
+![Edit-Delete-Menu](https://user-images.githubusercontent.com/92604480/172025592-e85a8253-1913-41b7-808c-5064235f60c6.png)
 ## Tasks
-A user can edit and delete a project by clicking on the dropdown menu on the project, view the details of the project
+A user can edit and delete a task by clicking on the dropdown menu on the project, view the details of the project
 
 ![Task-Tab](https://user-images.githubusercontent.com/92604480/172024054-d7c53e95-226f-48e8-b2c4-8f0ed58ee0a2.png)</br>
-![Add-Task](https://user-images.githubusercontent.com/92604480/172024073-a0ae913d-495d-4f2b-9637-2a9400385731.png)</br>
-![Edit-Delete-Task](https://user-images.githubusercontent.com/92604480/172025054-a65196e1-4d9d-4fea-8a8e-affd05feee82.png)
+![Add-Task-Modal](https://user-images.githubusercontent.com/92604480/172024073-a0ae913d-495d-4f2b-9637-2a9400385731.png)</br>
+![Edit-Delete-Task](https://user-images.githubusercontent.com/92604480/172025054-a65196e1-4d9d-4fea-8a8e-affd05feee82.png)</br>
+![Edit-Task-Modal](https://user-images.githubusercontent.com/92604480/172025521-1aa8644f-7c7a-47c4-ace1-31282f1062d1.png)
+
 ## Teams
 ![Add-Remove-Teammates](https://user-images.githubusercontent.com/92604480/172024038-55567af3-c262-4b3b-9d5f-2ddaaa3c0b36.png)
 
 
 
 ## Profile Page
-A user can edit their profile by clicking My Profile on the navigation bar.
+A user can edit their profile by clicking My Profile on the navigation bar, which will redirect them to their profile page
 
-![Profile](https://user-images.githubusercontent.com/92604480/172024130-dbee6e17-d9a6-4e99-85a9-27fac6c27ff5.png)
+   * Clicking on the edit button will
+
+![Profile](https://user-images.githubusercontent.com/92604480/172024130-dbee6e17-d9a6-4e99-85a9-27fac6c27ff5.png)</br>
+![Edit-Profile](https://user-images.githubusercontent.com/92604480/172025142-b42f2d62-1540-4bc6-bf01-91b85adfb8f8.png)
 ## Calendar
 
 ## Comments
 
 ## Page Not Found
+![404-Page](https://user-images.githubusercontent.com/92604480/172025096-bbe3b258-08f9-4049-8646-cb42e6d939c5.png)
 
 
 
 
-
-[Back to top](#top)
+[Back to top](#top) -->
