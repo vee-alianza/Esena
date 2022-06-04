@@ -1,4 +1,4 @@
-<h1 align= "center" dir="auto"> Welcome to <a href="">Esena</a>! </h1>
+<h1 align= "center" dir="auto"> Welcome to <a href="" name="top">Esena</a>! </h1>
 <h5 align= "center" dir="auto">
   Creators:
       <a href="https://github.com/ethanchen7">Ethan Chen</a>
@@ -16,25 +16,24 @@
   <a href="https://github.com/vee-alianza/Esena/wiki">» Explore the Wiki «</a>
 </h4>
 
-## About
+# About
 Esena is an application inspired by [Asana](https://asana.com/).
 
-## Features
-
-## Technologies Used
+# Technologies Used
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+</br>
+
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
-<!-- ![SQLAlchemy] -->
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 
-## Getting started
+# Getting started
 1. Clone this repository (only this branch)
 
    ```bash
@@ -78,7 +77,7 @@ Esena is an application inspired by [Asana](https://asana.com/).
    psycopg2-binary MUST remain a dev dependency because you can't install it on alpine-linux.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
-
+<!--
 ### Dev Containers (OPTIONAL for M1 Users)
 The following instructions detail an *optional* development setup for M1 Mac users having issues with the `psycopg` package.
 
@@ -146,9 +145,9 @@ each of the following variables:
 
 7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will *not* automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
 
-8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
+8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all` -->
 
-## Helpful commands
+# Helpful commands
 | Command                        | Purpose                                                                                                                                      |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | `pipenv shell`                 | Open your terminal in the virtual environment and be able to run flask commands without a prefix                                             |
@@ -159,3 +158,59 @@ each of the following variables:
 | `heroku login -i`              | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser                                             |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token                                                                                      |
 | `heroku run -a <app name>`     | Run a command from within the deployed container on Heroku                                                                                   |
+
+# Features
+## Splash Page
+Users can log into an existing account, sign up or test the site by clicking on the Demo User feature.
+
+![Splash Page](https://user-images.githubusercontent.com/92604480/172023812-8651c70e-43f5-4770-a9bb-9b5d306050e5.png) </br>
+![Login](https://user-images.githubusercontent.com/92604480/172023800-b8decfb0-459e-4201-ab5c-45d43751a183.png)
+## Home Page
+### Navigation
+* The navigation bar is displayed on the side of the page and persists on each page
+
+Once the user is logged in, they can create a project and view all projects they have created, projects and tasks they are assigned to and a table of frequent collaborators.
+   * Clicking on "Create Project" will display a modal with input fields that need to be filled up
+   * Clicking on an existing project will redirect the user to the project page
+   * Clicking on a task will display a modal with the task details, that only assigned users can leave a comment on
+   * Clicking on a user's name renders the profile of the user
+
+  ![Homepage](https://user-images.githubusercontent.com/92604480/172023853-5ef2a65c-68f0-44db-8886-4941bd89e68c.png)</br>
+  ![Create-Project](https://user-images.githubusercontent.com/92604480/172024005-667b09e5-eaf6-49f5-9d14-fd6d72aa98e5.png)</br>
+  ![Project Page](https://user-images.githubusercontent.com/92604480/172023962-a0cf9d52-9bdf-4def-b32f-b94200c486aa.png)
+
+## Projects
+A user can edit and delete a project by clicking on the dropdown menu on the project, view the details of the project
+
+   * Clicking on the Overview tab will display the project information
+   * An edit button is also displayed
+
+These features are available only to the owner of the project
+
+![Single-Project](https://user-images.githubusercontent.com/92604480/172023947-b80c6763-62bd-4bd0-8510-0cd72d733880.png)
+## Tasks
+A user can edit and delete a project by clicking on the dropdown menu on the project, view the details of the project
+
+![Task-Tab](https://user-images.githubusercontent.com/92604480/172024054-d7c53e95-226f-48e8-b2c4-8f0ed58ee0a2.png)</br>
+![Add-Task](https://user-images.githubusercontent.com/92604480/172024073-a0ae913d-495d-4f2b-9637-2a9400385731.png)</br>
+![Edit-Delete-Task](https://user-images.githubusercontent.com/92604480/172025054-a65196e1-4d9d-4fea-8a8e-affd05feee82.png)
+## Teams
+![Add-Remove-Teammates](https://user-images.githubusercontent.com/92604480/172024038-55567af3-c262-4b3b-9d5f-2ddaaa3c0b36.png)
+
+
+
+## Profile Page
+A user can edit their profile by clicking My Profile on the navigation bar.
+
+![Profile](https://user-images.githubusercontent.com/92604480/172024130-dbee6e17-d9a6-4e99-85a9-27fac6c27ff5.png)
+## Calendar
+
+## Comments
+
+## Page Not Found
+
+
+
+
+
+[Back to top](#top)
