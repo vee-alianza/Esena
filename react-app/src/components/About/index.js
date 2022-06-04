@@ -3,7 +3,7 @@ import "./index.css";
 
 import logo from "../../assets/esena.png";
 import ethan from "../../assets/ethan.png";
-import lana from "../../assets/lana.png";
+import lana from "../../assets/lana.jpg";
 import vee from "../../assets/vee.png";
 import xiaowen from "../../assets/xiaowen.png";
 
