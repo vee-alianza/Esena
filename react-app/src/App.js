@@ -16,6 +16,7 @@ import { setComments } from "./store/comments"
 import SplashPage from "./components/SplashPage";
 import NotFound from "./components/NotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import MyCalendar from "./components/MyCalendar";
 import About from "./components/About";
 
 function App() {
@@ -70,6 +71,12 @@ function App() {
     })();
   }, [dispatch, session]);
 
+//   useEffect(() => {
+//     window.process = {
+//       ...window.process,
+//     };
+//   }, []);
+
   if (!loaded) {
     return null;
   }
@@ -105,6 +112,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/profile/:userId" exact={true} loaded={loaded}>
           <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path="/my-calendar" exact={true} loaded={loaded}>
+          <MyCalendar />
         </ProtectedRoute>
         <ProtectedRoute loaded={loaded}>
           <NotFound />

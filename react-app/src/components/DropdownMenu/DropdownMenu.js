@@ -10,7 +10,7 @@ const DropdownMenu = ({ comp, permissions }) => {
     const handleClick = (e) => {
         e.stopPropagation();
         if (e.target.id === "dropdown-menu") {
-            setIsClicked(true);
+            setIsClicked(!isClicked);
         }
     }
 

@@ -1,16 +1,19 @@
 .dropdown-container {
-  position: relative;
+  width: 65px;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .dropdown-menu {
   box-sizing: border-box;
   width: 70px;
   height: 65px;
-  position: relative;
+  position: fixed;
   background-color: #ffffffff;
-  right: 40%;
-  top: 55%;
+  top: 3.5%;
   font-size: 14px;
   padding: 5px;
   display: flex;
