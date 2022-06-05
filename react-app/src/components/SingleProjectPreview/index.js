@@ -186,6 +186,7 @@ const SingleProjectPreview = () => {
                     task.project_id == projectId && task.is_completed == false
                 )}
                 members={members}
+                overdue={overDue()}
               />
               <ProjectTasksCompleted
                 tasks={allTasks?.filter(

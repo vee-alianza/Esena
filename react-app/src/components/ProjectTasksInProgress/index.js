@@ -13,7 +13,7 @@ import OffTrack from "../Statuses/OffTrack";
 import OnTrack from "../Statuses/OnTrack";
 import "./index.css";
 
-const ProjectTasksInProgress = ({ tasks, members }) => {
+const ProjectTasksInProgress = ({ tasks, members, overdue }) => {
   const { projectId } = useParams();
   const project = useSelector((state) => state.projects[projectId]);
   const sessionUser = useSelector((state) => state.session.user);
@@ -55,46 +55,50 @@ const ProjectTasksInProgress = ({ tasks, members }) => {
         </div>
         {members?.includes(sessionUser.id) ||
         project?.owner_id == sessionUser?.id ? (
-          <TableCreateTask projectName={project?.name} endDate={project?.end_date} />
+          <TableCreateTask
+            projectName={project?.name}
+            endDate={project?.end_date}
+            overdue={overdue}
+          />
         ) : null}
       </div>
       <table className="progress-table">
         <thead>
-        <tr className="progress-table-header">
-          <th>TASK NAME</th>
-          <th>ASSIGNEE</th>
-          <th>DUE DATE</th>
-          <th>PRIORITY</th>
-          <th>STATUS</th>
-          <th></th>
-        </tr>
+          <tr className="progress-table-header">
+            <th>TASK NAME</th>
+            <th>ASSIGNEE</th>
+            <th>DUE DATE</th>
+            <th>PRIORITY</th>
+            <th>STATUS</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-        {tasks?.map((task) => (
-          <tr key={task.id} className="task-row">
-            <td>
-              <SingleTask taskName={task.name} taskId={task.id} />
-            </td>
-            <td>
-              <Link to={`/profile/${task.assignee_id}`}>
-                {users[task.assignee_id]?.first_name}
-              </Link>
-            </td>
-            <td>{task.end_date}</td>
-            <td className="priority-cell">{renderPriority(task)} </td>
-            <td className="status-cell">{renderStatus(task)} </td>
-            {task.assigner_id == sessionUser.id ? (
-              <td align="right" className="options-cell">
-                <EditTaskTableBtn
-                  taskId={task.id}
-                  projectName={project?.name}
-                  projectEndDate={project?.end_date}
-                />
-                <DeleteTaskTableBtn taskId={task.id} taskname={task.name} />
+          {tasks?.map((task) => (
+            <tr key={task.id} className="task-row">
+              <td>
+                <SingleTask taskName={task.name} taskId={task.id} />
               </td>
-            ) : null}
-          </tr>
-        ))}
+              <td>
+                <Link to={`/profile/${task.assignee_id}`}>
+                  {users[task.assignee_id]?.first_name}
+                </Link>
+              </td>
+              <td>{task.end_date}</td>
+              <td className="priority-cell">{renderPriority(task)} </td>
+              <td className="status-cell">{renderStatus(task)} </td>
+              {task.assigner_id == sessionUser.id ? (
+                <td align="right" className="options-cell">
+                  <EditTaskTableBtn
+                    taskId={task.id}
+                    projectName={project?.name}
+                    projectEndDate={project?.end_date}
+                  />
+                  <DeleteTaskTableBtn taskId={task.id} taskname={task.name} />
+                </td>
+              ) : null}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
