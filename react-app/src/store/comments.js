@@ -1,7 +1,8 @@
-const SET_COMMENTS = "comments/SET_COMMENTS"
-const ADD_COMMENT = "comments/ADD_COMMENT"
-const UPDATE_COMMENT = "comments/UPDATE_COMMENT"
-const DELETE_COMMENT = "comments/DELETE_COMMENT"
+const SET_COMMENTS = "comments/SET_COMMENTS";
+const ADD_COMMENT = "comments/ADD_COMMENT";
+const UPDATE_COMMENT = "comments/UPDATE_COMMENT";
+const DELETE_COMMENT = "comments/DELETE_COMMENT";
+const REMOVE_ALL_COMMENTS = "comments/REMOVE_ALL_COMMENTS";
 
 export const setComments = comments => {
     return {
@@ -30,6 +31,10 @@ const removeComment = commentId => {
         commentId
     }
 }
+
+export const removeAllComments = () => ({
+    type: REMOVE_ALL_COMMENTS,
+})
 
 export const addComment = (payload, taskId) => async dispatch => {
     const response = await fetch(`/api/tasks/${taskId}/comments`, {
@@ -119,6 +124,8 @@ const commentReducer = (state = initialState, action) => {
             let newState = { ...state };
             delete newState[action.commentId];
             return newState;
+        case REMOVE_ALL_COMMENTS:
+            return {...initialState}
         default:
             return state
     }
