@@ -2,7 +2,8 @@ const SET_TASKS = "tasks/SET_TASKS";
 const ADD_TASK = "tasks/ADD_TASK";
 const UPDATE_TASK = "tasks/UPDATE_TASK";
 const REMOVE_TASK = "tasks/REMOVE_TASK";
-// const COMPLETE_TASK = "tasks/COMPLETE_TASK";
+const REMOVE_ALL_TASKS = "projects/REMOVE_ALL_TASKS";
+
 
 export const setTasks = (tasks) => {
   return {
@@ -31,6 +32,10 @@ export const removeTask = (taskId) => {
     taskId,
   };
 };
+
+export const removeAllTasks = () => ({
+  type: REMOVE_ALL_TASKS,
+});
 
 
 export const createTask = (formData, projectId) => async (dispatch) => {
@@ -144,6 +149,8 @@ const taskReducer = (state = initialState, action) => {
       delete newState[action.taskId];
       return newState;
     }
+    case REMOVE_ALL_TASKS:
+      return {...initialState}
     default:
       return state;
   }
