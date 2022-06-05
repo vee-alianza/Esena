@@ -50,6 +50,7 @@ const SingleProjectPreview = () => {
   let project = useSelector((state) => state.singleProject);
   let allTasks;
   let members;
+
   if (project && project.tasks) {
     allTasks = Object.values(project.tasks);
     members = [project.owner_id, ...project.members];
