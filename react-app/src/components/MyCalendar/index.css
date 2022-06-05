@@ -5,8 +5,9 @@
     right: 5%;
 }
 
-.eventTitle, .dailyEventTitle {
-    color: red
+.eventTitle,
+.dailyEventTitle {
+    color: black
 }
 
 .calendar-legend {
@@ -14,6 +15,7 @@
     right: 8%;
     top: 6%;
 }
+
 .color-box-low {
     width: 30px;
     height: 10px;
