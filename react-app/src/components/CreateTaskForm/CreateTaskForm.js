@@ -15,15 +15,19 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   const currentTeammatesIds = useSelector(
     (state) => state.projects[projectId].members
   );
+
   const teammates = Object.values(allUsers).filter((user) =>
     currentTeammatesIds.includes(user.id)
   );
-  // teammates.push(sessionUser);
+
   const projects = useSelector((state) => state.projects);
   const ownerId = projects[projectId].owner_id;
-  const ownerObj = allUsers[ownerId]
-  teammates.push(ownerObj);
-  // console.log("*********", teammates)
+  const ownerObj = allUsers[ownerId];
+  if (ownerObj) {
+    teammates.push(ownerObj);
+  } else {
+    teammates.push(sessionUser);
+  }
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -35,7 +39,7 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   const [errorMessages, setErrorMessages] = useState({});
 
   const assigneeOptions = teammates.map((teammate) => {
-    return { label: `${teammate.first_name}`, value: `${teammate.id}` };
+    return { label: `${teammate?.first_name}`, value: `${teammate?.id}` };
   });
 
   const priorityOptions = [
@@ -66,11 +70,11 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
     } else {
       const errors = {};
       if (Array.isArray(res)) {
-        res.forEach(error => {
-          const label = error.split(":")[0].slice(0, -1)
-          const message = error.split(":")[1].slice(1)
+        res.forEach((error) => {
+          const label = error.split(":")[0].slice(0, -1);
+          const message = error.split(":")[1].slice(1);
           errors[label] = message;
-        })
+        });
       } else {
         errors.overall = res;
       }
@@ -79,23 +83,22 @@ const CreateTaskForm = ({ setShowModal, projectName, projectEndDate }) => {
   };
 
   const checkDates = () => {
+    const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
+    const projectEnd = new Date(projectYear, projectMonth - 1, projectDate);
 
-      const [projectMonth, projectDate, projectYear] = projectEndDate.split("/");
-      const projectEnd = new Date(projectYear, projectMonth - 1, projectDate)
+    const taskEnd = new Date(endDate);
 
-      const taskEnd = new Date(endDate);
+    const today = new Date();
 
-      const today = new Date();
-
-      if (taskEnd.getTime() < today.getTime()) {
-        return "End date cannot be in the past"
-      }
-      if (taskEnd.getTime() > projectEnd.getTime()) {
-        return `End date should be before project ends (${projectEndDate})`;
-      }
+    if (taskEnd.getTime() < today.getTime()) {
+      return "End date cannot be in the past";
+    }
+    if (taskEnd.getTime() > projectEnd.getTime()) {
+      return `End date should be before project ends (${projectEndDate})`;
+    }
 
     return null;
-  }
+  };
 
   return (
     <div className="form-outer-container">
