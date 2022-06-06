@@ -1,6 +1,8 @@
 const SET_TEAMMATES = "teammates/SET_TEAMMATES";
 const SET_USERS = "teammates/SET_USERS";
 const ADDTO_ALLUSERS = "teammates/ADDTO_ALLUSERS";
+const REMOVE_ALL_TEAMMATES = "projects/REMOVE_ALL_TEAMMATES";
+
 
 export const setTeammates = (teammates) => {
   return {
@@ -23,6 +25,10 @@ export const addToAllUsers = (user) => {
   };
 };
 
+export const removeAllTeammates = () => ({
+  type: REMOVE_ALL_TEAMMATES,
+});
+
 const initialState = { teammates: [], allUsers: {} };
 
 const teammateReducer = (state = initialState, action) => {
@@ -42,6 +48,8 @@ const teammateReducer = (state = initialState, action) => {
         ...state,
         allUsers: {...state.allUsers, [action.user.id]: action.user},
       };
+    case REMOVE_ALL_TEAMMATES:
+      return {... initialState};
     default:
       return state;
   }

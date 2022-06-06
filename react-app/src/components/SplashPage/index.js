@@ -6,6 +6,10 @@ import "./index.css";
 import splashImg1 from "../../assets/splashimg1.jpeg";
 import splashImg2 from "../../assets/splashimg2.jpeg";
 import splashexample1 from "../../assets/splashexample1.png";
+import splashprojectpage from "../../assets/splashprojectpage.png";
+import splashcalendar from "../../assets/splashcalendar.png";
+import taskexample from "../../assets/taskexample.png";
+import projectoverview from "../../assets/projectoverview.png";
 
 import Footer from "../About/footer";
 
@@ -57,12 +61,12 @@ const SplashPage = () => {
             </p>
           </div>
           <div className="splash-image-box-2">
-            <img src={splashexample1} />
+            <img src={splashprojectpage} />
           </div>
         </div>
         <div className="third-display">
           <div className="splash-image-box-3">
-            <img src={splashexample1} />
+            <img src={splashcalendar} />
           </div>
           <div className="third-display-left-text">
             <h3>Workload Transparency</h3>
@@ -86,7 +90,7 @@ const SplashPage = () => {
             </p>
           </div>
           <div className="splash-image-box-2">
-            <img src={splashexample1} />
+            <img src={projectoverview} />
           </div>
         </div>
         <Footer />

@@ -1,3 +1,8 @@
+import { removeAllProjects } from "./projects";
+import { removeAllTasks } from "./tasks";
+import { removeAllTeammates } from "./teammates";
+import { removeAllComments } from "./comments";
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -64,6 +69,10 @@ export const logout = () => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeUser());
+    dispatch(removeAllProjects());
+    dispatch(removeAllTasks());
+    dispatch(removeAllTeammates());
+    dispatch(removeAllComments());
   }
 };
 
