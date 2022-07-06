@@ -231,14 +231,16 @@ A user can add, edit and delete teammates assigned to a project
 ![Add-Remove-Teammates](https://user-images.githubusercontent.com/92604480/172024038-55567af3-c262-4b3b-9d5f-2ddaaa3c0b36.png)
 
 ## Profile Page
-A user can edit their profile by clicking My Profile on the navigation bar, which will redirect them to their profile page
+A user can edit their profile by clicking "My Profile" on the navigation bar, which will redirect them to their profile page
+
+   * Clicking on the edit button will display modal with the user's pre-filled information
 
 ![Profile](https://user-images.githubusercontent.com/92604480/172024130-dbee6e17-d9a6-4e99-85a9-27fac6c27ff5.png)</br>
 ![Edit-Profile](https://user-images.githubusercontent.com/92604480/172025142-b42f2d62-1540-4bc6-bf01-91b85adfb8f8.png)
 ## Calendar
 A user can view all of the tasks on a calendar.
 
-   *Clicking "My Calendar" with display a calander and users can view tasks by Month, Day, Year
+   * Clicking "My Calendar" with display a calander and users can view tasks by Month, Day, Year
 
 ![Month](https://user-images.githubusercontent.com/92604480/172027660-9125fcf6-e637-4b4d-a90e-795d55f3176b.png)</br>
 ![Day](https://user-images.githubusercontent.com/92604480/172027671-974c72c5-5946-416a-9e49-e4bae833c44a.png)</br>

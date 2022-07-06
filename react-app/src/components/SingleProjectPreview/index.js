@@ -50,6 +50,7 @@ const SingleProjectPreview = () => {
   let project = useSelector((state) => state.singleProject);
   let allTasks;
   let members;
+
   if (project && project.tasks) {
     allTasks = Object.values(project.tasks);
     members = [project.owner_id, ...project.members];
@@ -123,7 +124,7 @@ const SingleProjectPreview = () => {
     const jsDate = new Date().toISOString().split("T")[0];
     const pyDate = jsDate.split("-");
     const newPyDate = `${pyDate[1]}/${pyDate[2]}/${pyDate[0]}`;
-    return newPyDate > project.end_date;
+    return Date.parse(newPyDate) > Date.parse(project.end_date);
   };
 
   return (
@@ -186,6 +187,7 @@ const SingleProjectPreview = () => {
                     task.project_id == projectId && task.is_completed == false
                 )}
                 members={members}
+                overdue={overDue()}
               />
               <ProjectTasksCompleted
                 tasks={allTasks?.filter(

@@ -17,10 +17,10 @@ const Footer = () => {
             <p>Ethan Chen</p>
             <div className="footer-social-links">
               <a href="https://github.com/ethanchen7">
-                <i class="fa-brands fa-github fa-lg"></i>
+                <i className="fa-brands fa-github fa-lg"></i>
               </a>
               <a href="https://www.linkedin.com/in/ethan-chen-3b7070127/">
-                <i class="fa-brands fa-linkedin fa-lg"></i>
+                <i className="fa-brands fa-linkedin fa-lg"></i>
               </a>
             </div>
           </div>
@@ -28,10 +28,10 @@ const Footer = () => {
             <p>Lana Komar</p>
             <div className="footer-social-links">
               <a href="https://github.com/lanakomar">
-                <i class="fa-brands fa-github fa-lg"></i>
+                <i className="fa-brands fa-github fa-lg"></i>
               </a>
               <a href="https://www.linkedin.com/in/lana-komar/">
-                <i class="fa-brands fa-linkedin fa-lg"></i>
+                <i className="fa-brands fa-linkedin fa-lg"></i>
               </a>
             </div>
           </div>
@@ -39,10 +39,10 @@ const Footer = () => {
             <p>Vee Alianza</p>
             <div className="footer-social-links">
               <a href="https://github.com/vee-alianza">
-                <i class="fa-brands fa-github fa-lg"></i>
+                <i className="fa-brands fa-github fa-lg"></i>
               </a>
               <a href="https://www.linkedin.com/in/vee-alianza/">
-                <i class="fa-brands fa-linkedin fa-lg"></i>
+                <i className="fa-brands fa-linkedin fa-lg"></i>
               </a>
             </div>
           </div>
@@ -50,10 +50,10 @@ const Footer = () => {
             <p>Xiaowen Nie</p>
             <div className="footer-social-links">
               <a href="https://github.com/xwnnie">
-                <i class="fa-brands fa-github fa-lg"></i>
+                <i className="fa-brands fa-github fa-lg"></i>
               </a>
               <a href="https://www.linkedin.com/in/xiaowennie/">
-                <i class="fa-brands fa-linkedin fa-lg"></i>
+                <i className="fa-brands fa-linkedin fa-lg"></i>
               </a>
             </div>
           </div>

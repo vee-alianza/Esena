@@ -1,7 +1,8 @@
 const SET_PROJECTS = "projects/SET_PROJECTS";
 const CREATE_PROJECT = "projects/CREATE_PROJECT";
 const EDIT_PROJECT = "projects/EDIT_PROJECT";
-const REMOVE_PROJECT = "project/REMOVE_PROJECT"
+const REMOVE_PROJECT = "project/REMOVE_PROJECT";
+const REMOVE_ALL_PROJECTS = "projects/REMOVE_ALL_PROJECTS";
 
 export const setProjects = (projects) => {
   return {
@@ -30,6 +31,10 @@ export const removeProject = (projectId) => {
     projectId,
   };
 };
+
+export const removeAllProjects = () => ({
+  type: REMOVE_ALL_PROJECTS,
+});
 
 export const addProject = (payload, userId) => async (dispatch) => {
   const response = await fetch(`/api/users/${userId}/projects`, {
@@ -77,7 +82,7 @@ export const updateProject = (payload, projectId) => async (dispatch) => {
 
 export const deleteProject = (projectId) => async (dispatch) => {
   const response = await fetch(`/api/projects/${projectId}`, {
-    method: "DELETE"
+    method: "DELETE",
   });
 
   if (response.ok) {
@@ -94,6 +99,7 @@ export const deleteProject = (projectId) => async (dispatch) => {
   }
 };
 
+
 const initialState = {};
 
 const projectReducer = (state = initialState, action) => {
@@ -106,8 +112,8 @@ const projectReducer = (state = initialState, action) => {
     case CREATE_PROJECT:
       return {
         ...state,
-        [action.project.id]: action.project
-      }
+        [action.project.id]: action.project,
+      };
     case EDIT_PROJECT:
       return {
         ...state,
@@ -116,7 +122,9 @@ const projectReducer = (state = initialState, action) => {
     case REMOVE_PROJECT:
       let newState = { ...state };
       delete newState[action.projectId];
-      return newState
+      return newState;
+    case REMOVE_ALL_PROJECTS:
+      return {...initialState}
     default:
       return state;
   }
