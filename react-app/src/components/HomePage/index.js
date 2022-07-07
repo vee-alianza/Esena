@@ -47,7 +47,7 @@ const HomePage = () => {
   const today = new Date();
   if (today.getHours() < 12) {
     tod = "morning";
-  } else if (today.getHours() > 12 && today.getHours() < 17) {
+  } else if (today.getHours() >= 12 && today.getHours() < 17) {
     tod = "afternoon";
   } else {
     tod = "evening";
