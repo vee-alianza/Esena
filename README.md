@@ -51,7 +51,7 @@ Esena is an application inspired by [Asana](https://asana.com/) where teamwork m
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/vee-alianza/Esena.git
    ```
 
 2. Install dependencies
